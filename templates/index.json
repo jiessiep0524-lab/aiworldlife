@@ -449,8 +449,8 @@
       "settings": {
         "kicker": "FREQUENTLY ASKED QUESTIONS",
         "heading": "Got Questions?",
-        "text": "Here are some answers. View all FAQs for more.",
-        "link_label": "View All FAQs",
+        "text": "Here are some answers.",
+        "link_label": "View all FAQs",
         "link": "",
         "background": "#ffffff",
         "padding_top": 24,

@@ -135,6 +135,10 @@ body .scrolled-past-header .header__heading-logo-wrapper { width: 100%; }
 .trade-faq summary::after { content:'+'; color:var(--trade-blue); font-size:2rem; line-height:1; }
 .trade-faq details[open] summary::after { content:'−'; }
 .trade-faq details p { margin:1rem 0 0; color:var(--trade-muted); line-height:1.5; }
+body .trade-faq .trade-kicker { color:var(--text-primary); }
+body .trade-faq__intro > p:not(.trade-kicker) { margin:12px 0 0; color:var(--text-primary); font-size:13px; line-height:1.4; }
+body .trade-faq__inline-link { color:var(--brand-primary); font-weight:700; text-decoration:none; }
+body .trade-faq__inline-link:hover { text-decoration:underline; }
 
 .trade-brands { padding:2rem 0; border-top:1px solid var(--trade-line); border-bottom:1px solid var(--trade-line); background:#fff; }
 .trade-brands__row { display:flex; align-items:center; justify-content:space-between; gap:3rem; color:#0F2D49; }
