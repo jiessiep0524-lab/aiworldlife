@@ -135,7 +135,7 @@
         "copy_width": 540,
         "height": 520,
         "overlay_opacity": 55,
-        "accent_color": "#0787F9"
+        "accent_color": "#0787f9"
       }
     },
     "aiworld-intro": {
@@ -259,7 +259,7 @@
             "link_label": "Discover more",
             "link": "",
             "media_position": "left",
-            "background_color": "#06182A",
+            "background_color": "#06182a",
             "text_color": "#ffffff"
           }
         },
@@ -272,7 +272,7 @@
             "link_label": "See the details",
             "link": "",
             "media_position": "right",
-            "background_color": "#0787F9",
+            "background_color": "#0787f9",
             "text_color": "#ffffff"
           }
         }
@@ -351,7 +351,7 @@
         "heading": "Technology made simple.",
         "text": "<p>Small details, thoughtfully arranged for everyday use.</p>",
         "columns": "5",
-        "background_color": "#EAF5FF"
+        "background_color": "#eaf5ff"
       }
     },
     "aiworld-faq": {
@@ -466,13 +466,24 @@
         "background_color": "#f4f8fc"
       }
     },
-    "178911695631d3cee7": {
+    "disclosures": {
+      "type": "disclosures",
+      "settings": {
+        "heading": "Disclosures",
+        "heading_size": "h2",
+        "open_by_default": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "178937237118060a23": {
       "type": "apps",
       "blocks": {
-        "judge_me_reviews_review_widget_G3AX7D": {
+        "judge_me_reviews_review_widget_eQYEQn": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
-            "review_data": "sample_data",
+            "review_data": "real_data",
             "max_width": 1200,
             "show_shop_reviews": false,
             "empty_state": "empty_widget"
@@ -480,7 +491,7 @@
         }
       },
       "block_order": [
-        "judge_me_reviews_review_widget_G3AX7D"
+        "judge_me_reviews_review_widget_eQYEQn"
       ],
       "settings": {
         "include_margins": true
@@ -493,18 +504,7 @@
         "text": "<p>Get product updates, useful tips, and smarter driving inspiration.</p>",
         "placeholder": "Your email address",
         "button_label": "Subscribe",
-        "background_color": "#0787F9"
-      }
-    },
-    "disclosures": {
-      "type": "disclosures",
-      "settings": {
-        "heading": "Disclosures",
-        "heading_size": "h2",
-        "open_by_default": false,
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 0
+        "background_color": "#0787f9"
       }
     }
   },
@@ -518,8 +518,8 @@
     "aiworld-faq",
     "related-products",
     "aiworld-reviews",
-    "178911695631d3cee7",
-    "aiworld-newsletter",
-    "disclosures"
+    "disclosures",
+    "178937237118060a23",
+    "aiworld-newsletter"
   ]
 }

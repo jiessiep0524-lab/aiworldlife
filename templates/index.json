@@ -49,7 +49,7 @@
       ],
       "disabled": true,
       "settings": {
-        "background": "#06182A",
+        "background": "#06182a",
         "text_color": "#ffffff",
         "auto_rotate": true,
         "change_slides_speed": 5,
@@ -64,18 +64,18 @@
     "trade_featured_hero": {
       "type": "aiworld-trade-hero",
       "settings": {
-        "image": "shopify://shop_images/ChatGPT_Image_2026_9_11_10_25_31.png",
-        "eyebrow": "AIworld Screen X10",
+        "image": "shopify://shop_images/1920_x_720_px.png",
+        "eyebrow": "AIworld Screen",
         "heading": "Smarter Driving\nStarts Here.",
-        "text": "<p>A 10.26-inch portable wireless CarPlay & Android Auto display for any car. Simple. Powerful. A better way to drive.</p>",
+        "text": "<p>A 9-inch portable wireless CarPlay & Android Auto display for any car. Simple. Powerful. A better way to drive.</p>",
         "text_font_size": 18,
-        "text_color": "#FFFFFF",
+        "text_color": "#ffffff",
         "text_line_height": 1.5,
         "rating_text": "4.8 (1,200+ reviews)",
         "show_rating": true,
-        "price": "$199.99",
+        "price": "$119.99",
         "button_label": "Buy Now",
-        "button_link": "",
+        "button_link": "https://aiworldlife.com/products/9-inch-wireless-carplay",
         "button_2_label": "Learn More",
         "button_2_link": "",
         "content_position": "flex-start",
@@ -98,6 +98,50 @@
     },
     "trade_feature_strip": {
       "type": "aiworld-trade-feature-strip",
+      "blocks": {
+        "feature_P6BTFQ": {
+          "type": "feature",
+          "settings": {
+            "icon_size": 67,
+            "icon": "",
+            "title": "Wireless CarPlay",
+            "text": "No cords. Just drive."
+          }
+        },
+        "feature_kDfjHn": {
+          "type": "feature",
+          "settings": {
+            "icon_size": 67,
+            "icon": "",
+            "title": "Wireless CarPlay",
+            "text": "No cords. Just drive."
+          }
+        },
+        "feature_werhXC": {
+          "type": "feature",
+          "settings": {
+            "icon_size": 67,
+            "icon": "",
+            "title": "Wireless CarPlay",
+            "text": "No cords. Just drive."
+          }
+        },
+        "feature_DBr8mT": {
+          "type": "feature",
+          "settings": {
+            "icon_size": 67,
+            "icon": "",
+            "title": "Wireless CarPlay",
+            "text": "No cords. Just drive."
+          }
+        }
+      },
+      "block_order": [
+        "feature_P6BTFQ",
+        "feature_kDfjHn",
+        "feature_werhXC",
+        "feature_DBr8mT"
+      ],
       "settings": {
         "background": "#ffffff"
       }
@@ -109,7 +153,7 @@
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/2.jpg",
-            "title": "10.26 inch HD Display",
+            "title": "9 inch HD Display",
             "text": "Crisp, vibrant, and easy to see - even in bright sunlight."
           }
         },
@@ -166,7 +210,7 @@
         "kicker": "WHY CHOOSE AIWORLD",
         "heading": "The All-In-One Driving Upgrade",
         "subheading": "AIWORLD Screen X10 brings modern connectivity, a larger and safer display, and a better driving experience to any vehicle.",
-        "background": "#F5F8FB",
+        "background": "#f5f8fb",
         "columns": 6,
         "padding_top": 48,
         "padding_bottom": 48
@@ -178,8 +222,7 @@
         "point_1": {
           "type": "point",
           "settings": {
-            "icon": ">",
-            "icon_image": "",
+            "icon_size": 36,
             "title": "Navigation Made Easy",
             "text": "Get real-time directions on a larger, clearer screen."
           }
@@ -187,8 +230,7 @@
         "point_2": {
           "type": "point",
           "settings": {
-            "icon": "M",
-            "icon_image": "",
+            "icon_size": 36,
             "title": "Your Music, Your Way",
             "text": "Stream your favorite apps wirelessly while you drive."
           }
@@ -196,8 +238,7 @@
         "point_3": {
           "type": "point",
           "settings": {
-            "icon": "S",
-            "icon_image": "",
+            "icon_size": 36,
             "title": "A Safer, More Connected Drive",
             "text": "Hands-free control keeps you focused and safer."
           }
@@ -209,8 +250,9 @@
         "point_3"
       ],
       "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_2026_9_15_10_38_08.png",
         "kicker": "DRIVE SMARTER EVERY DAY",
-        "heading": "More Than a Screen.\nA Better Driving Experience.",
+        "heading": "More Than a Screen.A Better Driving Experience.",
         "text": "<p>AIWORLD Screen X10 keeps you connected, informed, and in control - so you can focus on what matters most: the road ahead.</p>",
         "height": 480,
         "image_position": "center"
@@ -222,7 +264,7 @@
         "spec_1": {
           "type": "spec",
           "settings": {
-            "icon": "",
+            "icon_size": 32,
             "title": "Screen Size",
             "text": "10.26 inches (HD)"
           }
@@ -230,7 +272,7 @@
         "spec_2": {
           "type": "spec",
           "settings": {
-            "icon": "C",
+            "icon_size": 32,
             "title": "Compatibility",
             "text": "Fits most cars, trucks, SUVs (12V-24V)"
           }
@@ -238,7 +280,7 @@
         "spec_3": {
           "type": "spec",
           "settings": {
-            "icon": "W",
+            "icon_size": 32,
             "title": "Connectivity",
             "text": "Wireless CarPlay and Android Auto"
           }
@@ -246,7 +288,7 @@
         "spec_4": {
           "type": "spec",
           "settings": {
-            "icon": "A",
+            "icon_size": 32,
             "title": "Audio Output",
             "text": "Built-in speaker, FM transmitter or AUX"
           }
@@ -254,7 +296,7 @@
         "spec_5": {
           "type": "spec",
           "settings": {
-            "icon": "I",
+            "icon_size": 32,
             "title": "Installation",
             "text": "Plug and play (cigarette lighter)"
           }
@@ -262,7 +304,7 @@
         "spec_6": {
           "type": "spec",
           "settings": {
-            "icon": "B",
+            "icon_size": 32,
             "title": "What's Included",
             "text": "Screen, mount, car charger, AUX cable, user manual"
           }
@@ -395,7 +437,7 @@
         "tiktok_url": "",
         "youtube_url": "",
         "facebook_url": "",
-        "background": "#FFFFFF",
+        "background": "#ffffff",
         "padding_top": 24,
         "padding_bottom": 24
       }
@@ -464,35 +506,35 @@
           "type": "brand",
           "settings": {
             "name": "TechDrive",
-            "color": "#0F2D49"
+            "color": "#0f2d49"
           }
         },
         "brand_2": {
           "type": "brand",
           "settings": {
             "name": "AutoGear",
-            "color": "#0F2D49"
+            "color": "#0f2d49"
           }
         },
         "brand_3": {
           "type": "brand",
           "settings": {
             "name": "Modern Mobility",
-            "color": "#0F2D49"
+            "color": "#0f2d49"
           }
         },
         "brand_4": {
           "type": "brand",
           "settings": {
             "name": "CAR TECH TODAY",
-            "color": "#0F2D49"
+            "color": "#0f2d49"
           }
         },
         "brand_5": {
           "type": "brand",
           "settings": {
             "name": "The Drive Life",
-            "color": "#0F2D49"
+            "color": "#0f2d49"
           }
         }
       },
@@ -519,7 +561,7 @@
         "button_link": "",
         "placeholder": "Your email address",
         "subscribe_label": "Subscribe",
-        "background": "#06182A",
+        "background": "#06182a",
         "padding": 36
       }
     }

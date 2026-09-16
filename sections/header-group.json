@@ -50,14 +50,14 @@
         "checkout"
       ],
       "settings": {
-        "background": "#06182A",
+        "background": "#06182a",
         "text_color": "#ffffff",
         "auto_rotate": true,
-        "change_slides_speed": 5,
+        "change_slides_speed": 3,
         "pause_on_hover": true,
         "show_arrows": false,
         "show_dots": false,
-        "height": 28,
+        "height": 24,
         "transition": "fade",
         "accessibility_label": "Store benefits"
       }
@@ -65,7 +65,7 @@
     "header": {
       "type": "header",
       "settings": {
-        "logo_image": "shopify://shop_images/ChatGPT_Image_2026_9_11_10_32_22.png",
+        "logo_image": "shopify://shop_images/logo.png",
         "logo_width": 180,
         "logo_height": 36,
         "logo_height_mobile": 30,
