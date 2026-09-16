@@ -1,0 +1,55 @@
+{{ 'aiworld-product.css' | asset_url | stylesheet_tag }}
+
+<section class="aiworld-product-section aiworld-product-faq" style="--aiworld-section-bg: {{ section.settings.background_color }};">
+  <div class="aiworld-product-section__inner">
+    <div class="aiworld-product-section__heading">
+      {%- if section.settings.eyebrow != blank -%}<p class="aiworld-product-section__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+      {%- if section.settings.text != blank -%}<div class="rte">{{ section.settings.text }}</div>{%- endif -%}
+    </div>
+    <div class="aiworld-product-faq__list">
+      {%- for block in section.blocks -%}
+        <details {% if block.settings.open %}open{% endif %} {{ block.shopify_attributes }}>
+          <summary>{{ block.settings.question | escape }}</summary>
+          <div class="aiworld-product-faq__answer rte">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "AIWORLD product FAQ",
+  "tag": "section",
+  "class": "aiworld-product-faq-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Questions, answered" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Got questions?" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Here are some of the things drivers ask most.</p>" },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#ffffff" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Will it work with my car?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>It is designed for vehicles with the appropriate power input. Check your vehicle and product requirements before purchasing.</p>" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AIWORLD product FAQ",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "Will it work with my car?" } },
+        { "type": "faq", "settings": { "question": "Can I connect a backup camera?", "answer": "<p>Yes, when the selected product and camera meet the required connection specifications.</p>" } },
+        { "type": "faq", "settings": { "question": "How does the audio work?", "answer": "<p>Audio can be configured through the supported vehicle or device output options shown in the product details.</p>" } },
+        { "type": "faq", "settings": { "question": "How long does shipping take?", "answer": "<p>Shipping estimates are shown at checkout and may vary by destination.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,106 @@
+{{ 'aiworld-product.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign intro_image = section.settings.image
+  if intro_image == blank and section.settings.product != blank and section.settings.product.featured_image != blank
+    assign intro_image = section.settings.product.featured_image
+  endif
+  if intro_image == blank and product.featured_image != blank
+    assign intro_image = product.featured_image
+  endif
+-%}
+
+<section
+  class="aiworld-product-section aiworld-product-intro"
+  style="--aiworld-section-bg: {{ section.settings.background_color }}; --aiworld-stat-columns: {{ section.settings.stat_columns }};"
+>
+  <div class="aiworld-product-section__inner">
+    <div class="aiworld-product-intro__layout{% if section.settings.layout == 'centered' %} aiworld-product-intro__layout--centered{% endif %}">
+      {%- if section.settings.layout == 'split' -%}
+        <div class="aiworld-product-intro__visual">
+          {%- if intro_image != blank -%}
+            {{ intro_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '500, 750, 1000, 1400', sizes: '(min-width: 750px) 50vw, 100vw', alt: section.settings.heading -}}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag }}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+      <div class="aiworld-product-intro__copy{% if section.settings.layout == 'centered' %} aiworld-product-intro__copy--centered{% endif %}">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="aiworld-product-section__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2>{{ section.settings.heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="rte">{{ section.settings.text }}</div>
+        {%- endif -%}
+        {%- if section.settings.layout == 'centered' and intro_image != blank -%}
+          <div class="aiworld-product-intro__visual" style="max-width: {{ section.settings.image_width }}px; margin: 2rem auto 0;">
+            {{ intro_image | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '600, 900, 1200, 1600', sizes: '(min-width: 750px) 70vw, 100vw', alt: section.settings.heading -}}
+          </div>
+        {%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="aiworld-product-stats">
+            {%- for block in section.blocks -%}
+              <div class="aiworld-product-stat" {{ block.shopify_attributes }}>
+                {%- if block.settings.value != blank -%}<span class="aiworld-product-stat__value">{{ block.settings.value | escape }}</span>{%- endif -%}
+                {%- if block.settings.label != blank -%}<span class="aiworld-product-stat__label">{{ block.settings.label | escape }}</span>{%- endif -%}
+                {%- if block.settings.text != blank -%}<span class="aiworld-product-stat__text">{{ block.settings.text | escape }}</span>{%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "AIWORLD product intro",
+  "tag": "section",
+  "class": "aiworld-product-intro-section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Product image" },
+    { "type": "product", "id": "product", "label": "Fallback product" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "ScreenFlow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A smarter display for every drive." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Everything you need to stay connected, informed, and entertained without taking your eyes off the road.</p>" },
+    { "type": "select", "id": "layout", "label": "Layout", "options": [
+      { "value": "centered", "label": "Centered" },
+      { "value": "split", "label": "Image and text" }
+    ], "default": "centered" },
+    { "type": "range", "id": "image_width", "label": "Centered image width", "min": 320, "max": 1000, "step": 10, "unit": "px", "default": 720 },
+    { "type": "select", "id": "stat_columns", "label": "Stat columns", "options": [
+      { "value": "3", "label": "3" },
+      { "value": "4", "label": "4" },
+      { "value": "5", "label": "5" }
+    ], "default": "5" },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#f4f8fc" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Value", "default": "11.4\"" },
+        { "type": "text", "id": "label", "label": "Label", "default": "HD display" },
+        { "type": "text", "id": "text", "label": "Supporting text", "default": "Bright and vivid" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AIWORLD product intro",
+      "blocks": [
+        { "type": "stat", "settings": { "value": "11.4\"", "label": "HD display", "text": "Bright and vivid" } },
+        { "type": "stat", "settings": { "value": "Wireless", "label": "CarPlay", "text": "No cords. Just drive." } },
+        { "type": "stat", "settings": { "value": "Android", "label": "Auto", "text": "Wirelessly connected" } },
+        { "type": "stat", "settings": { "value": "Plug & Play", "label": "Installation", "text": "Ready in minutes" } },
+        { "type": "stat", "settings": { "value": "60 FPS", "label": "Smooth video", "text": "Clear in every scene" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

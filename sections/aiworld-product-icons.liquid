@@ -1,0 +1,66 @@
+{{ 'aiworld-product.css' | asset_url | stylesheet_tag }}
+
+<section class="aiworld-product-section aiworld-product-icons" style="--aiworld-section-bg: {{ section.settings.background_color }}; --aiworld-icon-columns: {{ section.settings.columns }};">
+  <div class="aiworld-product-section__inner">
+    {%- if section.settings.eyebrow != blank or section.settings.heading != blank or section.settings.text != blank -%}
+      <div class="aiworld-product-section__heading">
+        {%- if section.settings.eyebrow != blank -%}<p class="aiworld-product-section__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<div class="rte">{{ section.settings.text }}</div>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="aiworld-product-icon-grid">
+      {%- for block in section.blocks -%}
+        <div class="aiworld-product-icon" style="--aiworld-icon-color: {{ block.settings.icon_color }};" {{ block.shopify_attributes }}>
+          <div class="aiworld-product-icon__mark" aria-hidden="true">{{ block.settings.icon | escape }}</div>
+          {%- if block.settings.heading != blank -%}<h3>{{ block.settings.heading | escape }}</h3>{%- endif -%}
+          {%- if block.settings.text != blank -%}<p>{{ block.settings.text | escape }}</p>{%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "AIWORLD product icons",
+  "tag": "section",
+  "class": "aiworld-product-icons-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "More features" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Technology made simple." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Small details, thoughtfully arranged for everyday use.</p>" },
+    { "type": "select", "id": "columns", "label": "Items per row", "options": [
+      { "value": "3", "label": "3" },
+      { "value": "4", "label": "4" },
+      { "value": "5", "label": "5" },
+      { "value": "6", "label": "6" }
+    ], "default": "5" },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#eaf8f7" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Feature item",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icon or emoji", "default": "✦" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Fast connection" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Get up and running in minutes." },
+        { "type": "color", "id": "icon_color", "label": "Icon color", "default": "#0789f9" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AIWORLD product icons",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "↗", "heading": "Fast connection", "text": "Get up and running in minutes." } },
+        { "type": "item", "settings": { "icon": "⌁", "heading": "Smart compatibility", "text": "Works with the devices you love." } },
+        { "type": "item", "settings": { "icon": "◉", "heading": "Intuitive experience", "text": "Designed for everyone." } },
+        { "type": "item", "settings": { "icon": "▥", "heading": "Continuous improvement", "text": "Always evolving for tomorrow." } },
+        { "type": "item", "settings": { "icon": "✓", "heading": "Easy setup", "text": "Simple from the first drive." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

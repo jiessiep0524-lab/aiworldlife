@@ -1,0 +1,92 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "aiworld-trade-trust-bar": {
+      "type": "aiworld-trade-trust-bar",
+      "blocks": {
+        "trust_nzwdid": {
+          "type": "trust",
+          "settings": {
+            "icon": "",
+            "text": "2-5 Days Arrive"
+          }
+        },
+        "shipping": {
+          "type": "trust",
+          "settings": {
+            "icon": "",
+            "text": "Free Shipping"
+          }
+        },
+        "returns": {
+          "type": "trust",
+          "settings": {
+            "icon": "",
+            "text": "30-Day Hassle-Free Returns"
+          }
+        },
+        "checkout": {
+          "type": "trust",
+          "settings": {
+            "icon": "",
+            "text": "Secure Checkout"
+          }
+        }
+      },
+      "block_order": [
+        "trust_nzwdid",
+        "shipping",
+        "returns",
+        "checkout"
+      ],
+      "settings": {
+        "background": "#06182A",
+        "text_color": "#ffffff",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "pause_on_hover": true,
+        "show_arrows": false,
+        "show_dots": false,
+        "height": 28,
+        "transition": "fade",
+        "accessibility_label": "Store benefits"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_image": "shopify://shop_images/ChatGPT_Image_2026_9_11_10_32_22.png",
+        "logo_width": 180,
+        "logo_height": 36,
+        "logo_height_mobile": 30,
+        "logo_position": "middle-left",
+        "mobile_logo_position": "center",
+        "menu": "main-menu",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "reduce-logo-size",
+        "show_line_separator": true,
+        "color_scheme": "scheme-4",
+        "menu_color_scheme": "",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "margin_bottom": 0,
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
+    }
+  },
+  "order": [
+    "aiworld-trade-trust-bar",
+    "header"
+  ]
+}

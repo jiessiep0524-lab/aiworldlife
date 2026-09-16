@@ -1,0 +1,83 @@
+{{ 'aiworld-product.css' | asset_url | stylesheet_tag }}
+
+<section class="aiworld-product-section aiworld-product-features" style="--aiworld-section-bg: {{ section.settings.background_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="aiworld-product-section__inner">
+    {%- if section.settings.eyebrow != blank or section.settings.heading != blank or section.settings.text != blank -%}
+      <div class="aiworld-product-section__heading">
+        {%- if section.settings.eyebrow != blank -%}<p class="aiworld-product-section__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+        {%- if section.settings.text != blank -%}<div class="rte">{{ section.settings.text }}</div>{%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="aiworld-product-feature-list">
+      {%- for block in section.blocks -%}
+        <article
+          class="aiworld-product-feature{% if block.settings.media_position == 'right' %} aiworld-product-feature--reversed{% endif %}"
+          style="--aiworld-feature-bg: {{ block.settings.background_color }}; --aiworld-feature-ink: {{ block.settings.text_color }};"
+          {{ block.shopify_attributes }}
+        >
+          <div class="aiworld-product-feature__media">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '600, 900, 1200, 1600', sizes: '(min-width: 750px) 50vw, 100vw', alt: block.settings.heading -}}
+            {%- else -%}
+              {{ 'lifestyle-2' | placeholder_svg_tag }}
+            {%- endif -%}
+          </div>
+          <div class="aiworld-product-feature__copy">
+            {%- if block.settings.eyebrow != blank -%}<p class="aiworld-product-section__eyebrow">{{ block.settings.eyebrow | escape }}</p>{%- endif -%}
+            {%- if block.settings.heading != blank -%}<h3>{{ block.settings.heading | escape }}</h3>{%- endif -%}
+            {%- if block.settings.text != blank -%}<div class="rte"><p>{{ block.settings.text | escape }}</p></div>{%- endif -%}
+            {%- if block.settings.link_label != blank -%}
+              <a class="aiworld-product-button" href="{{ block.settings.link | default: '#' }}">{{ block.settings.link_label | escape }} <span aria-hidden="true">→</span></a>
+            {%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "AIWORLD feature grid",
+  "tag": "section",
+  "class": "aiworld-product-feature-grid-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Redefine your screen" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Clarity in sight. Enjoy every drive." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Use each split panel for a different story, product benefit, or visual guide.</p>" },
+    { "type": "range", "id": "padding_top", "label": "Top spacing", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom spacing", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 72 },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#ffffff" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature panel",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Drive smarter every day" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "More than a screen. A better driving experience." },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Stay connected, informed, and in control while you focus on what matters most." },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Discover more" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "select", "id": "media_position", "label": "Image position", "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "right", "label": "Right" }
+        ], "default": "left" },
+        { "type": "color", "id": "background_color", "label": "Panel color", "default": "#0b1b30" },
+        { "type": "color", "id": "text_color", "label": "Text color", "default": "#ffffff" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AIWORLD feature grid",
+      "blocks": [
+        { "type": "feature", "settings": { "heading": "More than a screen. A better driving experience.", "text": "Stay connected, informed, and in control while you focus on what matters most.", "media_position": "left" } },
+        { "type": "feature", "settings": { "eyebrow": "Built for every journey", "heading": "Clarity in sight. Enjoy every drive.", "text": "Keep maps, media, and calls right where you need them, with a layout you can configure around your brand story.", "media_position": "right", "background_color": "#19aaa6" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

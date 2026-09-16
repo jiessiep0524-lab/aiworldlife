@@ -1,0 +1,37 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "aiworld-trade-footer": {
+      "type": "aiworld-trade-footer",
+      "blocks": {
+        "product": { "type": "link_column", "settings": { "heading": "Product", "fallback_links": "AIWORLD Screen X10\nFeatures\nReviews" } },
+        "support": { "type": "link_column", "settings": { "heading": "Support", "fallback_links": "Help Center\nContact Us\nInstallation Guide" } },
+        "policies": { "type": "link_column", "settings": { "heading": "Policies", "fallback_links": "Shipping Policy\nReturns & Refunds\nPrivacy Policy\nTerms of Service" } },
+        "connect": { "type": "link_column", "settings": { "heading": "Connect", "fallback_links": "Instagram\nYouTube\nFacebook\nAIWORLD" } }
+      },
+      "block_order": [ "product", "support", "policies", "connect" ],
+      "settings": {
+        "brand_name": "AIWORLD",
+        "brand_text": "Smart Technology for Everyday Life.",
+        "show_social": true,
+        "news_heading": "Latest News",
+        "news_text": "Discover smarter product insights",
+        "bottom_text": "A Smarter Way to Drive.",
+        "background": "#06182A",
+        "text_color": "#ffffff",
+        "accent_color": "#0787F9"
+      }
+    }
+  },
+  "order": [ "aiworld-trade-footer" ]
+}

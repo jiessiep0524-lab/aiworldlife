@@ -1,0 +1,540 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "trade_trust_bottom": {
+      "type": "aiworld-trade-trust-bar",
+      "blocks": {
+        "shipping": {
+          "type": "trust",
+          "settings": {
+            "icon": "▣",
+            "text": "Free Shipping"
+          }
+        },
+        "returns": {
+          "type": "trust",
+          "settings": {
+            "icon": "↻",
+            "text": "30-Day Returns"
+          }
+        },
+        "warranty": {
+          "type": "trust",
+          "settings": {
+            "icon": "♢",
+            "text": "1-Year Warranty"
+          }
+        },
+        "support": {
+          "type": "trust",
+          "settings": {
+            "icon": "?",
+            "text": "Dedicated Support"
+          }
+        }
+      },
+      "block_order": [
+        "shipping",
+        "returns",
+        "warranty",
+        "support"
+      ],
+      "disabled": true,
+      "settings": {
+        "background": "#06182A",
+        "text_color": "#ffffff",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "pause_on_hover": true,
+        "show_arrows": false,
+        "show_dots": false,
+        "height": 48,
+        "transition": "fade",
+        "accessibility_label": "Store benefits"
+      }
+    },
+    "trade_featured_hero": {
+      "type": "aiworld-trade-hero",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_2026_9_11_10_25_31.png",
+        "eyebrow": "AIworld Screen X10",
+        "heading": "Smarter Driving\nStarts Here.",
+        "text": "<p>A 10.26-inch portable wireless CarPlay & Android Auto display for any car. Simple. Powerful. A better way to drive.</p>",
+        "text_font_size": 18,
+        "text_color": "#FFFFFF",
+        "text_line_height": 1.5,
+        "rating_text": "4.8 (1,200+ reviews)",
+        "show_rating": true,
+        "price": "$199.99",
+        "button_label": "Buy Now",
+        "button_link": "",
+        "button_2_label": "Learn More",
+        "button_2_link": "",
+        "content_position": "flex-start",
+        "content_offset": 0,
+        "text_alignment": "left",
+        "copy_width": 520,
+        "banner_width": 1920,
+        "banner_height": 720,
+        "content_vertical": 50,
+        "height_mode": "image",
+        "height": 480,
+        "mobile_height": 580,
+        "overlay": 50,
+        "overlay_color": "#020a14",
+        "overlay_style": "gradient",
+        "image_fit": "contain",
+        "image_scale": 100,
+        "image_position": "right center"
+      }
+    },
+    "trade_feature_strip": {
+      "type": "aiworld-trade-feature-strip",
+      "settings": {
+        "background": "#ffffff"
+      }
+    },
+    "trade_feature_cards": {
+      "type": "aiworld-trade-feature-cards",
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/2.jpg",
+            "title": "10.26 inch HD Display",
+            "text": "Crisp, vibrant, and easy to see - even in bright sunlight."
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/7.jpg",
+            "title": "Wireless Connectivity",
+            "text": "Wireless CarPlay and Android Auto. Get in and go."
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/6.jpg",
+            "title": "Easy Installation",
+            "text": "Plug and play. No professional install required."
+          }
+        },
+        "card_4": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/5.jpg",
+            "title": "Voice Assistant Ready",
+            "text": "Use Siri or Google Assistant hands-free."
+          }
+        },
+        "card_5": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/3.jpg",
+            "title": "Backup Camera Support",
+            "text": "Drive and park with confidence."
+          }
+        },
+        "card_6": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/4.jpg",
+            "title": "A Cleaner, Smarter Car",
+            "text": "Modernize any vehicle with a sleek, portable design."
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3",
+        "card_4",
+        "card_5",
+        "card_6"
+      ],
+      "settings": {
+        "kicker": "WHY CHOOSE AIWORLD",
+        "heading": "The All-In-One Driving Upgrade",
+        "subheading": "AIWORLD Screen X10 brings modern connectivity, a larger and safer display, and a better driving experience to any vehicle.",
+        "background": "#F5F8FB",
+        "columns": 6,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "trade_story": {
+      "type": "aiworld-trade-story",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": ">",
+            "icon_image": "",
+            "title": "Navigation Made Easy",
+            "text": "Get real-time directions on a larger, clearer screen."
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "M",
+            "icon_image": "",
+            "title": "Your Music, Your Way",
+            "text": "Stream your favorite apps wirelessly while you drive."
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "S",
+            "icon_image": "",
+            "title": "A Safer, More Connected Drive",
+            "text": "Hands-free control keeps you focused and safer."
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3"
+      ],
+      "settings": {
+        "kicker": "DRIVE SMARTER EVERY DAY",
+        "heading": "More Than a Screen.\nA Better Driving Experience.",
+        "text": "<p>AIWORLD Screen X10 keeps you connected, informed, and in control - so you can focus on what matters most: the road ahead.</p>",
+        "height": 480,
+        "image_position": "center"
+      }
+    },
+    "trade_specs": {
+      "type": "aiworld-trade-specs",
+      "blocks": {
+        "spec_1": {
+          "type": "spec",
+          "settings": {
+            "icon": "",
+            "title": "Screen Size",
+            "text": "10.26 inches (HD)"
+          }
+        },
+        "spec_2": {
+          "type": "spec",
+          "settings": {
+            "icon": "C",
+            "title": "Compatibility",
+            "text": "Fits most cars, trucks, SUVs (12V-24V)"
+          }
+        },
+        "spec_3": {
+          "type": "spec",
+          "settings": {
+            "icon": "W",
+            "title": "Connectivity",
+            "text": "Wireless CarPlay and Android Auto"
+          }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": {
+            "icon": "A",
+            "title": "Audio Output",
+            "text": "Built-in speaker, FM transmitter or AUX"
+          }
+        },
+        "spec_5": {
+          "type": "spec",
+          "settings": {
+            "icon": "I",
+            "title": "Installation",
+            "text": "Plug and play (cigarette lighter)"
+          }
+        },
+        "spec_6": {
+          "type": "spec",
+          "settings": {
+            "icon": "B",
+            "title": "What's Included",
+            "text": "Screen, mount, car charger, AUX cable, user manual"
+          }
+        }
+      },
+      "block_order": [
+        "spec_1",
+        "spec_2",
+        "spec_3",
+        "spec_4",
+        "spec_5",
+        "spec_6"
+      ],
+      "settings": {
+        "kicker": "SPECS AT A GLANCE",
+        "heading": "AIWORLD Screen X10",
+        "subheading": "Everything you need to know.",
+        "background": "#ffffff",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "trade_reviews": {
+      "type": "aiworld-trade-reviews",
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "Super easy to set up and works perfectly in my car. The screen is crystal clear and wireless CarPlay is a game changer!",
+            "author": "Jason M.",
+            "verified": true
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "Exactly what I needed for my older car. Took 5 minutes to install and it works flawlessly.",
+            "author": "Sarah L.",
+            "verified": true
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "Love this thing! The screen is big, the touch response is smooth, and it makes my daily commute better.",
+            "author": "Michael T.",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3"
+      ],
+      "settings": {
+        "kicker": "REAL DRIVERS. REAL REVIEWS.",
+        "heading": "Loved by Thousands",
+        "subheading": "4.8 out of 5 (1,200+ verified reviews)",
+        "background": "#ffffff",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "trade_social": {
+      "type": "aiworld-trade-social",
+      "blocks": {
+        "moment_1": {
+          "type": "moment",
+          "settings": {
+            "caption": "Real Setup",
+            "handle": "@drivewithjake",
+            "link": "",
+            "icon": ">"
+          }
+        },
+        "moment_2": {
+          "type": "moment",
+          "settings": {
+            "caption": "Road Trip Ready",
+            "handle": "@sarah_ride",
+            "link": "",
+            "icon": ">"
+          }
+        },
+        "moment_3": {
+          "type": "moment",
+          "settings": {
+            "caption": "Clean & Simple",
+            "handle": "@modern.driver",
+            "link": "",
+            "icon": ">"
+          }
+        },
+        "moment_4": {
+          "type": "moment",
+          "settings": {
+            "caption": "Game Changer",
+            "handle": "@bevinsgarage",
+            "link": "",
+            "icon": ">"
+          }
+        },
+        "moment_5": {
+          "type": "moment",
+          "settings": {
+            "caption": "Fits Any Car",
+            "handle": "@daily.driven",
+            "link": "",
+            "icon": ">"
+          }
+        }
+      },
+      "block_order": [
+        "moment_1",
+        "moment_2",
+        "moment_3",
+        "moment_4",
+        "moment_5"
+      ],
+      "settings": {
+        "kicker": "REAL CUSTOMER MOMENTS",
+        "heading": "See It in Real Life",
+        "text": "Drivers everywhere are upgrading with AIWORLD Screen X10. Share your photos and videos with #AIWORLD for a chance to be featured!",
+        "button_label": "Follow AIWORLD",
+        "instagram_url": "",
+        "tiktok_url": "",
+        "youtube_url": "",
+        "facebook_url": "",
+        "background": "#FFFFFF",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "trade_faq": {
+      "type": "aiworld-trade-faq",
+      "blocks": {
+        "faq_1": {
+          "type": "question",
+          "settings": {
+            "question": "Will it work with my car?",
+            "answer": "<p>AIWORLD Screen X10 works with most cars, trucks and SUVs with a 12V–24V power outlet.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "question",
+          "settings": {
+            "question": "Can I connect a backup camera?",
+            "answer": "<p>Yes. The system supports compatible backup cameras.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "question",
+          "settings": {
+            "question": "Is installation difficult?",
+            "answer": "<p>No. It is designed for plug-and-play installation.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "question",
+          "settings": {
+            "question": "Does it support wireless CarPlay and Android Auto?",
+            "answer": "<p>Yes, both are supported.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "question",
+          "settings": {
+            "question": "How does the audio work?",
+            "answer": "<p>Use the built-in speaker, FM transmitter or AUX output.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5"
+      ],
+      "settings": {
+        "kicker": "FREQUENTLY ASKED QUESTIONS",
+        "heading": "Got Questions?",
+        "text": "Here are some answers. View all FAQs for more.",
+        "link_label": "View All FAQs",
+        "link": "",
+        "background": "#ffffff",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "trade_brands": {
+      "type": "aiworld-trade-brands",
+      "blocks": {
+        "brand_1": {
+          "type": "brand",
+          "settings": {
+            "name": "TechDrive",
+            "color": "#0F2D49"
+          }
+        },
+        "brand_2": {
+          "type": "brand",
+          "settings": {
+            "name": "AutoGear",
+            "color": "#0F2D49"
+          }
+        },
+        "brand_3": {
+          "type": "brand",
+          "settings": {
+            "name": "Modern Mobility",
+            "color": "#0F2D49"
+          }
+        },
+        "brand_4": {
+          "type": "brand",
+          "settings": {
+            "name": "CAR TECH TODAY",
+            "color": "#0F2D49"
+          }
+        },
+        "brand_5": {
+          "type": "brand",
+          "settings": {
+            "name": "The Drive Life",
+            "color": "#0F2D49"
+          }
+        }
+      },
+      "block_order": [
+        "brand_1",
+        "brand_2",
+        "brand_3",
+        "brand_4",
+        "brand_5"
+      ],
+      "settings": {
+        "label": "FEATURED IN",
+        "background": "#ffffff",
+        "padding": 24
+      }
+    },
+    "trade_offer": {
+      "type": "aiworld-trade-offer",
+      "settings": {
+        "heading": "Upgrade Your Drive Today",
+        "text": "Join thousands of drivers who choose a smarter, safer connected way to drive.",
+        "price": "$199.99",
+        "button_label": "Buy Now",
+        "button_link": "",
+        "placeholder": "Your email address",
+        "subscribe_label": "Subscribe",
+        "background": "#06182A",
+        "padding": 36
+      }
+    }
+  },
+  "order": [
+    "trade_trust_bottom",
+    "trade_featured_hero",
+    "trade_feature_strip",
+    "trade_feature_cards",
+    "trade_story",
+    "trade_specs",
+    "trade_reviews",
+    "trade_social",
+    "trade_faq",
+    "trade_brands",
+    "trade_offer"
+  ]
+}

@@ -1,0 +1,89 @@
+{{ 'aiworld-product.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign banner_image = section.settings.image
+  if banner_image == blank and product.featured_image != blank
+    assign banner_image = product.featured_image
+  endif
+-%}
+
+<section
+  class="aiworld-product-section aiworld-product-banner"
+  style="--aiworld-banner-height: {{ section.settings.height }}px; --aiworld-banner-align: {{ section.settings.text_alignment }}; --aiworld-banner-accent: {{ section.settings.accent_color }};"
+>
+  <div class="aiworld-product-banner__media">
+    {%- if banner_image != blank -%}
+      {{ banner_image | image_url: width: 2400 | image_tag: loading: 'lazy', widths: '750, 1100, 1500, 2000, 2400', sizes: '100vw', alt: section.settings.heading -}}
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'aiworld-product-banner__placeholder' }}
+    {%- endif -%}
+  </div>
+  <div class="aiworld-product-banner__overlay" style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+  <div
+    class="aiworld-product-banner__content"
+    data-align="{{ section.settings.content_position }}"
+    style="--aiworld-copy-width: {{ section.settings.copy_width }}px; --aiworld-copy-offset: {{ section.settings.horizontal_offset }}%;"
+  >
+    <div class="aiworld-product-banner__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="aiworld-product-banner__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="aiworld-product-banner__text rte">{{ section.settings.text }}</div>
+      {%- endif -%}
+      {%- if section.settings.primary_label != blank or section.settings.secondary_label != blank -%}
+        <div class="aiworld-product-banner__actions">
+          {%- if section.settings.primary_label != blank -%}
+            <a class="aiworld-product-button aiworld-product-button--solid" href="{{ section.settings.primary_link | default: product.url }}">
+              {{ section.settings.primary_label | escape }} <span aria-hidden="true">→</span>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.secondary_label != blank -%}
+            <a class="aiworld-product-button" href="{{ section.settings.secondary_link | default: '#shopify-section-' | append: section.id }}">
+              {{ section.settings.secondary_label | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "AIWORLD product banner",
+  "tag": "section",
+  "class": "aiworld-product-banner-section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Banner image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "AIWORLD Screen X10" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Redefine Your Screen. Elevate Your Drive." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>A smarter display for clearer navigation, better entertainment, and every journey in between.</p>" },
+    { "type": "text", "id": "primary_label", "label": "Primary button", "default": "Shop now" },
+    { "type": "url", "id": "primary_link", "label": "Primary link" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button", "default": "Explore features" },
+    { "type": "url", "id": "secondary_link", "label": "Secondary link" },
+    { "type": "select", "id": "content_position", "label": "Content position", "options": [
+      { "value": "left", "label": "Left" },
+      { "value": "center", "label": "Center" },
+      { "value": "right", "label": "Right" }
+    ], "default": "left" },
+    { "type": "select", "id": "text_alignment", "label": "Text alignment", "options": [
+      { "value": "left", "label": "Left" },
+      { "value": "center", "label": "Center" },
+      { "value": "right", "label": "Right" }
+    ], "default": "left" },
+    { "type": "range", "id": "horizontal_offset", "label": "Horizontal offset", "min": 0, "max": 30, "step": 1, "unit": "%", "default": 0 },
+    { "type": "range", "id": "copy_width", "label": "Copy width", "min": 320, "max": 720, "step": 10, "unit": "px", "default": 540 },
+    { "type": "range", "id": "height", "label": "Banner height", "min": 280, "max": 760, "step": 10, "unit": "px", "default": 520 },
+    { "type": "range", "id": "overlay_opacity", "label": "Image overlay", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 55 },
+    { "type": "color", "id": "accent_color", "label": "Accent color", "default": "#48c5ff" }
+  ],
+  "presets": [
+    { "name": "AIWORLD product banner" }
+  ]
+}
+{% endschema %}

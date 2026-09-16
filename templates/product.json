@@ -1,0 +1,525 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "rating": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class='aiworld-product-rating' role='img' aria-label='5 out of 5 stars'><span class='aiworld-product-rating__stars'>★★★★★</span><span class='aiworld-product-rating__count'>86 reviews</span></div>"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "key-features": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class='aiworld-product-key-features'><h3>KEY FEATURES</h3><ul><li>Wireless Apple CarPlay and Android Auto</li><li>11.4 inch display and touch screen</li><li>Fluid 60 FPS smooth touch</li><li>Built-in streaming apps for a better drive</li><li>Plug and go for cars, trucks and boats</li></ul></div>"
+          }
+        },
+        "variant-picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity-selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy-buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        },
+        "collapsible-row-1": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Product features",
+            "icon": "star",
+            "content": "<p>{{ block.settings.page.metafields.custom.listing | metafield_tag }}</p>",
+            "page": "product-features"
+          }
+        },
+        "collapsible-row-0": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Materials and care",
+            "icon": "leaf",
+            "content": "",
+            "page": "materials-and-care"
+          }
+        },
+        "collapsible-row-2": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Merchandising tips",
+            "icon": "check_mark",
+            "content": "",
+            "page": "merchandising-tips"
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "rating",
+        "price",
+        "key-features",
+        "variant-picker",
+        "quantity-selector",
+        "buy-buttons",
+        "description",
+        "collapsible-row-1",
+        "collapsible-row-0",
+        "collapsible-row-2",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "",
+        "media_size": "medium",
+        "constrain_to_viewport": false,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "aiworld-hero": {
+      "type": "aiworld-product-banner",
+      "settings": {
+        "eyebrow": "AIWORLD Screen X10",
+        "heading": "Redefine Your Screen. Elevate Your Drive.",
+        "text": "<p>A smarter display for clearer navigation, better entertainment, and every journey in between.</p>",
+        "primary_label": "Shop now",
+        "primary_link": "",
+        "secondary_label": "Explore features",
+        "secondary_link": "#shopify-section-aiworld-intro",
+        "content_position": "left",
+        "text_alignment": "left",
+        "horizontal_offset": 0,
+        "copy_width": 540,
+        "height": 520,
+        "overlay_opacity": 55,
+        "accent_color": "#0787F9"
+      }
+    },
+    "aiworld-intro": {
+      "type": "aiworld-product-intro",
+      "blocks": {
+        "stat-1": {
+          "type": "stat",
+          "settings": {
+            "value": "11.4 in",
+            "label": "HD display",
+            "text": "Bright and vivid"
+          }
+        },
+        "stat-2": {
+          "type": "stat",
+          "settings": {
+            "value": "Wireless",
+            "label": "CarPlay",
+            "text": "No cords. Just drive."
+          }
+        },
+        "stat-3": {
+          "type": "stat",
+          "settings": {
+            "value": "Android",
+            "label": "Auto",
+            "text": "Wirelessly connected"
+          }
+        },
+        "stat-4": {
+          "type": "stat",
+          "settings": {
+            "value": "Plug and Play",
+            "label": "Installation",
+            "text": "Ready in minutes"
+          }
+        },
+        "stat-5": {
+          "type": "stat",
+          "settings": {
+            "value": "60 FPS",
+            "label": "Smooth video",
+            "text": "Clear in every scene"
+          }
+        }
+      },
+      "block_order": [
+        "stat-1",
+        "stat-2",
+        "stat-3",
+        "stat-4",
+        "stat-5"
+      ],
+      "settings": {
+        "product": "",
+        "eyebrow": "ScreenFlow",
+        "heading": "A smarter display for every drive.",
+        "text": "<p>Everything you need to stay connected, informed, and entertained without taking your eyes off the road.</p>",
+        "layout": "centered",
+        "image_width": 720,
+        "stat_columns": "5",
+        "background_color": "#f4f8fc"
+      }
+    },
+    "aiworld-cards": {
+      "type": "aiworld-product-cards",
+      "blocks": {
+        "card-1": {
+          "type": "card",
+          "settings": {
+            "heading": "No more aftermarket drama",
+            "text": "A clean, flexible display that feels at home in any vehicle.",
+            "link_label": "Learn more",
+            "link": "",
+            "card_color": "#ffffff"
+          }
+        },
+        "card-2": {
+          "type": "card",
+          "settings": {
+            "heading": "New entertainment hub",
+            "text": "Bring your favorite apps, music, and maps to every journey.",
+            "link_label": "Explore",
+            "link": "",
+            "card_color": "#ffffff"
+          }
+        },
+        "card-3": {
+          "type": "card",
+          "settings": {
+            "heading": "CarPlay and Android Auto",
+            "text": "Connect your phone your way and keep the road in focus.",
+            "link_label": "See how it works",
+            "link": "",
+            "card_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "card-1",
+        "card-2",
+        "card-3"
+      ],
+      "settings": {
+        "eyebrow": "Why settle for less?",
+        "heading": "Built for a better drive.",
+        "text": "<p>Thoughtful details that make everyday driving feel simpler.</p>",
+        "columns": "3",
+        "background_color": "#ffffff"
+      }
+    },
+    "aiworld-features": {
+      "type": "aiworld-product-feature-grid",
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Drive smarter every day",
+            "heading": "More than a screen. A better driving experience.",
+            "text": "Stay connected, informed, and in control while you focus on what matters most.",
+            "link_label": "Discover more",
+            "link": "",
+            "media_position": "left",
+            "background_color": "#06182A",
+            "text_color": "#ffffff"
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Built for every journey",
+            "heading": "Clarity in sight. Enjoy every drive.",
+            "text": "Keep maps, media, and calls right where you need them, with a layout that makes every feature easy to see.",
+            "link_label": "See the details",
+            "link": "",
+            "media_position": "right",
+            "background_color": "#0787F9",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "feature-1",
+        "feature-2"
+      ],
+      "settings": {
+        "eyebrow": "Redefine your screen",
+        "heading": "Clarity in sight. Enjoy every drive.",
+        "text": "<p>Use each split panel for a different story, product benefit, or visual guide.</p>",
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "background_color": "#ffffff"
+      }
+    },
+    "aiworld-icons": {
+      "type": "aiworld-product-icons",
+      "blocks": {
+        "item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "↗",
+            "heading": "Fast connection",
+            "text": "Get up and running in minutes.",
+            "icon_color": "#0789f9"
+          }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "⌁",
+            "heading": "Smart compatibility",
+            "text": "Works with the devices you love.",
+            "icon_color": "#0789f9"
+          }
+        },
+        "item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "◉",
+            "heading": "Intuitive experience",
+            "text": "Designed for everyone.",
+            "icon_color": "#0789f9"
+          }
+        },
+        "item-4": {
+          "type": "item",
+          "settings": {
+            "icon": "▥",
+            "heading": "Continuous improvement",
+            "text": "Always evolving for tomorrow.",
+            "icon_color": "#0789f9"
+          }
+        },
+        "item-5": {
+          "type": "item",
+          "settings": {
+            "icon": "✓",
+            "heading": "Easy setup",
+            "text": "Simple from the first drive.",
+            "icon_color": "#0789f9"
+          }
+        }
+      },
+      "block_order": [
+        "item-1",
+        "item-2",
+        "item-3",
+        "item-4",
+        "item-5"
+      ],
+      "settings": {
+        "eyebrow": "More features",
+        "heading": "Technology made simple.",
+        "text": "<p>Small details, thoughtfully arranged for everyday use.</p>",
+        "columns": "5",
+        "background_color": "#EAF5FF"
+      }
+    },
+    "aiworld-faq": {
+      "type": "aiworld-product-faq",
+      "blocks": {
+        "faq-1": {
+          "type": "faq",
+          "settings": {
+            "question": "Will it work with my car?",
+            "answer": "<p>It is designed for vehicles with the appropriate power input. Check your vehicle and product requirements before purchasing.</p>",
+            "open": false
+          }
+        },
+        "faq-2": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I connect a backup camera?",
+            "answer": "<p>Yes, when the selected product and camera meet the required connection specifications.</p>",
+            "open": false
+          }
+        },
+        "faq-3": {
+          "type": "faq",
+          "settings": {
+            "question": "How does the audio work?",
+            "answer": "<p>Audio can be configured through the supported vehicle or device output options shown in the product details.</p>",
+            "open": false
+          }
+        },
+        "faq-4": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Shipping estimates are shown at checkout and may vary by destination.</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3",
+        "faq-4"
+      ],
+      "settings": {
+        "eyebrow": "Questions, answered",
+        "heading": "Got questions?",
+        "text": "<p>Here are some of the things drivers ask most.</p>",
+        "background_color": "#ffffff"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Other industry favorites",
+        "heading_size": "h2",
+        "products_to_show": 5,
+        "columns_desktop": 5,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 44
+      }
+    },
+    "aiworld-reviews": {
+      "type": "aiworld-product-reviews",
+      "blocks": {
+        "review-1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "The setup was simple and the screen is crystal clear. It changed my daily drive.",
+            "author": "Jason M.",
+            "verified": true
+          }
+        },
+        "review-2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "Exactly what I needed for my older car. It looks clean and works flawlessly.",
+            "author": "Sarah L.",
+            "verified": true
+          }
+        },
+        "review-3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "The screen is big, responsive, and makes daily commutes much more enjoyable.",
+            "author": "Michael T.",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "review-1",
+        "review-2",
+        "review-3"
+      ],
+      "disabled": true,
+      "settings": {
+        "eyebrow": "Real drivers. Real reviews.",
+        "heading": "Loved by thousands",
+        "text": "<p>See why drivers are upgrading their everyday journeys.</p>",
+        "columns": "3",
+        "background_color": "#f4f8fc"
+      }
+    },
+    "178911695631d3cee7": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_G3AX7D": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_G3AX7D"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "aiworld-newsletter": {
+      "type": "aiworld-product-newsletter",
+      "settings": {
+        "heading": "Stay one step ahead.",
+        "text": "<p>Get product updates, useful tips, and smarter driving inspiration.</p>",
+        "placeholder": "Your email address",
+        "button_label": "Subscribe",
+        "background_color": "#0787F9"
+      }
+    },
+    "disclosures": {
+      "type": "disclosures",
+      "settings": {
+        "heading": "Disclosures",
+        "heading_size": "h2",
+        "open_by_default": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "aiworld-hero",
+    "aiworld-intro",
+    "aiworld-cards",
+    "aiworld-features",
+    "aiworld-icons",
+    "aiworld-faq",
+    "related-products",
+    "aiworld-reviews",
+    "178911695631d3cee7",
+    "aiworld-newsletter",
+    "disclosures"
+  ]
+}

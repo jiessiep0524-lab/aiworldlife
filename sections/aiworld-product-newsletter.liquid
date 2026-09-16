@@ -1,0 +1,34 @@
+{{ 'aiworld-product.css' | asset_url | stylesheet_tag }}
+
+<section class="aiworld-product-section aiworld-product-newsletter" style="--aiworld-newsletter-bg: {{ section.settings.background_color }};">
+  <div class="aiworld-product-section__inner aiworld-product-newsletter__inner">
+    <div>
+      {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+      {%- if section.settings.text != blank -%}<div class="rte">{{ section.settings.text }}</div>{%- endif -%}
+    </div>
+    {%- form 'customer', class: 'newsletter-form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <label class="visually-hidden" for="aiworld-newsletter-{{ section.id }}">Email address</label>
+      <input id="aiworld-newsletter-{{ section.id }}" type="email" name="contact[email]" value="{{ form.email }}" autocomplete="email" placeholder="{{ section.settings.placeholder | escape }}" required>
+      <button type="submit">{{ section.settings.button_label | escape }}</button>
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "AIWORLD newsletter",
+  "tag": "section",
+  "class": "aiworld-product-newsletter-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Stay one step ahead." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Get product updates, useful tips, and smarter driving inspiration.</p>" },
+    { "type": "text", "id": "placeholder", "label": "Email placeholder", "default": "Your email address" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Subscribe" },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#19aaa6" }
+  ],
+  "presets": [
+    { "name": "AIWORLD newsletter" }
+  ]
+}
+{% endschema %}

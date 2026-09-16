@@ -1,0 +1,84 @@
+<section class="trade-social" style="padding-top:{{ section.settings.padding_top }}px;padding-bottom:{{ section.settings.padding_bottom }}px;background:{{ section.settings.background }};">
+  <div class="trade-container trade-social__layout">
+    <div class="trade-social__copy">
+      <p class="trade-kicker">{{ section.settings.kicker }}</p>
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.text }}</p>
+      <div class="trade-social__links" aria-label="Social links">
+        <a href="{{ section.settings.tiktok_url | default: '#' }}" aria-label="TikTok">{{ 'icon-tiktok.svg' | inline_asset_content }}</a>
+        <a href="{{ section.settings.instagram_url | default: '#' }}" aria-label="Instagram">{{ 'icon-instagram.svg' | inline_asset_content }}</a>
+        <a href="{{ section.settings.youtube_url | default: '#' }}" aria-label="YouTube">{{ 'icon-youtube.svg' | inline_asset_content }}</a>
+        <a href="{{ section.settings.facebook_url | default: '#' }}" aria-label="Facebook">{{ 'icon-facebook.svg' | inline_asset_content }}</a>
+      </div>
+    </div>
+    <div class="trade-social__grid">
+      {% for block in section.blocks %}
+        {%- liquid
+          assign video_link = block.settings.link | default: routes.root_url
+          assign youtube_id = blank
+          assign vimeo_id = blank
+          assign video_thumbnail = blank
+          if block.settings.image == blank and block.settings.link != blank
+            if block.settings.link contains 'youtu.be/'
+              assign youtube_id = block.settings.link | split: 'youtu.be/' | last | split: '?' | first | split: '&' | first
+            elsif block.settings.link contains 'youtube.com/shorts/'
+              assign youtube_id = block.settings.link | split: 'youtube.com/shorts/' | last | split: '?' | first | split: '&' | first
+            elsif block.settings.link contains 'youtube.com/watch'
+              assign youtube_id = block.settings.link | split: 'v=' | last | split: '&' | first
+            elsif block.settings.link contains 'vimeo.com/'
+              assign vimeo_id = block.settings.link | split: 'vimeo.com/' | last | split: '?' | first | split: '/' | last
+            endif
+            if youtube_id != blank
+              assign video_thumbnail = 'https://i.ytimg.com/vi/' | append: youtube_id | append: '/hqdefault.jpg'
+            elsif vimeo_id != blank
+              assign video_thumbnail = 'https://vumbnail.com/' | append: vimeo_id | append: '.jpg'
+            endif
+          endif
+        -%}
+        <a class="trade-social__item" href="{{ video_link }}" target="_blank" rel="noopener" {{ block.shopify_attributes }}>
+          <div class="trade-social__media"{% if block.settings.image == blank and block.settings.link != blank %} data-video-url="{{ block.settings.link | escape }}" data-video-caption="{{ block.settings.caption | escape }}"{% endif %}>
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width:800 | image_tag: loading:'lazy', widths:'400,600,800', sizes:'20vw', alt:block.settings.caption | escape }}
+            {% elsif video_thumbnail != blank %}
+              <img src="{{ video_thumbnail }}" alt="{{ block.settings.caption | escape }}" width="800" height="450" loading="lazy">
+            {% else %}
+              <span class="trade-social__placeholder" aria-hidden="true"></span>
+            {% endif %}
+            <span class="trade-social__play" aria-hidden="true">{{ block.settings.icon }}</span>
+          </div>
+          <strong class="trade-social__caption">{{ block.settings.caption }}</strong>
+          {% if block.settings.handle != blank %}<small class="trade-social__handle">{{ block.settings.handle }}</small>{% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<script>
+  (() => {
+    const loadTikTokCovers = () => {
+      document.querySelectorAll('.trade-social__media[data-video-url]').forEach((media) => {
+        const videoUrl = media.dataset.videoUrl;
+        if (!videoUrl || !/tiktok\.com/i.test(videoUrl) || media.querySelector('img')) return;
+        fetch(`https://www.tiktok.com/oembed?url=${encodeURIComponent(videoUrl)}`)
+          .then((response) => (response.ok ? response.json() : null))
+          .then((data) => {
+            if (!data?.thumbnail_url || media.querySelector('img')) return;
+            const image = document.createElement('img');
+            image.src = data.thumbnail_url;
+            image.alt = media.dataset.videoCaption || '';
+            image.width = 800;
+            image.height = 516;
+            image.loading = 'lazy';
+            media.querySelector('.trade-social__placeholder')?.replaceWith(image);
+          })
+          .catch(() => {});
+      });
+    };
+    loadTikTokCovers();
+    document.addEventListener('DOMContentLoaded', loadTikTokCovers, { once: true });
+    document.addEventListener('shopify:section:load', loadTikTokCovers);
+  })();
+</script>
+{% schema %}
+{"name":"AIWORLD social moments","tag":"section","class":"section-aiworld-trade-social","settings":[{"type":"text","id":"kicker","label":"Kicker","default":"REAL CUSTOMER MOMENTS"},{"type":"text","id":"heading","label":"Heading","default":"See It in Real Life"},{"type":"textarea","id":"text","label":"Text","default":"Drivers everywhere are upgrading with AIWORLD Screen X10. Share your photos and videos with #AIWORLD for a chance to be featured!"},{"type":"text","id":"button_label","label":"Button label","default":"Follow AIWORLD"},{"type":"url","id":"instagram_url","label":"Instagram link"},{"type":"url","id":"tiktok_url","label":"TikTok link"},{"type":"url","id":"youtube_url","label":"YouTube link"},{"type":"url","id":"facebook_url","label":"Facebook link"},{"type":"color","id":"background","label":"Background","default":"#FFFFFF"},{"type":"range","id":"padding_top","min":0,"max":120,"step":4,"unit":"px","label":"Top spacing","default":24},{"type":"range","id":"padding_bottom","min":0,"max":120,"step":4,"unit":"px","label":"Bottom spacing","default":24}],"blocks":[{"type":"moment","name":"Moment","settings":[{"type":"image_picker","id":"image","label":"Video first-frame cover (optional, recommended 800 × 516 px)","info":"建议图片尺寸：800 × 516 px；无封面时会尝试获取视频默认首帧，失败时请上传首帧封面"},{"type":"text","id":"caption","label":"Caption","default":"Road trip ready"},{"type":"text","id":"handle","label":"Creator handle","default":"@aiworld"},{"type":"url","id":"link","label":"Creator video link (TikTok / YouTube / Vimeo)","info":"点击整张卡片跳转视频；YouTube、Vimeo 和 TikTok 会尝试显示默认视频封面"},{"type":"text","id":"icon","label":"Overlay icon","default":">"}]}],"max_blocks":8,"presets":[{"name":"AIWORLD social moments","blocks":[{"type":"moment","settings":{"caption":"Real Setup","handle":"@drivewithjake"}},{"type":"moment","settings":{"caption":"Road Trip Ready","handle":"@sarah_ride"}},{"type":"moment","settings":{"caption":"Clean & Simple","handle":"@modern.driver"}},{"type":"moment","settings":{"caption":"Game Changer","handle":"@bevinsgarage"}},{"type":"moment","settings":{"caption":"Fits Any Car","handle":"@daily.driven"}}]}]}
+{% endschema %}

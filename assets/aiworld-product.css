@@ -1,0 +1,757 @@
+/* Modular AIWORLD product storytelling sections */
+.aiworld-product-section {
+  --aiworld-ink: #101D2D;
+  --aiworld-muted: #556270;
+  --aiworld-blue: #0787F9;
+  --aiworld-aqua: #0787F9;
+  position: relative;
+  color: var(--aiworld-ink);
+  background: var(--aiworld-section-bg, #fff);
+}
+
+.aiworld-product-section__inner {
+  width: min(100% - 3rem, 1200px);
+  margin: 0 auto;
+}
+
+.aiworld-product-section__heading {
+  max-width: 780px;
+  margin: 0 auto 2.25rem;
+  text-align: center;
+}
+
+.aiworld-product-section__eyebrow {
+  margin: 0 0 .55rem;
+  color: var(--aiworld-blue);
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.aiworld-product-section__heading h2 {
+  margin: 0;
+  color: inherit;
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  line-height: 1.02;
+  letter-spacing: -.04em;
+}
+
+.aiworld-product-section__heading p {
+  max-width: 660px;
+  margin: .8rem auto 0;
+  color: var(--aiworld-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.aiworld-product-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
+  padding: .75rem 1.35rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  color: inherit;
+  font-size: .88rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  transition: transform .2s ease, opacity .2s ease, background .2s ease;
+}
+
+.aiworld-product-button:hover {
+  opacity: .86;
+  transform: translateY(-2px);
+}
+
+.aiworld-product-button--solid {
+  border-color: var(--aiworld-blue);
+  background: var(--aiworld-blue);
+  color: #fff;
+}
+
+/* Product purchase area refinements */
+.template-product .product__info-container {
+  max-width: 540px;
+}
+
+.template-product .product__title h1 {
+  color: var(--aiworld-ink);
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  letter-spacing: -.035em;
+  line-height: 1.05;
+}
+
+.template-product .product__description {
+  color: var(--aiworld-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.template-product .product__media img {
+  border-radius: 1rem;
+}
+
+/* Reference-style product purchase layout */
+.template-product product-info > .page-width {
+  width: min(100% - 2rem, 1280px);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.template-product product-info .product {
+  align-items: start;
+  column-gap: clamp(2rem, 5vw, 5.5rem);
+}
+
+.template-product product-info media-gallery.product__column-sticky,
+.template-product product-info .product__info-container.product__column-sticky {
+  position: static;
+}
+
+@media screen and (min-width: 990px) {
+  .template-product product-info .product--medium:not(.product--no-media) .product__media-wrapper {
+    max-width: 52%;
+    width: calc(52% - var(--grid-desktop-horizontal-spacing) / 2);
+  }
+
+  .template-product product-info .product--medium:not(.product--no-media) .product__info-wrapper {
+    max-width: 48%;
+    width: calc(48% - var(--grid-desktop-horizontal-spacing) / 2);
+    padding-left: clamp(2rem, 4vw, 5rem);
+  }
+}
+
+.template-product .product__media-list .product__media-item,
+.template-product .product-media-container,
+.template-product .product-media-container .product__media {
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.template-product .product-media-container {
+  --aspect-ratio: 1 !important;
+  background: #f4f5f5;
+}
+
+.template-product .product-media-container .product__media {
+  background: #f4f5f5;
+}
+
+.template-product .product-media-container .product__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.template-product .thumbnail-slider {
+  margin-top: .9rem;
+}
+
+.template-product .thumbnail-list {
+  gap: .8rem;
+}
+
+.template-product .thumbnail {
+  overflow: hidden;
+  border-radius: .6rem;
+  background: #f4f5f5;
+}
+
+.template-product .thumbnail[aria-current] {
+  box-shadow: 0 0 0 .15rem var(--aiworld-aqua, #0787F9);
+}
+
+.template-product .product__title {
+  margin-bottom: .65rem;
+}
+
+.template-product .product__title h1 {
+  font-size: clamp(2rem, 2.7vw, 3rem);
+  letter-spacing: -.035em;
+  line-height: 1.08;
+}
+
+.template-product .aiworld-product-rating {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  margin: .2rem 0 .4rem;
+  color: var(--aiworld-blue);
+  font-size: .9rem;
+}
+
+.template-product .aiworld-product-rating__stars {
+  letter-spacing: .08em;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.template-product .aiworld-product-rating__count {
+  color: var(--aiworld-ink);
+}
+
+.template-product .product__info-container > [id^='price-'] {
+  margin-top: 1.25rem;
+  margin-bottom: .55rem;
+}
+
+.template-product .product__info-container > [id^='price-'] .price-item {
+  color: var(--aiworld-blue);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  letter-spacing: -.045em;
+  line-height: 1;
+}
+
+.template-product .product__info-container > [id^='price-'] .price-item--regular {
+  color: var(--aiworld-muted);
+  font-size: 1.05rem;
+  letter-spacing: 0;
+}
+
+.template-product .product__info-container .installment {
+  margin: .3rem 0 1.25rem;
+  padding: .7rem 1rem;
+  border-radius: .55rem;
+  background: #F5F8FB;
+  color: var(--aiworld-muted);
+  font-size: .92rem;
+  line-height: 1.45;
+}
+
+.template-product .aiworld-product-key-features {
+  margin: 1.3rem 0 1.5rem;
+  padding: 1.3rem 1.4rem 1.45rem;
+  border: 1px solid rgba(11, 27, 48, .1);
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 .8rem 2rem rgba(11, 27, 48, .05);
+}
+
+.template-product .aiworld-product-key-features h3 {
+  margin: 0 0 .85rem;
+  color: var(--aiworld-ink);
+  font-size: 1.15rem;
+  letter-spacing: .015em;
+}
+
+.template-product .aiworld-product-key-features ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.template-product .aiworld-product-key-features li {
+  margin: .55rem 0;
+  color: var(--aiworld-ink);
+  font-size: .96rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.template-product .product-form__quantity {
+  margin-top: 1.4rem;
+}
+
+.template-product .product-form__quantity .form__label {
+  color: var(--aiworld-muted);
+}
+
+.template-product .product-form__quantity .quantity {
+  min-height: 3.2rem;
+  border-radius: 999px;
+}
+
+.template-product .product-form__buttons {
+  max-width: none;
+}
+
+.template-product .product-form__submit,
+.template-product .shopify-payment-button__button--unbranded {
+  min-height: 3.2rem;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.template-product .product-form__submit {
+  background: var(--aiworld-blue);
+}
+
+.template-product .shopify-payment-button__button--unbranded {
+  background: var(--brand-primary-hover);
+}
+
+@media screen and (max-width: 749px) {
+  .template-product product-info > .page-width { width: min(100% - 2rem, 1280px); }
+  .template-product product-info .product { row-gap: 2rem; }
+  .template-product .product__title h1 { font-size: 2.1rem; }
+  .template-product .product__info-container > [id^='price-'] .price-item { font-size: 2.6rem; }
+}
+
+/* Full-width story banner */
+.aiworld-product-banner {
+  min-height: var(--aiworld-banner-height, 520px);
+  overflow: hidden;
+  isolation: isolate;
+  background: #0b1b30;
+  color: #fff;
+}
+
+.aiworld-product-banner__media,
+.aiworld-product-banner__media img,
+.aiworld-product-banner__placeholder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.aiworld-product-banner__media { z-index: 0; }
+
+.aiworld-product-banner__media img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.aiworld-product-banner__placeholder {
+  opacity: .12;
+}
+
+.aiworld-product-banner__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(4, 17, 32, .9) 0%, rgba(4, 17, 32, .54) 48%, rgba(4, 17, 32, .12) 100%);
+}
+
+.aiworld-product-banner__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: var(--aiworld-banner-v, center);
+  width: min(100% - 3rem, 1200px);
+  min-height: var(--aiworld-banner-height, 520px);
+  margin: 0 auto;
+  padding: 4rem 0;
+  text-align: var(--aiworld-banner-align, left);
+}
+
+.aiworld-product-banner__copy {
+  width: min(100%, var(--aiworld-copy-width, 540px));
+  margin-left: var(--aiworld-copy-offset, 0%);
+  margin-right: auto;
+}
+
+.aiworld-product-banner__content[data-align="center"] .aiworld-product-banner__copy {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.aiworld-product-banner__content[data-align="right"] .aiworld-product-banner__copy {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.aiworld-product-banner__eyebrow {
+  margin: 0 0 .7rem;
+  color: var(--aiworld-banner-accent, #0787F9);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.aiworld-product-banner h2 {
+  max-width: 680px;
+  margin: 0;
+  color: inherit;
+  font-size: clamp(2.3rem, 5.5vw, 5.4rem);
+  letter-spacing: -.055em;
+  line-height: .98;
+}
+
+.aiworld-product-banner__text {
+  max-width: 570px;
+  margin: 1.2rem 0 0;
+  color: rgba(255, 255, 255, .82);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.aiworld-product-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem;
+  justify-content: var(--aiworld-banner-action-align, flex-start);
+  margin-top: 1.7rem;
+}
+
+.aiworld-product-banner__content[data-align="center"] .aiworld-product-banner__actions { justify-content: center; }
+.aiworld-product-banner__content[data-align="right"] .aiworld-product-banner__actions { justify-content: flex-end; }
+
+/* Intro and stat strip */
+.aiworld-product-intro {
+  padding: 5rem 0;
+}
+
+.aiworld-product-intro__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.aiworld-product-intro__layout--centered {
+  display: block;
+}
+
+.aiworld-product-intro__visual {
+  overflow: hidden;
+  border-radius: 1.1rem;
+  background: #f1f5f8;
+}
+
+.aiworld-product-intro__visual img,
+.aiworld-product-intro__visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.aiworld-product-intro__copy--centered {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.aiworld-product-intro__copy h2 {
+  margin: 0;
+  font-size: clamp(2.3rem, 5vw, 4.6rem);
+  letter-spacing: -.055em;
+  line-height: .98;
+}
+
+.aiworld-product-intro__copy p {
+  margin: 1rem 0 0;
+  color: var(--aiworld-muted);
+  line-height: 1.7;
+}
+
+.aiworld-product-stats {
+  display: grid;
+  grid-template-columns: repeat(var(--aiworld-stat-columns, 4), minmax(0, 1fr));
+  gap: .75rem;
+  margin-top: 2.6rem;
+}
+
+.aiworld-product-stat {
+  padding: 1.2rem 1rem;
+  border: 1px solid rgba(11, 27, 48, .1);
+  border-radius: .75rem;
+  background: rgba(255, 255, 255, .76);
+  text-align: center;
+}
+
+.aiworld-product-stat__value {
+  display: block;
+  color: var(--aiworld-blue);
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.aiworld-product-stat__label {
+  display: block;
+  margin-top: .25rem;
+  color: var(--aiworld-ink);
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+.aiworld-product-stat__text {
+  display: block;
+  margin-top: .35rem;
+  color: var(--aiworld-muted);
+  font-size: .78rem;
+  line-height: 1.4;
+}
+
+/* Cards */
+.aiworld-product-cards {
+  padding: 5rem 0;
+}
+
+.aiworld-product-card-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--aiworld-card-columns, 3), minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.aiworld-product-card {
+  overflow: hidden;
+  border: 1px solid rgba(11, 27, 48, .1);
+  border-radius: 1rem;
+  background: var(--aiworld-card-bg, #fff);
+}
+
+.aiworld-product-card__media {
+  aspect-ratio: 1.35 / 1;
+  overflow: hidden;
+  background: #edf3f7;
+}
+
+.aiworld-product-card__media img,
+.aiworld-product-card__media svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aiworld-product-card__copy {
+  padding: 1.3rem 1.35rem 1.55rem;
+}
+
+.aiworld-product-card h3 {
+  margin: 0;
+  color: var(--aiworld-ink);
+  font-size: 1.25rem;
+  letter-spacing: -.02em;
+}
+
+.aiworld-product-card p {
+  margin: .55rem 0 0;
+  color: var(--aiworld-muted);
+  font-size: .92rem;
+  line-height: 1.6;
+}
+
+.aiworld-product-card .aiworld-product-button { margin-top: 1rem; }
+
+/* Alternating feature split sections */
+.aiworld-product-feature-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.aiworld-product-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  min-height: 360px;
+  overflow: hidden;
+  border-radius: 1.2rem;
+  background: var(--aiworld-feature-bg, #0b1b30);
+  color: var(--aiworld-feature-ink, #fff);
+}
+
+.aiworld-product-feature--reversed { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); }
+.aiworld-product-feature--reversed .aiworld-product-feature__media { order: 2; }
+
+.aiworld-product-feature__media { min-height: 300px; }
+
+.aiworld-product-feature__media img,
+.aiworld-product-feature__media svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aiworld-product-feature__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4.5rem);
+}
+
+.aiworld-product-feature__copy h3 {
+  margin: 0;
+  color: inherit;
+  font-size: clamp(1.8rem, 3vw, 3.1rem);
+  letter-spacing: -.04em;
+  line-height: 1.02;
+}
+
+.aiworld-product-feature__copy p {
+  max-width: 520px;
+  margin: 1rem 0 0;
+  color: inherit;
+  opacity: .78;
+  line-height: 1.65;
+}
+
+.aiworld-product-feature__copy .aiworld-product-button { align-self: flex-start; margin-top: 1.5rem; }
+
+/* Icon feature row */
+.aiworld-product-icons {
+  padding: 4.5rem 0;
+}
+
+.aiworld-product-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--aiworld-icon-columns, 5), minmax(0, 1fr));
+  gap: .8rem;
+}
+
+.aiworld-product-icon {
+  padding: 1.2rem 1rem;
+  border-radius: .8rem;
+  background: rgba(255, 255, 255, .72);
+  text-align: center;
+}
+
+.aiworld-product-icon__mark {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 auto .8rem;
+  border-radius: 50%;
+  background: var(--aiworld-icon-color, #0789f9);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.aiworld-product-icon h3 {
+  margin: 0;
+  color: var(--aiworld-ink);
+  font-size: .95rem;
+}
+
+.aiworld-product-icon p {
+  margin: .35rem 0 0;
+  color: var(--aiworld-muted);
+  font-size: .78rem;
+  line-height: 1.45;
+}
+
+/* FAQ */
+.aiworld-product-faq {
+  padding: 5rem 0;
+}
+
+.aiworld-product-faq__list {
+  max-width: 900px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(11, 27, 48, .15);
+}
+
+.aiworld-product-faq details { border-bottom: 1px solid rgba(11, 27, 48, .15); }
+.aiworld-product-faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  color: var(--aiworld-ink);
+  cursor: pointer;
+  font-weight: 700;
+  list-style: none;
+}
+
+.aiworld-product-faq summary::-webkit-details-marker { display: none; }
+.aiworld-product-faq summary::after { content: '+'; color: var(--aiworld-blue); font-size: 1.4rem; font-weight: 400; }
+.aiworld-product-faq details[open] summary::after { content: '−'; }
+.aiworld-product-faq__answer { padding: 0 2rem 1.25rem 0; color: var(--aiworld-muted); line-height: 1.65; }
+
+/* Reviews */
+.aiworld-product-reviews { padding: 5rem 0; }
+
+.aiworld-product-review-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--aiworld-review-columns, 3), minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.aiworld-product-review {
+  padding: 1.5rem;
+  border: 1px solid rgba(11, 27, 48, .1);
+  border-radius: 1rem;
+  background: #fff;
+}
+
+.aiworld-product-review__stars { color: #FFB400; letter-spacing: .12em; }
+.aiworld-product-review blockquote { margin: 1rem 0 1.3rem; color: var(--aiworld-ink); line-height: 1.6; }
+.aiworld-product-review__author { color: var(--aiworld-muted); font-size: .85rem; font-weight: 700; }
+
+/* Newsletter */
+.aiworld-product-newsletter {
+  padding: 4rem 0;
+  background: var(--aiworld-newsletter-bg, #0787F9);
+  color: #fff;
+}
+
+.aiworld-product-newsletter__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.aiworld-product-newsletter h2 { margin: 0; color: inherit; font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: -.04em; }
+.aiworld-product-newsletter p { max-width: 540px; margin: .6rem 0 0; opacity: .82; line-height: 1.6; }
+.aiworld-product-newsletter form { display: flex; flex: 1 1 420px; max-width: 500px; gap: .5rem; }
+.aiworld-product-newsletter input { min-width: 0; flex: 1; min-height: 2.9rem; padding: .75rem 1rem; border: 0; border-radius: 999px; }
+.aiworld-product-newsletter button { min-height: 2.9rem; padding: .75rem 1.2rem; border: 0; border-radius: 999px; background: #0b1b30; color: #fff; cursor: pointer; font-weight: 700; }
+
+@media screen and (max-width: 749px) {
+  .aiworld-product-section__inner { width: min(100% - 2rem, 1200px); }
+  .aiworld-product-banner__content { width: min(100% - 2rem, 1200px); padding: 3rem 0; }
+  .aiworld-product-banner__content[data-align="right"] .aiworld-product-banner__copy { margin-left: 0; }
+  .aiworld-product-banner__actions { justify-content: flex-start !important; }
+  .aiworld-product-intro__layout,
+  .aiworld-product-feature,
+  .aiworld-product-feature--reversed { grid-template-columns: 1fr; }
+  .aiworld-product-feature--reversed .aiworld-product-feature__media { order: 0; }
+  .aiworld-product-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .aiworld-product-card-grid,
+  .aiworld-product-review-grid { grid-template-columns: 1fr; }
+  .aiworld-product-icon-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .aiworld-product-newsletter__inner { align-items: stretch; flex-direction: column; }
+  .aiworld-product-newsletter form { max-width: none; flex-basis: auto; }
+}
+
+/* Brand guideline alignment for modular product sections. */
+.aiworld-product-section {
+  --aiworld-blue: #0787F9;
+  --aiworld-ink: #101D2D;
+  --aiworld-muted: #556270;
+  --aiworld-line: #E4EAF0;
+  --aiworld-soft: #F5F8FB;
+}
+.aiworld-product-section__inner { width: min(100% - 40px, 1280px); }
+.aiworld-product-section__heading h2 { font-size: clamp(2rem, 3vw, 2.25rem); line-height: 1.12; letter-spacing: -.7px; }
+.aiworld-product-section__heading p,
+.aiworld-product-intro__copy p { font-size: 16px; line-height: 1.55; }
+.aiworld-product-button {
+  min-height: 48px;
+  padding: 0 28px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.aiworld-product-banner h2 { font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.04; letter-spacing: -1.6px; }
+.aiworld-product-banner__text { font-size: 18px; line-height: 1.55; }
+.aiworld-product-banner__actions { gap: 14px; }
+.aiworld-product-intro__copy h2 { font-size: clamp(2rem, 3vw, 2.25rem); line-height: 1.12; letter-spacing: -.7px; }
+.aiworld-product-card,
+.aiworld-product-review,
+.aiworld-product-key-features { border-radius: 10px; box-shadow: 0 4px 14px rgba(10,30,50,.06); }
+.aiworld-product-card p,
+.aiworld-product-review blockquote { font-size: 16px; line-height: 1.55; }
+.aiworld-product-feature { border-radius: 16px; }
+.aiworld-product-icon { border-radius: 10px; }
+.aiworld-product-faq summary { min-height: 52px; padding: 14px 0; font-size: 14px; }
+.aiworld-product-faq__answer { font-size: 16px; }
+.aiworld-product-newsletter button,
+.aiworld-product-newsletter input { border-radius: 8px; }
+.template-product .product__title h1 { font-size: clamp(2rem, 3vw, 2.25rem); line-height: 1.12; letter-spacing: -.7px; }
+.template-product .product__info-container > [id^='price-'] .price-item { font-size: 34px; letter-spacing: -.7px; }
+.template-product .product-form__quantity .quantity,
+.template-product .product-form__submit,
+.template-product .shopify-payment-button__button--unbranded { border-radius: 8px; }
