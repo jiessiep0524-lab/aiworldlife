@@ -82,7 +82,7 @@
 
 {% schema %}
 {
-  "name": "AIWORLD entertainment",
+  "name": "车载娱乐功能展示",
   "tag": "section",
   "class": "section-aiworld-trade-entertainment",
   "settings": [
@@ -101,16 +101,16 @@
   "blocks": [
     {
       "type": "panel",
-      "name": "Entertainment tab",
+      "name": "娱乐内容标签",
       "settings": [
         { "type": "text", "id": "tab_label", "label": "Tab label", "default": "Multitask Your Way" },
-        { "type": "image_picker", "id": "image_1", "label": "Card 1 image" },
+        { "type": "image_picker", "id": "image_1", "label": "卡片 1 图片", "info": "建议尺寸：1200 × 1540 px（竖版约 0.78:1；卡片会裁切填充）" },
         { "type": "text", "id": "title_1", "label": "Card 1 title", "default": "Your apps, side by side" },
         { "type": "textarea", "id": "text_1", "label": "Card 1 text", "default": "Keep directions and entertainment visible at the same time." },
-        { "type": "image_picker", "id": "image_2", "label": "Card 2 image" },
+        { "type": "image_picker", "id": "image_2", "label": "卡片 2 图片", "info": "建议尺寸：1200 × 1540 px（竖版约 0.78:1；卡片会裁切填充）" },
         { "type": "text", "id": "title_2", "label": "Card 2 title", "default": "Watch while you navigate" },
         { "type": "textarea", "id": "text_2", "label": "Card 2 text", "default": "Follow directions while checking your favorite apps side by side." },
-        { "type": "image_picker", "id": "image_3", "label": "Card 3 image" },
+        { "type": "image_picker", "id": "image_3", "label": "卡片 3 图片", "info": "建议尺寸：1200 × 1540 px（竖版约 0.78:1；卡片会裁切填充）" },
         { "type": "text", "id": "title_3", "label": "Card 3 title", "default": "One screen, more control" },
         { "type": "textarea", "id": "text_3", "label": "Card 3 text", "default": "A cleaner way to control the features you use every day." }
       ]
@@ -119,7 +119,7 @@
   "max_blocks": 3,
   "presets": [
     {
-      "name": "AIWORLD entertainment showcase",
+      "name": "车载娱乐功能展示",
       "blocks": [
         { "type": "panel", "settings": { "tab_label": "Multitask Your Way" } },
         { "type": "panel", "settings": { "tab_label": "More Ways to Use It" } },

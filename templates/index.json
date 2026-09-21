@@ -283,7 +283,7 @@
         "feature_PRw4YP",
         "feature_iypBfT"
       ],
-      "name": "AIWORLD feature strip",
+      "name": "首页服务保障栏",
       "settings": {
         "background": "#ffffff",
         "enable_top_spacing": true,
@@ -417,7 +417,8 @@
         "padding_top": 48,
         "enable_bottom_spacing": true,
         "padding_bottom": 48
-      }
+      },
+      "disabled": true
     },
     "trade_story": {
       "type": "aiworld-trade-story",
@@ -761,8 +762,8 @@
           "settings": {
             "image": "shopify://shop_images/1dff8a1c-1a0d-42f6-9866-7d5aa9c7b7ab.jpg",
             "caption": "Real Setup",
-            "handle": "@drivewithjake",
-            "link": "",
+            "handle": "@chrishasdeals",
+            "link": "https://www.tiktok.com/@chrishasdeals/video/7665463906898414878",
             "icon": ">"
           }
         },
@@ -771,8 +772,8 @@
           "settings": {
             "image": "shopify://shop_images/77a90af0-9e6f-420d-9b6e-480a42b3dfad.jpg",
             "caption": "Road Trip Ready",
-            "handle": "@sarah_ride",
-            "link": "",
+            "handle": "@2xfinds",
+            "link": "https://www.tiktok.com/@2xfinds/video/7649222113248726302",
             "icon": ">"
           }
         },
@@ -781,8 +782,8 @@
           "settings": {
             "image": "shopify://shop_images/a9ddf9c9-7e7d-40d0-a30e-7a6a8ca77612.png",
             "caption": "Clean & Simple",
-            "handle": "@modern.driver",
-            "link": "",
+            "handle": "@thedealquarter",
+            "link": "https://www.tiktok.com/@thedealquarter/video/7652916613322263838",
             "icon": ">"
           }
         },
@@ -791,8 +792,8 @@
           "settings": {
             "image": "shopify://shop_images/f8aa8ee8-3eb3-4f2e-ac44-26b78bc99f2f.png",
             "caption": "Game Changer",
-            "handle": "@bevinsgarage",
-            "link": "",
+            "handle": "@zaygenoffers",
+            "link": "https://www.tiktok.com/@zaygenoffers/video/7678434709201767710",
             "icon": ">"
           }
         },
@@ -802,7 +803,7 @@
             "image": "shopify://shop_images/f626385c-b240-41e2-8639-01937b398527.png",
             "caption": "Fits Any Car",
             "handle": "@daily.driven",
-            "link": "",
+            "link": "https://www.tiktok.com/@ryder.finds/video/7673179450128878878",
             "icon": ">"
           }
         }
@@ -967,11 +968,11 @@
     "trade_featured_hero",
     "trade_mobile_hero_alt",
     "aiworld_trade_feature_strip_wcRiex",
+    "trade_entertainment",
     "trade_feature_strip",
     "trade_feature_cards",
     "trade_story",
     "trade_specs",
-    "trade_entertainment",
     "trade_reviews",
     "trade_testimonials",
     "trade_creator_carousel",
