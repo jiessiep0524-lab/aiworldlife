@@ -1,4 +1,4 @@
-<section id="Entertainment-{{ section.id }}" class="trade-entertainment" data-entertainment-section style="--entertainment-background:{{ section.settings.background }};--entertainment-accent:{{ section.settings.accent_color }};--entertainment-ink:{{ section.settings.text_color }};padding-top:{% if section.settings.enable_top_spacing == false %}0{% else %}{{ section.settings.padding_top }}{% endif %}px;padding-bottom:{% if section.settings.enable_bottom_spacing == false %}0{% else %}{{ section.settings.padding_bottom }}{% endif %}px;">
+<section id="Entertainment-{{ section.id }}" class="trade-entertainment" data-entertainment-section style="--entertainment-background:{{ section.settings.background }};--entertainment-accent:{{ section.settings.accent_color }};--entertainment-ink:{{ section.settings.text_color }};--entertainment-padding-top:{% if section.settings.enable_top_spacing == false %}0{% else %}{{ section.settings.padding_top }}{% endif %}px;--entertainment-padding-bottom:{% if section.settings.enable_bottom_spacing == false %}0{% else %}{{ section.settings.padding_bottom }}{% endif %}px;--entertainment-mobile-padding-top:{% if section.settings.enable_top_spacing == false %}0{% else %}{{ section.settings.mobile_padding_top | default: 40 }}{% endif %}px;--entertainment-mobile-padding-bottom:{% if section.settings.enable_bottom_spacing == false %}0{% else %}{{ section.settings.mobile_padding_bottom | default: 40 }}{% endif %}px;">
   <div class="trade-container">
     <div class="trade-entertainment__head">
       <p class="trade-kicker">{{ section.settings.kicker | escape }}</p>
@@ -95,8 +95,10 @@
     { "type": "color", "id": "text_color", "label": "Text color", "default": "#06182a" },
     { "type": "checkbox", "id": "enable_top_spacing", "label": "Enable top spacing", "default": true },
     { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top spacing", "default": 72 },
+    { "type": "range", "id": "mobile_padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "移动端上方间距", "default": 40 },
     { "type": "checkbox", "id": "enable_bottom_spacing", "label": "Enable bottom spacing", "default": true },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Bottom spacing", "default": 72 }
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Bottom spacing", "default": 72 },
+    { "type": "range", "id": "mobile_padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "移动端下方间距", "default": 40 }
   ],
   "blocks": [
     {
