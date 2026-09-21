@@ -14,24 +14,68 @@
     "aiworld-trade-footer": {
       "type": "aiworld-trade-footer",
       "blocks": {
-        "product": { "type": "link_column", "settings": { "heading": "Product", "fallback_links": "AIWORLD Screen X10\nFeatures\nReviews" } },
-        "support": { "type": "link_column", "settings": { "heading": "Support", "fallback_links": "Help Center\nContact Us\nInstallation Guide" } },
-        "policies": { "type": "link_column", "settings": { "heading": "Policies", "fallback_links": "Shipping Policy\nReturns & Refunds\nPrivacy Policy\nTerms of Service" } },
-        "connect": { "type": "link_column", "settings": { "heading": "Connect", "fallback_links": "Instagram\nYouTube\nFacebook\nAIWORLD" } }
+        "product": {
+          "type": "link_column",
+          "settings": {
+            "heading": "Product",
+            "menu": "",
+            "fallback_links": "AIWORLD Screen X10\nFeatures\nReviews"
+          }
+        },
+        "support": {
+          "type": "link_column",
+          "settings": {
+            "heading": "Support",
+            "menu": "",
+            "fallback_links": "Help Center\nContact Us\nInstallation Guide"
+          }
+        },
+        "policies": {
+          "type": "link_column",
+          "settings": {
+            "heading": "Policies",
+            "menu": "",
+            "fallback_links": "Shipping Policy\nReturns & Refunds\nPrivacy Policy\nTerms of Service"
+          }
+        },
+        "connect": {
+          "type": "link_column",
+          "settings": {
+            "heading": "Connect",
+            "menu": "",
+            "fallback_links": "Instagram\nYouTube\nFacebook\nAIWORLD"
+          }
+        }
       },
-      "block_order": [ "product", "support", "policies", "connect" ],
+      "block_order": [
+        "product",
+        "support",
+        "policies",
+        "connect"
+      ],
       "settings": {
         "brand_name": "AIWORLD",
+        "brand_logo": "shopify://shop_images/logo.png",
         "brand_text": "Smart Technology for Everyday Life.",
+        "contact_heading": "CONTACT US",
+        "contact_email": "support@aiworldlife.com",
+        "contact_phone": "",
+        "contact_hours": "Mon-Fri: 10:00am - 6:00pm",
         "show_social": true,
+        "instagram_url": "",
+        "youtube_url": "",
+        "facebook_url": "",
         "news_heading": "Latest News",
         "news_text": "Discover smarter product insights",
+        "news_link": "",
         "bottom_text": "A Smarter Way to Drive.",
-        "background": "#06182A",
+        "background": "#06182a",
         "text_color": "#ffffff",
-        "accent_color": "#0787F9"
+        "accent_color": "#0787f9"
       }
     }
   },
-  "order": [ "aiworld-trade-footer" ]
+  "order": [
+    "aiworld-trade-footer"
+  ]
 }

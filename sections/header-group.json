@@ -18,36 +18,12 @@
           "type": "trust",
           "settings": {
             "icon": "",
-            "text": "2-5 Days Arrive"
-          }
-        },
-        "shipping": {
-          "type": "trust",
-          "settings": {
-            "icon": "",
-            "text": "Free Shipping"
-          }
-        },
-        "returns": {
-          "type": "trust",
-          "settings": {
-            "icon": "",
-            "text": "30-Day Hassle-Free Returns"
-          }
-        },
-        "checkout": {
-          "type": "trust",
-          "settings": {
-            "icon": "",
-            "text": "Secure Checkout"
+            "text": "1-4 Business Days"
           }
         }
       },
       "block_order": [
-        "trust_nzwdid",
-        "shipping",
-        "returns",
-        "checkout"
+        "trust_nzwdid"
       ],
       "settings": {
         "background": "#06182a",
@@ -73,7 +49,7 @@
         "mobile_logo_position": "center",
         "menu": "main-menu",
         "menu_type_desktop": "mega",
-        "sticky_header_type": "reduce-logo-size",
+        "sticky_header_type": "always",
         "show_line_separator": true,
         "color_scheme": "scheme-4",
         "menu_color_scheme": "",

@@ -1,0 +1,94 @@
+{%- assign slide_count = section.blocks.size -%}
+<section class="trade-creator-carousel" style="padding-top:{% if section.settings.enable_top_spacing == false %}0{% else %}{{ section.settings.padding_top }}{% endif %}px;padding-bottom:{% if section.settings.enable_bottom_spacing == false %}0{% else %}{{ section.settings.padding_bottom }}{% endif %}px;background:{{ section.settings.background }};" data-testimonial-carousel data-autoplay="{{ section.settings.auto_rotate }}" data-speed="{{ section.settings.change_slides_speed | times: 1000 }}" data-pause="{{ section.settings.pause_on_hover }}">
+  <div class="trade-container">
+    <div class="trade-creator-carousel__header">
+      <h2><span>{{ section.settings.metric_accent }}</span> {{ section.settings.metric_text }}</h2>
+      <div class="trade-creator-carousel__avatars" aria-hidden="true">
+        {% for block in section.blocks limit: 3 %}
+          {% if block.settings.avatar != blank %}
+            {{ block.settings.avatar | image_url: width: 120 | image_tag: class: 'trade-creator-carousel__avatar', loading: 'lazy', widths: '60,90,120', sizes: '52px', alt: '' }}
+          {% else %}
+            <span class="trade-creator-carousel__avatar trade-creator-carousel__avatar--fallback">{{ block.settings.handle | remove: '@' | slice: 0, 1 | upcase }}</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="trade-creator-carousel__viewport">
+      {% if slide_count > 1 %}<button class="trade-creator-carousel__arrow trade-creator-carousel__arrow--prev" type="button" data-testimonial-prev aria-label="Previous creator video"><span aria-hidden="true">&#8249;</span></button>{% endif %}
+      <div class="trade-creator-carousel__slides">
+        {% for block in section.blocks %}
+          <article class="trade-creator-carousel__slide{% if forloop.first %} is-active{% endif %}" data-testimonial-slide data-slide-index="{{ forloop.index0 }}" aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}" {{ block.shopify_attributes }}>
+            {% if block.settings.video_link != blank %}<a class="trade-creator-carousel__card" href="{{ block.settings.video_link }}" target="_blank" rel="noopener">{% else %}<div class="trade-creator-carousel__card">{% endif %}
+              <div class="trade-creator-carousel__media">
+                {% if block.settings.cover_image != blank %}
+                  {{ block.settings.cover_image | image_url: width: 960 | image_tag: loading: 'lazy', widths: '480,720,960', sizes: '(max-width: 640px) 76vw, 420px', alt: block.settings.caption | escape }}
+                {% else %}
+                  <span class="trade-creator-carousel__placeholder" aria-hidden="true"><span>CREATOR VIDEO</span></span>
+                {% endif %}
+                <span class="trade-creator-carousel__play" aria-hidden="true"></span>
+              </div>
+              <div class="trade-creator-carousel__copy">
+                <strong>{{ block.settings.caption }}</strong>
+                {% if block.settings.handle != blank %}<small>{{ block.settings.handle }}</small>{% endif %}
+                {% if block.settings.description != blank %}<p>{{ block.settings.description }}</p>{% endif %}
+              </div>
+            {% if block.settings.video_link != blank %}</a>{% else %}</div>{% endif %}
+          </article>
+        {% endfor %}
+      </div>
+      {% if slide_count > 1 %}<button class="trade-creator-carousel__arrow trade-creator-carousel__arrow--next" type="button" data-testimonial-next aria-label="Next creator video"><span aria-hidden="true">&#8250;</span></button>{% endif %}
+    </div>
+
+    {% if slide_count > 1 %}
+      <div class="trade-creator-carousel__dots" role="tablist" aria-label="Creator videos">
+        {% for block in section.blocks %}<button type="button" role="tab" data-testimonial-dot="{{ forloop.index0 }}" aria-label="Show creator video {{ forloop.index }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"></button>{% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+<script src="{{ 'aiworld-trade-testimonials.js' | asset_url }}" defer="defer"></script>
+{% schema %}
+{
+  "name": "AIWORLD creator videos",
+  "tag": "section",
+  "class": "section-aiworld-trade-creator-carousel",
+  "settings": [
+    { "type": "text", "id": "metric_accent", "label": "Headline accent", "default": "Real creators" },
+    { "type": "text", "id": "metric_text", "label": "Headline text", "default": "Show AIWORLD in real life." },
+    { "type": "color", "id": "background", "label": "Background", "default": "#F4F8FC" },
+    { "type": "checkbox", "id": "auto_rotate", "label": "Auto-rotate videos", "default": true },
+    { "type": "range", "id": "change_slides_speed", "min": 3, "max": 12, "step": 1, "unit": "s", "label": "Video interval", "default": 5 },
+    { "type": "checkbox", "id": "pause_on_hover", "label": "Pause on hover", "default": true },
+    { "type": "checkbox", "id": "enable_top_spacing", "label": "Enable top spacing", "default": true },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top spacing", "default": 56 },
+    { "type": "checkbox", "id": "enable_bottom_spacing", "label": "Enable bottom spacing", "default": true },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Bottom spacing", "default": 56 }
+  ],
+  "blocks": [
+    {
+      "type": "creator",
+      "name": "Creator video",
+      "settings": [
+        { "type": "image_picker", "id": "cover_image", "label": "Video first-frame cover", "info": "Upload the video cover image, preferably 800 x 516 px." },
+        { "type": "image_picker", "id": "avatar", "label": "Creator avatar", "info": "Use a square image." },
+        { "type": "url", "id": "video_link", "label": "Video link", "info": "TikTok, YouTube, Vimeo, or another public video URL." },
+        { "type": "text", "id": "caption", "label": "Video title", "default": "Real Setup" },
+        { "type": "text", "id": "handle", "label": "Creator handle", "default": "@aiworld" },
+        { "type": "textarea", "id": "description", "label": "Short description", "default": "See how creators use AIWORLD every day." }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "AIWORLD creator videos",
+      "blocks": [
+        { "type": "creator", "settings": { "caption": "Real Setup", "handle": "@drivewithjake", "description": "A closer look at the everyday setup." } },
+        { "type": "creator", "settings": { "caption": "Road Trip Ready", "handle": "@sarah_ride", "description": "Wireless connection for the road ahead." } },
+        { "type": "creator", "settings": { "caption": "Clean & Simple", "handle": "@modern.driver", "description": "A simple upgrade for a smarter drive." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

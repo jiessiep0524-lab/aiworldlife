@@ -171,7 +171,7 @@
     endif
     assign header_logo_width = section.settings.logo_width | default: settings.logo_width | default: 180
   -%}
-  <header style="--header-logo-height:{{ section.settings.logo_height | default: 36 }}px;--header-logo-height-mobile:{{ section.settings.logo_height_mobile | default: 30 }}px;" class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if country_selector or language_selector %} header--has-localizations{% endif %}">
+  <header style="--header-logo-width:{{ header_logo_width }}px;--header-logo-height:{{ section.settings.logo_height | default: 36 }}px;--header-logo-height-mobile:{{ section.settings.logo_height_mobile | default: 30 }}px;" class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if country_selector or language_selector %} header--has-localizations{% endif %}">
     {%- liquid
       assign render_search_left = false
       if section.settings.logo_position == 'top-center' or section.settings.menu == blank or shop.customer_accounts_enabled

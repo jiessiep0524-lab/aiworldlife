@@ -1,0 +1,117 @@
+{%- liquid
+  assign slide_count = section.blocks.size
+  if slide_count == 0
+    assign slide_count = 1
+  endif
+  assign autoplay = false
+  if slide_count > 1
+    assign autoplay = true
+  endif
+  assign desktop_width = section.settings.desktop_banner_width | default: 1920
+  assign desktop_height = section.settings.desktop_banner_height | default: 720
+  assign desktop_aspect = desktop_width | times: 1.0 | divided_by: desktop_height
+  assign mobile_width = section.settings.mobile_banner_width | default: 750
+  assign mobile_height = section.settings.mobile_banner_height | default: 1000
+  assign mobile_aspect = mobile_width | times: 1.0 | divided_by: mobile_height
+-%}
+<section class="trade-mobile-hero trade-mobile-hero--{{ section.settings.height_mode | default: 'image' }} trade-mobile-hero--desktop-align-{{ section.settings.desktop_text_alignment | default: 'center' }} trade-mobile-hero--mobile-align-{{ section.settings.mobile_text_alignment | default: 'center' }}" style="--trade-mobile-hero-aspect:{{ desktop_aspect }};--trade-mobile-hero-mobile-aspect:{{ mobile_aspect }};--trade-mobile-hero-height:{{ section.settings.desktop_height }}px;--trade-mobile-hero-mobile-height:{{ section.settings.mobile_height }}px;--trade-mobile-hero-content-y:{{ section.settings.content_vertical }}%;--trade-mobile-hero-mobile-content-y:{{ section.settings.mobile_content_vertical }}%;--trade-mobile-hero-overlay:{{ section.settings.overlay_strength | divided_by: 100.0 }};--trade-mobile-hero-overlay-color:{{ section.settings.overlay_color }};--trade-mobile-hero-accent:{{ section.settings.accent_color }};--trade-mobile-hero-text-color:{{ section.settings.text_color }};" data-trade-carousel data-autoplay="{{ autoplay }}" data-speed="5000" data-pause="true">
+  <div class="trade-mobile-hero__slides" role="region" aria-roledescription="carousel" aria-label="Mobile-first hero banners" aria-live="polite">
+    {% for block in section.blocks %}
+      {% render 'aiworld-trade-mobile-hero-slide', image: block.settings.image, mobile_image: block.settings.mobile_image, eyebrow: block.settings.eyebrow, heading: block.settings.heading, text: block.settings.text, show_features: section.settings.show_features, feature_1_icon: block.settings.feature_1_icon, feature_1_title: block.settings.feature_1_title, feature_1_text: block.settings.feature_1_text, feature_2_icon: block.settings.feature_2_icon, feature_2_title: block.settings.feature_2_title, feature_2_text: block.settings.feature_2_text, feature_3_icon: block.settings.feature_3_icon, feature_3_title: block.settings.feature_3_title, feature_3_text: block.settings.feature_3_text, show_rating: block.settings.show_rating, rating_text: block.settings.rating_text, price: block.settings.price, button_label: block.settings.button_label, button_link: block.settings.button_link, button_2_label: block.settings.button_2_label, button_2_link: block.settings.button_2_link, slide_index: forloop.index0, slide_count: slide_count, is_active: forloop.first, shopify_attributes: block.shopify_attributes %}
+    {% else %}
+      {% render 'aiworld-trade-mobile-hero-slide', image: section.settings.image, mobile_image: section.settings.mobile_image, eyebrow: section.settings.eyebrow, heading: section.settings.heading, text: section.settings.text, show_features: section.settings.show_features, feature_1_icon: section.settings.feature_1_icon, feature_1_title: section.settings.feature_1_title, feature_1_text: section.settings.feature_1_text, feature_2_icon: section.settings.feature_2_icon, feature_2_title: section.settings.feature_2_title, feature_2_text: section.settings.feature_2_text, feature_3_icon: section.settings.feature_3_icon, feature_3_title: section.settings.feature_3_title, feature_3_text: section.settings.feature_3_text, show_rating: section.settings.show_rating, rating_text: section.settings.rating_text, price: section.settings.price, button_label: section.settings.button_label, button_link: section.settings.button_link, button_2_label: section.settings.button_2_label, button_2_link: section.settings.button_2_link, slide_index: 0, slide_count: 1, is_active: true %}
+    {% endfor %}
+  </div>
+  {% if slide_count > 1 %}
+    <button class="trade-mobile-hero__arrow trade-mobile-hero__arrow--prev" type="button" data-carousel-prev aria-label="Previous banner"><span aria-hidden="true">&#8592;</span></button>
+    <button class="trade-mobile-hero__arrow trade-mobile-hero__arrow--next" type="button" data-carousel-next aria-label="Next banner"><span aria-hidden="true">&#8594;</span></button>
+    <div class="trade-mobile-hero__dots" role="tablist" aria-label="Hero banner navigation">
+      {% for block in section.blocks %}<button type="button" role="tab" data-carousel-dot="{{ forloop.index0 }}" aria-label="Go to banner {{ forloop.index }}" aria-selected="{{ forloop.first }}"></button>{% endfor %}
+    </div>
+  {% endif %}
+</section>
+<script src="{{ 'aiworld-trade-carousel.js' | asset_url }}" defer="defer"></script>
+{% schema %}
+{
+  "name": "AIWORLD mobile hero alt",
+  "tag": "section",
+  "class": "section-aiworld-trade-mobile-hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Fallback desktop image (recommended 1920 x 720 px)", "info": "Used when the section has no banner blocks." },
+    { "type": "image_picker", "id": "mobile_image", "label": "Fallback mobile image (recommended 750 x 1000 px)", "info": "Recommended mobile artboard: 750 x 1000 px." },
+    { "type": "text", "id": "eyebrow", "label": "Fallback eyebrow", "default": "AIWORLD Screen" },
+    { "type": "textarea", "id": "heading", "label": "Fallback heading", "default": "Smarter Driving\nStarts Here." },
+    { "type": "richtext", "id": "text", "label": "Fallback text", "default": "<p>A 9-inch portable wireless CarPlay & Android Auto display for any car.</p>" },
+    { "type": "checkbox", "id": "show_features", "label": "Show feature highlights", "default": true },
+    { "type": "text", "id": "feature_1_icon", "label": "Fallback feature 1 icon label", "default": "MAP" },
+    { "type": "text", "id": "feature_1_title", "label": "Fallback feature 1 title", "default": "Navigation" },
+    { "type": "text", "id": "feature_1_text", "label": "Fallback feature 1 text", "default": "Made easier" },
+    { "type": "text", "id": "feature_2_icon", "label": "Fallback feature 2 icon label", "default": "MUSIC" },
+    { "type": "text", "id": "feature_2_title", "label": "Fallback feature 2 title", "default": "Your Music" },
+    { "type": "text", "id": "feature_2_text", "label": "Fallback feature 2 text", "default": "Your way" },
+    { "type": "text", "id": "feature_3_icon", "label": "Fallback feature 3 icon label", "default": "SAFE" },
+    { "type": "text", "id": "feature_3_title", "label": "Fallback feature 3 title", "default": "Drive Safer" },
+    { "type": "text", "id": "feature_3_text", "label": "Fallback feature 3 text", "default": "Stay connected" },
+    { "type": "checkbox", "id": "show_rating", "label": "Show rating", "default": false },
+    { "type": "text", "id": "rating_text", "label": "Rating text", "default": "4.8 (1,200+ reviews)" },
+    { "type": "text", "id": "price", "label": "Fallback price", "default": "$119.99" },
+    { "type": "text", "id": "button_label", "label": "Fallback primary button", "default": "Buy now" },
+    { "type": "url", "id": "button_link", "label": "Fallback primary link" },
+    { "type": "text", "id": "button_2_label", "label": "Fallback secondary button", "default": "Learn more" },
+    { "type": "url", "id": "button_2_link", "label": "Fallback secondary link" },
+    { "type": "number", "id": "desktop_banner_width", "label": "Desktop image width (px)", "default": 1920 },
+    { "type": "number", "id": "desktop_banner_height", "label": "Desktop image height (px)", "default": 720 },
+    { "type": "number", "id": "mobile_banner_width", "label": "Mobile image width (px)", "default": 750 },
+    { "type": "number", "id": "mobile_banner_height", "label": "Mobile image height (px)", "default": 1000 },
+    { "type": "select", "id": "height_mode", "label": "Banner height mode", "options": [{ "value": "image", "label": "Auto from image ratio" }, { "value": "fixed", "label": "Fixed height" }], "default": "image" },
+    { "type": "range", "id": "desktop_height", "min": 420, "max": 820, "step": 20, "unit": "px", "label": "Desktop height", "default": 600 },
+    { "type": "range", "id": "mobile_height", "min": 480, "max": 1000, "step": 20, "unit": "px", "label": "Mobile height", "default": 720 },
+    { "type": "range", "id": "content_vertical", "min": 10, "max": 90, "step": 5, "unit": "%", "label": "Desktop content position", "default": 50 },
+    { "type": "range", "id": "mobile_content_vertical", "min": 8, "max": 82, "step": 2, "unit": "%", "label": "Mobile content position", "default": 32 },
+    { "type": "select", "id": "desktop_text_alignment", "label": "Desktop text alignment", "options": [{ "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" }], "default": "center" },
+    { "type": "select", "id": "mobile_text_alignment", "label": "Mobile text alignment", "options": [{ "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" }], "default": "center" },
+    { "type": "range", "id": "overlay_strength", "min": 0, "max": 100, "step": 5, "unit": "%", "label": "Overlay strength", "default": 40 },
+    { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#071526" },
+    { "type": "color", "id": "accent_color", "label": "Accent color", "default": "#0787F9" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#FFFFFF" }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Banner page",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Desktop banner image (recommended 1920 x 720 px)" },
+        { "type": "image_picker", "id": "mobile_image", "label": "Mobile banner image (recommended 750 x 1000 px)", "info": "Use a portrait composition with text and product space arranged for mobile." },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "AIWORLD Screen" },
+        { "type": "textarea", "id": "heading", "label": "Heading", "default": "Smarter Driving\nStarts Here." },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>A 9-inch portable wireless CarPlay & Android Auto display for any car.</p>" },
+        { "type": "text", "id": "feature_1_icon", "label": "Feature 1 icon label", "default": "MAP" },
+        { "type": "text", "id": "feature_1_title", "label": "Feature 1 title", "default": "Navigation" },
+        { "type": "text", "id": "feature_1_text", "label": "Feature 1 text", "default": "Made easier" },
+        { "type": "text", "id": "feature_2_icon", "label": "Feature 2 icon label", "default": "MUSIC" },
+        { "type": "text", "id": "feature_2_title", "label": "Feature 2 title", "default": "Your Music" },
+        { "type": "text", "id": "feature_2_text", "label": "Feature 2 text", "default": "Your way" },
+        { "type": "text", "id": "feature_3_icon", "label": "Feature 3 icon label", "default": "SAFE" },
+        { "type": "text", "id": "feature_3_title", "label": "Feature 3 title", "default": "Drive Safer" },
+        { "type": "text", "id": "feature_3_text", "label": "Feature 3 text", "default": "Stay connected" },
+        { "type": "checkbox", "id": "show_rating", "label": "Show rating", "default": false },
+        { "type": "text", "id": "rating_text", "label": "Rating text", "default": "4.8 (1,200+ reviews)" },
+        { "type": "text", "id": "price", "label": "Price", "default": "$119.99" },
+        { "type": "text", "id": "button_label", "label": "Primary button", "default": "Buy now" },
+        { "type": "url", "id": "button_link", "label": "Primary link" },
+        { "type": "text", "id": "button_2_label", "label": "Secondary button", "default": "Learn more" },
+        { "type": "url", "id": "button_2_link", "label": "Secondary link" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "AIWORLD mobile hero alternative",
+      "blocks": [
+        { "type": "slide" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,26 +1,183 @@
-{% comment %}
-  Renders a megamenu for the header.
-
-  Usage:
-  {% render 'header-mega-menu' %}
-{% endcomment %}
+{% doc %}
+  Renders the header mega menu, including the Shop product categories.
+{% enddoc %}
 
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
+      {%- assign link_title_downcase = link.title | downcase -%}
       <li>
-        {%- if link.links != blank -%}
+        {%- if link_title_downcase == 'shop' -%}
+          {%- assign carplay_collection = collections['carplay-screen'] -%}
+          {%- assign accessories_collection = collections['carlife-accessories'] -%}
+          {%- assign accessories_url = '/collections/carlife-accessories' -%}
+          {%- assign shop_menu_index = forloop.index -%}
+          {%- assign active_category = 'carplay' -%}
+          {%- if accessories_collection != blank -%}
+            {%- assign accessories_url = accessories_collection.url -%}
+          {%- endif -%}
+          {%- if request.path == accessories_url -%}
+            {%- assign active_category = 'accessories' -%}
+          {%- endif -%}
+          <header-menu>
+            <details id="Details-HeaderMenu-{{ shop_menu_index }}" class="mega-menu aiworld-shop-menu">
+              <summary
+                id="HeaderMenu-{{ link.handle }}"
+                class="header__menu-item list-menu__item link focus-inset"
+              >
+                <span{% if link.child_active %} class="header__active-menu-item"{% endif %}>
+                  {{- link.title | escape -}}
+                </span>
+                {{- 'icon-caret.svg' | inline_asset_content -}}
+              </summary>
+              <div
+                id="MegaMenu-Content-{{ shop_menu_index }}"
+                class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
+                tabindex="-1"
+              >
+                <aiworld-shop-menu class="aiworld-shop-menu__layout page-width">
+                  <div class="aiworld-shop-menu__categories" role="tablist" aria-label="{{ link.title | escape }}" aria-orientation="vertical">
+                    {%- if carplay_collection != blank -%}
+                      <button
+                        id="ShopMenu-{{ shop_menu_index }}-Tab-CarPlay"
+                        class="aiworld-shop-menu__category{% if active_category == 'carplay' %} aiworld-shop-menu__category--active{% endif %}"
+                        type="button"
+                        role="tab"
+                        aria-controls="ShopMenu-{{ shop_menu_index }}-Panel-CarPlay"
+                        aria-selected="{% if active_category == 'carplay' %}true{% else %}false{% endif %}"
+                        tabindex="{% if active_category == 'carplay' %}0{% else %}-1{% endif %}"
+                      >
+                        <span>{{ carplay_collection.title | escape }}</span>
+                        <span class="aiworld-shop-menu__category-arrow" aria-hidden="true">&rarr;</span>
+                      </button>
+                    {%- endif -%}
+                    {%- if accessories_collection != blank -%}
+                      <button
+                        id="ShopMenu-{{ shop_menu_index }}-Tab-Accessories"
+                        class="aiworld-shop-menu__category{% if active_category == 'accessories' %} aiworld-shop-menu__category--active{% endif %}"
+                        type="button"
+                        role="tab"
+                        aria-controls="ShopMenu-{{ shop_menu_index }}-Panel-Accessories"
+                        aria-selected="{% if active_category == 'accessories' %}true{% else %}false{% endif %}"
+                        tabindex="{% if active_category == 'accessories' %}0{% else %}-1{% endif %}"
+                      >
+                        <span>{{ accessories_collection.title | escape }}</span>
+                        <span class="aiworld-shop-menu__category-arrow" aria-hidden="true">&rarr;</span>
+                      </button>
+                    {%- endif -%}
+                  </div>
+
+                  <div class="aiworld-shop-menu__panels">
+                    {%- if carplay_collection != blank -%}
+                      <section
+                        id="ShopMenu-{{ shop_menu_index }}-Panel-CarPlay"
+                        class="aiworld-shop-menu__panel"
+                        role="tabpanel"
+                        aria-labelledby="ShopMenu-{{ shop_menu_index }}-Tab-CarPlay"
+                        tabindex="0"
+                        {% if active_category != 'carplay' %}hidden{% endif %}
+                      >
+                        <div class="aiworld-shop-menu__panel-heading">
+                          <div class="aiworld-shop-menu__intro">
+                            <h2><a href="{{ carplay_collection.url }}">{{ carplay_collection.title | escape }}</a></h2>
+                            {%- if carplay_collection.description != blank -%}
+                              <div class="aiworld-shop-menu__description">{{ carplay_collection.description }}</div>
+                            {%- endif -%}
+                          </div>
+                          <a
+                            class="aiworld-shop-menu__view-all"
+                            href="{{ carplay_collection.url }}"
+                            aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: carplay_collection.title | escape }}"
+                          >
+                            {{- 'sections.featured_collection.view_all' | t -}}
+                            <span aria-hidden="true">&rarr;</span>
+                          </a>
+                        </div>
+                        <div class="aiworld-shop-menu__products">
+                          {%- for product in carplay_collection.products limit: 4 -%}
+                            <a class="aiworld-shop-menu__product" href="{{ product.url }}">
+                              <span class="aiworld-shop-menu__product-image">
+                                {%- if product.featured_image != blank -%}
+                                  {{
+                                    product.featured_image
+                                    | image_url: width: 480
+                                    | image_tag:
+                                      loading: 'lazy',
+                                      widths: '180, 240, 360, 480',
+                                      sizes: '(min-width: 1200px) 18vw, (min-width: 750px) 24vw, 45vw',
+                                      alt: product.title
+                                  }}
+                                {%- endif -%}
+                              </span>
+                              <span class="aiworld-shop-menu__product-title">{{ product.title | escape }}</span>
+                              <span class="aiworld-shop-menu__product-price">{{ product.price | money }}</span>
+                            </a>
+                          {%- endfor -%}
+                        </div>
+                      </section>
+                    {%- endif -%}
+
+                    {%- if accessories_collection != blank -%}
+                      <section
+                        id="ShopMenu-{{ shop_menu_index }}-Panel-Accessories"
+                        class="aiworld-shop-menu__panel"
+                        role="tabpanel"
+                        aria-labelledby="ShopMenu-{{ shop_menu_index }}-Tab-Accessories"
+                        tabindex="0"
+                        {% if active_category != 'accessories' %}hidden{% endif %}
+                      >
+                        <div class="aiworld-shop-menu__panel-heading">
+                          <div class="aiworld-shop-menu__intro">
+                            <h2><a href="{{ accessories_collection.url }}">{{ accessories_collection.title | escape }}</a></h2>
+                            {%- if accessories_collection.description != blank -%}
+                              <div class="aiworld-shop-menu__description">{{ accessories_collection.description }}</div>
+                            {%- endif -%}
+                          </div>
+                          <a
+                            class="aiworld-shop-menu__view-all"
+                            href="{{ accessories_collection.url }}"
+                            aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: accessories_collection.title | escape }}"
+                          >
+                            {{- 'sections.featured_collection.view_all' | t -}}
+                            <span aria-hidden="true">&rarr;</span>
+                          </a>
+                        </div>
+                        <div class="aiworld-shop-menu__products">
+                          {%- for product in accessories_collection.products limit: 4 -%}
+                            <a class="aiworld-shop-menu__product" href="{{ product.url }}">
+                              <span class="aiworld-shop-menu__product-image">
+                                {%- if product.featured_image != blank -%}
+                                  {{
+                                    product.featured_image
+                                    | image_url: width: 480
+                                    | image_tag:
+                                      loading: 'lazy',
+                                      widths: '180, 240, 360, 480',
+                                      sizes: '(min-width: 1200px) 18vw, (min-width: 750px) 24vw, 45vw',
+                                      alt: product.title
+                                  }}
+                                {%- endif -%}
+                              </span>
+                              <span class="aiworld-shop-menu__product-title">{{ product.title | escape }}</span>
+                              <span class="aiworld-shop-menu__product-price">{{ product.price | money }}</span>
+                            </a>
+                          {%- endfor -%}
+                        </div>
+                      </section>
+                    {%- endif -%}
+                  </div>
+                </aiworld-shop-menu>
+              </div>
+            </details>
+          </header-menu>
+        {%- elsif link.links != blank -%}
           <header-menu>
             <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
               <summary
                 id="HeaderMenu-{{ link.handle }}"
                 class="header__menu-item list-menu__item link focus-inset"
               >
-                <span
-                  {%- if link.child_active %}
-                    class="header__active-menu-item"
-                  {% endif %}
-                >
+                <span{% if link.child_active %} class="header__active-menu-item"{% endif %}>
                   {{- link.title | escape -}}
                 </span>
                 {{- 'icon-caret.svg' | inline_asset_content -}}
@@ -40,11 +197,9 @@
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                         href="{{ childlink.url }}"
                         class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
-                        {% if childlink.current %}
-                          aria-current="page"
-                        {% endif %}
+                        {% if childlink.current %}aria-current="page"{% endif %}
                       >
-                        {{ childlink.title | escape }}
+                        {{- childlink.title | escape -}}
                       </a>
                       {%- if childlink.links != blank -%}
                         <ul class="list-unstyled" role="list">
@@ -54,11 +209,9 @@
                                 id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
                                 href="{{ grandchildlink.url }}"
                                 class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
-                                {% if grandchildlink.current %}
-                                  aria-current="page"
-                                {% endif %}
+                                {% if grandchildlink.current %}aria-current="page"{% endif %}
                               >
-                                {{ grandchildlink.title | escape }}
+                                {{- grandchildlink.title | escape -}}
                               </a>
                             </li>
                           {%- endfor -%}
@@ -75,15 +228,9 @@
             id="HeaderMenu-{{ link.handle }}"
             href="{{ link.url }}"
             class="header__menu-item list-menu__item link link--text focus-inset"
-            {% if link.current %}
-              aria-current="page"
-            {% endif %}
+            {% if link.current %}aria-current="page"{% endif %}
           >
-            <span
-              {%- if link.current %}
-                class="header__active-menu-item"
-              {% endif %}
-            >
+            <span{% if link.current %} class="header__active-menu-item"{% endif %}>
               {{- link.title | escape -}}
             </span>
           </a>
@@ -92,3 +239,55 @@
     {%- endfor -%}
   </ul>
 </nav>
+
+{% javascript %}
+  if (!customElements.get('aiworld-shop-menu')) {
+    class AiWorldShopMenu extends HTMLElement {
+      connectedCallback() {
+        this.tablist = this.querySelector('[role="tablist"]');
+        if (!this.tablist) return;
+
+        this.tabs = Array.from(this.tablist.querySelectorAll('[role="tab"]'));
+        this.tabs.forEach((tab) => {
+          tab.addEventListener('click', () => this.activateTab(tab));
+          tab.addEventListener('keydown', (event) => this.onTabKeydown(event, tab));
+        });
+      }
+
+      activateTab(activeTab) {
+        this.tabs.forEach((tab) => {
+          const selected = tab === activeTab;
+          const panel = this.querySelector(`#${tab.getAttribute('aria-controls')}`);
+          tab.setAttribute('aria-selected', String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+          tab.classList.toggle('aiworld-shop-menu__category--active', selected);
+          if (panel) panel.hidden = !selected;
+        });
+      }
+
+      onTabKeydown(event, currentTab) {
+        const currentIndex = this.tabs.indexOf(currentTab);
+        let nextIndex = currentIndex;
+
+        if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+          nextIndex = (currentIndex + 1) % this.tabs.length;
+        } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+          nextIndex = (currentIndex - 1 + this.tabs.length) % this.tabs.length;
+        } else if (event.key === 'Home') {
+          nextIndex = 0;
+        } else if (event.key === 'End') {
+          nextIndex = this.tabs.length - 1;
+        } else {
+          return;
+        }
+
+        event.preventDefault();
+        const nextTab = this.tabs[nextIndex];
+        nextTab.focus();
+        this.activateTab(nextTab);
+      }
+    }
+
+    customElements.define('aiworld-shop-menu', AiWorldShopMenu);
+  }
+{% endjavascript %}

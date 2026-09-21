@@ -1,4 +1,25 @@
-<section class="trade-brands" style="background:{{ section.settings.background }};padding-top:{{ section.settings.padding }}px;padding-bottom:{{ section.settings.padding }}px;"><div class="trade-container trade-brands__row"><span>{{ section.settings.label }}</span>{% for block in section.blocks %}<div class="trade-brands__logo" style="color:{{ block.settings.color }};" {{ block.shopify_attributes }}>{% if block.settings.image != blank %}{{ block.settings.image | image_url: width:300 | image_tag: loading:'lazy', widths:'150,240,300', sizes:'18vw', alt:block.settings.name | escape }}{% else %}{{ block.settings.name }}{% endif %}</div>{% endfor %}</div></section>
+<section class="trade-brands" style="background:{{ section.settings.background }};padding-top:{% if section.settings.enable_top_spacing == false %}0{% else %}{{ section.settings.padding }}{% endif %}px;padding-bottom:{% if section.settings.enable_bottom_spacing == false %}0{% else %}{{ section.settings.padding }}{% endif %}px;--trade-brands-scroll-duration:{{ section.settings.scroll_speed }}s;--trade-brands-scroll-state:{% if section.settings.auto_scroll %}running{% else %}paused{% endif %};">
+  <div class="trade-container trade-brands__row">
+    <span class="trade-brands__label">{{ section.settings.label }}</span>
+    <div class="trade-brands__viewport" tabindex="0" aria-label="{{ section.settings.label | escape }}">
+      <div class="trade-brands__track">
+        {% for sequence_number in (1..4) %}
+          <div class="trade-brands__sequence"{% unless forloop.first %} aria-hidden="true"{% endunless %}>
+            {% for block in section.blocks %}
+              <div class="trade-brands__logo" style="color:{{ block.settings.color }};"{% if forloop.parentloop.first %} {{ block.shopify_attributes }}{% endif %}>
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width:300 | image_tag: loading:'lazy', widths:'150,240,300', sizes:'18vw', alt:block.settings.name | escape }}
+                {% else %}
+                  {{ block.settings.name }}
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
 {% schema %}
-{"name":"AIWORLD trade featured in","tag":"section","class":"section-aiworld-trade-brands","settings":[{"type":"text","id":"label","label":"Label","default":"FEATURED IN"},{"type":"color","id":"background","label":"Background","default":"#ffffff"},{"type":"range","id":"padding","min":8,"max":60,"step":4,"unit":"px","label":"Vertical spacing","default":24}],"blocks":[{"type":"brand","name":"Brand","settings":[{"type":"image_picker","id":"image","label":"Logo image (recommended 300 × 100 px)","info":"建议使用透明 PNG，尺寸：300 × 100 px"},{"type":"text","id":"name","label":"Name","default":"TechDrive"},{"type":"color","id":"color","label":"Text color","default":"#24374d"}]}],"max_blocks":8,"presets":[{"name":"AIWORLD trade featured in","blocks":[{"type":"brand","settings":{"name":"TechDrive"}},{"type":"brand","settings":{"name":"AutoGear"}},{"type":"brand","settings":{"name":"Modern Mobility"}},{"type":"brand","settings":{"name":"CAR TECH TODAY"}},{"type":"brand","settings":{"name":"The Drive Life"}}]}]}
+{"name":"AIWORLD trade featured in","tag":"section","class":"section-aiworld-trade-brands","settings":[{"type":"text","id":"label","label":"Label","default":"FEATURED IN"},{"type":"color","id":"background","label":"Background","default":"#ffffff"},{"type":"checkbox","id":"auto_scroll","label":"Auto-scroll logos","default":true},{"type":"range","id":"scroll_speed","min":12,"max":60,"step":4,"unit":"s","label":"Scroll duration","default":28},{"type":"checkbox","id":"enable_top_spacing","label":"Enable top spacing","default":true},{"type":"checkbox","id":"enable_bottom_spacing","label":"Enable bottom spacing","default":true},{"type":"range","id":"padding","min":8,"max":60,"step":4,"unit":"px","label":"Vertical spacing","default":24}],"blocks":[{"type":"brand","name":"Brand","settings":[{"type":"image_picker","id":"image","label":"Logo image (recommended 300 × 100 px)","info":"建议使用透明 PNG，尺寸：300 × 100 px"},{"type":"text","id":"name","label":"Name","default":"TechDrive"},{"type":"color","id":"color","label":"Text color","default":"#24374d"}]}],"max_blocks":8,"presets":[{"name":"AIWORLD trade featured in","blocks":[{"type":"brand","settings":{"name":"TechDrive"}},{"type":"brand","settings":{"name":"AutoGear"}},{"type":"brand","settings":{"name":"Modern Mobility"}},{"type":"brand","settings":{"name":"CAR TECH TODAY"}},{"type":"brand","settings":{"name":"The Drive Life"}}]}]}
 {% endschema %}

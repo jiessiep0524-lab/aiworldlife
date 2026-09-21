@@ -26,10 +26,22 @@
           "type": "price",
           "settings": {}
         },
+        "shipping-note": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class='aiworld-shipping-note' role='status'><span class='aiworld-shipping-note__icon' aria-hidden='true'>{{ 'icon-box.svg' | inline_asset_content }}</span><span>Items Will Arrive Within <strong>1-4 Business Days.</strong></span></div>"
+          }
+        },
         "key-features": {
           "type": "custom_liquid",
           "settings": {
             "custom_liquid": "<div class='aiworld-product-key-features'><h3>KEY FEATURES</h3><ul><li>Wireless Apple CarPlay and Android Auto</li><li>11.4 inch display and touch screen</li><li>Fluid 60 FPS smooth touch</li><li>Built-in streaming apps for a better drive</li><li>Plug and go for cars, trucks and boats</li></ul></div>"
+          }
+        },
+        "before-buy": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<details class='aiworld-before-buy'><summary class='aiworld-before-buy__summary'><span class='aiworld-before-buy__icon' aria-hidden='true'>i</span><span class='aiworld-before-buy__copy'><span class='aiworld-before-buy__label'>BEFORE YOU BUY</span><span class='aiworld-before-buy__requirement'>Requires Factory <strong>Wired CarPlay</strong> or <strong>Wired Android Auto</strong></span><span class='aiworld-before-buy__details'>For 2016 or newer vehicles</span></span><span class='aiworld-before-buy__plus' aria-hidden='true'></span></summary><div class='aiworld-before-buy__panel'><div class='aiworld-before-buy__panel-heading'><span class='aiworld-before-buy__panel-heading-icon' aria-hidden='true'>&#10003;</span><strong>Requirements:</strong></div><ul class='aiworld-before-buy__checklist'><li><strong>Vehicle:</strong> Your vehicle must support factory wired CarPlay or factory wired Android Auto. The product connects through the wired system your car already supports.</li><li><strong>CP / AA switch:</strong> Choose CP for wired CarPlay-only vehicles, or AA for wired Android Auto-only vehicles. If your car supports both, try CP first for the most stable wireless connection.</li><li><strong>Phone:</strong> Confirm your iPhone supports Apple CarPlay or your Android phone supports Android Auto before ordering.</li></ul><div class='aiworld-before-buy__notice aiworld-before-buy__notice--warning'><span aria-hidden='true'>&#10005;</span><p><strong>Not compatible:</strong> Vehicles with aftermarket head units that do not provide factory wired CarPlay or wired Android Auto.</p></div><div class='aiworld-before-buy__notice'><span aria-hidden='true'>i</span><p><strong>Not sure?</strong> Contact support with your vehicle year, make, model, and phone model before ordering.</p></div><div class='aiworld-before-buy__check-link'><span aria-hidden='true'>&#8250;</span><strong>How to check wired CarPlay / Android Auto support</strong></div></div></details>"
           }
         },
         "variant-picker": {
@@ -93,7 +105,9 @@
         "title",
         "rating",
         "price",
+        "shipping-note",
         "key-features",
+        "before-buy",
         "variant-picker",
         "quantity-selector",
         "buy-buttons",
@@ -117,6 +131,12 @@
         "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "aiworld-sticky-buy": {
+      "type": "aiworld-sticky-buy-bar",
+      "settings": {
+        "button_label": "Buy Now"
       }
     },
     "aiworld-hero": {
@@ -499,6 +519,7 @@
     },
     "aiworld-newsletter": {
       "type": "aiworld-product-newsletter",
+      "disabled": true,
       "settings": {
         "heading": "Stay one step ahead.",
         "text": "<p>Get product updates, useful tips, and smarter driving inspiration.</p>",
@@ -510,6 +531,7 @@
   },
   "order": [
     "main",
+    "aiworld-sticky-buy",
     "aiworld-hero",
     "aiworld-intro",
     "aiworld-cards",

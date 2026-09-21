@@ -1,3 +1,6 @@
+<style>
+  :root { --aiworld-trust-bar-height: {{ section.settings.height }}px; }
+</style>
 <div class="trade-trust-strip trade-trust-carousel" style="background:{{ section.settings.background }};color:{{ section.settings.text_color }};--trade-trust-height:{{ section.settings.height }}px;" data-trade-carousel data-autoplay="{{ section.settings.auto_rotate }}" data-speed="{{ section.settings.change_slides_speed | times: 1000 }}" data-pause="{{ section.settings.pause_on_hover }}" data-transition="{{ section.settings.transition }}">
   <div class="trade-container trade-trust-carousel__inner">
     <div class="trade-trust-carousel__viewport" role="region" aria-label="{{ section.settings.accessibility_label | escape }}" aria-live="polite">

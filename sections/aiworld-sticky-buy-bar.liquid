@@ -1,0 +1,105 @@
+{%- liquid
+  assign sticky_variant = product.selected_or_first_available_variant
+  assign sticky_image = product.featured_image
+  assign sticky_form_id = 'StickyBuyForm-' | append: section.id
+-%}
+
+<sticky-buy-bar class="aiworld-sticky-buy" data-sticky-buy-bar hidden>
+  <div class="aiworld-sticky-buy__inner">
+    <a class="aiworld-sticky-buy__product" href="{{ product.url }}" aria-label="View {{ product.title | escape }}">
+      {%- if sticky_image != blank -%}
+        {{
+          sticky_image
+          | image_url: width: 120
+          | image_tag: widths: '60,90,120', sizes: '48px', loading: 'lazy', alt: product.title, class: 'aiworld-sticky-buy__image'
+        }}
+      {%- endif -%}
+      <span class="aiworld-sticky-buy__title">{{ product.title | escape }}</span>
+    </a>
+
+    <div class="aiworld-sticky-buy__price" data-sticky-price>{{ sticky_variant.price | money }}</div>
+
+    {%- form 'product', product, id: sticky_form_id, class: 'aiworld-sticky-buy__form' -%}
+      <input type="hidden" name="id" value="{{ sticky_variant.id }}" data-sticky-variant-id>
+      <button
+        type="submit"
+        name="add"
+        class="aiworld-sticky-buy__button"
+        data-sticky-buy-button
+        {% unless sticky_variant.available %}disabled{% endunless %}
+      >
+        {{ section.settings.button_label | escape }}
+        <span aria-hidden="true">&#8594;</span>
+      </button>
+    {%- endform -%}
+  </div>
+
+  <script type="application/json" data-sticky-variants>
+    {
+      {%- for variant in product.variants -%}
+        "{{ variant.id }}": {
+          "price": {{ variant.price | money | json }},
+          "available": {{ variant.available | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    }
+  </script>
+</sticky-buy-bar>
+
+<script>
+  (() => {
+    const bar = document.querySelector('[data-sticky-buy-bar]');
+    if (!bar || bar.dataset.initialized === 'true') return;
+    bar.dataset.initialized = 'true';
+
+    const productInfo = document.querySelector('product-info');
+    const variantInput = bar.querySelector('[data-sticky-variant-id]');
+    const price = bar.querySelector('[data-sticky-price]');
+    const buyButton = bar.querySelector('[data-sticky-buy-button]');
+    const variantsElement = bar.querySelector('[data-sticky-variants]');
+    let variants = {};
+
+    try {
+      variants = JSON.parse(variantsElement.textContent);
+    } catch (error) {
+      variants = {};
+    }
+
+    const syncVariant = () => {
+      const sourceInput = document.querySelector('product-info form[action*="/cart/add"] input[name="id"]');
+      const variantId = sourceInput?.value || variantInput.value;
+      const variant = variants[variantId];
+      if (!variant) return;
+
+      variantInput.value = variantId;
+      price.textContent = variant.price;
+      buyButton.disabled = !variant.available;
+    };
+
+    const syncVisibility = () => {
+      if (!productInfo) return;
+      const productBounds = productInfo.getBoundingClientRect();
+      bar.toggleAttribute('hidden', productBounds.bottom >= window.innerHeight * 0.72);
+    };
+
+    productInfo?.addEventListener('change', () => window.requestAnimationFrame(syncVariant));
+    window.addEventListener('scroll', syncVisibility, { passive: true });
+    window.addEventListener('resize', syncVisibility);
+    syncVariant();
+    syncVisibility();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Sticky buy bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Buy Now"
+    }
+  ]
+}
+{% endschema %}

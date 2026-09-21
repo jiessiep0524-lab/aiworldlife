@@ -1,0 +1,131 @@
+<section id="Entertainment-{{ section.id }}" class="trade-entertainment" data-entertainment-section style="--entertainment-background:{{ section.settings.background }};--entertainment-accent:{{ section.settings.accent_color }};--entertainment-ink:{{ section.settings.text_color }};padding-top:{% if section.settings.enable_top_spacing == false %}0{% else %}{{ section.settings.padding_top }}{% endif %}px;padding-bottom:{% if section.settings.enable_bottom_spacing == false %}0{% else %}{{ section.settings.padding_bottom }}{% endif %}px;">
+  <div class="trade-container">
+    <div class="trade-entertainment__head">
+      <p class="trade-kicker">{{ section.settings.kicker | escape }}</p>
+      <h2 class="trade-heading">{{ section.settings.heading | escape }}</h2>
+      <p class="trade-subheading">{{ section.settings.subheading | escape }}</p>
+    </div>
+
+    <div class="trade-entertainment__tabs" role="tablist" aria-label="{{ section.settings.tabs_label | escape }}">
+      {% for block in section.blocks %}
+        <button id="EntertainmentTab-{{ section.id }}-{{ block.id }}" class="trade-entertainment__tab{% if forloop.first %} is-active{% endif %}" type="button" role="tab" aria-controls="EntertainmentPanel-{{ section.id }}-{{ block.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" data-entertainment-tab="{{ block.id }}" {{ block.shopify_attributes }}>{{ block.settings.tab_label | escape }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="trade-entertainment__panels">
+      {% for block in section.blocks %}
+        <div id="EntertainmentPanel-{{ section.id }}-{{ block.id }}" class="trade-entertainment__panel{% if forloop.first %} is-active{% endif %}" role="tabpanel" aria-labelledby="EntertainmentTab-{{ section.id }}-{{ block.id }}" data-entertainment-panel="{{ block.id }}"{% unless forloop.first %} hidden{% endunless %}>
+          <div class="trade-entertainment__cards">
+            <article class="trade-entertainment__card">
+              {% if block.settings.image_1 != blank %}
+                {{ block.settings.image_1 | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '480,800,1200,1600', sizes: '(min-width: 990px) 33vw, 88vw', alt: block.settings.title_1 | escape }}
+              {% else %}
+                <div class="trade-entertainment__placeholder" aria-hidden="true"></div>
+              {% endif %}
+              <div class="trade-entertainment__card-copy">
+                <h3>{{ block.settings.title_1 | escape }}</h3>
+                <p>{{ block.settings.text_1 | escape }}</p>
+              </div>
+            </article>
+            <article class="trade-entertainment__card">
+              {% if block.settings.image_2 != blank %}
+                {{ block.settings.image_2 | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '480,800,1200,1600', sizes: '(min-width: 990px) 33vw, 88vw', alt: block.settings.title_2 | escape }}
+              {% else %}
+                <div class="trade-entertainment__placeholder" aria-hidden="true"></div>
+              {% endif %}
+              <div class="trade-entertainment__card-copy">
+                <h3>{{ block.settings.title_2 | escape }}</h3>
+                <p>{{ block.settings.text_2 | escape }}</p>
+              </div>
+            </article>
+            <article class="trade-entertainment__card">
+              {% if block.settings.image_3 != blank %}
+                {{ block.settings.image_3 | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '480,800,1200,1600', sizes: '(min-width: 990px) 33vw, 88vw', alt: block.settings.title_3 | escape }}
+              {% else %}
+                <div class="trade-entertainment__placeholder" aria-hidden="true"></div>
+              {% endif %}
+              <div class="trade-entertainment__card-copy">
+                <h3>{{ block.settings.title_3 | escape }}</h3>
+                <p>{{ block.settings.text_3 | escape }}</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const root = document.querySelector('#Entertainment-{{ section.id }}');
+    if (!root || root.dataset.entertainmentReady === 'true') return;
+    root.dataset.entertainmentReady = 'true';
+    const tabs = [...root.querySelectorAll('[data-entertainment-tab]')];
+    const panels = [...root.querySelectorAll('[data-entertainment-panel]')];
+    const activate = (id, moveFocus) => {
+      tabs.forEach((tab) => {
+        const active = tab.dataset.entertainmentTab === id;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', active ? 'true' : 'false');
+        if (active && moveFocus) tab.focus();
+      });
+      panels.forEach((panel) => {
+        const active = panel.dataset.entertainmentPanel === id;
+        panel.classList.toggle('is-active', active);
+        panel.hidden = !active;
+      });
+    };
+    tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab.dataset.entertainmentTab, false)));
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "AIWORLD entertainment",
+  "tag": "section",
+  "class": "section-aiworld-trade-entertainment",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "AIWORLD SCREEN" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Entertainment Wherever You Go" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Make your dashboard feel like a tablet. Movies, games and apps all at your fingertips." },
+    { "type": "text", "id": "tabs_label", "label": "Tabs accessibility label", "default": "Entertainment features" },
+    { "type": "color", "id": "background", "label": "Background", "default": "#f5f8fb" },
+    { "type": "color", "id": "accent_color", "label": "Accent color", "default": "#0787f9" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#06182a" },
+    { "type": "checkbox", "id": "enable_top_spacing", "label": "Enable top spacing", "default": true },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top spacing", "default": 72 },
+    { "type": "checkbox", "id": "enable_bottom_spacing", "label": "Enable bottom spacing", "default": true },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Bottom spacing", "default": 72 }
+  ],
+  "blocks": [
+    {
+      "type": "panel",
+      "name": "Entertainment tab",
+      "settings": [
+        { "type": "text", "id": "tab_label", "label": "Tab label", "default": "Multitask Your Way" },
+        { "type": "image_picker", "id": "image_1", "label": "Card 1 image" },
+        { "type": "text", "id": "title_1", "label": "Card 1 title", "default": "Your apps, side by side" },
+        { "type": "textarea", "id": "text_1", "label": "Card 1 text", "default": "Keep directions and entertainment visible at the same time." },
+        { "type": "image_picker", "id": "image_2", "label": "Card 2 image" },
+        { "type": "text", "id": "title_2", "label": "Card 2 title", "default": "Watch while you navigate" },
+        { "type": "textarea", "id": "text_2", "label": "Card 2 text", "default": "Follow directions while checking your favorite apps side by side." },
+        { "type": "image_picker", "id": "image_3", "label": "Card 3 image" },
+        { "type": "text", "id": "title_3", "label": "Card 3 title", "default": "One screen, more control" },
+        { "type": "textarea", "id": "text_3", "label": "Card 3 text", "default": "A cleaner way to control the features you use every day." }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "AIWORLD entertainment showcase",
+      "blocks": [
+        { "type": "panel", "settings": { "tab_label": "Multitask Your Way" } },
+        { "type": "panel", "settings": { "tab_label": "More Ways to Use It" } },
+        { "type": "panel", "settings": { "tab_label": "Your Theater on Wheels" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

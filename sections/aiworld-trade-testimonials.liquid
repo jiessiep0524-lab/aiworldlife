@@ -1,0 +1,47 @@
+<section class="trade-testimonials" style="padding-top:{% if section.settings.enable_top_spacing == false %}0{% else %}{{ section.settings.padding_top }}{% endif %}px;padding-bottom:{% if section.settings.enable_bottom_spacing == false %}0{% else %}{{ section.settings.padding_bottom }}{% endif %}px;background:{{ section.settings.background }};" data-testimonial-carousel data-autoplay="{{ section.settings.auto_rotate }}" data-speed="{{ section.settings.change_slides_speed | times: 1000 }}" data-pause="{{ section.settings.pause_on_hover }}">
+  <div class="trade-container">
+    <div class="trade-testimonials__header">
+      <h2><span>{{ section.settings.metric_accent }}</span> {{ section.settings.metric_text }}</h2>
+      <div class="trade-testimonials__avatars" aria-hidden="true">
+        {% for block in section.blocks limit: 3 %}
+          {% if block.settings.avatar != blank %}
+            {{ block.settings.avatar | image_url: width: 120 | image_tag: class: 'trade-testimonials__avatar', loading: 'lazy', widths: '60,90,120', sizes: '52px', alt: '' }}
+          {% else %}
+            <span class="trade-testimonials__avatar trade-testimonials__avatar--fallback">{{ block.settings.author | slice: 0, 1 | upcase }}</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="trade-testimonials__viewport">
+      <button class="trade-testimonials__arrow trade-testimonials__arrow--prev" type="button" data-testimonial-prev aria-label="Previous testimonial"><span aria-hidden="true">‹</span></button>
+      <div class="trade-testimonials__slides">
+        {% for block in section.blocks %}
+          <article class="trade-testimonials__slide{% if forloop.first %} is-active{% endif %}" data-testimonial-slide data-slide-index="{{ forloop.index0 }}" aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}" {{ block.shopify_attributes }}>
+            <div class="trade-testimonials__quote-mark" aria-hidden="true">“</div>
+            <blockquote>{{ block.settings.quote }}</blockquote>
+            <div class="trade-testimonials__author">
+              {% if block.settings.avatar != blank %}
+                {{ block.settings.avatar | image_url: width: 96 | image_tag: class: 'trade-testimonials__author-avatar', loading: 'lazy', widths: '48,72,96', sizes: '44px', alt: block.settings.author | escape }}
+              {% else %}
+                <span class="trade-testimonials__author-avatar trade-testimonials__avatar--fallback">{{ block.settings.author | slice: 0, 1 | upcase }}</span>
+              {% endif %}
+              <strong>{{ block.settings.author }}</strong>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+      <button class="trade-testimonials__arrow trade-testimonials__arrow--next" type="button" data-testimonial-next aria-label="Next testimonial"><span aria-hidden="true">›</span></button>
+    </div>
+    {% if section.blocks.size > 1 %}
+      <div class="trade-testimonials__dots" role="tablist" aria-label="Testimonials">
+        {% for block in section.blocks %}
+          <button type="button" role="tab" data-testimonial-dot="{{ forloop.index0 }}" aria-label="Show testimonial {{ forloop.index }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"></button>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+<script src="{{ 'aiworld-trade-testimonials.js' | asset_url }}" defer="defer"></script>
+{% schema %}
+{"name":"AIWORLD testimonials","tag":"section","class":"section-aiworld-trade-testimonials","settings":[{"type":"text","id":"metric_accent","label":"Metric accent","default":"9,000 clients"},{"type":"text","id":"metric_text","label":"Metric text","default":"(and counting). That's Trust."},{"type":"color","id":"background","label":"Background","default":"#ffffff"},{"type":"checkbox","id":"auto_rotate","label":"Auto-rotate testimonials","default":true},{"type":"range","id":"change_slides_speed","min":3,"max":12,"step":1,"unit":"s","label":"Testimonial interval","default":5},{"type":"checkbox","id":"pause_on_hover","label":"Pause on hover","default":true},{"type":"checkbox","id":"enable_top_spacing","label":"Enable top spacing","default":true},{"type":"range","id":"padding_top","min":0,"max":160,"step":4,"unit":"px","label":"Top spacing","default":56},{"type":"checkbox","id":"enable_bottom_spacing","label":"Enable bottom spacing","default":true},{"type":"range","id":"padding_bottom","min":0,"max":160,"step":4,"unit":"px","label":"Bottom spacing","default":56}],"blocks":[{"type":"testimonial","name":"Testimonial","settings":[{"type":"image_picker","id":"avatar","label":"Avatar image (recommended 120 × 120 px)","info":"建议使用 1:1 头像图片，尺寸：120 × 120 px"},{"type":"textarea","id":"quote","label":"Quote","default":"AIWORLD completely streamlined our daily driving. It's fast, intuitive, and our whole family loves how easy it is to use."},{"type":"text","id":"author","label":"Author","default":"Madison Carter"}]}],"max_blocks":6,"presets":[{"name":"AIWORLD testimonials","blocks":[{"type":"testimonial","settings":{"quote":"We've tried a few other systems before, but AIWORLD is on another level. It saves us time and makes every drive smoother.","author":"Jordan Lee"}},{"type":"testimonial","settings":{"quote":"AIWORLD completely streamlined our daily driving. It's fast, intuitive, and our whole family loves how easy it is to use.","author":"Madison Carter"}},{"type":"testimonial","settings":{"quote":"Since switching to AIWORLD, our commute is more comfortable. The interface is clean, the features are reliable, and it just works.","author":"Taylor Morgan"}}]}]}
+{% endschema %}
