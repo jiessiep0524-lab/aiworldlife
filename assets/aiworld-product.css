@@ -1618,6 +1618,21 @@ product-info .product__info-container > [id^='price-'] .badge {
   }
 }
 
+:is(.template-product, product-info) .aiworld-before-buy__panel {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+:is(.template-product, product-info) .aiworld-before-buy__panel-heading {
+  font-size: 1.05rem;
+}
+
+:is(.template-product, product-info) .aiworld-before-buy__checklist li,
+:is(.template-product, product-info) .aiworld-before-buy__notice,
+:is(.template-product, product-info) .aiworld-before-buy__help-link {
+  font-size: 1rem;
+}
+
 product-info .product__info-container > [id^='price-'] .price,
 .template-product .product__info-container > [id^='price-'] .price {
   display: flex;
