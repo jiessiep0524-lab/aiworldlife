@@ -112,6 +112,8 @@
                       product: product,
                       use_variant: true,
                       show_badges: true,
+                      sale_badge_label: 'products.product.taxes_included',
+                      show_currency_code: false,
                       price_class: 'price--large'
                     -%}
                   </div>
@@ -580,12 +582,13 @@
                                     aria-roledescription="{{ 'sections.slideshow.slide' | t }}"
                                     aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
                                   {% endif %}
-                                >
-                                  <ul class="list-unstyled" role="list">
-                                    {%- for product in recommendations.products
-                                      limit: block.settings.products_per_page
-                                      offset: continue
-                                    -%}
+                                  >
+                                    <ul class="list-unstyled" role="list">
+                                      {%- assign complementary_offset = forloop.index0 | times: block.settings.products_per_page -%}
+                                      {%- for product in recommendations.products
+                                        limit: block.settings.products_per_page
+                                        offset: complementary_offset
+                                      -%}
                                       <li>
                                         {%- if block.settings.enable_quick_add -%}
                                           {% assign quick_add = 'standard' %}
@@ -723,14 +726,6 @@
         </script>
         <script src="{{ 'product-model.js' | asset_url }}" defer></script>
       {%- endif -%}
-
-      {%- liquid
-        if product.selected_or_first_available_variant.featured_media
-          assign seo_media = product.selected_or_first_available_variant.featured_media
-        else
-          assign seo_media = product.featured_media
-        endif
-      -%}
 
       <script type="application/ld+json">
         {{ product | structured_data }}

@@ -147,19 +147,25 @@ body .scrolled-past-header .header__heading-logo-wrapper { width:min(var(--heade
 .trade-social__play { line-height:1; text-align:center; }
 
 .trade-faq { padding:4.8rem 0; background:#fff; }
-.trade-faq__grid { display:grid; grid-template-columns:.8fr 1.4fr; gap:4rem; }
-.trade-faq__intro h2 { margin:0; color:var(--trade-ink); font-size:4rem; line-height:1; }
-.trade-faq__intro p { color:var(--trade-muted); font-size:1.25rem; }
-.trade-faq details { padding:1.4rem 0; border-bottom:1px solid var(--trade-line); }
-.trade-faq summary { display:flex; justify-content:space-between; gap:1rem; color:var(--trade-ink); font-size:1.35rem; cursor:pointer; }
-.trade-faq summary::-webkit-details-marker { display:none; }
-.trade-faq summary::after { content:'+'; color:var(--trade-blue); font-size:2rem; line-height:1; }
-.trade-faq details[open] summary::after { content:'−'; }
-.trade-faq details p { margin:1rem 0 0; color:var(--trade-muted); line-height:1.5; }
-body .trade-faq .trade-kicker { color:var(--text-primary); }
-body .trade-faq__intro > p:not(.trade-kicker) { margin:12px 0 0; color:var(--text-primary); font-size:13px; line-height:1.4; }
-body .trade-faq__inline-link { color:var(--brand-primary); font-weight:700; text-decoration:none; }
-body .trade-faq__inline-link:hover { text-decoration:underline; }
+.trade-faq__grid { display:grid; grid-template-columns:minmax(15rem,.78fr) minmax(0,1.22fr); gap:clamp(2.5rem,6vw,6.5rem); align-items:start; }
+.trade-faq__intro { position:sticky; top:8rem; }
+.trade-faq__intro h2 { max-width:12ch; margin:0; color:var(--trade-ink); font-size:clamp(2.8rem,4vw,4.25rem); line-height:1.02; letter-spacing:-.045em; }
+.trade-faq__intro p { color:var(--trade-muted); font-size:1.1rem; }
+body .trade-faq .trade-kicker { margin-bottom:1rem; color:var(--brand-primary,#0787F9); font-size:.78rem; letter-spacing:.14em; }
+body .trade-faq__intro > p:not(.trade-kicker) { max-width:27rem; margin:1.25rem 0 0; color:var(--trade-muted); font-size:1rem; line-height:1.55; }
+body .trade-faq__inline-link { display:inline-flex; align-items:center; gap:.3rem; margin-top:.75rem; color:var(--brand-primary,#0787F9); font-weight:800; text-decoration:none; }
+body .trade-faq__inline-link:hover { text-decoration:underline; text-underline-offset:.2rem; }
+.trade-faq__items { display:grid; gap:.75rem; }
+.trade-faq__items details { margin:0; overflow:hidden; border:1px solid #e2eaf2; border-radius:.9rem; background:#fff; transition:border-color .2s ease,box-shadow .2s ease,background .2s ease; }
+.trade-faq__items details:hover,
+.trade-faq__items details:focus-within { border-color:rgba(7,135,249,.48); box-shadow:0 .7rem 1.8rem rgba(13,57,97,.08); }
+.trade-faq__items details[open] { border-color:rgba(7,135,249,.58); background:#f8fbff; box-shadow:0 .75rem 2rem rgba(13,57,97,.1); }
+.trade-faq__items summary { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.2rem 1.25rem; color:var(--trade-ink); font-size:1.06rem; font-weight:700; line-height:1.35; cursor:pointer; list-style:none; }
+.trade-faq__items summary::-webkit-details-marker { display:none; }
+.trade-faq__items summary::after { content:'+'; display:grid; place-items:center; flex:0 0 auto; width:2rem; height:2rem; border-radius:50%; background:rgba(7,135,249,.1); color:var(--brand-primary,#0787F9); font-size:1.4rem; font-weight:400; line-height:1; transition:background .2s ease,color .2s ease,transform .2s ease; }
+.trade-faq__items details[open] summary::after { content:'\2212'; background:var(--brand-primary,#0787F9); color:#fff; transform:rotate(180deg); }
+.trade-faq__items summary:focus-visible { outline:3px solid rgba(7,135,249,.36); outline-offset:-3px; }
+.trade-faq__items details p { margin:0; padding:0 4.25rem 1.3rem 1.25rem; color:var(--trade-muted); font-size:.98rem; line-height:1.6; }
 
 .trade-brands { padding:2rem 0; border-top:1px solid var(--trade-line); border-bottom:1px solid var(--trade-line); background:#fff; }
 .trade-brands__row { display:grid; grid-template-columns:auto minmax(0,1fr); align-items:center; gap:3rem; color:#0F2D49; }
@@ -186,6 +192,7 @@ body .trade-faq__inline-link:hover { text-decoration:underline; }
   .trade-container,.trade-hero__content { width:min(100% - 2.8rem,760px); }
   .trade-card-grid { grid-template-columns:repeat(3,1fr); }
   .trade-story__content,.trade-specs__grid,.trade-faq__grid,.trade-social__layout { grid-template-columns:1fr; gap:2.5rem; }
+  .trade-faq__intro { position:static; }
   .trade-story__copy { grid-column:auto; }
   .trade-story { min-height:54rem; }
   .trade-specs__image { order:2; }
@@ -217,6 +224,10 @@ body .trade-faq__inline-link:hover { text-decoration:underline; }
   .trade-hero .trade-actions { gap:.7rem; }
   .trade-hero .trade-button { min-height:3.2rem; padding:0 1.25rem; font-size:1rem; }
   .trade-card-grid,.trade-review-grid { grid-template-columns:1fr 1fr; }
+  .trade-faq__intro h2 { font-size:clamp(2.5rem,11vw,3.25rem); }
+  .trade-faq__items { gap:.65rem; }
+  .trade-faq__items summary { padding:1rem; font-size:1rem; }
+  .trade-faq__items details p { padding:0 1rem 1.05rem; font-size:.94rem; }
   .trade-story__points,.trade-specs__list { grid-template-columns:1fr; }
   .trade-social__grid { grid-template-columns:repeat(3,1fr); }
   .trade-social__item:nth-child(n+4) { display:none; }

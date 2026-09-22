@@ -12,6 +12,12 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "new-badge": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<span class='aiworld-product-new-badge'>NEW</span>"
+          }
+        },
         "title": {
           "type": "title",
           "settings": {}
@@ -102,6 +108,7 @@
         }
       },
       "block_order": [
+        "new-badge",
         "title",
         "rating",
         "price",
