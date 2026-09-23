@@ -472,7 +472,7 @@ body .content-for-layout > .shopify-section > .trade-story .trade-story__shade {
   body .trade-entertainment__card-copy { right: 18px; bottom: 18px; left: 18px; }
   body .trade-entertainment__card-copy h3 { font-size: 16px; }
   body .trade-entertainment__card-copy p { font-size: 13px; }
-  body .trade-social__grid { display: grid; min-width: 0; width: 100%; max-width: 100%; grid-auto-flow: column; grid-auto-columns: minmax(76vw, 1fr); grid-template-columns: none; grid-template-rows: 1fr; gap: 14px; overflow-x: auto; overflow-y: hidden; padding-bottom: 3px; scroll-snap-type: x mandatory; scroll-padding-inline: 2px; -webkit-overflow-scrolling: touch; scrollbar-color: var(--brand-primary) #DCE4ED; scrollbar-width: thin; }
+  body .trade-social__grid { display: grid; min-width: 0; width: 100%; max-width: 100%; grid-auto-flow: column; grid-auto-columns: minmax(76vw, 1fr); grid-template-columns: none; grid-template-rows: 1fr; gap: 14px; overflow-x: auto; overflow-y: hidden; padding-bottom: 3px; scroll-padding-inline: 2px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-color: var(--brand-primary) #DCE4ED; scrollbar-width: thin; touch-action: pan-x; }
   body .trade-social__grid::-webkit-scrollbar { height: 2px; }
   body .trade-social__grid::-webkit-scrollbar-track { background: #DCE4ED; }
   body .trade-social__grid::-webkit-scrollbar-thumb { border-radius: 0; background: var(--brand-primary); }
