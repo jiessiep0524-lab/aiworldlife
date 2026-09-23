@@ -1673,6 +1673,16 @@ product-info .product__info-container > [id^='price-'] .price__badge-sale,
   line-height: 1.2;
 }
 
+product-info .product__info-container > [id^='price-'] .price-item--regular,
+.template-product .product__info-container > [id^='price-'] .price-item--regular {
+  font-size: 1.575rem !important;
+}
+
+product-info .product__info-container > [id^='price-'] .price__badge-sale,
+.template-product .product__info-container > [id^='price-'] .price__badge-sale {
+  font-size: 1.296rem !important;
+}
+
 product-info .aiworld-shipping-note,
 .template-product .aiworld-shipping-note {
   font-size: 1.35rem;
