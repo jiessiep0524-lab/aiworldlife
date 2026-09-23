@@ -406,7 +406,7 @@ body .trade-cards .trade-card__copy { padding: 10px 10px 12px; }
 body .trade-cards .trade-card__copy h3 { margin-bottom: 5px; color: var(--text-primary); font-size: 12px; font-weight: 800; line-height: 1.25; letter-spacing: 0; }
 body .trade-cards .trade-card__copy p { margin: 0; color: var(--text-secondary); font-size: 11px; line-height: 1.35; }
 body .trade-story { background: #06182A; }
-body .trade-story .trade-story__shade { background: linear-gradient(90deg, rgba(6,24,42,.2), rgba(6,24,42,.86) 62%, #06182A 100%); }
+body .trade-story .trade-story__shade { background: linear-gradient(180deg, rgba(6,24,42,.08) 0%, rgba(6,24,42,.34) 48%, rgba(6,24,42,.92) 100%); }
 body .trade-story .trade-story__copy { max-width: 620px; }
 body .trade-story .trade-kicker { margin-bottom: 10px; color: var(--brand-primary); font-size: 12px; font-weight: 800; letter-spacing: .12em; line-height: 1.2; }
 body .trade-story h2 { color: #FFFFFF; font-size: clamp(24px, 2.5vw, 36px); font-weight: 800; line-height: 1.05; letter-spacing: -.4px; }
