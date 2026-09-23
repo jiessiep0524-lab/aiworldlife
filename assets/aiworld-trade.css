@@ -228,7 +228,8 @@ body .trade-faq__inline-link:hover { text-decoration:underline; text-underline-o
   .trade-faq__items { gap:.65rem; }
   .trade-faq__items summary { padding:1rem; font-size:1rem; }
   .trade-faq__items details p { padding:0 1rem 1.05rem; font-size:.94rem; }
-  .trade-story__points,.trade-specs__list { grid-template-columns:1fr; }
+  .trade-story__points { grid-template-columns:1fr; }
+  .trade-specs__list { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
   .trade-social__grid { grid-template-columns:repeat(3,1fr); }
   .trade-social__item:nth-child(n+4) { display:none; }
   .trade-brands__row { grid-template-columns:1fr; gap:1rem; }
