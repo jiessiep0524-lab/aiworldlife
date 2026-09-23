@@ -551,46 +551,46 @@
         "entertainment_panel_1": {
           "type": "panel",
           "settings": {
-            "tab_label": "Multitask Your Way",
+            "tab_label": "CONNECTED DRIVING",
             "image_1": "shopify://shop_images/2.jpg",
-            "title_1": "Your Apps, Side by Side",
-            "text_1": "Watch a video while following directions or checking your apps side by side.",
+            "title_1": "Wireless CarPlay & Android Auto",
+            "text_1": "Connect wirelessly and access navigation, music, messages, and calls on a larger screen.",
             "image_2": "shopify://shop_images/7.jpg",
-            "title_2": "Navigation Made Easy",
-            "text_2": "Get real-time directions on a larger, clearer screen.",
+            "title_2": "Navigation at a Glance",
+            "text_2": "Get clear turn-by-turn directions on a bright 9-inch display.",
             "image_3": "shopify://shop_images/3.jpg",
-            "title_3": "Your Music, Your Way",
-            "text_3": "Stream your favorite apps wirelessly while you drive."
+            "title_3": "Hands-Free Control",
+            "text_3": "Make calls, send messages, and stay connected without reaching for your phone."
           }
         },
         "entertainment_panel_2": {
           "type": "panel",
           "settings": {
-            "tab_label": "More Ways to Use It",
+            "tab_label": "SMARTER CAR EXPERIENCE",
             "image_1": "shopify://shop_images/6.jpg",
-            "title_1": "Easy Installation",
-            "text_1": "Plug and play for a smoother upgrade to your daily drive.",
+            "title_1": "A Bigger, Clearer View",
+            "text_1": "Enjoy a 9-inch 1280×720 HD touchscreen designed for everyday driving.",
             "image_2": "shopify://shop_images/5.jpg",
-            "title_2": "A Cleaner, Smarter Car",
-            "text_2": "Bring entertainment and navigation into one portable screen.",
+            "title_2": "Upgrade Your Existing Car",
+            "text_2": "Add modern connectivity without replacing your factory stereo.",
             "image_3": "shopify://shop_images/ChatGPT_Image_2026_9_18_18_08_24.png",
-            "title_3": "Voice Assistant Ready",
-            "text_3": "Use hands-free control while you stay focused on the road."
+            "title_3": "Plug & Play Setup",
+            "text_3": "Connect the power, mount the screen, and get driving—no professional installation required."
           }
         },
         "entertainment_panel_3": {
           "type": "panel",
           "settings": {
-            "tab_label": "Your Theater on Wheels",
+            "tab_label": "EVERYDAY CONVENIENCE",
             "image_1": "shopify://shop_images/3.jpg",
-            "title_1": "Your Theater on Wheels",
-            "text_1": "Play games, join meetings or go full-screen for apps.",
+            "title_1": "Backup Camera Ready",
+            "text_1": "Add a compatible rear camera for easier parking and reversing.",
             "image_2": "shopify://shop_images/2.jpg",
-            "title_2": "Big Screen, Better Drive",
-            "text_2": "Enjoy a clearer view wherever the road takes you.",
+            "title_2": "Flexible Audio Options",
+            "text_2": "Use FM, AUX, Bluetooth, or the built-in speaker to fit your setup.",
             "image_3": "shopify://shop_images/7.jpg",
-            "title_3": "Connect and Go",
-            "text_3": "Wireless CarPlay and Android Auto without the clutter."
+            "title_3": "OTA Firmware Updates",
+            "text_3": "Keep your device updated with supported firmware updates over the air."
           }
         }
       },
