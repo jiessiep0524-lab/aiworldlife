@@ -223,7 +223,12 @@ body .trade-faq__inline-link:hover { text-decoration:underline; text-underline-o
   .trade-hero__price { margin:.75rem 0 1.2rem; font-size:clamp(2.2rem,9vw,3rem); }
   .trade-hero .trade-actions { gap:.7rem; }
   .trade-hero .trade-button { min-height:3.2rem; padding:0 1.25rem; font-size:1rem; }
-  .trade-card-grid,.trade-review-grid { grid-template-columns:1fr 1fr; }
+  .trade-card-grid { grid-template-columns:1fr 1fr; }
+  body .trade-review-grid { display:grid; grid-auto-flow:column; grid-auto-columns:minmax(78vw,1fr); grid-template-columns:none; grid-template-rows:1fr; gap:14px; overflow-x:auto; overflow-y:hidden; padding:0 2px 5px; scroll-padding-inline:2px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-color:var(--brand-primary) #DCE4ED; scrollbar-width:thin; }
+  body .trade-review-grid::-webkit-scrollbar { height:2px; }
+  body .trade-review-grid::-webkit-scrollbar-track { background:#DCE4ED; }
+  body .trade-review-grid::-webkit-scrollbar-thumb { border-radius:0; background:var(--brand-primary); }
+  body .trade-review { min-width:0; scroll-snap-align:start; }
   .trade-faq__intro h2 { font-size:clamp(2.5rem,11vw,3.25rem); }
   .trade-faq__items { gap:.65rem; }
   .trade-faq__items summary { padding:1rem; font-size:1rem; }
