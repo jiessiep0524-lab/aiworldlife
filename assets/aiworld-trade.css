@@ -458,7 +458,7 @@ body .content-for-layout > .shopify-section > .trade-story .trade-story__shade {
 }
 
 @media screen and (max-width: 640px) {
-  body .trade-entertainment { --entertainment-tab-radius: 16px; padding-top: var(--entertainment-mobile-padding-top, var(--entertainment-padding-top, 72px)); padding-bottom: var(--entertainment-mobile-padding-bottom, var(--entertainment-padding-bottom, 72px)); }
+  body .trade-entertainment { --entertainment-tab-radius: 999px; padding-top: var(--entertainment-mobile-padding-top, var(--entertainment-padding-top, 72px)); padding-bottom: var(--entertainment-mobile-padding-bottom, var(--entertainment-padding-bottom, 72px)); }
   body .trade-entertainment__head { margin-bottom: 22px; }
   body .trade-entertainment__head .trade-subheading { font-size: 14px; }
   body .trade-entertainment__tabs { position: static; display: flex; width: 100%; max-width: 100%; justify-content: stretch; overflow: visible; margin: 0 auto 24px; border-radius: var(--entertainment-tab-radius); transform: none; }
