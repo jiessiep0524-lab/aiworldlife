@@ -1647,6 +1647,20 @@ product-info .product__info-container > [id^='price-'] .badge {
   line-height: 1.4;
 }
 
+:is(.template-product, product-info) .aiworld-product-new-badge {
+  min-height: 2.475rem;
+  padding: .3rem 1.05rem;
+  font-size: 1.08rem;
+}
+
+:is(.template-product, product-info) .aiworld-product-key-features {
+  overflow: hidden;
+  border: 1px solid #dfe7ef;
+  border-radius: .9rem;
+  background: #fff;
+  box-shadow: 0 .35rem 1.1rem rgba(10, 30, 50, .04);
+}
+
 product-info .product__info-container > [id^='price-'] .price,
 .template-product .product__info-container > [id^='price-'] .price {
   display: flex;
