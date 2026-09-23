@@ -1633,6 +1633,20 @@ product-info .product__info-container > [id^='price-'] .badge {
   font-size: 1rem;
 }
 
+:is(.template-product, product-info) .aiworld-before-buy__label {
+  font-size: .82rem;
+}
+
+:is(.template-product, product-info) .aiworld-before-buy__requirement {
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+:is(.template-product, product-info) .aiworld-before-buy__details {
+  font-size: .95rem;
+  line-height: 1.4;
+}
+
 product-info .product__info-container > [id^='price-'] .price,
 .template-product .product__info-container > [id^='price-'] .price {
   display: flex;
