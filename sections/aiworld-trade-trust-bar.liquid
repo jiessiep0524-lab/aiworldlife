@@ -1,21 +1,67 @@
 <style>
   :root { --aiworld-trust-bar-height: {{ section.settings.height }}px; }
 </style>
-<div class="trade-trust-strip trade-trust-carousel" style="background:{{ section.settings.background }};color:{{ section.settings.text_color }};--trade-trust-height:{{ section.settings.height }}px;" data-trade-carousel data-autoplay="{{ section.settings.auto_rotate }}" data-speed="{{ section.settings.change_slides_speed | times: 1000 }}" data-pause="{{ section.settings.pause_on_hover }}" data-transition="{{ section.settings.transition }}">
+<div class="trade-trust-strip trade-trust-carousel" style="background:{{ section.settings.background }};color:{{ section.settings.text_color }};--trade-trust-height:{{ section.settings.height }}px;--trade-trust-duration:{{ section.settings.change_slides_speed | times: 6 }}s;" data-auto-rotate="{{ section.settings.auto_rotate }}" data-pause-on-hover="{{ section.settings.pause_on_hover }}">
   <div class="trade-container trade-trust-carousel__inner">
-    <div class="trade-trust-carousel__viewport" role="region" aria-label="{{ section.settings.accessibility_label | escape }}" aria-live="polite">
-      {% for block in section.blocks %}
-        <div class="trade-trust-carousel__slide{% if forloop.first %} is-active{% endif %}" data-slide-index="{{ forloop.index0 }}" aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}" {{ block.shopify_attributes }}>
-          <span class="trade-trust-strip__icon">{{ block.settings.icon }}</span><span>{{ block.settings.text }}</span>
+    <div class="trade-trust-carousel__viewport" role="region" aria-label="{{ section.settings.accessibility_label | escape }}">
+      <div class="trade-trust-carousel__track">
+        <div class="trade-trust-carousel__group" role="list">
+          {% for block in section.blocks %}
+            <div class="trade-trust-carousel__slide" role="listitem" {{ block.shopify_attributes }}>
+              <span class="trade-trust-strip__icon" aria-hidden="true">{{ block.settings.icon }}</span><span>{{ block.settings.text }}</span>
+            </div>
+          {% endfor %}
         </div>
-      {% endfor %}
+        <div class="trade-trust-carousel__group" role="list" aria-hidden="true">
+          {% for block in section.blocks %}
+            <div class="trade-trust-carousel__slide" role="listitem">
+              <span class="trade-trust-strip__icon" aria-hidden="true">{{ block.settings.icon }}</span><span>{{ block.settings.text }}</span>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
-    {% if section.settings.show_arrows and section.blocks.size > 1 %}<button class="trade-trust-carousel__arrow trade-trust-carousel__arrow--prev" type="button" data-carousel-prev aria-label="Previous message">‹</button><button class="trade-trust-carousel__arrow trade-trust-carousel__arrow--next" type="button" data-carousel-next aria-label="Next message">›</button>{% endif %}
-    {% if section.settings.show_dots and section.blocks.size > 1 %}<div class="trade-trust-carousel__dots" role="tablist">{% for block in section.blocks %}<button type="button" data-carousel-dot="{{ forloop.index0 }}" role="tab" aria-label="Show message {{ forloop.index }}"{% if forloop.first %} aria-selected="true"{% else %} aria-selected="false"{% endif %}></button>{% endfor %}</div>{% endif %}
   </div>
 </div>
-<script src="{{ 'aiworld-trade-carousel.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
-{"name":"顶部服务保障轮播","tag":"section","class":"section-aiworld-trade-trust-bar","settings":[{"type":"color","id":"background","label":"Background","default":"#1c2228"},{"type":"color","id":"text_color","label":"Text color","default":"#ffffff"},{"type":"checkbox","id":"auto_rotate","label":"Auto-rotate messages","default":true},{"type":"range","id":"change_slides_speed","min":2,"max":12,"step":1,"unit":"s","label":"Message interval","default":5},{"type":"checkbox","id":"pause_on_hover","label":"Pause on hover","default":true},{"type":"checkbox","id":"show_arrows","label":"Show arrows","default":false},{"type":"checkbox","id":"show_dots","label":"Show dots","default":false},{"type":"range","id":"height","min":24,"max":64,"step":2,"unit":"px","label":"Bar height","default":28},{"type":"select","id":"transition","label":"Transition","options":[{"value":"fade","label":"Fade"},{"value":"slide","label":"Slide"}],"default":"fade"},{"type":"text","id":"accessibility_label","label":"Accessibility label","default":"Store benefits"}],"blocks":[{"type":"trust","name":"Message","settings":[{"type":"text","id":"icon","label":"Icon","default":"\u25a3"},{"type":"text","id":"text","label":"Message","default":"Free Shipping (US & CA)"}]}],"max_blocks":8,"presets":[{"name":"顶部服务保障轮播","blocks":[{"type":"trust","settings":{"icon":"\u25a3","text":"Free Shipping (US & CA)"}},{"type":"trust","settings":{"icon":"\u21bb","text":"30-Day Hassle-Free Returns"}},{"type":"trust","settings":{"icon":"\u2662","text":"1-Year Warranty"}},{"type":"trust","settings":{"icon":"\u230d","text":"Secure Checkout"}}]}]}
+{
+  "name": "Top trust bar",
+  "tag": "section",
+  "class": "section-aiworld-trade-trust-bar",
+  "settings": [
+    { "type": "color", "id": "background", "label": "Background", "default": "#1c2228" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#ffffff" },
+    { "type": "checkbox", "id": "auto_rotate", "label": "Auto-rotate messages", "default": true },
+    { "type": "range", "id": "change_slides_speed", "min": 2, "max": 12, "step": 1, "unit": "s", "label": "Scroll speed", "default": 5 },
+    { "type": "checkbox", "id": "pause_on_hover", "label": "Pause on hover", "default": true },
+    { "type": "checkbox", "id": "show_arrows", "label": "Show arrows", "default": false },
+    { "type": "checkbox", "id": "show_dots", "label": "Show dots", "default": false },
+    { "type": "range", "id": "height", "min": 24, "max": 64, "step": 2, "unit": "px", "label": "Bar height", "default": 28 },
+    { "type": "select", "id": "transition", "label": "Transition", "options": [{ "value": "fade", "label": "Fade" }, { "value": "slide", "label": "Slide" }], "default": "fade" },
+    { "type": "text", "id": "accessibility_label", "label": "Accessibility label", "default": "Store benefits" }
+  ],
+  "blocks": [
+    {
+      "type": "trust",
+      "name": "Message",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icon", "default": "▣" },
+        { "type": "text", "id": "text", "label": "Message", "default": "Free Shipping (US & CA)" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Top trust bar",
+      "blocks": [
+        { "type": "trust", "settings": { "icon": "▣", "text": "Free Shipping (US & CA)" } },
+        { "type": "trust", "settings": { "icon": "↻", "text": "30-Day Hassle-Free Returns" } },
+        { "type": "trust", "settings": { "icon": "♢", "text": "1-Year Warranty" } },
+        { "type": "trust", "settings": { "icon": "⌍", "text": "Secure Checkout" } }
+      ]
+    }
+  ]
+}
 {% endschema %}

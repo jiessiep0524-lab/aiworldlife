@@ -36,10 +36,12 @@ body .scrolled-past-header .header__heading-logo-wrapper { width:min(var(--heade
 .section-header .shopify-section-header-sticky { top:var(--aiworld-trust-bar-height,24px); }
 .trade-trust-carousel__inner { position:relative; height:100%; }
 .trade-trust-carousel__viewport { position:relative; height:100%; overflow:hidden; }
-.trade-trust-carousel__slide { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; gap:.55rem; padding:0 3rem; opacity:0; visibility:hidden; transform:translateX(1.6rem); transition:opacity .35s ease,transform .35s ease,visibility .35s ease; font-size:.9rem; text-align:center; }
-.trade-trust-carousel__slide.is-active { opacity:1; visibility:visible; transform:translateX(0); }
-.trade-trust-carousel[data-transition="fade"] .trade-trust-carousel__slide { transform:translateY(.5rem); }
-.trade-trust-carousel[data-transition="fade"] .trade-trust-carousel__slide.is-active { transform:translateY(0); }
+.trade-trust-carousel__track { display:flex; width:max-content; min-width:100%; height:100%; animation:trade-trust-marquee var(--trade-trust-duration,30s) linear infinite; }
+.trade-trust-carousel__group { display:flex; flex:0 0 auto; align-items:center; justify-content:space-around; min-width:100%; height:100%; gap:4rem; }
+.trade-trust-carousel__slide { display:flex; flex:0 0 auto; align-items:center; justify-content:center; gap:.55rem; padding:0 1rem; font-size:.9rem; text-align:center; white-space:nowrap; }
+.trade-trust-carousel[data-auto-rotate="false"] .trade-trust-carousel__track { animation-play-state:paused; }
+.trade-trust-carousel[data-pause-on-hover="true"]:is(:hover,:focus-within) .trade-trust-carousel__track { animation-play-state:paused; }
+@keyframes trade-trust-marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
 .trade-trust-carousel__arrow { position:absolute; top:50%; z-index:1; display:grid; place-items:center; width:2.1rem; height:2.1rem; border:1px solid rgba(255,255,255,.45); border-radius:50%; background:transparent; color:inherit; font-size:1.6rem; line-height:1; transform:translateY(-50%); cursor:pointer; }
 .trade-trust-carousel__arrow--prev { left:1rem; }
 .trade-trust-carousel__arrow--next { right:1rem; }
@@ -246,7 +248,8 @@ body .trade-faq__inline-link:hover { text-decoration:underline; text-underline-o
   .trade-offer form { display:block; min-width:0; }
   .trade-offer input,.trade-offer button { width:100%; border-radius:.6rem; }
   .trade-offer button { margin-top:.8rem; }
-  .trade-trust-carousel__slide { padding:0 2.8rem; font-size:.8rem; }
+  .trade-trust-carousel__group { gap:2rem; }
+  .trade-trust-carousel__slide { padding:0 .7rem; font-size:.8rem; }
 }
 
 .aiworld-trade-footer { background:var(--trade-footer-bg); color:var(--trade-footer-fg); }
