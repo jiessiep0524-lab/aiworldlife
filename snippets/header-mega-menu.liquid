@@ -1,5 +1,6 @@
 {% doc %}
   Renders the header mega menu, including the Shop product categories.
+  @param {section} section - The header section settings.
 {% enddoc %}
 
 <nav class="header__inline-menu">
@@ -19,6 +20,9 @@
           {%- if request.path == accessories_url -%}
             {%- assign active_category = 'accessories' -%}
           {%- endif -%}
+          {%- if link.links != blank -%}
+            {%- render 'header-shop-menu', link: link, section: section, shop_menu_index: shop_menu_index -%}
+          {%- else -%}
           <header-menu>
             <details id="Details-HeaderMenu-{{ shop_menu_index }}" class="mega-menu aiworld-shop-menu">
               <summary
@@ -170,6 +174,7 @@
               </div>
             </details>
           </header-menu>
+          {%- endif -%}
         {%- elsif link.links != blank -%}
           <header-menu>
             <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">

@@ -1,0 +1,120 @@
+{% doc %}
+  Renders the collection-driven Shop mega menu.
+  @param {link} link - The Shop navigation link.
+  @param {section} section - The header section settings.
+  @param {number} shop_menu_index - The Shop menu index.
+{% enddoc %}
+
+{%- assign active_category_index = 1 -%}
+{%- for category_link in link.links -%}
+  {%- if category_link.current or category_link.child_active -%}
+    {%- assign active_category_index = forloop.index -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<header-menu>
+  <details id="Details-HeaderMenu-{{ shop_menu_index }}" class="mega-menu aiworld-shop-menu">
+    <summary
+      id="HeaderMenu-{{ link.handle }}"
+      class="header__menu-item list-menu__item link focus-inset"
+    >
+      <span{% if link.child_active %} class="header__active-menu-item"{% endif %}>
+        {{- link.title | escape -}}
+      </span>
+      {{- 'icon-caret.svg' | inline_asset_content -}}
+    </summary>
+    <div
+      id="MegaMenu-Content-{{ shop_menu_index }}"
+      class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
+      tabindex="-1"
+    >
+      <aiworld-shop-menu class="aiworld-shop-menu__layout page-width">
+        <div class="aiworld-shop-menu__categories" role="tablist" aria-label="{{ link.title | escape }}" aria-orientation="vertical">
+          {%- for category_link in link.links -%}
+            {%- assign category_collection = category_link.object -%}
+            {%- if category_collection == blank and category_link.type == 'collection_link' -%}
+              {%- assign category_handle = category_link.url | split: '/collections/' | last | split: '?' | first -%}
+              {%- assign category_collection = collections[category_handle] -%}
+            {%- endif -%}
+            {%- assign category_image = blank -%}
+            {%- if category_collection != blank -%}
+              {%- assign category_image = category_collection.image -%}
+              {%- if category_image == blank and category_collection.products.first != blank -%}
+                {%- assign category_image = category_collection.products.first.featured_image -%}
+              {%- endif -%}
+            {%- endif -%}
+            <button
+              id="ShopMenu-{{ shop_menu_index }}-Tab-{{ forloop.index }}"
+              class="aiworld-shop-menu__category{% if active_category_index == forloop.index %} aiworld-shop-menu__category--active{% endif %}"
+              type="button"
+              role="tab"
+              aria-controls="ShopMenu-{{ shop_menu_index }}-Panel-{{ forloop.index }}"
+              aria-selected="{% if active_category_index == forloop.index %}true{% else %}false{% endif %}"
+              tabindex="{% if active_category_index == forloop.index %}0{% else %}-1{% endif %}"
+            >
+              <span class="aiworld-shop-menu__category-label">
+                {%- if category_image != blank -%}
+                  {{ category_image | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48,72,96', sizes: '48px', alt: category_link.title, class: 'aiworld-shop-menu__category-image' }}
+                {%- endif -%}
+                <span>{{ category_link.title | escape }}</span>
+              </span>
+              <span class="aiworld-shop-menu__category-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+          {%- endfor -%}
+        </div>
+
+        <div class="aiworld-shop-menu__panels">
+          {%- for category_link in link.links -%}
+            {%- assign category_collection = category_link.object -%}
+            {%- if category_collection == blank and category_link.type == 'collection_link' -%}
+              {%- assign category_handle = category_link.url | split: '/collections/' | last | split: '?' | first -%}
+              {%- assign category_collection = collections[category_handle] -%}
+            {%- endif -%}
+            <section
+              id="ShopMenu-{{ shop_menu_index }}-Panel-{{ forloop.index }}"
+              class="aiworld-shop-menu__panel"
+              role="tabpanel"
+              aria-labelledby="ShopMenu-{{ shop_menu_index }}-Tab-{{ forloop.index }}"
+              tabindex="0"
+              {% if active_category_index != forloop.index %}hidden{% endif %}
+            >
+              <div class="aiworld-shop-menu__panel-heading">
+                <div class="aiworld-shop-menu__intro">
+                  <h2><a href="{{ category_link.url }}">{{ category_link.title | escape }}</a></h2>
+                  {%- if category_collection != blank and category_collection.description != blank -%}
+                    <div class="aiworld-shop-menu__description">{{ category_collection.description }}</div>
+                  {%- endif -%}
+                </div>
+                <a
+                  class="aiworld-shop-menu__view-all"
+                  href="{{ category_link.url }}"
+                  aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: category_link.title | escape }}"
+                >
+                  {{- 'sections.featured_collection.view_all' | t -}}
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+              <div class="aiworld-shop-menu__products">
+                {%- if category_collection != blank -%}
+                  {%- for product in category_collection.products limit: 4 -%}
+                    <a class="aiworld-shop-menu__product" href="{{ product.url }}">
+                      <span class="aiworld-shop-menu__product-image">
+                        {%- if product.featured_image != blank -%}
+                          {{ product.featured_image | image_url: width: 480 | image_tag: loading: 'lazy', widths: '180,240,360,480', sizes: '(min-width: 1200px) 18vw, (min-width: 750px) 24vw, 45vw', alt: product.title | escape }}
+                        {%- endif -%}
+                      </span>
+                      <span class="aiworld-shop-menu__product-title">{{ product.title | escape }}</span>
+                      <span class="aiworld-shop-menu__product-price">{{ product.price | money }}</span>
+                    </a>
+                  {%- endfor -%}
+                {%- else -%}
+                  <p class="aiworld-shop-menu__empty">{{ 'sections.featured_collection.no_products' | t }}</p>
+                {%- endif -%}
+              </div>
+            </section>
+          {%- endfor -%}
+        </div>
+      </aiworld-shop-menu>
+    </div>
+  </details>
+</header-menu>

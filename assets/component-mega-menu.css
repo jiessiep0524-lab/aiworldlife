@@ -121,6 +121,24 @@
   transition: background-color var(--duration-short) ease, color var(--duration-short) ease, box-shadow var(--duration-short) ease;
 }
 
+.aiworld-shop-menu__category-label {
+  align-items: center;
+  display: inline-flex;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.aiworld-shop-menu__category-image {
+  background: #fff;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border-radius: 0.8rem;
+  flex: 0 0 4.2rem;
+  height: 4.2rem;
+  object-fit: contain;
+  padding: 0.3rem;
+  width: 4.2rem;
+}
+
 .aiworld-shop-menu__category:hover {
   background: rgba(var(--color-foreground), 0.035);
 }
@@ -269,7 +287,7 @@
 .aiworld-shop-menu__product-image {
   align-items: center;
   aspect-ratio: 1;
-  background: linear-gradient(145deg, #f8fafc 0%, #edf3f8 100%);
+  background: #fff;
   border: 0.1rem solid rgba(var(--color-foreground), 0.035);
   border-radius: 1.1rem;
   display: flex;
@@ -312,6 +330,12 @@
   font-size: 1.3rem;
   margin-top: 0.6rem;
   font-weight: 600;
+}
+
+.aiworld-shop-menu__empty {
+  color: rgba(var(--color-foreground), 0.68);
+  font-size: 1.4rem;
+  margin: 1rem 0;
 }
 
 @media screen and (max-width: 1199px) {
@@ -360,6 +384,12 @@
     font-size: 1.3rem;
     min-height: 4.6rem;
     padding: 0.8rem 1rem;
+  }
+
+  .aiworld-shop-menu__category-image {
+    flex-basis: 3.4rem;
+    height: 3.4rem;
+    width: 3.4rem;
   }
 
   .aiworld-shop-menu__panel-heading {
