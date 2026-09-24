@@ -98,20 +98,36 @@
                     {{- block.settings.text -}}
                   </p>
                 {%- when 'title' -%}
-                  <div class="product__title" {{ block.shopify_attributes }}>
-                    <h1>{{ product.title | escape }}</h1>
+                  {%- assign product_display_title = product.metafields.custom.display_title.value -%}
+                  {%- if block.settings.title_override != blank -%}
+                    {%- assign product_display_title = block.settings.title_override -%}
+                  {%- endif -%}
+                  {%- if product_display_title == blank -%}
+                    {%- assign product_display_title = product.title -%}
+                  {%- endif -%}
+                  <div
+                    class="product__title"
+                    style="--product-title-size: {{ block.settings.desktop_font_size }}px; --product-title-size-mobile: {{ block.settings.mobile_font_size }}px;"
+                    {{ block.shopify_attributes }}
+                  >
+                    <h1>{{ product_display_title | strip_html | escape }}</h1>
                     <a href="{{ product.url }}" class="product__title">
                       <h2 class="h1">
-                        {{ product.title | escape }}
+                        {{ product_display_title | strip_html | escape }}
                       </h2>
                     </a>
                   </div>
                 {%- when 'price' -%}
-                  <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                  <div
+                    id="price-{{ section.id }}"
+                    role="status"
+                    style="--product-price-size: {{ block.settings.desktop_price_size }}px; --product-price-size-mobile: {{ block.settings.mobile_price_size }}px; --product-compare-size: {{ block.settings.compare_price_size }}px; --product-badge-size: {{ block.settings.tax_badge_size }}px;"
+                    {{ block.shopify_attributes }}
+                  >
                     {%- render 'price',
                       product: product,
                       use_variant: true,
-                      show_badges: true,
+                      show_badges: block.settings.show_taxes_included,
                       sale_badge_label: 'products.product.taxes_included',
                       show_currency_code: false,
                       price_class: 'price--large'
@@ -198,6 +214,123 @@
                   </p>
                 {%- when 'custom_liquid' -%}
                   {{ block.settings.custom_liquid }}
+                {%- when 'aiworld_rating' -%}
+                  {%- assign rating_value = product.metafields.custom.rating_value.value | default: '5' -%}
+                  {%- assign rating_count = product.metafields.custom.rating_count.value -%}
+                  {%- if block.settings.rating_count != blank -%}
+                    {%- assign rating_count = block.settings.rating_count -%}
+                  {%- endif -%}
+                  {%- if rating_count == blank -%}
+                    {%- assign rating_count = product.metafields.reviews.rating_count.value | default: '86' -%}
+                  {%- endif -%}
+                  <div
+                    class="aiworld-product-rating"
+                    role="img"
+                    aria-label="{{ rating_value }} out of 5 stars"
+                    style="--rating-stars-size: {{ block.settings.stars_size }}px; --rating-count-size: {{ block.settings.count_size }}px;"
+                    {{ block.shopify_attributes }}
+                  >
+                    <span class="aiworld-product-rating__stars" aria-hidden="true">★★★★★</span>
+                    {%- if block.settings.show_count -%}
+                      <span class="aiworld-product-rating__count">{{ rating_count }} {{ block.settings.count_label }}</span>
+                    {%- endif -%}
+                  </div>
+                {%- when 'aiworld_shipping_note' -%}
+                  {%- assign shipping_message = product.metafields.custom.shipping_note.value -%}
+                  {%- if block.settings.message != blank -%}
+                    {%- assign shipping_message = block.settings.message -%}
+                  {%- endif -%}
+                  {%- if shipping_message == blank -%}
+                    {%- capture shipping_message -%}Items Will Arrive Within <strong>1-4 Business Days.</strong>{%- endcapture -%}
+                  {%- endif -%}
+                  <div
+                    class="aiworld-shipping-note"
+                    role="status"
+                    style="--shipping-note-size: {{ block.settings.desktop_font_size }}px; --shipping-note-size-mobile: {{ block.settings.mobile_font_size }}px;"
+                    {{ block.shopify_attributes }}
+                  >
+                    {%- if block.settings.show_icon -%}
+                      <span class="aiworld-shipping-note__icon" aria-hidden="true">{{ 'icon-box.svg' | inline_asset_content }}</span>
+                    {%- endif -%}
+                    <span>{{ shipping_message }}</span>
+                  </div>
+                {%- when 'aiworld_key_features' -%}
+                  {%- assign key_features_heading = product.metafields.custom.key_features_heading.value -%}
+                  {%- if block.settings.heading != blank -%}
+                    {%- assign key_features_heading = block.settings.heading -%}
+                  {%- endif -%}
+                  {%- if key_features_heading == blank -%}
+                    {%- assign key_features_heading = 'KEY FEATURES' -%}
+                  {%- endif -%}
+                  <div
+                    class="aiworld-product-key-features"
+                    style="--key-features-size: {{ block.settings.desktop_font_size }}px; --key-features-size-mobile: {{ block.settings.mobile_font_size }}px; --key-features-radius: {{ block.settings.card_radius }}px;"
+                    {{ block.shopify_attributes }}
+                  >
+                    <h3>{{ key_features_heading | strip_html | escape }}</h3>
+                    {%- if block.settings.features != blank -%}
+                      {{ block.settings.features }}
+                    {%- elsif product.metafields.custom.key_features != blank -%}
+                      {{ product.metafields.custom.key_features | metafield_tag }}
+                    {%- else -%}
+                      <ul>
+                        <li>Wireless Apple CarPlay and Android Auto</li>
+                        <li>9 inch display and touch screen</li>
+                        <li>Fluid 60 FPS smooth touch</li>
+                        <li>Built-in streaming apps for a better drive</li>
+                        <li>Plug and go for cars, trucks and boats</li>
+                      </ul>
+                    {%- endif -%}
+                  </div>
+                {%- when 'aiworld_before_buy' -%}
+                  {%- assign before_buy_label = product.metafields.custom.before_buy_label.value -%}
+                  {%- assign before_buy_requirement = product.metafields.custom.before_buy_requirement.value -%}
+                  {%- assign before_buy_details = product.metafields.custom.before_buy_details.value -%}
+                  {%- assign before_buy_help_link = product.metafields.custom.before_buy_help_link.value -%}
+                  {%- if block.settings.label != blank -%}{%- assign before_buy_label = block.settings.label -%}{%- endif -%}
+                  {%- if block.settings.requirement != blank -%}{%- assign before_buy_requirement = block.settings.requirement -%}{%- endif -%}
+                  {%- if block.settings.details != blank -%}{%- assign before_buy_details = block.settings.details -%}{%- endif -%}
+                  {%- if block.settings.help_link != blank -%}{%- assign before_buy_help_link = block.settings.help_link -%}{%- endif -%}
+                  {%- if before_buy_label == blank -%}{%- assign before_buy_label = 'BEFORE YOU BUY' -%}{%- endif -%}
+                  {%- if before_buy_requirement == blank -%}{%- capture before_buy_requirement -%}Independent portable screen for most <strong>12V/24V vehicles</strong>{%- endcapture -%}{%- endif -%}
+                  {%- if before_buy_details == blank -%}{%- assign before_buy_details = 'Compatible with older vehicles from 2016 and earlier' -%}{%- endif -%}
+                  {%- if before_buy_help_link == blank -%}{%- assign before_buy_help_link = routes.root_url | append: 'pages/contact' -%}{%- endif -%}
+                  <details
+                    class="aiworld-before-buy"
+                    {% if block.settings.open_by_default %}open{% endif %}
+                    style="--before-buy-summary-size: {{ block.settings.summary_font_size }}px; --before-buy-body-size: {{ block.settings.body_font_size }}px; --before-buy-radius: {{ block.settings.card_radius }}px;"
+                    {{ block.shopify_attributes }}
+                  >
+                    <summary class="aiworld-before-buy__summary">
+                      <span class="aiworld-before-buy__icon" aria-hidden="true">i</span>
+                      <span class="aiworld-before-buy__copy">
+                        <span class="aiworld-before-buy__label">{{ before_buy_label | strip_html | escape }}</span>
+                        <span class="aiworld-before-buy__requirement">{{ before_buy_requirement }}</span>
+                        <span class="aiworld-before-buy__details">{{ before_buy_details | strip_html | escape }}</span>
+                      </span>
+                      <span class="aiworld-before-buy__plus" aria-hidden="true"></span>
+                    </summary>
+                    <div class="aiworld-before-buy__panel">
+                      {%- if block.settings.panel_content != blank -%}
+                        {{ block.settings.panel_content }}
+                      {%- elsif product.metafields.custom.before_buy_content != blank -%}
+                        {{ product.metafields.custom.before_buy_content | metafield_tag }}
+                      {%- else -%}
+                        <div class="aiworld-before-buy__panel-heading"><span class="aiworld-before-buy__panel-heading-icon" aria-hidden="true">&#10003;</span><strong>Before You Buy</strong></div>
+                        <ul class="aiworld-before-buy__checklist">
+                          <li><strong>Power:</strong> Requires stable 5V/3A input. Use the included 12V/24V car charger; low-output vehicle USB ports may cause a black screen, restarting, or unstable performance.</li>
+                          <li><strong>Compatibility:</strong> Independent portable screen. No factory CarPlay required. Compatible with most older 12V/24V vehicles from 2016 and earlier.</li>
+                          <li><strong>Audio:</strong> Choose FM, AUX, or the built-in speaker. FM quality depends on an unused local frequency; AUX is recommended for more stable sound.</li>
+                          <li><strong>Internet:</strong> Wireless CarPlay/Android Auto requires phone Bluetooth, Wi-Fi, and mobile data. Do not connect to another Wi-Fi network or hotspot during use.</li>
+                          <li><strong>Video:</strong> Native YouTube, Netflix, and other online video playback are not supported through CarPlay/Android Auto.</li>
+                        </ul>
+                        <div class="aiworld-before-buy__notice"><span aria-hidden="true">i</span><p>Please confirm your vehicle has a safe 9-inch mounting space before ordering.</p></div>
+                      {%- endif -%}
+                      {%- if block.settings.show_help_link -%}
+                        <a class="aiworld-before-buy__help-link" href="{{ before_buy_help_link }}">{{ block.settings.help_text }} &#8594;</a>
+                      {%- endif -%}
+                    </div>
+                  </details>
                 {%- when 'collapsible_tab' -%}
                   <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
                     <details id="Details-{{ block.id }}-{{ section.id }}">
@@ -778,12 +911,88 @@
     {
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "title_override",
+          "label": "Custom title (optional)",
+          "info": "Connect a product metafield to use a product-specific display title."
+        },
+        {
+          "type": "range",
+          "id": "desktop_font_size",
+          "label": "Desktop title size",
+          "min": 20,
+          "max": 72,
+          "step": 1,
+          "unit": "px",
+          "default": 52
+        },
+        {
+          "type": "range",
+          "id": "mobile_font_size",
+          "label": "Mobile title size",
+          "min": 12,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 18
+        }
+      ]
     },
     {
       "type": "price",
       "name": "t:sections.main-product.blocks.price.name",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_taxes_included",
+          "label": "Show taxes included badge",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "desktop_price_size",
+          "label": "Desktop sale price size",
+          "min": 24,
+          "max": 72,
+          "step": 1,
+          "unit": "px",
+          "default": 52
+        },
+        {
+          "type": "range",
+          "id": "mobile_price_size",
+          "label": "Mobile sale price size",
+          "min": 24,
+          "max": 56,
+          "step": 1,
+          "unit": "px",
+          "default": 45
+        },
+        {
+          "type": "range",
+          "id": "compare_price_size",
+          "label": "Compare-at price size",
+          "min": 12,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "default": 25
+        },
+        {
+          "type": "range",
+          "id": "tax_badge_size",
+          "label": "Tax badge size",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 21
+        }
+      ]
     },
     {
       "type": "sku",
@@ -939,6 +1148,224 @@
           "id": "share_label",
           "label": "t:sections.main-product.blocks.share.settings.text.label",
           "default": "t:sections.main-product.blocks.share.settings.text.default"
+        }
+      ]
+    },
+    {
+      "type": "aiworld_rating",
+      "name": "Rating",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "rating_count",
+          "label": "Review count",
+          "info": "Leave blank to use custom.rating_count or the reviews app count."
+        },
+        {
+          "type": "text",
+          "id": "count_label",
+          "label": "Review count label",
+          "default": "reviews"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_count",
+          "label": "Show review count",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "stars_size",
+          "label": "Star size",
+          "min": 12,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "default": 19
+        },
+        {
+          "type": "range",
+          "id": "count_size",
+          "label": "Review count size",
+          "min": 12,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "default": 15
+        }
+      ]
+    },
+    {
+      "type": "aiworld_shipping_note",
+      "name": "Shipping note",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "message",
+          "label": "Shipping message",
+          "info": "Connect a product metafield for product-specific delivery copy."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Show icon",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "desktop_font_size",
+          "label": "Desktop text size",
+          "min": 12,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "default": 22
+        },
+        {
+          "type": "range",
+          "id": "mobile_font_size",
+          "label": "Mobile text size",
+          "min": 12,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "default": 18
+        }
+      ]
+    },
+    {
+      "type": "aiworld_key_features",
+      "name": "Key features",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading",
+          "info": "Leave blank to use custom.key_features_heading."
+        },
+        {
+          "type": "richtext",
+          "id": "features",
+          "label": "Feature list",
+          "info": "Connect a rich text product metafield for product-specific features."
+        },
+        {
+          "type": "range",
+          "id": "desktop_font_size",
+          "label": "Desktop list size",
+          "min": 12,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "mobile_font_size",
+          "label": "Mobile list size",
+          "min": 12,
+          "max": 26,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "card_radius",
+          "label": "Card corner radius",
+          "min": 0,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "default": 14
+        }
+      ]
+    },
+    {
+      "type": "aiworld_before_buy",
+      "name": "Before you buy",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "label",
+          "label": "Label",
+          "info": "Leave blank to use custom.before_buy_label."
+        },
+        {
+          "type": "inline_richtext",
+          "id": "requirement",
+          "label": "Requirement",
+          "info": "Leave blank to use custom.before_buy_requirement."
+        },
+        {
+          "type": "inline_richtext",
+          "id": "details",
+          "label": "Details",
+          "info": "Leave blank to use custom.before_buy_details."
+        },
+        {
+          "type": "richtext",
+          "id": "panel_content",
+          "label": "Panel content",
+          "info": "Connect custom.before_buy_content for the full checklist."
+        },
+        {
+          "type": "inline_richtext",
+          "id": "help_text",
+          "label": "Help link text",
+          "default": "Need help? Check compatibility, audio setup, and installation guide"
+        },
+        {
+          "type": "url",
+          "id": "help_link",
+          "label": "Help link",
+          "info": "Leave blank to use custom.before_buy_help_link or the contact page."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_help_link",
+          "label": "Show help link",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "open_by_default",
+          "label": "Open by default",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "summary_font_size",
+          "label": "Summary text size",
+          "min": 12,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "body_font_size",
+          "label": "Panel text size",
+          "min": 12,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "card_radius",
+          "label": "Card corner radius",
+          "min": 0,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "default": 14
         }
       ]
     },

@@ -20,34 +20,59 @@
         },
         "title": {
           "type": "title",
-          "settings": {}
+          "settings": {
+            "title_override": "",
+            "desktop_font_size": 52,
+            "mobile_font_size": 18
+          }
         },
         "rating": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<div class='aiworld-product-rating' role='img' aria-label='5 out of 5 stars'><span class='aiworld-product-rating__stars'>★★★★★</span><span class='aiworld-product-rating__count'>86 reviews</span></div>"
-          }
+          "type": "aiworld_rating",
+          "settings": {}
         },
         "price": {
           "type": "price",
-          "settings": {}
+          "settings": {
+            "show_taxes_included": true,
+            "desktop_price_size": 52,
+            "mobile_price_size": 45,
+            "compare_price_size": 25,
+            "tax_badge_size": 21
+          }
         },
         "shipping-note": {
-          "type": "custom_liquid",
+          "type": "aiworld_shipping_note",
           "settings": {
-            "custom_liquid": "<div class='aiworld-shipping-note' role='status'><span class='aiworld-shipping-note__icon' aria-hidden='true'>{{ 'icon-box.svg' | inline_asset_content }}</span><span>Items Will Arrive Within <strong>1-4 Business Days.</strong></span></div>"
+            "message": "",
+            "show_icon": true,
+            "desktop_font_size": 22,
+            "mobile_font_size": 18
           }
         },
         "key-features": {
-          "type": "custom_liquid",
+          "type": "aiworld_key_features",
           "settings": {
-            "custom_liquid": "<div class='aiworld-product-key-features'><h3>KEY FEATURES</h3><ul><li>Wireless Apple CarPlay and Android Auto</li><li>9 inch display and touch screen</li><li>Fluid 60 FPS smooth touch</li><li>Built-in streaming apps for a better drive</li><li>Plug and go for cars, trucks and boats</li></ul></div>"
+            "heading": "",
+            "features": "",
+            "desktop_font_size": 16,
+            "mobile_font_size": 16,
+            "card_radius": 14
           }
         },
         "before-buy": {
-          "type": "custom_liquid",
+          "type": "aiworld_before_buy",
           "settings": {
-            "custom_liquid": "<details class='aiworld-before-buy'><summary class='aiworld-before-buy__summary'><span class='aiworld-before-buy__icon' aria-hidden='true'>i</span><span class='aiworld-before-buy__copy'><span class='aiworld-before-buy__label'>BEFORE YOU BUY</span><span class='aiworld-before-buy__requirement'>Independent portable screen for most <strong>12V/24V vehicles</strong></span><span class='aiworld-before-buy__details'>Compatible with older vehicles from 2016 and earlier</span></span><span class='aiworld-before-buy__plus' aria-hidden='true'></span></summary><div class='aiworld-before-buy__panel'><div class='aiworld-before-buy__panel-heading'><span class='aiworld-before-buy__panel-heading-icon' aria-hidden='true'>&#10003;</span><strong>Before You Buy</strong></div><ul class='aiworld-before-buy__checklist'><li><strong>Power:</strong> Requires stable 5V/3A input. Use the included 12V/24V car charger; low-output vehicle USB ports may cause a black screen, restarting, or unstable performance.</li><li><strong>Compatibility:</strong> Independent portable screen. No factory CarPlay required. Compatible with most older 12V/24V vehicles from 2016 and earlier.</li><li><strong>Audio:</strong> Choose FM, AUX, or the built-in speaker. FM quality depends on an unused local frequency; AUX is recommended for more stable sound.</li><li><strong>Internet:</strong> Wireless CarPlay/Android Auto requires phone Bluetooth, Wi-Fi, and mobile data. Do not connect to another Wi-Fi network or hotspot during use.</li><li><strong>Video:</strong> Native YouTube, Netflix, and other online video playback are not supported through CarPlay/Android Auto.</li></ul><div class='aiworld-before-buy__notice'><span aria-hidden='true'>i</span><p>Please confirm your vehicle has a safe 9-inch mounting space before ordering.</p></div><a class='aiworld-before-buy__help-link' href='{{ routes.root_url }}pages/contact'>Need help? Check compatibility, audio setup, and installation guide &#8594;</a></div></details>"
+            "label": "",
+            "requirement": "",
+            "details": "",
+            "panel_content": "",
+            "help_text": "Need help? Check compatibility, audio setup, and installation guide",
+            "help_link": "",
+            "show_help_link": true,
+            "open_by_default": false,
+            "summary_font_size": 24,
+            "body_font_size": 16,
+            "card_radius": 14
           }
         },
         "variant-picker": {

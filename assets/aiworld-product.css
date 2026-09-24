@@ -1703,6 +1703,102 @@ product-info .aiworld-shipping-note,
   line-height: 1.35;
 }
 
+product-info .product__title h1,
+.template-product .product__title h1 {
+  font-size: var(--product-title-size, clamp(2.6rem, 3.8vw, 4rem)) !important;
+}
+
+product-info .aiworld-product-rating,
+.template-product .aiworld-product-rating {
+  font-size: var(--rating-count-size, .95rem);
+}
+
+product-info .aiworld-product-rating__stars,
+.template-product .aiworld-product-rating__stars {
+  font-size: var(--rating-stars-size, 1.2rem);
+}
+
+product-info .aiworld-product-rating__count,
+.template-product .aiworld-product-rating__count {
+  font-size: var(--rating-count-size, .95rem);
+}
+
+product-info .aiworld-shipping-note,
+.template-product .aiworld-shipping-note {
+  font-size: var(--shipping-note-size, 1.35rem);
+}
+
+product-info .product__info-container > [id^='price-'] .price-item--sale,
+.template-product .product__info-container > [id^='price-'] .price-item--sale {
+  font-size: var(--product-price-size, clamp(2.65rem, 4.2vw, 4rem)) !important;
+}
+
+product-info .product__info-container > [id^='price-'] .price-item--regular,
+.template-product .product__info-container > [id^='price-'] .price-item--regular {
+  font-size: var(--product-compare-size, 1.575rem) !important;
+}
+
+product-info .product__info-container > [id^='price-'] .price__badge-sale,
+.template-product .product__info-container > [id^='price-'] .price__badge-sale {
+  font-size: var(--product-badge-size, 1.296rem) !important;
+}
+
+product-info .aiworld-product-key-features,
+.template-product .aiworld-product-key-features {
+  border-radius: var(--key-features-radius, .9rem);
+}
+
+product-info .aiworld-product-key-features li,
+.template-product .aiworld-product-key-features li,
+product-info .aiworld-product-key-features .metafield-rich_text_field,
+.template-product .aiworld-product-key-features .metafield-rich_text_field {
+  font-size: var(--key-features-size, .98rem);
+}
+
+product-info .aiworld-before-buy,
+.template-product .aiworld-before-buy {
+  border-radius: var(--before-buy-radius, .9rem);
+}
+
+product-info .aiworld-before-buy__requirement,
+.template-product .aiworld-before-buy__requirement {
+  font-size: var(--before-buy-summary-size, .92rem);
+}
+
+product-info .aiworld-before-buy__details,
+.template-product .aiworld-before-buy__details {
+  font-size: calc(var(--before-buy-summary-size, .92rem) * .88);
+}
+
+product-info .aiworld-before-buy__panel,
+.template-product .aiworld-before-buy__panel {
+  font-size: var(--before-buy-body-size, 1rem);
+}
+
+@media screen and (max-width: 749px) {
+  product-info .product__title h1,
+  .template-product .product__title h1 {
+    font-size: var(--product-title-size-mobile, 1.15rem) !important;
+  }
+
+  product-info .product__info-container > [id^='price-'] .price-item--sale,
+  .template-product .product__info-container > [id^='price-'] .price-item--sale {
+    font-size: var(--product-price-size-mobile, 2.8rem) !important;
+  }
+
+  product-info .aiworld-shipping-note,
+  .template-product .aiworld-shipping-note {
+    font-size: var(--shipping-note-size-mobile, 1.15rem);
+  }
+
+  product-info .aiworld-product-key-features li,
+  .template-product .aiworld-product-key-features li,
+  product-info .aiworld-product-key-features .metafield-rich_text_field,
+  .template-product .aiworld-product-key-features .metafield-rich_text_field {
+    font-size: var(--key-features-size-mobile, .98rem);
+  }
+}
+
 /* Product media stays in view while the purchase details flow past it. */
 @media screen and (min-width: 750px) {
   product-info .product__info-container.product__column-sticky {
