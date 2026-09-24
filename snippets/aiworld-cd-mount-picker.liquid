@@ -1,0 +1,150 @@
+{% doc %}
+Renders a bundle selector that can add the product with an optional CD slot mount.
+@param {product} product - The main product.
+@param {object} block - The bundle picker block.
+@param {string} product_form_id - The product form id.
+{% enddoc %}
+
+{%- assign mount_product = block.settings.cd_mount_product -%}
+{%- if mount_product == blank -%}
+  {%- assign mount_product = all_products['aiworld-universal-cd-slot-mount-for-9-inch-carplay-screen'] -%}
+{%- endif -%}
+{%- assign base_variant = product.selected_or_first_available_variant -%}
+{%- if mount_product != blank -%}
+  {%- assign mount_variant = mount_product.selected_or_first_available_variant -%}
+{%- endif -%}
+
+{%- assign bundle_heading = block.settings.heading -%}
+{%- assign bundle_subheading = block.settings.subheading -%}
+{%- assign mount_label = block.settings.mount_label -%}
+{%- assign mount_description = block.settings.mount_description -%}
+{%- assign standard_label = block.settings.standard_label -%}
+{%- assign standard_description = block.settings.standard_description -%}
+{%- assign recommended_label = block.settings.recommended_label -%}
+{%- if bundle_heading == blank -%}{%- assign bundle_heading = 'products.product.bundle_picker.heading' | t -%}{%- endif -%}
+{%- if bundle_subheading == blank -%}{%- assign bundle_subheading = 'products.product.bundle_picker.subheading' | t -%}{%- endif -%}
+{%- if mount_label == blank -%}{%- assign mount_label = 'products.product.bundle_picker.mount_label' | t -%}{%- endif -%}
+{%- if mount_description == blank -%}{%- assign mount_description = 'products.product.bundle_picker.mount_description' | t -%}{%- endif -%}
+{%- if standard_label == blank -%}{%- assign standard_label = 'products.product.bundle_picker.standard_label' | t -%}{%- endif -%}
+{%- if standard_description == blank -%}{%- assign standard_description = 'products.product.bundle_picker.standard_description' | t -%}{%- endif -%}
+{%- if recommended_label == blank -%}{%- assign recommended_label = 'products.product.bundle_picker.recommended' | t -%}{%- endif -%}
+
+{%- if base_variant != blank and mount_variant != blank and mount_variant.available -%}
+  {%- assign bundle_total = base_variant.price | plus: mount_variant.price -%}
+  <fieldset
+    id="{{ block.id }}-cd-mount-picker"
+    class="aiworld-bundle-picker"
+    data-currency="{{ cart.currency.iso_code }}"
+    style="--bundle-picker-radius: {{ block.settings.card_radius }}px;"
+    {{ block.shopify_attributes }}
+  >
+    <legend class="aiworld-bundle-picker__heading">
+      {{ bundle_heading | escape }}
+    </legend>
+    <p class="aiworld-bundle-picker__subheading">
+      {{ bundle_subheading | escape }}
+    </p>
+    <div class="aiworld-bundle-picker__options">
+      <label class="aiworld-bundle-option is-selected" data-bundle-option>
+        <input
+          type="radio"
+          name="aiworld-cd-mount-{{ block.id }}"
+          value="with"
+          checked
+          data-mount-variant-id="{{ mount_variant.id }}"
+          data-total-cents="{{ bundle_total }}"
+        >
+        <span class="aiworld-bundle-option__content">
+          <span class="aiworld-bundle-option__topline">
+            <span class="aiworld-bundle-option__title">
+              {{ mount_label | escape }}
+            </span>
+            <span class="aiworld-bundle-option__badge">
+              {{ recommended_label | escape }}
+            </span>
+          </span>
+          <span class="aiworld-bundle-option__description">
+            {{ mount_description | escape }}
+          </span>
+          <strong class="aiworld-bundle-option__price">{{ bundle_total | money }}</strong>
+        </span>
+      </label>
+      <label class="aiworld-bundle-option" data-bundle-option>
+        <input
+          type="radio"
+          name="aiworld-cd-mount-{{ block.id }}"
+          value="without"
+          data-total-cents="{{ base_variant.price }}"
+        >
+        <span class="aiworld-bundle-option__content">
+          <span class="aiworld-bundle-option__topline">
+            <span class="aiworld-bundle-option__title">
+              {{ standard_label | escape }}
+            </span>
+          </span>
+          <span class="aiworld-bundle-option__description">
+            {{ standard_description | escape }}
+          </span>
+          <strong class="aiworld-bundle-option__price">{{ base_variant.price | money }}</strong>
+        </span>
+      </label>
+    </div>
+    <p class="aiworld-bundle-picker__total">
+      <span>{{ 'products.product.bundle_picker.total' | t }}</span>
+      <strong data-bundle-total>{{ bundle_total | money }}</strong>
+    </p>
+  </fieldset>
+
+  <script>
+    (() => {
+      const initializeBundlePicker = () => {
+        const picker = document.getElementById('{{ block.id }}-cd-mount-picker');
+        const form = document.getElementById('{{ product_form_id }}');
+        if (!picker || !form) return;
+
+        const mountIdInput = form.querySelector('[data-cd-mount-input]');
+        const mountParentInput = form.querySelector('[data-cd-mount-parent-input]');
+        const mountQuantityInput = form.querySelector('[data-cd-mount-quantity-input]');
+        const totalElement = picker.querySelector('[data-bundle-total]');
+        if (!mountIdInput) return;
+
+        const updateBundle = () => {
+          const selectedInput = picker.querySelector('input[type="radio"]:checked');
+          if (!selectedInput) return;
+
+          const withMount = selectedInput.value === 'with';
+          mountIdInput.disabled = !withMount;
+          if (mountParentInput) mountParentInput.disabled = !withMount;
+          if (mountQuantityInput) mountQuantityInput.disabled = !withMount;
+
+          const baseVariantInput = form.querySelector('[name="id"]');
+          if (mountParentInput && baseVariantInput) mountParentInput.value = baseVariantInput.value;
+
+          picker.querySelectorAll('[data-bundle-option]').forEach((option) => {
+            option.classList.toggle('is-selected', option.contains(selectedInput));
+          });
+
+          if (totalElement) {
+            const totalCents = Number(selectedInput.dataset.totalCents || 0);
+            totalElement.textContent = new Intl.NumberFormat(document.documentElement.lang || 'en-US', {
+              style: 'currency',
+              currency: picker.dataset.currency || 'USD'
+            }).format(totalCents / 100);
+          }
+        };
+
+        picker.addEventListener('change', updateBundle);
+        form.addEventListener('change', (event) => {
+          if (event.target.matches('[name="id"]')) updateBundle();
+        });
+        updateBundle();
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeBundlePicker, { once: true });
+      } else {
+        initializeBundlePicker();
+      }
+    })();
+  </script>
+{%- endif -%}

@@ -119,6 +119,16 @@
       "choose_options": "Choose options",
       "choose_product_options": "Choose options for {{ product_name }}",
       "description": "Description",
+      "bundle_picker": {
+        "heading": "Choose Your Bundle",
+        "subheading": "Select the setup that fits your vehicle.",
+        "mount_label": "With CD Mount",
+        "mount_description": "Includes the universal CD slot mount",
+        "standard_label": "Standard Pack",
+        "standard_description": "Screen only",
+        "recommended": "Recommended",
+        "total": "Bundle total"
+      },
       "inventory_in_stock": "In stock",
       "inventory_in_stock_show_count": "{{ quantity }} in stock",
       "inventory_low_stock": "Low stock",

@@ -85,6 +85,15 @@
             class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
           >
             {%- assign product_form_id = 'product-form-' | append: section.id -%}
+            {%- assign cd_mount_product = blank -%}
+            {%- for bundle_block in section.blocks -%}
+              {%- if bundle_block.type == 'aiworld_cd_mount_picker' -%}
+                {%- assign cd_mount_product = bundle_block.settings.cd_mount_product -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if cd_mount_product == blank -%}
+              {%- assign cd_mount_product = all_products['aiworld-universal-cd-slot-mount-for-9-inch-carplay-screen'] -%}
+            {%- endif -%}
 
             {%- for block in section.blocks -%}
               {%- case block.type -%}
@@ -254,6 +263,12 @@
                     {%- endif -%}
                     <span>{{ shipping_message }}</span>
                   </div>
+                {%- when 'aiworld_cd_mount_picker' -%}
+                  {%- render 'aiworld-cd-mount-picker',
+                    product: product,
+                    block: block,
+                    product_form_id: product_form_id
+                  -%}
                 {%- when 'aiworld_key_features' -%}
                   {%- assign key_features_heading = product.metafields.custom.key_features_heading.value -%}
                   {%- if block.settings.heading != blank -%}
@@ -618,7 +633,8 @@
                     product: product,
                     product_form_id: product_form_id,
                     section_id: section.id,
-                    show_pickup_availability: true
+                    show_pickup_availability: true,
+                    cd_mount_product: cd_mount_product
                   -%}
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
@@ -1232,6 +1248,64 @@
           "step": 1,
           "unit": "px",
           "default": 18
+        }
+      ]
+    },
+    {
+      "type": "aiworld_cd_mount_picker",
+      "name": "CD mount bundle",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "product",
+          "id": "cd_mount_product",
+          "label": "CD mount product",
+          "info": "Select the product that should be added when the recommended bundle is selected."
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "subheading",
+          "label": "Subheading"
+        },
+        {
+          "type": "text",
+          "id": "mount_label",
+          "label": "CD mount option label"
+        },
+        {
+          "type": "text",
+          "id": "mount_description",
+          "label": "CD mount option description"
+        },
+        {
+          "type": "text",
+          "id": "standard_label",
+          "label": "Standard option label"
+        },
+        {
+          "type": "text",
+          "id": "standard_description",
+          "label": "Standard option description"
+        },
+        {
+          "type": "text",
+          "id": "recommended_label",
+          "label": "Recommended badge"
+        },
+        {
+          "type": "range",
+          "id": "card_radius",
+          "label": "Card corner radius",
+          "min": 0,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "default": 14
         }
       ]
     },

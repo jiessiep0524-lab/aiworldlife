@@ -22,7 +22,7 @@
           "type": "title",
           "settings": {
             "title_override": "",
-            "desktop_font_size": 52,
+            "desktop_font_size": 36,
             "mobile_font_size": 18
           }
         },
@@ -47,6 +47,20 @@
             "show_icon": true,
             "desktop_font_size": 22,
             "mobile_font_size": 18
+          }
+        },
+        "cd-mount-picker": {
+          "type": "aiworld_cd_mount_picker",
+          "settings": {
+            "cd_mount_product": "aiworld-universal-cd-slot-mount-for-9-inch-carplay-screen",
+            "heading": "",
+            "subheading": "",
+            "mount_label": "",
+            "mount_description": "",
+            "standard_label": "",
+            "standard_description": "",
+            "recommended_label": "",
+            "card_radius": 14
           }
         },
         "key-features": {
@@ -138,6 +152,7 @@
         "rating",
         "price",
         "shipping-note",
+        "cd-mount-picker",
         "key-features",
         "before-buy",
         "variant-picker",

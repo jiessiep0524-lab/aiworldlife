@@ -360,6 +360,133 @@
   box-shadow: 0 .8rem 2rem rgba(11, 27, 48, .05);
 }
 
+.aiworld-bundle-picker {
+  margin: 1rem 0 1.35rem;
+  padding: 1rem;
+  border: 1px solid #e2e8ef;
+  border-radius: var(--bundle-picker-radius, 14px);
+  background: #fff;
+  box-shadow: 0 .35rem 1.1rem rgba(10, 30, 50, .04);
+}
+
+.aiworld-bundle-picker__heading {
+  margin: 0;
+  padding: 0 .35rem;
+  color: var(--aiworld-ink, #101d2d);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.aiworld-bundle-picker__subheading {
+  margin: .35rem 0 .85rem;
+  color: var(--aiworld-muted, #556270);
+  font-size: .88rem;
+  line-height: 1.4;
+}
+
+.aiworld-bundle-picker__options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .7rem;
+}
+
+.aiworld-bundle-option {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 8.5rem;
+  padding: .85rem;
+  border: 1px solid #d8e0e8;
+  border-radius: .75rem;
+  background: #fff;
+  color: var(--aiworld-ink, #101d2d);
+  cursor: pointer;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.aiworld-bundle-option:hover,
+.aiworld-bundle-option.is-selected {
+  border-color: var(--aiworld-blue, #0787f9);
+  box-shadow: 0 0 0 .12rem rgba(7, 135, 249, .12);
+}
+
+.aiworld-bundle-option.is-selected {
+  background: #f5faff;
+}
+
+.aiworld-bundle-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.aiworld-bundle-option input:focus-visible + .aiworld-bundle-option__content {
+  outline: 2px solid var(--aiworld-blue, #0787f9);
+  outline-offset: 3px;
+}
+
+.aiworld-bundle-option__content {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.aiworld-bundle-option__topline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .35rem;
+}
+
+.aiworld-bundle-option__title {
+  font-size: .9rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.aiworld-bundle-option__badge {
+  flex: 0 0 auto;
+  padding: .18rem .35rem;
+  border-radius: 999px;
+  background: var(--aiworld-blue, #0787f9);
+  color: #fff;
+  font-size: .62rem;
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.aiworld-bundle-option__description {
+  margin-top: .55rem;
+  color: var(--aiworld-muted, #556270);
+  font-size: .78rem;
+  line-height: 1.35;
+}
+
+.aiworld-bundle-option__price {
+  margin-top: auto;
+  padding-top: .8rem;
+  color: var(--aiworld-blue, #0787f9);
+  font-size: 1.05rem;
+}
+
+.aiworld-bundle-picker__total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: .9rem .35rem 0;
+  color: var(--aiworld-muted, #556270);
+  font-size: .88rem;
+}
+
+.aiworld-bundle-picker__total strong {
+  color: var(--aiworld-blue, #0787f9);
+  font-size: 1.1rem;
+}
+
 .template-product .aiworld-product-key-features h3 {
   margin: 0 0 .85rem;
   color: var(--aiworld-ink);

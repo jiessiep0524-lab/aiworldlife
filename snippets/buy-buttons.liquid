@@ -6,6 +6,7 @@
   - product_form_id: {String} product form id.
   - section_id: {String} id of section to which this snippet belongs.
   - show_pickup_availability: {Boolean} for the pickup availability. If true the pickup availability is rendered, false - not rendered (optional).
+  - cd_mount_product: {Product} optional CD slot mount product to add as a nested bundle item.
 
   Usage:
   {% render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true %}
@@ -55,6 +56,30 @@
           {% endif %}
           class="product-variant-id"
         >
+
+        {%- if cd_mount_product != blank -%}
+          {%- assign cd_mount_variant = cd_mount_product.selected_or_first_available_variant -%}
+          {%- if cd_mount_variant != blank and cd_mount_variant.available -%}
+            <input
+              type="hidden"
+              name="shopify-additional-items[1][id]"
+              value="{{ cd_mount_variant.id }}"
+              data-cd-mount-input
+            >
+            <input
+              type="hidden"
+              name="shopify-additional-items[1][quantity]"
+              value="1"
+              data-cd-mount-quantity-input
+            >
+            <input
+              type="hidden"
+              name="shopify-additional-items[1][parent_id]"
+              value="{{ product.selected_or_first_available_variant.id }}"
+              data-cd-mount-parent-input
+            >
+          {%- endif -%}
+        {%- endif -%}
 
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
