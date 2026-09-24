@@ -29,12 +29,12 @@
         "background": "#06182a",
         "text_color": "#ffffff",
         "auto_rotate": true,
-        "change_slides_speed": 3,
+        "change_slides_speed": 2,
         "pause_on_hover": true,
         "show_arrows": false,
         "show_dots": false,
         "height": 24,
-        "transition": "fade",
+        "transition": "slide",
         "accessibility_label": "Store benefits"
       }
     },

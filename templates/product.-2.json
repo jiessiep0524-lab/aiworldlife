@@ -1,0 +1,341 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "new-badge": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<span class='aiworld-product-new-badge'>NEW</span>"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "title_override": "",
+            "desktop_font_size": 40,
+            "mobile_font_size": 18
+          }
+        },
+        "rating": {
+          "type": "aiworld_rating",
+          "settings": {
+            "rating_count": "",
+            "count_label": "reviews",
+            "show_count": true,
+            "stars_size": 15,
+            "count_size": 12
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_included": true,
+            "desktop_price_size": 45,
+            "mobile_price_size": 25,
+            "compare_price_size": 13,
+            "tax_badge_size": 15
+          }
+        },
+        "shipping-note": {
+          "type": "aiworld_shipping_note",
+          "settings": {
+            "message": "",
+            "show_icon": true,
+            "desktop_font_size": 14,
+            "mobile_font_size": 12
+          }
+        },
+        "key-features": {
+          "type": "aiworld_key_features",
+          "settings": {
+            "heading": "",
+            "features": "",
+            "desktop_font_size": 16,
+            "mobile_font_size": 16,
+            "card_radius": 14
+          }
+        },
+        "before-buy": {
+          "type": "aiworld_before_buy",
+          "settings": {
+            "label": "",
+            "requirement": "",
+            "details": "",
+            "panel_content": "",
+            "help_text": "Need help? Check compatibility, audio setup, and installation guide",
+            "help_link": "",
+            "show_help_link": true,
+            "open_by_default": false,
+            "summary_font_size": 24,
+            "body_font_size": 16,
+            "card_radius": 14
+          }
+        },
+        "variant-picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity-selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy-buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        },
+        "collapsible-row-1": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Product features",
+            "icon": "star",
+            "content": "<p>{{ block.settings.page.metafields.custom.listing | metafield_tag }}</p>",
+            "page": "product-features"
+          }
+        },
+        "collapsible-row-0": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Materials and care",
+            "icon": "leaf",
+            "content": "",
+            "page": "materials-and-care"
+          }
+        },
+        "collapsible-row-2": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Merchandising tips",
+            "icon": "check_mark",
+            "content": "",
+            "page": "merchandising-tips"
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "new-badge",
+        "title",
+        "rating",
+        "price",
+        "shipping-note",
+        "key-features",
+        "before-buy",
+        "variant-picker",
+        "quantity-selector",
+        "buy-buttons",
+        "description",
+        "collapsible-row-1",
+        "collapsible-row-0",
+        "collapsible-row-2",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "",
+        "media_size": "medium",
+        "constrain_to_viewport": false,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "aiworld-sticky-buy": {
+      "type": "aiworld-sticky-buy-bar",
+      "settings": {
+        "button_label": "Add to cart"
+      }
+    },
+    "aiworld-hero": {
+      "type": "aiworld-product-banner",
+      "settings": {
+        "image": "shopify://shop_images/phone-not-connecting-to-carplay.webp",
+        "eyebrow": "AIWORLD Screen X10",
+        "heading": "Redefine Your Screen. Elevate Your Drive.",
+        "text": "<p>A smarter display for clearer navigation, better entertainment, and every journey in between.</p>",
+        "primary_label": "Shop now",
+        "primary_link": "",
+        "secondary_label": "Explore features",
+        "secondary_link": "#shopify-section-aiworld-intro",
+        "content_position": "center",
+        "text_alignment": "center",
+        "horizontal_offset": 0,
+        "copy_width": 540,
+        "height": 520,
+        "overlay_opacity": 55,
+        "accent_color": "#0787f9"
+      }
+    },
+    "aiworld_product_banner_nMitA7": {
+      "type": "aiworld-product-banner",
+      "settings": {
+        "image": "shopify://shop_images/phone-not-connecting-to-carplay.webp",
+        "eyebrow": "AIWORLD Screen X10",
+        "heading": "Redefine Your Screen. Elevate Your Drive.",
+        "text": "<p>A smarter display for clearer navigation, better entertainment, and every journey in between.</p>",
+        "primary_label": "Shop now",
+        "primary_link": "",
+        "secondary_label": "Explore features",
+        "secondary_link": "#shopify-section-aiworld-intro",
+        "content_position": "center",
+        "text_alignment": "center",
+        "horizontal_offset": 0,
+        "copy_width": 540,
+        "height": 520,
+        "overlay_opacity": 55,
+        "accent_color": "#0787f9"
+      }
+    },
+    "aiworld-faq": {
+      "type": "aiworld-product-faq",
+      "blocks": {
+        "faq-1": {
+          "type": "faq",
+          "settings": {
+            "question": "Will it work with my car?",
+            "answer": "<p>It is designed for vehicles with the appropriate power input. Check your vehicle and product requirements before purchasing.</p>",
+            "open": false
+          }
+        },
+        "faq-2": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I connect a backup camera?",
+            "answer": "<p>Yes, when the selected product and camera meet the required connection specifications.</p>",
+            "open": false
+          }
+        },
+        "faq-3": {
+          "type": "faq",
+          "settings": {
+            "question": "How does the audio work?",
+            "answer": "<p>Audio can be configured through the supported vehicle or device output options shown in the product details.</p>",
+            "open": false
+          }
+        },
+        "faq-4": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Shipping estimates are shown at checkout and may vary by destination.</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3",
+        "faq-4"
+      ],
+      "settings": {
+        "eyebrow": "Questions, answered",
+        "heading": "Got questions?",
+        "text": "<p>Here are some of the things drivers ask most.</p>",
+        "background_color": "#ffffff"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Other industry favorites",
+        "heading_size": "h2",
+        "products_to_show": 5,
+        "columns_desktop": 5,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 44
+      }
+    },
+    "disclosures": {
+      "type": "disclosures",
+      "settings": {
+        "heading": "Disclosures",
+        "heading_size": "h2",
+        "open_by_default": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "178937237118060a23": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_eQYEQn": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_eQYEQn"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "aiworld-newsletter": {
+      "type": "aiworld-product-newsletter",
+      "disabled": true,
+      "settings": {
+        "heading": "Stay one step ahead.",
+        "text": "<p>Get product updates, useful tips, and smarter driving inspiration.</p>",
+        "placeholder": "Your email address",
+        "button_label": "Subscribe",
+        "background_color": "#0787f9"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "aiworld-sticky-buy",
+    "aiworld-hero",
+    "aiworld_product_banner_nMitA7",
+    "aiworld-faq",
+    "related-products",
+    "disclosures",
+    "178937237118060a23",
+    "aiworld-newsletter"
+  ]
+}
