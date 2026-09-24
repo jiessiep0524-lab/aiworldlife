@@ -186,8 +186,34 @@
         "button_label": "Add to cart"
       }
     },
+    "aiworld-image-stack": {
+      "type": "aiworld-product-image-stack",
+      "blocks": {
+        "image-1": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "mobile_image": "",
+            "alt_text": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image-1"
+      ],
+      "settings": {
+        "background_color": "#ffffff",
+        "max_width": 1200,
+        "gap": 0,
+        "image_radius": 0,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "aiworld-hero": {
       "type": "aiworld-product-banner",
+      "disabled": true,
       "settings": {
         "eyebrow": "AIWORLD Screen X10",
         "heading": "Redefine Your Screen. Elevate Your Drive.",
@@ -207,6 +233,7 @@
     },
     "aiworld-intro": {
       "type": "aiworld-product-intro",
+      "disabled": true,
       "blocks": {
         "stat-1": {
           "type": "stat",
@@ -269,6 +296,7 @@
     },
     "aiworld-cards": {
       "type": "aiworld-product-cards",
+      "disabled": true,
       "blocks": {
         "card-1": {
           "type": "card",
@@ -316,6 +344,7 @@
     },
     "aiworld-features": {
       "type": "aiworld-product-feature-grid",
+      "disabled": true,
       "blocks": {
         "feature-1": {
           "type": "feature",
@@ -359,6 +388,7 @@
     },
     "aiworld-icons": {
       "type": "aiworld-product-icons",
+      "disabled": true,
       "blocks": {
         "item-1": {
           "type": "item",
@@ -423,6 +453,7 @@
     },
     "aiworld-faq": {
       "type": "aiworld-product-faq",
+      "disabled": true,
       "blocks": {
         "faq-1": {
           "type": "faq",
@@ -472,6 +503,7 @@
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "Other industry favorites",
         "heading_size": "h2",
@@ -535,6 +567,7 @@
     },
     "disclosures": {
       "type": "disclosures",
+      "disabled": true,
       "settings": {
         "heading": "Disclosures",
         "heading_size": "h2",
@@ -546,6 +579,7 @@
     },
     "178937237118060a23": {
       "type": "apps",
+      "disabled": true,
       "blocks": {
         "judge_me_reviews_review_widget_eQYEQn": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
@@ -579,6 +613,7 @@
   "order": [
     "main",
     "aiworld-sticky-buy",
+    "aiworld-image-stack",
     "aiworld-hero",
     "aiworld-intro",
     "aiworld-cards",

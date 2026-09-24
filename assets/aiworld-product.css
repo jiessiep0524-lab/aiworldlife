@@ -1949,6 +1949,35 @@ product-info .aiworld-before-buy__panel,
   display: none;
 }
 
+.aiworld-product-image-stack {
+  background: var(--aiworld-image-stack-bg, #fff);
+  padding: var(--aiworld-image-stack-top, 0) 0 var(--aiworld-image-stack-bottom, 0);
+}
+
+.aiworld-product-image-stack__inner {
+  width: min(calc(100% - 2rem), var(--aiworld-image-stack-width, 1200px));
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--aiworld-image-stack-gap, 0);
+}
+
+.aiworld-product-image-stack__item {
+  overflow: hidden;
+  border-radius: var(--aiworld-image-stack-radius, 0);
+}
+
+.aiworld-product-image-stack__item a,
+.aiworld-product-image-stack__item picture,
+.aiworld-product-image-stack__item img {
+  display: block;
+}
+
+.aiworld-product-image-stack__item img {
+  width: 100%;
+  height: auto;
+}
+
 @media screen and (max-width: 749px) {
   .aiworld-sticky-buy:not([hidden]) {
     display: block;
