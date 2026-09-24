@@ -15,8 +15,8 @@
     <div class="trade-entertainment__panels">
       {% for block in section.blocks %}
         <div id="EntertainmentPanel-{{ section.id }}-{{ block.id }}" class="trade-entertainment__panel{% if forloop.first %} is-active{% endif %}" role="tabpanel" aria-labelledby="EntertainmentTab-{{ section.id }}-{{ block.id }}" data-entertainment-panel="{{ block.id }}"{% unless forloop.first %} hidden{% endunless %}>
-          <div class="trade-entertainment__cards">
-            <article class="trade-entertainment__card">
+          <div class="trade-entertainment__cards" role="region" aria-roledescription="carousel" aria-label="{{ section.settings.carousel_label | escape }}: {{ block.settings.tab_label | escape }}" data-entertainment-track tabindex="0">
+            <article id="EntertainmentCard-{{ section.id }}-{{ block.id }}-1" class="trade-entertainment__card" data-entertainment-card role="group" aria-roledescription="slide" aria-label="{{ section.settings.slide_label | escape }} 1 of 3">
               {% if block.settings.image_1 != blank %}
                 {{ block.settings.image_1 | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '480,800,1200,1600', sizes: '(min-width: 990px) 33vw, 88vw', alt: block.settings.title_1 | escape }}
               {% else %}
@@ -27,7 +27,7 @@
                 <p>{{ block.settings.text_1 | escape }}</p>
               </div>
             </article>
-            <article class="trade-entertainment__card">
+            <article id="EntertainmentCard-{{ section.id }}-{{ block.id }}-2" class="trade-entertainment__card" data-entertainment-card role="group" aria-roledescription="slide" aria-label="{{ section.settings.slide_label | escape }} 2 of 3">
               {% if block.settings.image_2 != blank %}
                 {{ block.settings.image_2 | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '480,800,1200,1600', sizes: '(min-width: 990px) 33vw, 88vw', alt: block.settings.title_2 | escape }}
               {% else %}
@@ -38,7 +38,7 @@
                 <p>{{ block.settings.text_2 | escape }}</p>
               </div>
             </article>
-            <article class="trade-entertainment__card">
+            <article id="EntertainmentCard-{{ section.id }}-{{ block.id }}-3" class="trade-entertainment__card" data-entertainment-card role="group" aria-roledescription="slide" aria-label="{{ section.settings.slide_label | escape }} 3 of 3">
               {% if block.settings.image_3 != blank %}
                 {{ block.settings.image_3 | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '480,800,1200,1600', sizes: '(min-width: 990px) 33vw, 88vw', alt: block.settings.title_3 | escape }}
               {% else %}
@@ -49,6 +49,11 @@
                 <p>{{ block.settings.text_3 | escape }}</p>
               </div>
             </article>
+          </div>
+          <div class="trade-entertainment__progress" role="group" aria-label="{{ section.settings.progress_label | escape }}" data-entertainment-progress>
+            {% for i in (1..3) %}
+              <button type="button" class="trade-entertainment__progress-dot{% if forloop.first %} is-active{% endif %}" data-entertainment-progress-dot="{{ forloop.index0 }}" aria-label="{{ section.settings.slide_label | escape }} {{ forloop.index }} of 3" aria-current="{% if forloop.first %}true{% else %}false{% endif %}"></button>
+            {% endfor %}
           </div>
         </div>
       {% endfor %}
@@ -63,6 +68,57 @@
     root.dataset.entertainmentReady = 'true';
     const tabs = [...root.querySelectorAll('[data-entertainment-tab]')];
     const panels = [...root.querySelectorAll('[data-entertainment-panel]')];
+    const tracks = new Map();
+
+    const setTrackState = (track, index) => {
+      track.querySelectorAll('[data-entertainment-progress-dot]').forEach((dot, dotIndex) => {
+        const active = dotIndex === index;
+        dot.classList.toggle('is-active', active);
+        dot.setAttribute('aria-current', active ? 'true' : 'false');
+      });
+    };
+
+    const getClosestCard = (track, cards) => {
+      const left = track.scrollLeft;
+      return cards.reduce((closest, card, index) => {
+        const distance = Math.abs(card.offsetLeft - left);
+        return distance < closest.distance ? { index, distance } : closest;
+      }, { index: 0, distance: Infinity }).index;
+    };
+
+    const initTrack = (panel) => {
+      const track = panel.querySelector('[data-entertainment-track]');
+      const cards = [...panel.querySelectorAll('[data-entertainment-card]')];
+      if (!track || !cards.length) return;
+      const goTo = (requestedIndex, behavior = 'smooth') => {
+        const index = Math.max(0, Math.min(requestedIndex, cards.length - 1));
+        track.scrollTo({ left: cards[index].offsetLeft, behavior });
+        setTrackState(track, index);
+      };
+      const sync = () => setTrackState(track, getClosestCard(track, cards));
+      const dots = [...panel.querySelectorAll('[data-entertainment-progress-dot]')];
+      dots.forEach((dot) => dot.addEventListener('click', () => goTo(parseInt(dot.dataset.entertainmentProgressDot, 10))));
+      track.addEventListener('keydown', (event) => {
+        const current = getClosestCard(track, cards);
+        if (event.key === 'ArrowRight') { event.preventDefault(); goTo(current + 1); }
+        if (event.key === 'ArrowLeft') { event.preventDefault(); goTo(current - 1); }
+        if (event.key === 'Home') { event.preventDefault(); goTo(0); }
+        if (event.key === 'End') { event.preventDefault(); goTo(cards.length - 1); }
+      });
+      track.addEventListener('scroll', sync, { passive: true });
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (visible) setTrackState(track, cards.indexOf(visible.target));
+        }, { root: track, threshold: [0.6] });
+        cards.forEach((card) => observer.observe(card));
+      }
+      setTrackState(track, 0);
+      tracks.set(panel, { reset: () => goTo(0, 'auto') });
+    };
+
+    panels.forEach(initTrack);
+
     const activate = (id, moveFocus) => {
       tabs.forEach((tab) => {
         const active = tab.dataset.entertainmentTab === id;
@@ -74,9 +130,18 @@
         const active = panel.dataset.entertainmentPanel === id;
         panel.classList.toggle('is-active', active);
         panel.hidden = !active;
+        if (active) tracks.get(panel)?.reset();
       });
     };
-    tabs.forEach((tab) => tab.addEventListener('click', () => activate(tab.dataset.entertainmentTab, false)));
+    tabs.forEach((tab, tabIndex) => {
+      tab.addEventListener('click', () => activate(tab.dataset.entertainmentTab, false));
+      tab.addEventListener('keydown', (event) => {
+        if (!['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (tabIndex + (event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1) + tabs.length) % tabs.length;
+        activate(tabs[nextIndex].dataset.entertainmentTab, true);
+      });
+    });
   })();
 </script>
 
@@ -91,6 +156,9 @@
     { "type": "text", "id": "heading", "label": "Heading", "default": "Entertainment Wherever You Go" },
     { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Make your dashboard feel like a tablet. Movies, games and apps all at your fingertips." },
     { "type": "text", "id": "tabs_label", "label": "Tabs accessibility label", "default": "Entertainment features" },
+    { "type": "text", "id": "carousel_label", "label": "Carousel accessibility label", "default": "Entertainment showcase" },
+    { "type": "text", "id": "progress_label", "label": "Progress accessibility label", "default": "Entertainment card navigation" },
+    { "type": "text", "id": "slide_label", "label": "Slide accessibility label", "default": "Card" },
     { "type": "color", "id": "background", "label": "Background", "default": "#f5f8fb" },
     { "type": "color", "id": "accent_color", "label": "Accent color", "default": "#0787f9" },
     { "type": "color", "id": "text_color", "label": "Text color", "default": "#06182a" },

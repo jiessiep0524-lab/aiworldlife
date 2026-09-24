@@ -391,6 +391,10 @@ body .trade-entertainment__tab:focus-visible { outline: 2px solid var(--entertai
 body .trade-entertainment__panel { min-width: 0; }
 body .trade-entertainment__panel[hidden] { display: none; }
 body .trade-entertainment__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+body .trade-entertainment__progress { display: none; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; }
+body .trade-entertainment__progress-dot { display: block; width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px; background: #BFC7D0; cursor: pointer; transition: width .2s ease, background-color .2s ease; }
+body .trade-entertainment__progress-dot.is-active { width: 72px; background: var(--entertainment-accent, #0787F9); }
+body .trade-entertainment__progress-dot:focus-visible { outline: 2px solid var(--entertainment-accent, #0787F9); outline-offset: 3px; }
 body .trade-entertainment__card { position: relative; min-width: 0; aspect-ratio: .78; overflow: hidden; border-radius: 18px; background: #0F2D49; box-shadow: 0 12px 30px rgba(16,29,45,.12); isolation: isolate; }
 body .trade-entertainment__card::after { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(6,24,42,0) 35%, rgba(6,24,42,.9) 100%); content: ''; }
 body .trade-entertainment__card img,
@@ -463,15 +467,13 @@ body .content-for-layout > .shopify-section > .trade-story .trade-story__shade {
   body .trade-entertainment__head .trade-subheading { font-size: 14px; }
   body .trade-entertainment__tabs { position: static; display: flex; width: 100%; max-width: 100%; justify-content: stretch; overflow: visible; margin: 0 auto 24px; border-radius: var(--entertainment-tab-radius); transform: none; }
   body .trade-entertainment__tab { flex: 1 1 0; min-width: 0; min-height: 48px; padding: 8px 5px; border-radius: var(--entertainment-tab-radius); font-size: clamp(10px, 2.9vw, 12px); line-height: 1.2; white-space: normal; overflow-wrap: anywhere; }
-  body .trade-entertainment__cards { display: grid; min-width: 0; width: 100%; max-width: 100%; grid-auto-flow: column; grid-auto-columns: minmax(78vw, 1fr); grid-template-columns: none; grid-template-rows: 1fr; gap: 14px; overflow-x: auto; overflow-y: hidden; padding: 0 2px 5px; scroll-snap-type: x mandatory; scroll-padding-inline: 2px; -webkit-overflow-scrolling: touch; scrollbar-color: var(--brand-primary) #DCE4ED; scrollbar-width: thin; }
-  body .trade-entertainment__cards::-webkit-scrollbar { height: 2px; }
-  body .trade-entertainment__cards::-webkit-scrollbar-track { background: #DCE4ED; }
-  body .trade-entertainment__cards::-webkit-scrollbar-thumb { border-radius: 0; background: var(--brand-primary); }
-  body .trade-entertainment__cards::-webkit-scrollbar-button { display: none; width: 0; }
+  body .trade-entertainment__cards { display: grid; min-width: 0; width: 100%; max-width: 100%; grid-auto-flow: column; grid-auto-columns: minmax(78vw, 1fr); grid-template-columns: none; grid-template-rows: 1fr; gap: 14px; overflow-x: auto; overflow-y: hidden; padding: 0 2px 5px; scroll-snap-type: x mandatory; scroll-snap-stop: always; scroll-padding-inline: 2px; -webkit-overflow-scrolling: touch; scrollbar-width: none; touch-action: pan-x; overscroll-behavior-inline: contain; }
+  body .trade-entertainment__cards::-webkit-scrollbar { display: none; width: 0; height: 0; }
   body .trade-entertainment__card { aspect-ratio: .82; scroll-snap-align: start; border-radius: 14px; }
   body .trade-entertainment__card-copy { right: 18px; bottom: 18px; left: 18px; }
   body .trade-entertainment__card-copy h3 { font-size: 16px; }
   body .trade-entertainment__card-copy p { font-size: 13px; }
+  body .trade-entertainment__progress { display: flex; }
   body .trade-social__grid { display: grid; min-width: 0; width: 100%; max-width: 100%; grid-auto-flow: column; grid-auto-columns: minmax(76vw, 1fr); grid-template-columns: none; grid-template-rows: 1fr; gap: 14px; overflow-x: auto; overflow-y: hidden; padding-bottom: 3px; scroll-padding-inline: 2px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-color: var(--brand-primary) #DCE4ED; scrollbar-width: thin; touch-action: pan-x; }
   body .trade-social__grid::-webkit-scrollbar { height: 2px; }
   body .trade-social__grid::-webkit-scrollbar-track { background: #DCE4ED; }
