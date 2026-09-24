@@ -34,8 +34,8 @@
           "type": "price",
           "settings": {
             "show_taxes_included": true,
-            "desktop_price_size": 52,
-            "mobile_price_size": 45,
+            "desktop_price_size": 44,
+            "mobile_price_size": 32,
             "compare_price_size": 25,
             "tax_badge_size": 21
           }
