@@ -53,6 +53,9 @@
     bar.dataset.initialized = 'true';
 
     const productInfo = document.querySelector('product-info');
+    const detailsStart = document.querySelector('[data-sticky-buy-stop]');
+    const footer = document.querySelector('footer');
+    const mobileQuery = window.matchMedia('(max-width: 749px)');
     const variantInput = bar.querySelector('[data-sticky-variant-id]');
     const price = bar.querySelector('[data-sticky-price]');
     const buyButton = bar.querySelector('[data-sticky-buy-button]');
@@ -64,6 +67,11 @@
     } catch (error) {
       variants = {};
     }
+
+    const setVisible = (visible) => {
+      bar.toggleAttribute('hidden', !visible);
+      document.documentElement.classList.toggle('aiworld-sticky-buy-active', visible);
+    };
 
     const syncVariant = () => {
       const sourceInput = document.querySelector('product-info form[action*="/cart/add"] input[name="id"]');
@@ -77,14 +85,24 @@
     };
 
     const syncVisibility = () => {
-      if (!productInfo) return;
+      if (!productInfo || !mobileQuery.matches) {
+        setVisible(false);
+        return;
+      }
       const productBounds = productInfo.getBoundingClientRect();
-      bar.toggleAttribute('hidden', productBounds.bottom >= window.innerHeight * 0.72);
+      const detailsBounds = detailsStart?.getBoundingClientRect();
+      const footerBounds = footer?.getBoundingClientRect();
+      const productHasScrolled = productBounds.bottom <= window.innerHeight * 0.92;
+      const detailsStarted = detailsBounds && detailsBounds.top <= window.innerHeight * 0.9;
+      const footerStarted = footerBounds && footerBounds.top <= window.innerHeight;
+      setVisible(productHasScrolled && !detailsStarted && !footerStarted);
     };
 
     productInfo?.addEventListener('change', () => window.requestAnimationFrame(syncVariant));
     window.addEventListener('scroll', syncVisibility, { passive: true });
     window.addEventListener('resize', syncVisibility);
+    if (mobileQuery.addEventListener) mobileQuery.addEventListener('change', syncVisibility);
+    else mobileQuery.addListener(syncVisibility);
     syncVariant();
     syncVisibility();
   })();

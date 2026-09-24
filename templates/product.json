@@ -168,7 +168,7 @@
     "aiworld-sticky-buy": {
       "type": "aiworld-sticky-buy-bar",
       "settings": {
-        "button_label": "Buy Now"
+        "button_label": "Add to cart"
       }
     },
     "aiworld-hero": {

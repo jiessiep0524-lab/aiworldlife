@@ -1,0 +1,269 @@
+<section class="aiworld-support" id="aiworld-support">
+  <div class="aiworld-support__hero">
+    <div class="aiworld-support__container aiworld-support__hero-grid">
+      <div class="aiworld-support__hero-copy">
+        {%- if section.settings.eyebrow != blank -%}<p class="aiworld-support__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h1>{{ section.settings.heading | escape }}</h1>
+        <div class="aiworld-support__hero-text rte">{{ section.settings.intro }}</div>
+        <div class="aiworld-support__actions">
+          <a class="aiworld-support__button aiworld-support__button--primary" href="#aiworld-support-firmware">{{ section.settings.firmware_cta | escape }}</a>
+          <a class="aiworld-support__button aiworld-support__button--ghost" href="#aiworld-support-contact">{{ section.settings.contact_cta | escape }}</a>
+        </div>
+      </div>
+      <div class="aiworld-support__hero-media">
+        {%- if section.settings.hero_image != blank -%}
+          {{ section.settings.hero_image | image_url: width: 1200 | image_tag: widths: '480,720,960,1200', sizes: '(min-width: 990px) 44vw, 100vw', loading: 'eager', alt: section.settings.heading | escape }}
+        {%- else -%}
+          <div class="aiworld-support__hero-placeholder" aria-hidden="true"><span>AIWORLD</span><strong>SUPPORT</strong></div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="aiworld-support__container">
+    {%- if section.settings.announcement != blank -%}
+      <div class="aiworld-support__announcement" role="status">
+        <span class="aiworld-support__announcement-mark" aria-hidden="true">!</span>
+        <div class="rte">{{ section.settings.announcement }}</div>
+      </div>
+    {%- endif -%}
+
+    <nav class="aiworld-support__quick-links" aria-label="Support sections">
+      <a href="#aiworld-support-firmware"><span>01</span>{{ section.settings.firmware_nav_label | escape }}</a>
+      <a href="#aiworld-support-steps"><span>02</span>{{ section.settings.steps_nav_label | escape }}</a>
+      <a href="#aiworld-support-faq"><span>03</span>{{ section.settings.faq_nav_label | escape }}</a>
+      <a href="#aiworld-support-contact"><span>04</span>{{ section.settings.contact_nav_label | escape }}</a>
+    </nav>
+
+    <section class="aiworld-support__section" id="aiworld-support-firmware">
+      <div class="aiworld-support__section-heading">
+        <p class="aiworld-support__eyebrow">{{ section.settings.firmware_eyebrow | escape }}</p>
+        <h2>{{ section.settings.firmware_heading | escape }}</h2>
+        <div class="rte">{{ section.settings.firmware_text }}</div>
+      </div>
+      <div class="aiworld-support__product-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'product' -%}
+            <article class="aiworld-support__product-card" {{ block.shopify_attributes }}>
+              <div class="aiworld-support__product-media">
+                {%- if block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 900 | image_tag: widths: '360,540,720,900', sizes: '(min-width: 990px) 32vw, 100vw', loading: 'lazy', alt: block.settings.product_name | escape }}
+                {%- else -%}
+                  <div class="aiworld-support__product-placeholder" aria-hidden="true"><span>AIWORLD</span><strong>{{ block.settings.model | escape }}</strong></div>
+                {%- endif -%}
+              </div>
+              <div class="aiworld-support__product-content">
+                {%- if block.settings.badge != blank -%}<span class="aiworld-support__badge">{{ block.settings.badge | escape }}</span>{%- endif -%}
+                <h3>{{ block.settings.product_name | escape }}</h3>
+                {%- if block.settings.model != blank -%}<p class="aiworld-support__model">{{ block.settings.model | escape }}</p>{%- endif -%}
+                <div class="aiworld-support__product-description rte">{{ block.settings.description }}</div>
+                {%- if block.settings.firmware_version != blank -%}<p class="aiworld-support__version"><span>{{ section.settings.version_label | escape }}</span> {{ block.settings.firmware_version | escape }}</p>{%- endif -%}
+                <div class="aiworld-support__card-actions">
+                  {%- if block.settings.firmware_url != blank -%}
+                    <a class="aiworld-support__button aiworld-support__button--primary" href="{{ block.settings.firmware_url }}" target="_blank" rel="noopener">{{ block.settings.firmware_label | escape }}</a>
+                  {%- else -%}
+                    <span class="aiworld-support__button aiworld-support__button--disabled">{{ block.settings.firmware_pending_label | escape }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.guide_url != blank -%}<a class="aiworld-support__text-link" href="{{ block.settings.guide_url }}">{{ block.settings.guide_label | escape }} <span aria-hidden="true">→</span></a>{%- endif -%}
+                </div>
+                {%- if block.settings.instructions != blank -%}
+                  <details class="aiworld-support__instructions">
+                    <summary>{{ block.settings.instructions_label | escape }}</summary>
+                    <div class="rte">{{ block.settings.instructions }}</div>
+                  </details>
+                {%- endif -%}
+              </div>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </section>
+
+    <section class="aiworld-support__section aiworld-support__steps-section" id="aiworld-support-steps">
+      <div class="aiworld-support__section-heading">
+        <p class="aiworld-support__eyebrow">{{ section.settings.steps_eyebrow | escape }}</p>
+        <h2>{{ section.settings.steps_heading | escape }}</h2>
+        <div class="rte">{{ section.settings.steps_text }}</div>
+      </div>
+      <div class="aiworld-support__steps">
+        <article class="aiworld-support__step"><span>01</span><h3>{{ section.settings.step_one_heading | escape }}</h3><div class="rte">{{ section.settings.step_one_text }}</div></article>
+        <article class="aiworld-support__step"><span>02</span><h3>{{ section.settings.step_two_heading | escape }}</h3><div class="rte">{{ section.settings.step_two_text }}</div></article>
+        <article class="aiworld-support__step"><span>03</span><h3>{{ section.settings.step_three_heading | escape }}</h3><div class="rte">{{ section.settings.step_three_text }}</div></article>
+      </div>
+    </section>
+
+    <section class="aiworld-support__section aiworld-support__resources-section">
+      <div class="aiworld-support__section-heading">
+        <p class="aiworld-support__eyebrow">{{ section.settings.resources_eyebrow | escape }}</p>
+        <h2>{{ section.settings.resources_heading | escape }}</h2>
+        <div class="rte">{{ section.settings.resources_text }}</div>
+      </div>
+      <div class="aiworld-support__resource-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'resource' -%}
+            <article class="aiworld-support__resource-card" {{ block.shopify_attributes }}>
+              <span class="aiworld-support__resource-number">{{ forloop.index }}</span>
+              <h3>{{ block.settings.heading | escape }}</h3>
+              <div class="rte">{{ block.settings.text }}</div>
+              {%- if block.settings.link != blank -%}<a class="aiworld-support__text-link" href="{{ block.settings.link }}">{{ block.settings.link_label | escape }} <span aria-hidden="true">→</span></a>{%- endif -%}
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </section>
+
+    <section class="aiworld-support__section aiworld-support__faq-section" id="aiworld-support-faq">
+      <div class="aiworld-support__section-heading">
+        <p class="aiworld-support__eyebrow">{{ section.settings.faq_eyebrow | escape }}</p>
+        <h2>{{ section.settings.faq_heading | escape }}</h2>
+        <div class="rte">{{ section.settings.faq_text }}</div>
+      </div>
+      <div class="aiworld-support__faq-list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'faq' -%}
+            <details {% if block.settings.open %}open{% endif %} {{ block.shopify_attributes }}>
+              <summary>{{ block.settings.question | escape }}<span aria-hidden="true">+</span></summary>
+              <div class="aiworld-support__faq-answer rte">{{ block.settings.answer }}</div>
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </section>
+
+    <section class="aiworld-support__contact" id="aiworld-support-contact">
+      <div class="aiworld-support__contact-copy">
+        <p class="aiworld-support__eyebrow">{{ section.settings.contact_eyebrow | escape }}</p>
+        <h2>{{ section.settings.contact_heading | escape }}</h2>
+        <div class="rte">{{ section.settings.contact_text }}</div>
+        {%- if section.settings.support_email != blank -%}<a class="aiworld-support__contact-email" href="mailto:{{ section.settings.support_email | escape }}">{{ section.settings.support_email | escape }}</a>{%- endif -%}
+        {%- if section.settings.response_time != blank -%}<p class="aiworld-support__response">{{ section.settings.response_time | escape }}</p>{%- endif -%}
+      </div>
+      <div class="aiworld-support__form-wrap">
+        {%- form 'contact', id: 'aiworld-support-form', class: 'aiworld-support__form' -%}
+          {%- if form.posted_successfully? -%}<p class="aiworld-support__form-message" role="status">{{ section.settings.success_message | escape }}</p>{%- endif -%}
+          {{ form.errors | default_errors }}
+          <input type="hidden" name="contact[tags]" value="AIWORLD support">
+          <div class="aiworld-support__form-grid">
+            <div><label for="aiworld-support-name-{{ section.id }}">{{ section.settings.name_label | escape }}</label><input id="aiworld-support-name-{{ section.id }}" type="text" name="contact[name]" autocomplete="name" required></div>
+            <div><label for="aiworld-support-email-{{ section.id }}">{{ section.settings.email_label | escape }}</label><input id="aiworld-support-email-{{ section.id }}" type="email" name="contact[email]" autocomplete="email" required></div>
+            <div><label for="aiworld-support-order-{{ section.id }}">{{ section.settings.order_label | escape }}</label><input id="aiworld-support-order-{{ section.id }}" type="text" name="contact[order_number]" autocomplete="off"></div>
+            <div><label for="aiworld-support-device-{{ section.id }}">{{ section.settings.device_label | escape }}</label><input id="aiworld-support-device-{{ section.id }}" type="text" name="contact[device]" autocomplete="off"></div>
+          </div>
+          <label for="aiworld-support-message-{{ section.id }}">{{ section.settings.message_label | escape }}</label>
+          <textarea id="aiworld-support-message-{{ section.id }}" name="contact[body]" rows="6" required></textarea>
+          <button class="aiworld-support__button aiworld-support__button--primary" type="submit">{{ section.settings.submit_label | escape }}</button>
+        {%- endform -%}
+      </div>
+    </section>
+
+    {%- if page.content != blank -%}<div class="aiworld-support__page-content rte">{{ page.content }}</div>{%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "AIWORLD Support Center",
+  "tag": "section",
+  "class": "section-aiworld-support-center",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Hero eyebrow", "default": "AIWORLD SUPPORT CENTER" },
+    { "type": "text", "id": "heading", "label": "Hero heading", "default": "Firmware updates & after-sales support" },
+    { "type": "richtext", "id": "intro", "label": "Hero introduction", "default": "<p>Find firmware updates, setup guidance, and practical help for your AIWORLD device.</p>" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image" },
+    { "type": "text", "id": "firmware_cta", "label": "Firmware button label", "default": "Find firmware" },
+    { "type": "text", "id": "contact_cta", "label": "Contact button label", "default": "Get support" },
+    { "type": "richtext", "id": "announcement", "label": "Announcement", "default": "<p>Keep this page bookmarked for firmware releases, setup notes, and service updates.</p>" },
+    { "type": "text", "id": "firmware_nav_label", "label": "Firmware navigation label", "default": "Firmware" },
+    { "type": "text", "id": "steps_nav_label", "label": "Steps navigation label", "default": "How to update" },
+    { "type": "text", "id": "faq_nav_label", "label": "FAQ navigation label", "default": "FAQs" },
+    { "type": "text", "id": "contact_nav_label", "label": "Contact navigation label", "default": "Contact" },
+    { "type": "text", "id": "firmware_eyebrow", "label": "Firmware eyebrow", "default": "Firmware downloads" },
+    { "type": "text", "id": "firmware_heading", "label": "Firmware heading", "default": "Choose your AIWORLD device" },
+    { "type": "richtext", "id": "firmware_text", "label": "Firmware introduction", "default": "<p>Select your model to download the latest supported firmware and review the upgrade notes.</p>" },
+    { "type": "text", "id": "version_label", "label": "Version label", "default": "Latest version" },
+    { "type": "text", "id": "steps_eyebrow", "label": "Steps eyebrow", "default": "Before you update" },
+    { "type": "text", "id": "steps_heading", "label": "Steps heading", "default": "A safer firmware upgrade" },
+    { "type": "richtext", "id": "steps_text", "label": "Steps introduction", "default": "<p>Use stable power and follow the model-specific instructions shown on the download card.</p>" },
+    { "type": "text", "id": "step_one_heading", "label": "Step 1 heading", "default": "Confirm your model" },
+    { "type": "richtext", "id": "step_one_text", "label": "Step 1 text", "default": "<p>Check the model name and current version in your device settings before downloading.</p>" },
+    { "type": "text", "id": "step_two_heading", "label": "Step 2 heading", "default": "Use stable power" },
+    { "type": "richtext", "id": "step_two_text", "label": "Step 2 text", "default": "<p>Keep the device connected to a stable power source and do not unplug it during the update.</p>" },
+    { "type": "text", "id": "step_three_heading", "label": "Step 3 heading", "default": "Complete the restart" },
+    { "type": "richtext", "id": "step_three_text", "label": "Step 3 text", "default": "<p>Wait for the device to restart fully, then test CarPlay, Android Auto, audio, and camera features.</p>" },
+    { "type": "text", "id": "resources_eyebrow", "label": "Resources eyebrow", "default": "Support resources" },
+    { "type": "text", "id": "resources_heading", "label": "Resources heading", "default": "More ways to get help" },
+    { "type": "richtext", "id": "resources_text", "label": "Resources introduction", "default": "<p>Use the guides below for setup, troubleshooting, and order support.</p>" },
+    { "type": "text", "id": "faq_eyebrow", "label": "FAQ eyebrow", "default": "Frequently asked questions" },
+    { "type": "text", "id": "faq_heading", "label": "FAQ heading", "default": "Need a quick answer?" },
+    { "type": "richtext", "id": "faq_text", "label": "FAQ introduction", "default": "<p>Start here for common firmware, connection, and installation questions.</p>" },
+    { "type": "text", "id": "contact_eyebrow", "label": "Contact eyebrow", "default": "Personalized assistance" },
+    { "type": "text", "id": "contact_heading", "label": "Contact heading", "default": "Tell us what you need" },
+    { "type": "richtext", "id": "contact_text", "label": "Contact introduction", "default": "<p>Share your device model, order number, and a description of the issue. Our support team will follow up by email.</p>" },
+    { "type": "text", "id": "support_email", "label": "Support email", "default": "support@aiworldlife.com" },
+    { "type": "text", "id": "response_time", "label": "Response time", "default": "Typical response time: 1–2 business days" },
+    { "type": "text", "id": "name_label", "label": "Name field label", "default": "Name" },
+    { "type": "text", "id": "email_label", "label": "Email field label", "default": "Email" },
+    { "type": "text", "id": "order_label", "label": "Order field label", "default": "Order number" },
+    { "type": "text", "id": "device_label", "label": "Device field label", "default": "Device or model" },
+    { "type": "text", "id": "message_label", "label": "Message field label", "default": "How can we help?" },
+    { "type": "text", "id": "submit_label", "label": "Submit button label", "default": "Send support request" },
+    { "type": "text", "id": "success_message", "label": "Success message", "default": "Thanks — your support request has been sent." }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Firmware product",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Product image" },
+        { "type": "text", "id": "badge", "label": "Badge", "default": "AIWORLD" },
+        { "type": "text", "id": "product_name", "label": "Product name", "default": "AIWORLD Screen X10" },
+        { "type": "text", "id": "model", "label": "Model", "default": "9-inch Portable Wireless CarPlay Screen" },
+        { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Firmware, setup, and troubleshooting resources for your AIWORLD portable screen.</p>" },
+        { "type": "text", "id": "firmware_version", "label": "Firmware version" },
+        { "type": "url", "id": "firmware_url", "label": "Firmware download URL", "info": "Upload the firmware file to Content > Files, then paste its URL here." },
+        { "type": "text", "id": "firmware_label", "label": "Firmware button label", "default": "Download firmware" },
+        { "type": "text", "id": "firmware_pending_label", "label": "Pending firmware label", "default": "Firmware coming soon" },
+        { "type": "url", "id": "guide_url", "label": "Setup guide URL" },
+        { "type": "text", "id": "guide_label", "label": "Setup guide label", "default": "View setup guide" },
+        { "type": "text", "id": "instructions_label", "label": "Instructions label", "default": "Upgrade instructions" },
+        { "type": "richtext", "id": "instructions", "label": "Upgrade instructions", "default": "<ol><li>Download the correct firmware for your model.</li><li>Copy the file to the required USB drive or storage device.</li><li>Connect stable power, start the update, and keep the device connected until it restarts.</li></ol>" }
+      ]
+    },
+    {
+      "type": "resource",
+      "name": "Support resource",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Installation guide" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Follow the step-by-step guide for mounting, power, audio, and phone connection.</p>" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Open guide" }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "Support FAQ",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "How do I know which firmware to download?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Match the firmware card to the exact model name shown on your device or order confirmation. Do not install firmware for another model.</p>" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "max_blocks": 18,
+  "presets": [
+    {
+      "name": "AIWORLD Support Center",
+      "blocks": [
+        { "type": "product", "settings": { "product_name": "AIWORLD Screen X10", "model": "9-inch Portable Wireless CarPlay Screen" } },
+        { "type": "resource", "settings": { "heading": "Installation guide", "link": "/pages/installation-guide" } },
+        { "type": "resource", "settings": { "heading": "Shipping and returns", "text": "<p>Review delivery timing, return eligibility, and order policies before contacting support.</p>", "link": "/pages/shipping-policy", "link_label": "View policy" } },
+        { "type": "resource", "settings": { "heading": "Contact support", "text": "<p>Send your device and order details so our team can help resolve the issue faster.</p>", "link": "#aiworld-support-contact", "link_label": "Contact us" } },
+        { "type": "faq", "settings": { "question": "How do I know which firmware to download?" } },
+        { "type": "faq", "settings": { "question": "Can I use the device while it is updating?", "answer": "<p>No. Keep the device powered and do not unplug it until the update and restart are complete.</p>" } },
+        { "type": "faq", "settings": { "question": "What information should I include in a support request?", "answer": "<p>Include your order number, device model, phone model, a short description of the issue, and a photo or video when useful.</p>" } },
+        { "type": "faq", "settings": { "question": "Where can I ask about returns or delivery?", "answer": "<p>Use the contact form below and select the order details that need attention. Our team can help with delivery, returns, and product setup.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

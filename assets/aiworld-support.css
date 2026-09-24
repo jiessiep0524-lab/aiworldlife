@@ -1,0 +1,685 @@
+.aiworld-support {
+  --support-ink: #081a31;
+  --support-muted: #5c6b7d;
+  --support-line: #dbe4ee;
+  --support-soft: #f4f7fb;
+  --support-blue: #0787f9;
+  --support-teal: #16a4a1;
+  background: var(--support-soft);
+  color: var(--support-ink);
+}
+
+.aiworld-support__container {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.aiworld-support__hero {
+  overflow: hidden;
+  background: linear-gradient(135deg, #06182a 0%, #0a2f4f 62%, #0e7a94 100%);
+  color: #fff;
+}
+
+.aiworld-support__hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, .85fr);
+  gap: clamp(32px, 6vw, 88px);
+  align-items: center;
+  min-height: 560px;
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
+.aiworld-support__hero-copy {
+  max-width: 620px;
+}
+
+.aiworld-support__eyebrow {
+  margin: 0 0 14px;
+  color: var(--support-blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.aiworld-support__hero .aiworld-support__eyebrow {
+  color: #72d6ff;
+}
+
+.aiworld-support h1,
+.aiworld-support h2,
+.aiworld-support h3,
+.aiworld-support p {
+  overflow-wrap: anywhere;
+}
+
+.aiworld-support h1 {
+  max-width: 700px;
+  margin: 0;
+  font-size: clamp(42px, 6vw, 78px);
+  letter-spacing: -.055em;
+  line-height: .98;
+}
+
+.aiworld-support h2 {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 48px);
+  letter-spacing: -.04em;
+  line-height: 1.02;
+}
+
+.aiworld-support h3 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.15;
+}
+
+.aiworld-support .rte > *:first-child {
+  margin-top: 0;
+}
+
+.aiworld-support .rte > *:last-child {
+  margin-bottom: 0;
+}
+
+.aiworld-support__hero-text {
+  max-width: 560px;
+  margin-top: 24px;
+  color: rgba(255, 255, 255, .78);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.aiworld-support__actions,
+.aiworld-support__card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.aiworld-support__actions {
+  margin-top: 32px;
+}
+
+.aiworld-support__button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  line-height: 1.1;
+  text-align: center;
+  text-decoration: none;
+  transition: transform .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.aiworld-support__button:hover {
+  transform: translateY(-2px);
+}
+
+.aiworld-support__button--primary {
+  background: var(--support-blue);
+  color: #fff;
+}
+
+.aiworld-support__button--primary:hover {
+  background: #006dce;
+  color: #fff;
+}
+
+.aiworld-support__button--ghost {
+  border-color: rgba(255, 255, 255, .48);
+  color: #fff;
+}
+
+.aiworld-support__button--ghost:hover {
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+}
+
+.aiworld-support__button--disabled {
+  background: #e6edf4;
+  color: #718094;
+  cursor: default;
+}
+
+.aiworld-support__hero-media {
+  position: relative;
+  min-height: 340px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 32px;
+  background: rgba(255, 255, 255, .1);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .2);
+  overflow: hidden;
+}
+
+.aiworld-support__hero-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  object-fit: cover;
+}
+
+.aiworld-support__hero-placeholder,
+.aiworld-support__product-placeholder {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  height: 100%;
+  min-height: 340px;
+  background: radial-gradient(circle at 55% 30%, rgba(114, 214, 255, .8), transparent 28%), linear-gradient(145deg, #081a31, #0d5d78);
+  color: #fff;
+  text-align: center;
+}
+
+.aiworld-support__hero-placeholder span,
+.aiworld-support__product-placeholder span {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .2em;
+}
+
+.aiworld-support__hero-placeholder strong {
+  margin-top: 8px;
+  font-size: clamp(42px, 7vw, 84px);
+  letter-spacing: -.06em;
+  line-height: .9;
+}
+
+.aiworld-support__announcement {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-top: 32px;
+  padding: 18px 22px;
+  border: 1px solid #b9d8ee;
+  border-radius: 16px;
+  background: #e8f6ff;
+  color: #16334f;
+}
+
+.aiworld-support__announcement-mark {
+  display: grid;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--support-blue);
+  color: #fff;
+  font-weight: 800;
+}
+
+.aiworld-support__announcement .rte {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.aiworld-support__quick-links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 24px 0 0;
+}
+
+.aiworld-support__quick-links a {
+  display: flex;
+  min-height: 68px;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 18px;
+  border: 1px solid var(--support-line);
+  border-radius: 16px;
+  background: #fff;
+  color: var(--support-ink);
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.aiworld-support__quick-links a:hover {
+  border-color: var(--support-blue);
+  box-shadow: 0 12px 30px rgba(8, 26, 49, .08);
+  transform: translateY(-2px);
+}
+
+.aiworld-support__quick-links span,
+.aiworld-support__resource-number,
+.aiworld-support__step > span {
+  color: var(--support-blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .1em;
+}
+
+.aiworld-support__section {
+  padding: 96px 0 0;
+  scroll-margin-top: 80px;
+}
+
+.aiworld-support__section-heading {
+  max-width: 700px;
+  margin-bottom: 32px;
+}
+
+.aiworld-support__section-heading .rte {
+  margin-top: 16px;
+  color: var(--support-muted);
+  line-height: 1.6;
+}
+
+.aiworld-support__product-grid,
+.aiworld-support__resource-grid,
+.aiworld-support__steps {
+  display: grid;
+  gap: 20px;
+}
+
+.aiworld-support__product-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.aiworld-support__product-card,
+.aiworld-support__resource-card,
+.aiworld-support__step,
+.aiworld-support__faq-list details {
+  border: 1px solid var(--support-line);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(8, 26, 49, .05);
+}
+
+.aiworld-support__product-card {
+  overflow: hidden;
+}
+
+.aiworld-support__product-media {
+  aspect-ratio: 1.55;
+  overflow: hidden;
+  background: #e8eef5;
+}
+
+.aiworld-support__product-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aiworld-support__product-placeholder {
+  min-height: 100%;
+  background: linear-gradient(145deg, #dcebf3, #a5d8d4);
+  color: #08304d;
+}
+
+.aiworld-support__product-placeholder strong {
+  margin-top: 8px;
+  font-size: clamp(28px, 4vw, 50px);
+  letter-spacing: -.04em;
+}
+
+.aiworld-support__product-content {
+  padding: 28px;
+}
+
+.aiworld-support__badge {
+  display: inline-flex;
+  margin-bottom: 14px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #e3f5ff;
+  color: var(--support-blue);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.aiworld-support__model,
+.aiworld-support__version,
+.aiworld-support__response {
+  color: var(--support-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.aiworld-support__model {
+  margin: 8px 0 0;
+}
+
+.aiworld-support__product-description {
+  margin: 18px 0;
+  color: var(--support-muted);
+  line-height: 1.6;
+}
+
+.aiworld-support__version {
+  margin: 0 0 22px;
+}
+
+.aiworld-support__version span {
+  font-weight: 800;
+  color: var(--support-ink);
+}
+
+.aiworld-support__text-link {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  color: var(--support-blue);
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.aiworld-support__text-link:hover {
+  text-decoration: underline;
+}
+
+.aiworld-support__instructions {
+  margin-top: 24px;
+  border-top: 1px solid var(--support-line);
+}
+
+.aiworld-support__instructions summary {
+  padding-top: 18px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.aiworld-support__instructions .rte {
+  padding-top: 14px;
+  color: var(--support-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.aiworld-support__steps-section {
+  padding-bottom: 12px;
+}
+
+.aiworld-support__steps {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.aiworld-support__step {
+  padding: 28px;
+}
+
+.aiworld-support__step h3 {
+  margin-top: 28px;
+}
+
+.aiworld-support__step .rte {
+  margin-top: 14px;
+  color: var(--support-muted);
+  line-height: 1.6;
+}
+
+.aiworld-support__resource-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.aiworld-support__resource-card {
+  min-height: 220px;
+  padding: 28px;
+}
+
+.aiworld-support__resource-card h3 {
+  margin-top: 24px;
+}
+
+.aiworld-support__resource-card .rte {
+  margin: 14px 0 22px;
+  color: var(--support-muted);
+  line-height: 1.6;
+}
+
+.aiworld-support__faq-list {
+  display: grid;
+  gap: 12px;
+}
+
+.aiworld-support__faq-list details {
+  overflow: hidden;
+}
+
+.aiworld-support__faq-list summary {
+  display: flex;
+  min-height: 70px;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 800;
+  list-style: none;
+}
+
+.aiworld-support__faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.aiworld-support__faq-list summary span {
+  color: var(--support-blue);
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.aiworld-support__faq-list details[open] summary span {
+  transform: rotate(45deg);
+}
+
+.aiworld-support__faq-answer {
+  padding: 0 24px 22px;
+  color: var(--support-muted);
+  line-height: 1.6;
+}
+
+.aiworld-support__contact {
+  display: grid;
+  grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
+  gap: clamp(28px, 6vw, 88px);
+  margin: 96px 0 80px;
+  padding: clamp(28px, 5vw, 64px);
+  border-radius: 28px;
+  background: #06182a;
+  color: #fff;
+  scroll-margin-top: 80px;
+}
+
+.aiworld-support__contact .aiworld-support__eyebrow {
+  color: #72d6ff;
+}
+
+.aiworld-support__contact h2 {
+  font-size: clamp(30px, 4vw, 52px);
+}
+
+.aiworld-support__contact-copy .rte {
+  margin-top: 18px;
+  color: rgba(255, 255, 255, .72);
+  line-height: 1.6;
+}
+
+.aiworld-support__contact-email {
+  display: inline-block;
+  margin-top: 24px;
+  color: #72d6ff;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.aiworld-support__response {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, .6);
+}
+
+.aiworld-support__form-wrap {
+  padding: 24px;
+  border-radius: 20px;
+  background: #fff;
+  color: var(--support-ink);
+}
+
+.aiworld-support__form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.aiworld-support__form label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.aiworld-support__form input,
+.aiworld-support__form textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--support-line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--support-ink);
+  font: inherit;
+  font-size: 15px;
+  padding: 12px 14px;
+}
+
+.aiworld-support__form textarea {
+  margin-bottom: 18px;
+  resize: vertical;
+}
+
+.aiworld-support__form > label {
+  margin-top: 18px;
+}
+
+.aiworld-support__form input:focus-visible,
+.aiworld-support__form textarea:focus-visible,
+.aiworld-support__button:focus-visible,
+.aiworld-support__quick-links a:focus-visible,
+.aiworld-support__text-link:focus-visible {
+  outline: 3px solid rgba(7, 135, 249, .35);
+  outline-offset: 3px;
+}
+
+.aiworld-support__form-message {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #e5f8f1;
+  color: #126245;
+  font-weight: 700;
+}
+
+.aiworld-support__page-content {
+  padding-bottom: 80px;
+}
+
+@media screen and (max-width: 989px) {
+  .aiworld-support__hero-grid {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .aiworld-support__hero-media {
+    min-height: 280px;
+  }
+
+  .aiworld-support__hero-media img,
+  .aiworld-support__hero-placeholder {
+    min-height: 280px;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .aiworld-support__container {
+    width: min(100% - 28px, 620px);
+  }
+
+  .aiworld-support__hero-grid {
+    gap: 30px;
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .aiworld-support h1 {
+    font-size: clamp(38px, 12vw, 58px);
+  }
+
+  .aiworld-support__hero-text {
+    font-size: 16px;
+  }
+
+  .aiworld-support__actions,
+  .aiworld-support__card-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .aiworld-support__button {
+    width: 100%;
+  }
+
+  .aiworld-support__announcement {
+    align-items: flex-start;
+    margin-top: 20px;
+    padding: 16px;
+  }
+
+  .aiworld-support__quick-links,
+  .aiworld-support__product-grid,
+  .aiworld-support__steps,
+  .aiworld-support__resource-grid,
+  .aiworld-support__contact,
+  .aiworld-support__form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aiworld-support__quick-links a {
+    min-height: 56px;
+  }
+
+  .aiworld-support__section {
+    padding-top: 64px;
+  }
+
+  .aiworld-support__product-content,
+  .aiworld-support__step,
+  .aiworld-support__resource-card {
+    padding: 22px;
+  }
+
+  .aiworld-support__contact {
+    margin-top: 64px;
+    margin-bottom: 52px;
+    padding: 24px 16px 16px;
+  }
+
+  .aiworld-support__form-wrap {
+    padding: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aiworld-support__button,
+  .aiworld-support__quick-links a {
+    transition: none;
+  }
+}

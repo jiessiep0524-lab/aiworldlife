@@ -1817,3 +1817,35 @@ product-info .aiworld-before-buy__panel,
     z-index: 1;
   }
 }
+
+.aiworld-sticky-buy {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .aiworld-sticky-buy:not([hidden]) {
+    display: block;
+  }
+
+  html.aiworld-sticky-buy-active body {
+    padding-bottom: calc(5.25rem + env(safe-area-inset-bottom));
+  }
+
+  .aiworld-sticky-buy__product,
+  .aiworld-sticky-buy__price {
+    display: none;
+  }
+
+  .aiworld-sticky-buy__inner,
+  .aiworld-sticky-buy__form {
+    display: block;
+    width: 100%;
+  }
+
+  .aiworld-sticky-buy__button {
+    width: 100%;
+    min-height: 3.25rem;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+  }
+}

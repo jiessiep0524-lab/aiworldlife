@@ -1,0 +1,82 @@
+{
+  "sections": {
+    "support": {
+      "type": "aiworld-support-center",
+      "blocks": {
+        "screen_x10": {
+          "type": "product",
+          "settings": {
+            "product_name": "AIWORLD Screen X10",
+            "model": "9-inch Portable Wireless CarPlay Screen"
+          }
+        },
+        "installation": {
+          "type": "resource",
+          "settings": {
+            "heading": "Installation guide",
+            "link": "/pages/installation-guide"
+          }
+        },
+        "policies": {
+          "type": "resource",
+          "settings": {
+            "heading": "Shipping and returns",
+            "text": "<p>Review delivery timing, return eligibility, and order policies before contacting support.</p>",
+            "link": "/pages/shipping-policy",
+            "link_label": "View policy"
+          }
+        },
+        "contact_resource": {
+          "type": "resource",
+          "settings": {
+            "heading": "Contact support",
+            "text": "<p>Send your device and order details so our team can help resolve the issue faster.</p>",
+            "link": "#aiworld-support-contact-support",
+            "link_label": "Contact us"
+          }
+        },
+        "faq_model": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I know which firmware to download?"
+          }
+        },
+        "faq_update": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I use the device while it is updating?",
+            "answer": "<p>No. Keep the device powered and do not unplug it until the update and restart are complete.</p>"
+          }
+        },
+        "faq_request": {
+          "type": "faq",
+          "settings": {
+            "question": "What information should I include in a support request?",
+            "answer": "<p>Include your order number, device model, phone model, a short description of the issue, and a photo or video when useful.</p>"
+          }
+        },
+        "faq_policy": {
+          "type": "faq",
+          "settings": {
+            "question": "Where can I ask about returns or delivery?",
+            "answer": "<p>Use the contact form below and include the order details that need attention. Our team can help with delivery, returns, and product setup.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "screen_x10",
+        "installation",
+        "policies",
+        "contact_resource",
+        "faq_model",
+        "faq_update",
+        "faq_request",
+        "faq_policy"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "support"
+  ]
+}
