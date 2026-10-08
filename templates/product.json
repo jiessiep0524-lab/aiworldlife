@@ -68,6 +68,7 @@
           "settings": {
             "heading": "",
             "features": "",
+            "open_by_default": false,
             "desktop_font_size": 16,
             "mobile_font_size": 16,
             "card_radius": 14

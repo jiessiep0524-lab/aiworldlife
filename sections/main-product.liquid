@@ -277,26 +277,32 @@
                   {%- if key_features_heading == blank -%}
                     {%- assign key_features_heading = 'KEY FEATURES' -%}
                   {%- endif -%}
-                  <div
+                  <details
                     class="aiworld-product-key-features"
                     style="--key-features-size: {{ block.settings.desktop_font_size }}px; --key-features-size-mobile: {{ block.settings.mobile_font_size }}px; --key-features-radius: {{ block.settings.card_radius }}px;"
+                    {% if block.settings.open_by_default %}open{% endif %}
                     {{ block.shopify_attributes }}
                   >
-                    <h3>{{ key_features_heading | strip_html | escape }}</h3>
-                    {%- if block.settings.features != blank -%}
-                      {{ block.settings.features }}
-                    {%- elsif product.metafields.custom.key_features != blank -%}
-                      {{ product.metafields.custom.key_features | metafield_tag }}
-                    {%- else -%}
-                      <ul>
-                        <li>Wireless Apple CarPlay and Android Auto</li>
-                        <li>9 inch display and touch screen</li>
-                        <li>Fluid 60 FPS smooth touch</li>
-                        <li>Built-in streaming apps for a better drive</li>
-                        <li>Plug and go for cars, trucks and boats</li>
-                      </ul>
-                    {%- endif -%}
-                  </div>
+                    <summary class="aiworld-product-key-features__summary">
+                      <h3>{{ key_features_heading | strip_html | escape }}</h3>
+                      <span class="aiworld-product-key-features__plus" aria-hidden="true"></span>
+                    </summary>
+                    <div class="aiworld-product-key-features__content">
+                      {%- if block.settings.features != blank -%}
+                        {{ block.settings.features }}
+                      {%- elsif product.metafields.custom.key_features != blank -%}
+                        {{ product.metafields.custom.key_features | metafield_tag }}
+                      {%- else -%}
+                        <ul>
+                          <li>Wireless Apple CarPlay and Android Auto</li>
+                          <li>9 inch display and touch screen</li>
+                          <li>Fluid 60 FPS smooth touch</li>
+                          <li>Built-in streaming apps for a better drive</li>
+                          <li>Plug and go for cars, trucks and boats</li>
+                        </ul>
+                      {%- endif -%}
+                    </div>
+                  </details>
                 {%- when 'aiworld_before_buy' -%}
                   {%- assign before_buy_label = product.metafields.custom.before_buy_label.value -%}
                   {%- assign before_buy_requirement = product.metafields.custom.before_buy_requirement.value -%}
@@ -1329,6 +1335,12 @@
           "id": "features",
           "label": "Feature list",
           "info": "Connect a rich text product metafield for product-specific features."
+        },
+        {
+          "type": "checkbox",
+          "id": "open_by_default",
+          "label": "Open by default",
+          "default": false
         },
         {
           "type": "range",
