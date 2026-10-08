@@ -95,7 +95,14 @@
         track.scrollTo({ left: cards[index].offsetLeft, behavior });
         setTrackState(track, index);
       };
-      const sync = () => setTrackState(track, getClosestCard(track, cards));
+      let syncFrame = 0;
+      const sync = () => {
+        if (syncFrame) return;
+        syncFrame = requestAnimationFrame(() => {
+          setTrackState(track, getClosestCard(track, cards));
+          syncFrame = 0;
+        });
+      };
       const dots = [...panel.querySelectorAll('[data-entertainment-progress-dot]')];
       dots.forEach((dot) => dot.addEventListener('click', () => goTo(parseInt(dot.dataset.entertainmentProgressDot, 10))));
       track.addEventListener('keydown', (event) => {
@@ -106,6 +113,7 @@
         if (event.key === 'End') { event.preventDefault(); goTo(cards.length - 1); }
       });
       track.addEventListener('scroll', sync, { passive: true });
+      track.addEventListener('scrollend', sync, { passive: true });
       if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
           const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
