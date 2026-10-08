@@ -611,9 +611,9 @@
   place-items: center;
   width: 1rem;
   height: 1rem;
-  border: 1px solid #0b9fa3;
+  border: 1px solid var(--aiworld-blue, #0787F9);
   border-radius: 50%;
-  color: #0b9fa3;
+  color: var(--aiworld-blue, #0787F9);
   font-size: .68rem;
   font-weight: 800;
   line-height: 1;
@@ -641,7 +641,7 @@
 }
 
 :is(.template-product, product-info) .aiworld-before-buy__requirement strong {
-  color: #0b9fa3;
+  color: var(--aiworld-blue, #0787F9);
   font-weight: 700;
 }
 
@@ -671,7 +671,7 @@
 }
 
 :is(.template-product, product-info) .aiworld-before-buy[open] .aiworld-before-buy__plus {
-  background: #0b9fa3;
+  background: var(--aiworld-blue, #0787F9);
 }
 
 :is(.template-product, product-info) .aiworld-before-buy[open] .aiworld-before-buy__plus::before {
@@ -701,9 +701,9 @@
   place-items: center;
   width: 1.25rem;
   height: 1.25rem;
-  border: 2px solid #0b9fa3;
+  border: 2px solid var(--aiworld-blue, #0787F9);
   border-radius: 50%;
-  color: #0b9fa3;
+  color: var(--aiworld-blue, #0787F9);
   font-size: .8rem;
   font-weight: 800;
 }
@@ -760,7 +760,7 @@
   margin-top: 1rem;
   padding-top: .85rem;
   border-top: 1px solid #e4eaf0;
-  color: #0b9fa3;
+  color: var(--aiworld-blue, #0787F9);
   font-size: .88rem;
 }
 
@@ -769,7 +769,7 @@
   place-items: center;
   width: 1.2rem;
   height: 1.2rem;
-  border: 1.5px solid #0b9fa3;
+  border: 1.5px solid var(--aiworld-blue, #0787F9);
   border-radius: 50%;
   font-size: 1rem;
   line-height: 1;
