@@ -1110,3 +1110,42 @@ body .trade-specs__image img {
   .trade-creator-carousel__arrow--prev { left:-.4rem; }
   .trade-creator-carousel__arrow--next { right:-.4rem; }
 }
+
+body .trade-specs__list,
+body .trade-spec,
+body .trade-spec > div {
+  min-width: 0;
+}
+
+body .trade-spec strong,
+body .trade-spec > div > span {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+@media screen and (max-width:640px) {
+  body .trade-spec {
+    min-height: 0;
+    padding: 14px 10px;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  body .trade-specs .trade-spec__icon {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+
+  body .trade-specs .trade-spec strong {
+    font-size: 11px;
+    line-height: 1.2;
+  }
+
+  body .trade-specs .trade-spec > div > span {
+    margin-top: 4px;
+    font-size: 10px;
+    line-height: 1.3;
+  }
+}
