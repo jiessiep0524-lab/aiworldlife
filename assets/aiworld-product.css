@@ -167,6 +167,35 @@
   box-shadow: 0 0 0 .15rem var(--aiworld-aqua, #0787F9);
 }
 
+.template-product .aiworld-product-gallery__viewer > .product__media-list {
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  touch-action: pan-x pan-y pinch-zoom;
+}
+
+.template-product .aiworld-product-gallery__viewer .product__media-item {
+  scroll-snap-align: start;
+}
+
+.template-product .aiworld-product-gallery__thumbnails .thumbnail {
+  cursor: pointer;
+}
+
+.template-product .aiworld-product-gallery__thumbnails .thumbnail:focus-visible {
+  outline: .2rem solid rgba(7, 135, 249, .55);
+  outline-offset: .15rem;
+}
+
+@media screen and (max-width: 749px) {
+  .template-product .aiworld-product-gallery__viewer > .product__media-list {
+    cursor: grab;
+  }
+
+  .template-product .aiworld-product-gallery__viewer > .product__media-list:active {
+    cursor: grabbing;
+  }
+}
+
 .template-product .product__title {
   margin-bottom: .65rem;
 }

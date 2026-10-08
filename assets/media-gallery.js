@@ -12,7 +12,7 @@ if (!customElements.get('media-gallery')) {
         this.mql = window.matchMedia('(min-width: 750px)');
         if (!this.elements.thumbnails) return;
 
-        this.elements.viewer.addEventListener('slideChanged', debounce(this.onSlideChanged.bind(this), 500));
+        this.elements.viewer.addEventListener('slideChanged', debounce(this.onSlideChanged.bind(this), 150));
         this.elements.thumbnails.querySelectorAll('[data-target]').forEach((mediaToSwitch) => {
           mediaToSwitch
             .querySelector('button')
@@ -22,6 +22,7 @@ if (!customElements.get('media-gallery')) {
       }
 
       onSlideChanged(event) {
+        if (!event.detail.currentElement) return;
         const thumbnail = this.elements.thumbnails.querySelector(
           `[data-target="${event.detail.currentElement.dataset.mediaId}"]`
         );
