@@ -46,7 +46,7 @@
             "message": "",
             "show_icon": true,
             "desktop_font_size": 22,
-            "mobile_font_size": 18
+            "mobile_font_size": 15
           }
         },
         "cd-mount-picker": {
