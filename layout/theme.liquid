@@ -14,6 +14,15 @@
     {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
+    {%- comment -%} Warm checkout origins early on purchase paths to cut TTFB after Buy Now / Checkout. {%- endcomment -%}
+    {%- if request.page_type == 'product' or request.page_type == 'cart' or request.page_type == 'collection' or request.page_type == 'index' -%}
+      <link rel="preconnect" href="https://shop.app" crossorigin>
+      <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+      <link rel="dns-prefetch" href="https://checkout.shopify.com">
+      <link rel="dns-prefetch" href="https://checkout.pci.shopifyinc.com">
+      <link rel="dns-prefetch" href="https://pay.shopify.com">
+    {%- endif -%}
+
 
     <title>
       {{ page_title }}
@@ -63,7 +72,17 @@
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
-    {{ content_for_header }}
+    {%- capture aiworld_content_for_header -%}{{ content_for_header }}{%- endcapture -%}
+    {%- liquid
+      assign aiworld_loox_marker = 'https:\/\/loox.io\/widget\/'
+      if aiworld_content_for_header contains aiworld_loox_marker
+        assign aiworld_loox_after = aiworld_content_for_header | split: aiworld_loox_marker | last
+        assign aiworld_loox_path = aiworld_loox_after | split: '"' | first
+        assign aiworld_loox_remove = '"' | append: aiworld_loox_marker | append: aiworld_loox_path | append: '",'
+        assign aiworld_content_for_header = aiworld_content_for_header | replace: aiworld_loox_remove, ''
+      endif
+    -%}
+    {{ aiworld_content_for_header }}
 
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
@@ -374,7 +393,7 @@
 
       window.variantStrings = {
         addToCart: `{{ 'products.product.add_to_cart' | t }}`,
-        soldOut: `{{ 'products.product.sold_out' | t }}`,
+        soldOut: `{% if product != blank and product.available == false %}{{ 'products.product.sold_out' | t }}{% endif %}`,
         unavailable: `{{ 'products.product.unavailable' | t }}`,
         unavailable_with_option: `{{ 'products.product.value_unavailable' | t: option_value: '[value]' }}`,
       };
@@ -409,5 +428,40 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+
+    <script>
+      (function () {
+        var warmed = false;
+        function warmCheckout() {
+          if (warmed) return;
+          warmed = true;
+          [
+            ['preconnect', 'https://shop.app', true],
+            ['preconnect', 'https://cdn.shopify.com', true],
+            ['dns-prefetch', 'https://checkout.shopify.com', false],
+            ['dns-prefetch', 'https://checkout.pci.shopifyinc.com', false],
+          ].forEach(function (item) {
+            var rel = item[0], href = item[1], cross = item[2];
+            var key = 'data-aiworld-checkout-warm';
+            if (document.head.querySelector('[' + key + '="' + rel + ':' + href + '"]')) return;
+            var link = document.createElement('link');
+            link.rel = rel;
+            link.href = href;
+            if (cross) link.crossOrigin = 'anonymous';
+            link.setAttribute(key, rel + ':' + href);
+            document.head.appendChild(link);
+          });
+        }
+        document.addEventListener(
+          'pointerdown',
+          function (event) {
+            if (event.target.closest('[name="checkout"], [data-buy-now], .cart__checkout-button')) {
+              warmCheckout();
+            }
+          },
+          { capture: true, passive: true }
+        );
+      })();
+    </script>
   </body>
 </html>

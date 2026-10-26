@@ -1,0 +1,115 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "title_override": "",
+            "desktop_font_size": 28,
+            "mobile_font_size": 24
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_included": true,
+            "desktop_price_size": 32,
+            "mobile_price_size": 28,
+            "compare_price_size": 16,
+            "tax_badge_size": 13
+          }
+        },
+        "shipping-note": {
+          "type": "aiworld_shipping_note",
+          "settings": {
+            "message": "",
+            "show_icon": true,
+            "desktop_font_size": 14,
+            "mobile_font_size": 14
+          }
+        },
+        "variant-picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity-selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy-buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "buy-trust": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<style>\n  .product__info-container .price-item--sale { color: #0787F9; }\n  .product__info-container .price--on-sale .price-item--regular { color: #8b919a; text-decoration: line-through; }\n  .aiworld-after-sale { margin-top: 18px; }\n  .aiworld-after-sale__label { margin: 0 0 12px; color: #5d6878; font-size: 12px; font-weight: 700; letter-spacing: .08em; }\n  .aiworld-after-sale__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }\n  .aiworld-after-sale__item { display: flex; flex-direction: column; align-items: center; gap: 8px; color: #172033; font-size: 13px; font-weight: 600; line-height: 1.3; text-align: center; }\n  .aiworld-after-sale__item svg { color: #0787F9; }\n  .aiworld-after-sale__item img { width: 48px; height: 48px; object-fit: contain; display: block; }\n</style>\n<div class=\"aiworld-after-sale\" aria-label=\"After sale policy\">\n  <p class=\"aiworld-after-sale__label\">AFTER SALE POLICY</p>\n  <div class=\"aiworld-after-sale__row\">\n    <span class=\"aiworld-after-sale__item\"><img src=\"https://cdn.shopify.com/s/files/1/1000/0551/1457/files/ChatGPT_Image_2026_9_18_15_32_04_2.png?v=1789717636&width=120\" alt=\"\" width=\"48\" height=\"48\" loading=\"lazy\">30-Day Returns</span>\n    <span class=\"aiworld-after-sale__item\"><img src=\"https://cdn.shopify.com/s/files/1/1000/0551/1457/files/ChatGPT_Image_2026_9_18_15_32_04_3.png?v=1789717636&width=120\" alt=\"\" width=\"48\" height=\"48\" loading=\"lazy\">Secure Checkout</span>\n    <span class=\"aiworld-after-sale__item\"><img src=\"https://cdn.shopify.com/s/files/1/1000/0551/1457/files/ChatGPT_Image_2026_9_18_15_32_05_4.png?v=1789717636&width=120\" alt=\"\" width=\"48\" height=\"48\" loading=\"lazy\">Dedicated Support</span>\n  </div>\n</div>"
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "shipping-note",
+        "variant-picker",
+        "quantity-selector",
+        "buy-buttons",
+        "description",
+        "buy-trust",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "",
+        "media_size": "medium",
+        "constrain_to_viewport": false,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "aiworld-sticky-buy": {
+      "type": "aiworld-sticky-buy-bar",
+      "settings": {
+        "button_label": "Add to cart"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "aiworld-sticky-buy"
+  ]
+}

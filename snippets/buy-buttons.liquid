@@ -6,7 +6,9 @@
   - product_form_id: {String} product form id.
   - section_id: {String} id of section to which this snippet belongs.
   - show_pickup_availability: {Boolean} for the pickup availability. If true the pickup availability is rendered, false - not rendered (optional).
-  - cd_mount_product: {Product} optional CD slot mount product to add as a nested bundle item.
+  - cd_mount_product: {Product} optional CD slot mount added when its checkbox is checked.
+  - camera_product: {Product} optional rear camera added when its checkbox is checked.
+  - protection_product: {Product} optional replacement protection added when its checkbox is checked.
 
   Usage:
   {% render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true %}
@@ -62,21 +64,31 @@
           {%- if cd_mount_variant != blank and cd_mount_variant.available -%}
             <input
               type="hidden"
-              name="shopify-additional-items[1][id]"
               value="{{ cd_mount_variant.id }}"
-              data-cd-mount-input
+              data-addon-input="mount"
+            disabled
             >
+          {%- endif -%}
+        {%- endif -%}
+        {%- if protection_product != blank -%}
+          {%- assign protection_variant = protection_product.selected_or_first_available_variant -%}
+          {%- if protection_variant != blank and protection_variant.available -%}
             <input
               type="hidden"
-              name="shopify-additional-items[1][quantity]"
-              value="1"
-              data-cd-mount-quantity-input
+              value="{{ protection_variant.id }}"
+              data-addon-input="protection"
+            disabled
             >
+          {%- endif -%}
+        {%- endif -%}
+        {%- if camera_product != blank -%}
+          {%- assign camera_variant = camera_product.selected_or_first_available_variant -%}
+          {%- if camera_variant != blank and camera_variant.available -%}
             <input
               type="hidden"
-              name="shopify-additional-items[1][parent_id]"
-              value="{{ product.selected_or_first_available_variant.id }}"
-              data-cd-mount-parent-input
+              value="{{ camera_variant.id }}"
+              data-addon-input="camera"
+              disabled
             >
           {%- endif -%}
         {%- endif -%}
@@ -116,6 +128,21 @@
                 {{ 'products.product.add_to_cart' | t }}
               {%- endif -%}
             </span>
+            {%- render 'loading-spinner' -%}
+          </button>
+          <button
+            type="button"
+            class="product-form__buy-now button button--full-width"
+            data-buy-now
+            data-checkout-url="{{ routes.root_url }}checkout"
+            {% if product.selected_or_first_available_variant.available == false
+              or quantity_rule_soldout
+              or product.selected_or_first_available_variant == null
+            %}
+              disabled
+            {% endif %}
+          >
+            <span>Buy now</span>
             {%- render 'loading-spinner' -%}
           </button>
           {%- if show_dynamic_checkout -%}

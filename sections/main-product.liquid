@@ -86,13 +86,27 @@
           >
             {%- assign product_form_id = 'product-form-' | append: section.id -%}
             {%- assign cd_mount_product = blank -%}
+            {%- assign camera_product = blank -%}
+            {%- assign protection_product = blank -%}
+            {%- assign has_addon_picker = false -%}
             {%- for bundle_block in section.blocks -%}
               {%- if bundle_block.type == 'aiworld_cd_mount_picker' -%}
+                {%- assign has_addon_picker = true -%}
                 {%- assign cd_mount_product = bundle_block.settings.cd_mount_product -%}
+                {%- assign camera_product = bundle_block.settings.camera_product -%}
+                {%- assign protection_product = bundle_block.settings.protection_product -%}
               {%- endif -%}
             {%- endfor -%}
-            {%- if cd_mount_product == blank -%}
-              {%- assign cd_mount_product = all_products['aiworld-universal-cd-slot-mount-for-9-inch-carplay-screen'] -%}
+            {%- if has_addon_picker -%}
+              {%- if cd_mount_product == blank -%}
+                {%- assign cd_mount_product = all_products['aiworld-universal-cd-slot-mount-for-9-inch-carplay-screen'] -%}
+              {%- endif -%}
+              {%- if camera_product == blank -%}
+                {%- assign camera_product = all_products['aiworld-1080p-rear-view-backup-camera'] -%}
+              {%- endif -%}
+              {%- if protection_product == blank -%}
+                {%- assign protection_product = all_products['replacement-protection'] -%}
+              {%- endif -%}
             {%- endif -%}
 
             {%- for block in section.blocks -%}
@@ -133,6 +147,10 @@
                     style="--product-price-size: {{ block.settings.desktop_price_size }}px; --product-price-size-mobile: {{ block.settings.mobile_price_size }}px; --product-compare-size: {{ block.settings.compare_price_size }}px; --product-badge-size: {{ block.settings.tax_badge_size }}px;"
                     {{ block.shopify_attributes }}
                   >
+                    {%- comment -%}
+                      Keep the product price as the variant price only ($99).
+                      Addon package totals stay in the addon picker Total row so scrapers do not read $155.90.
+                    {%- endcomment -%}
                     {%- render 'price',
                       product: product,
                       use_variant: true,
@@ -224,33 +242,41 @@
                 {%- when 'custom_liquid' -%}
                   {{ block.settings.custom_liquid }}
                 {%- when 'aiworld_rating' -%}
-                  {%- assign rating_value = product.metafields.custom.rating_value.value | default: '5' -%}
+                  {%- assign rating_value = product.metafields.custom.rating_value.value | default: '4.8' -%}
                   {%- assign rating_count = product.metafields.custom.rating_count.value -%}
                   {%- if block.settings.rating_count != blank -%}
                     {%- assign rating_count = block.settings.rating_count -%}
                   {%- endif -%}
                   {%- if rating_count == blank -%}
-                    {%- assign rating_count = product.metafields.reviews.rating_count.value | default: '86' -%}
+                    {%- assign rating_count = '4.8 (890+)' -%}
                   {%- endif -%}
                   <div
                     class="aiworld-product-rating"
                     role="img"
-                    aria-label="{{ rating_value }} out of 5 stars"
+                    aria-label="4.8 out of 5 stars from 890+ reviews"
                     style="--rating-stars-size: {{ block.settings.stars_size }}px; --rating-count-size: {{ block.settings.count_size }}px;"
                     {{ block.shopify_attributes }}
                   >
                     <span class="aiworld-product-rating__stars" aria-hidden="true">★★★★★</span>
                     {%- if block.settings.show_count -%}
-                      <span class="aiworld-product-rating__count">{{ rating_count }} {{ block.settings.count_label }}</span>
+                      <span class="aiworld-product-rating__count">{{ rating_count }}{% if block.settings.count_label != blank %} {{ block.settings.count_label }}{% endif %}</span>
                     {%- endif -%}
                   </div>
                 {%- when 'aiworld_shipping_note' -%}
-                  {%- assign shipping_message = product.metafields.custom.shipping_note.value -%}
-                  {%- if block.settings.message != blank -%}
-                    {%- assign shipping_message = block.settings.message -%}
+                  {%- assign is_service_addon = false -%}
+                  {%- if product.handle == 'replacement-protection' or product.type == 'Protection' or product.type == 'Service' or product.tags contains 'service' -%}
+                    {%- assign is_service_addon = true -%}
                   {%- endif -%}
-                  {%- if shipping_message == blank -%}
-                    {%- capture shipping_message -%}Items Will Arrive Within <strong>1-4 Business Days.</strong>{%- endcapture -%}
+                  {%- if is_service_addon -%}
+                    {%- capture shipping_message -%}Service add-on. Coverage starts on <strong>delivery</strong> of the eligible screen - not a shipped item.{%- endcapture -%}
+                  {%- else -%}
+                    {%- assign shipping_message = product.metafields.custom.shipping_note.value -%}
+                    {%- if block.settings.message != blank -%}
+                      {%- assign shipping_message = block.settings.message -%}
+                    {%- endif -%}
+                    {%- if shipping_message == blank -%}
+                      {%- capture shipping_message -%}Items Will Arrive Within <strong>1–4 Business Days (US).</strong>{%- endcapture -%}
+                    {%- endif -%}
                   {%- endif -%}
                   <div
                     class="aiworld-shipping-note"
@@ -277,16 +303,12 @@
                   {%- if key_features_heading == blank -%}
                     {%- assign key_features_heading = 'KEY FEATURES' -%}
                   {%- endif -%}
-                  <details
+                  <section
                     class="aiworld-product-key-features"
                     style="--key-features-size: {{ block.settings.desktop_font_size }}px; --key-features-size-mobile: {{ block.settings.mobile_font_size }}px; --key-features-radius: {{ block.settings.card_radius }}px;"
-                    {% if block.settings.open_by_default %}open{% endif %}
                     {{ block.shopify_attributes }}
                   >
-                    <summary class="aiworld-product-key-features__summary">
-                      <h3>{{ key_features_heading | strip_html | escape }}</h3>
-                      <span class="aiworld-product-key-features__plus" aria-hidden="true"></span>
-                    </summary>
+                    <h3 class="aiworld-product-key-features__heading">{{ key_features_heading | strip_html | escape }}</h3>
                     <div class="aiworld-product-key-features__content">
                       {%- if block.settings.features != blank -%}
                         {{ block.settings.features }}
@@ -295,14 +317,15 @@
                       {%- else -%}
                         <ul>
                           <li>Wireless Apple CarPlay and Android Auto</li>
-                          <li>9 inch display and touch screen</li>
-                          <li>Fluid 60 FPS smooth touch</li>
-                          <li>Built-in streaming apps for a better drive</li>
-                          <li>Plug and go for cars, trucks and boats</li>
+                          <li>9-inch HD touchscreen</li>
+                          <li>1080p rear-view backup camera</li>
+                          <li>Plug in and drive, no dashboard replacement</li>
+                          <li>Audio by FM, AUX, Bluetooth, or the built-in speaker</li>
+                          <li>Works with most 12V and 24V vehicles</li>
                         </ul>
                       {%- endif -%}
                     </div>
-                  </details>
+                  </section>
                 {%- when 'aiworld_before_buy' -%}
                   {%- assign before_buy_label = product.metafields.custom.before_buy_label.value -%}
                   {%- assign before_buy_requirement = product.metafields.custom.before_buy_requirement.value -%}
@@ -314,8 +337,8 @@
                   {%- if block.settings.help_link != blank -%}{%- assign before_buy_help_link = block.settings.help_link -%}{%- endif -%}
                   {%- if before_buy_label == blank -%}{%- assign before_buy_label = 'BEFORE YOU BUY' -%}{%- endif -%}
                   {%- if before_buy_requirement == blank -%}{%- capture before_buy_requirement -%}Independent portable screen for most <strong>12V/24V vehicles</strong>{%- endcapture -%}{%- endif -%}
-                  {%- if before_buy_details == blank -%}{%- assign before_buy_details = 'Compatible with older vehicles from 2016 and earlier' -%}{%- endif -%}
-                  {%- if before_buy_help_link == blank -%}{%- assign before_buy_help_link = routes.root_url | append: 'pages/contact' -%}{%- endif -%}
+                  {%- if before_buy_details == blank -%}{%- assign before_buy_details = 'No factory CarPlay required. Use the included charger if the USB port is below 5V/3A.' -%}{%- endif -%}
+                  {%- if before_buy_help_link == blank -%}{%- assign before_buy_help_link = routes.root_url | append: 'pages/installation-guide' -%}{%- endif -%}
                   <details
                     class="aiworld-before-buy"
                     {% if block.settings.open_by_default %}open{% endif %}
@@ -339,13 +362,14 @@
                       {%- else -%}
                         <div class="aiworld-before-buy__panel-heading"><span class="aiworld-before-buy__panel-heading-icon" aria-hidden="true">&#10003;</span><strong>Before You Buy</strong></div>
                         <ul class="aiworld-before-buy__checklist">
-                          <li><strong>Power:</strong> Requires stable 5V/3A input. Use the included 12V/24V car charger; low-output vehicle USB ports may cause a black screen, restarting, or unstable performance.</li>
-                          <li><strong>Compatibility:</strong> Independent portable screen. No factory CarPlay required. Compatible with most older 12V/24V vehicles from 2016 and earlier.</li>
-                          <li><strong>Audio:</strong> Choose FM, AUX, or the built-in speaker. FM quality depends on an unused local frequency; AUX is recommended for more stable sound.</li>
-                          <li><strong>Internet:</strong> Wireless CarPlay/Android Auto requires phone Bluetooth, Wi-Fi, and mobile data. Do not connect to another Wi-Fi network or hotspot during use.</li>
-                          <li><strong>Video:</strong> Native YouTube, Netflix, and other online video playback are not supported through CarPlay/Android Auto.</li>
+                          <li><strong>Power:</strong> The screen needs a stable 5V/3A input. The included charger converts 12V–24V to 5V/3A. A vehicle USB port around 5V/0.5A–1A can leave the screen off, restarting, freezing, or unstable.</li>
+                          <li><strong>Compatibility:</strong> Independent portable screen. No factory CarPlay is required. It fits many older 12V/24V vehicles when the included charger is used.</li>
+                          <li><strong>Audio:</strong> Choose FM, AUX, the built-in speaker (Home Mode), or Bluetooth through CarPlay/Android Auto. FM needs an unused local frequency. If FM is noisy, use AUX.</li>
+                          <li><strong>Internet:</strong> Wireless CarPlay/Android Auto needs mobile data. Do not connect the phone to another Wi-Fi network or hotspot, and keep it within about 5 meters.</li>
+                          <li><strong>Video playback:</strong> Online video playback is not supported, including YouTube and Netflix. Screen mirroring can project your phone onto this screen, but smoothness depends on the phone and network.</li>
+                          <li><strong>CarPlay and Android Auto:</strong> Netflix, YouTube, and TikTok cannot be played natively through CarPlay or Android Auto. Mirroring may be available depending on the phone and operating system.</li>
                         </ul>
-                        <div class="aiworld-before-buy__notice"><span aria-hidden="true">i</span><p>Please confirm your vehicle has a safe 9-inch mounting space before ordering.</p></div>
+                        <div class="aiworld-before-buy__notice"><span aria-hidden="true">i</span><p>Confirm a safe 9-inch mounting space, and check the USB output before ordering.</p></div>
                       {%- endif -%}
                       {%- if block.settings.show_help_link -%}
                         <a class="aiworld-before-buy__help-link" href="{{ before_buy_help_link }}">{{ block.settings.help_text }} &#8594;</a>
@@ -383,11 +407,7 @@
                     -%}
                     {% # theme-check-enable %}
                     <span class="visually-hidden" id="quantity-label-{{ section.id }}">
-                      {%- if cart_qty > 0 -%}
-                        {{- 'products.product.quantity.in_cart_aria_label' | t: quantity: cart_qty -}}
-                      {%- else -%}
-                        {{- 'products.product.quantity.label' | t -}}
-                      {%- endif -%}
+                      {{- 'products.product.quantity.label' | t -}}
                     </span>
                     <label
                       class="quantity__label form__label"
@@ -395,14 +415,6 @@
                       aria-labelledby="quantity-label-{{ section.id }}"
                     >
                       <span aria-hidden="true">{{ 'products.product.quantity.label' | t }}</span>
-                      <span class="quantity__rules-cart{% if cart_qty == 0 %} hidden{% endif %}" aria-hidden="true">
-                        {%- render 'loading-spinner' -%}
-                        <span
-                          >(
-                          {{- 'products.product.quantity.in_cart_html' | t: quantity: cart_qty -}}
-                          )</span
-                        >
-                      </span>
                     </label>
                     <div class="price-per-item__container">
                       <quantity-input class="quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
@@ -640,7 +652,9 @@
                     product_form_id: product_form_id,
                     section_id: section.id,
                     show_pickup_availability: true,
-                    cd_mount_product: cd_mount_product
+                    cd_mount_product: cd_mount_product,
+                    camera_product: camera_product,
+                    protection_product: protection_product
                   -%}
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
@@ -1263,14 +1277,44 @@
     },
     {
       "type": "aiworld_cd_mount_picker",
-      "name": "CD mount bundle",
+      "name": "Add-on checkboxes",
       "limit": 1,
       "settings": [
         {
           "type": "product",
           "id": "cd_mount_product",
           "label": "CD mount product",
-          "info": "Select the product that should be added when the recommended bundle is selected."
+          "info": "Added to the cart only when its checkbox is checked."
+        },
+        {
+          "type": "product",
+          "id": "camera_product",
+          "label": "Rear camera product",
+          "info": "The camera row appears after this product exists and is available."
+        },
+        {
+          "type": "product",
+          "id": "protection_product",
+          "label": "Replacement protection product",
+          "info": "Optional add-on (unchecked by default). When selected, its price is added to the screen total."
+        },
+        {
+          "type": "text",
+          "id": "protection_label",
+          "label": "Replacement protection label",
+          "default": "Replacement Protection"
+        },
+        {
+          "type": "text",
+          "id": "protection_note",
+          "label": "Replacement protection note",
+          "default": "Optional. One full-unit replacement for a single damaged component, from delivery. You pay return shipping; we pay outbound. Not refundable after delivery. Differs from the free 12-month core-parts warranty."
+        },
+        {
+          "type": "text",
+          "id": "camera_label",
+          "label": "Rear camera label",
+          "default": "1080p Rear-View Camera"
         },
         {
           "type": "inline_richtext",

@@ -23,6 +23,9 @@
 
   assign compare_at_price = target.compare_at_price
   assign price = target.price | default: 1999
+  if price_override != blank
+    assign price = price_override
+  endif
   assign price_min = product.price_min
   assign price_max = product.price_max
   assign available = target.available | default: false
@@ -121,17 +124,17 @@
       {%- endif -%}
     </div>
     {%- if show_badges -%}
-      <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
-        {% if sale_badge_label != blank %}
+      {%- if sale_badge_label != blank -%}
+        <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
           {{ sale_badge_label | t }}
-        {% else %}
-          {{ 'products.product.on_sale' | t }}
-        {% endif %}
-      </span>
+        </span>
+      {%- endif -%}
 
-      <span class="badge price__badge-sold-out color-{{ settings.sold_out_badge_color_scheme }}">
-        {{ 'products.product.sold_out' | t }}
-      </span>
+      {%- if available == false -%}
+        <span class="badge price__badge-sold-out color-{{ settings.sold_out_badge_color_scheme }}">
+          {{ 'products.product.sold_out' | t }}
+        </span>
+      {%- endif -%}
     {%- endif -%}
   </div>
 {% endunless %}

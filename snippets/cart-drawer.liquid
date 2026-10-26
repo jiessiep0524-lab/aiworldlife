@@ -87,6 +87,7 @@
           class="cart__contents cart-drawer__form"
           method="post"
         >
+          <input type="hidden" name="skip_shop_pay" value="true">
           <div id="CartDrawer-CartItems" class="drawer__contents js-contents">
             {%- if cart != empty -%}
               <div class="drawer__cart-items-wrapper">

@@ -2,23 +2,24 @@
   :root { --aiworld-trust-bar-height: {{ section.settings.height }}px; }
 </style>
 <div class="trade-trust-strip trade-trust-carousel" style="background:{{ section.settings.background }};color:{{ section.settings.text_color }};--trade-trust-height:{{ section.settings.height }}px;--trade-trust-duration:{{ section.settings.change_slides_speed | times: 6 }}s;" data-auto-rotate="{{ section.settings.auto_rotate }}" data-pause-on-hover="{{ section.settings.pause_on_hover }}">
-  <div class="trade-container trade-trust-carousel__inner">
+  <div class="trade-trust-carousel__inner">
     <div class="trade-trust-carousel__viewport" role="region" aria-label="{{ section.settings.accessibility_label | escape }}">
       <div class="trade-trust-carousel__track">
-        <div class="trade-trust-carousel__group" role="list">
-          {% for block in section.blocks %}
-            <div class="trade-trust-carousel__slide" role="listitem" {{ block.shopify_attributes }}>
-              <span class="trade-trust-strip__icon" aria-hidden="true">{{ block.settings.icon }}</span><span>{{ block.settings.text }}</span>
-            </div>
-          {% endfor %}
-        </div>
-        <div class="trade-trust-carousel__group" role="list" aria-hidden="true">
-          {% for block in section.blocks %}
-            <div class="trade-trust-carousel__slide" role="listitem">
-              <span class="trade-trust-strip__icon" aria-hidden="true">{{ block.settings.icon }}</span><span>{{ block.settings.text }}</span>
-            </div>
-          {% endfor %}
-        </div>
+        {%- for copy in (1..2) -%}
+          <div class="trade-trust-carousel__group" role="list"{% if copy == 2 %} aria-hidden="true"{% endif %}>
+            {%- for repeat in (1..4) -%}
+              {%- for block in section.blocks -%}
+                <div class="trade-trust-carousel__slide" role="listitem"{% if copy == 1 and repeat == 1 %} {{ block.shopify_attributes }}{% endif %}>
+                  {%- if block.settings.icon != blank -%}
+                    <span class="trade-trust-strip__icon" aria-hidden="true">{{ block.settings.icon }}</span>
+                  {%- endif -%}
+                  <span>{{ block.settings.text }}</span>
+                  <span class="trade-trust-carousel__dot" aria-hidden="true">•</span>
+                </div>
+              {%- endfor -%}
+            {%- endfor -%}
+          </div>
+        {%- endfor -%}
       </div>
     </div>
   </div>

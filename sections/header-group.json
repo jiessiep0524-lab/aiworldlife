@@ -18,18 +18,34 @@
           "type": "trust",
           "settings": {
             "icon": "",
-            "text": "1-4 Business Days"
+            "text": "Arrives in 1–4 Business Days (US)"
+          }
+        },
+        "trust_shipping": {
+          "type": "trust",
+          "settings": {
+            "icon": "",
+            "text": "Free Shipping (US)"
+          }
+        },
+        "trust_returns": {
+          "type": "trust",
+          "settings": {
+            "icon": "",
+            "text": "30-Day Returns & Exchanges"
           }
         }
       },
       "block_order": [
-        "trust_nzwdid"
+        "trust_nzwdid",
+        "trust_shipping",
+        "trust_returns"
       ],
       "settings": {
-        "background": "#06182a",
+        "background": "#2f6bff",
         "text_color": "#ffffff",
         "auto_rotate": true,
-        "change_slides_speed": 2,
+        "change_slides_speed": 5,
         "pause_on_hover": true,
         "show_arrows": false,
         "show_dots": false,
@@ -51,7 +67,7 @@
         "menu_type_desktop": "mega",
         "sticky_header_type": "always",
         "show_line_separator": true,
-        "color_scheme": "scheme-4",
+        "color_scheme": "scheme-2",
         "menu_color_scheme": "",
         "enable_country_selector": true,
         "enable_language_selector": true,

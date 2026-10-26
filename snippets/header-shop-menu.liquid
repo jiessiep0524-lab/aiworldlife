@@ -85,14 +85,20 @@
                     <div class="aiworld-shop-menu__description">{{ category_collection.description }}</div>
                   {%- endif -%}
                 </div>
-                <a
-                  class="aiworld-shop-menu__view-all"
-                  href="{{ category_link.url }}"
-                  aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: category_link.title | escape }}"
-                >
-                  {{- 'sections.featured_collection.view_all' | t -}}
-                  <span aria-hidden="true">&rarr;</span>
-                </a>
+                <div class="aiworld-shop-menu__actions">
+                  <a
+                    class="aiworld-shop-menu__view-all"
+                    href="{{ category_link.url }}"
+                    aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: category_link.title | escape }}"
+                  >
+                    {{- 'sections.featured_collection.view_all' | t -}}
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                  <a class="aiworld-shop-menu__view-all" href="{{ routes.all_products_collection_url }}">
+                    All products
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
               </div>
               <div class="aiworld-shop-menu__products">
                 {%- if category_collection != blank -%}

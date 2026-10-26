@@ -63,6 +63,10 @@
   line-height: .98;
 }
 
+.aiworld-support__hero h1 {
+  color: #fff;
+}
+
 .aiworld-support h2 {
   margin: 0;
   font-size: clamp(30px, 4vw, 48px);

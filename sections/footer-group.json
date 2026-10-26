@@ -19,7 +19,7 @@
           "settings": {
             "heading": "Product",
             "menu": "",
-            "fallback_links": "AIWORLD Screen X10\nFeatures\nReviews"
+            "fallback_links": "AIWORLD Screen \nFeatures\nReviews"
           }
         },
         "support": {
@@ -27,7 +27,7 @@
           "settings": {
             "heading": "Support",
             "menu": "",
-            "fallback_links": "Help Center\nContact Us\nInstallation Guide"
+            "fallback_links": "Help Center\nContact Us\nInstallation Guide\nTrack My Order"
           }
         },
         "policies": {
@@ -35,7 +35,7 @@
           "settings": {
             "heading": "Policies",
             "menu": "",
-            "fallback_links": "Shipping Policy\nReturns & Refunds\nPrivacy Policy\nTerms of Service"
+            "fallback_links": "Shipping Policy\nReturns & Refunds\nWarranty Policy\nPrivacy Policy\nTerms of Service"
           }
         },
         "connect": {
@@ -60,7 +60,7 @@
         "contact_heading": "CONTACT US",
         "contact_email": "support@aiworldlife.com",
         "contact_phone": "",
-        "contact_hours": "Mon-Fri: 10:00am - 6:00pm",
+        "contact_hours": "Mon-Fri: 10:00 AM–6:00 PM (PT)",
         "show_social": true,
         "instagram_url": "",
         "youtube_url": "",

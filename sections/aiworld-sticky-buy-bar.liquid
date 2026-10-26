@@ -1,7 +1,7 @@
 {%- liquid
   assign sticky_variant = product.selected_or_first_available_variant
+  assign sticky_price = sticky_variant.price
   assign sticky_image = product.featured_image
-  assign sticky_form_id = 'StickyBuyForm-' | append: section.id
 -%}
 
 <sticky-buy-bar class="aiworld-sticky-buy" data-sticky-buy-bar hidden>
@@ -11,27 +11,39 @@
         {{
           sticky_image
           | image_url: width: 120
-          | image_tag: widths: '60,90,120', sizes: '48px', loading: 'lazy', alt: product.title, class: 'aiworld-sticky-buy__image'
+          | image_tag: widths: '60,90,120', sizes: '52px', loading: 'eager', alt: product.title, class: 'aiworld-sticky-buy__image'
         }}
       {%- endif -%}
-      <span class="aiworld-sticky-buy__title">{{ product.title | escape }}</span>
+      <span class="aiworld-sticky-buy__copy">
+        <span class="aiworld-sticky-buy__title">{{ product.title | escape }}</span>
+        <span class="aiworld-sticky-buy__prices">
+          <span class="aiworld-sticky-buy__price" data-sticky-price>{{ sticky_price | money }}</span>
+          {%- if sticky_variant.compare_at_price > sticky_variant.price -%}
+            <s class="aiworld-sticky-buy__compare">{{ sticky_variant.compare_at_price | money }}</s>
+          {%- endif -%}
+        </span>
+      </span>
     </a>
+    <input type="hidden" name="id" value="{{ sticky_variant.id }}" data-sticky-variant-id>
 
-    <div class="aiworld-sticky-buy__price" data-sticky-price>{{ sticky_variant.price | money }}</div>
-
-    {%- form 'product', product, id: sticky_form_id, class: 'aiworld-sticky-buy__form' -%}
-      <input type="hidden" name="id" value="{{ sticky_variant.id }}" data-sticky-variant-id>
+    <div class="aiworld-sticky-buy__actions">
       <button
-        type="submit"
-        name="add"
+        type="button"
         class="aiworld-sticky-buy__button"
         data-sticky-buy-button
         {% unless sticky_variant.available %}disabled{% endunless %}
       >
         {{ section.settings.button_label | escape }}
-        <span aria-hidden="true">&#8594;</span>
       </button>
-    {%- endform -%}
+      <button
+        type="button"
+        class="aiworld-sticky-buy__button aiworld-sticky-buy__button--ghost"
+        data-sticky-buy-now
+        {% unless sticky_variant.available %}disabled{% endunless %}
+      >
+        Buy now
+      </button>
+    </div>
   </div>
 
   <script type="application/json" data-sticky-variants>
@@ -53,12 +65,11 @@
     bar.dataset.initialized = 'true';
 
     const productInfo = document.querySelector('product-info');
-    const detailsStart = document.querySelector('[data-sticky-buy-stop]');
-    const footer = document.querySelector('footer');
-    const mobileQuery = window.matchMedia('(max-width: 749px)');
+    const gallery = productInfo?.querySelector('.product__media-wrapper') || productInfo;
     const variantInput = bar.querySelector('[data-sticky-variant-id]');
     const price = bar.querySelector('[data-sticky-price]');
     const buyButton = bar.querySelector('[data-sticky-buy-button]');
+    const buyNowButton = bar.querySelector('[data-sticky-buy-now]');
     const variantsElement = bar.querySelector('[data-sticky-variants]');
     let variants = {};
 
@@ -80,29 +91,36 @@
       if (!variant) return;
 
       variantInput.value = variantId;
-      price.textContent = variant.price;
+      if (!document.querySelector('[data-addon-toggle]')) price.textContent = variant.price;
       buyButton.disabled = !variant.available;
+      if (buyNowButton) buyNowButton.disabled = !variant.available;
+      document.dispatchEvent(new CustomEvent('aiworld:variant-price'));
     };
 
+    buyButton?.addEventListener('click', () => {
+      document.querySelector('product-info .product-form__submit')?.click();
+    });
+    buyNowButton?.addEventListener('click', () => {
+      document.querySelector('product-info [data-buy-now]')?.click();
+    });
+
     const syncVisibility = () => {
-      if (!productInfo || !mobileQuery.matches) {
-        setVisible(false);
-        return;
+      const footer = document.querySelector('footer');
+      const footerTop = footer?.getBoundingClientRect().top;
+      const footerVisible = typeof footerTop === 'number' && footerTop < window.innerHeight;
+      const stack = document.querySelector('.aiworld-product-image-stack');
+      let reachedDetails = false;
+      if (stack) {
+        reachedDetails = stack.getBoundingClientRect().top < window.innerHeight - 80;
+      } else if (gallery) {
+        reachedDetails = gallery.getBoundingClientRect().bottom <= 120;
       }
-      const productBounds = productInfo.getBoundingClientRect();
-      const detailsBounds = detailsStart?.getBoundingClientRect();
-      const footerBounds = footer?.getBoundingClientRect();
-      const productHasScrolled = productBounds.bottom <= window.innerHeight * 0.92;
-      const detailsStarted = detailsBounds && detailsBounds.top <= window.innerHeight * 0.9;
-      const footerStarted = footerBounds && footerBounds.top <= window.innerHeight;
-      setVisible(productHasScrolled && !detailsStarted && !footerStarted);
+      setVisible(reachedDetails && !footerVisible);
     };
 
     productInfo?.addEventListener('change', () => window.requestAnimationFrame(syncVariant));
     window.addEventListener('scroll', syncVisibility, { passive: true });
     window.addEventListener('resize', syncVisibility);
-    if (mobileQuery.addEventListener) mobileQuery.addEventListener('change', syncVisibility);
-    else mobileQuery.addListener(syncVisibility);
     syncVariant();
     syncVisibility();
   })();

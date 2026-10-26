@@ -88,14 +88,20 @@
                               <div class="aiworld-shop-menu__description">{{ carplay_collection.description }}</div>
                             {%- endif -%}
                           </div>
-                          <a
-                            class="aiworld-shop-menu__view-all"
-                            href="{{ carplay_collection.url }}"
-                            aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: carplay_collection.title | escape }}"
-                          >
-                            {{- 'sections.featured_collection.view_all' | t -}}
-                            <span aria-hidden="true">&rarr;</span>
-                          </a>
+                          <div class="aiworld-shop-menu__actions">
+                            <a
+                              class="aiworld-shop-menu__view-all"
+                              href="{{ carplay_collection.url }}"
+                              aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: carplay_collection.title | escape }}"
+                            >
+                              {{- 'sections.featured_collection.view_all' | t -}}
+                              <span aria-hidden="true">&rarr;</span>
+                            </a>
+                            <a class="aiworld-shop-menu__view-all" href="{{ routes.all_products_collection_url }}">
+                              All products
+                              <span aria-hidden="true">&rarr;</span>
+                            </a>
+                          </div>
                         </div>
                         <div class="aiworld-shop-menu__products">
                           {%- for product in carplay_collection.products limit: 4 -%}
@@ -137,14 +143,20 @@
                               <div class="aiworld-shop-menu__description">{{ accessories_collection.description }}</div>
                             {%- endif -%}
                           </div>
-                          <a
-                            class="aiworld-shop-menu__view-all"
-                            href="{{ accessories_collection.url }}"
-                            aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: accessories_collection.title | escape }}"
-                          >
-                            {{- 'sections.featured_collection.view_all' | t -}}
-                            <span aria-hidden="true">&rarr;</span>
-                          </a>
+                          <div class="aiworld-shop-menu__actions">
+                            <a
+                              class="aiworld-shop-menu__view-all"
+                              href="{{ accessories_collection.url }}"
+                              aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: accessories_collection.title | escape }}"
+                            >
+                              {{- 'sections.featured_collection.view_all' | t -}}
+                              <span aria-hidden="true">&rarr;</span>
+                            </a>
+                            <a class="aiworld-shop-menu__view-all" href="{{ routes.all_products_collection_url }}">
+                              All products
+                              <span aria-hidden="true">&rarr;</span>
+                            </a>
+                          </div>
                         </div>
                         <div class="aiworld-shop-menu__products">
                           {%- for product in accessories_collection.products limit: 4 -%}
@@ -244,6 +256,14 @@
     {%- endfor -%}
   </ul>
 </nav>
+
+<style>
+  .aiworld-shop-menu__actions {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 0.8rem;
+  }
+</style>
 
 {% javascript %}
   if (!customElements.get('aiworld-shop-menu')) {

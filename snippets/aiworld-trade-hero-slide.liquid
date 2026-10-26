@@ -1,47 +1,79 @@
 {% doc %}
-Renders one slide for the AIWORLD hero carousel.
+Renders one homepage banner for both desktop and mobile.
 
-@param {image} image - Slide image
-@param {image} [mobile_image] - Optional mobile slide image
+@param {image} image - Desktop banner image
+@param {image} [mobile_image] - Mobile banner image. Falls back to the desktop image.
 @param {string} eyebrow - Eyebrow text
-@param {string} heading - Slide heading
-@param {string} text - Slide copy
-@param {boolean} show_rating - Whether to show the rating
+@param {string} heading - Desktop heading
+@param {string} text - Desktop copy
+@param {string} [mobile_heading] - Mobile heading. Falls back to the desktop heading.
+@param {string} [mobile_text] - Mobile copy. Falls back to the desktop copy.
+@param {string} [feature_1_icon] - Mobile feature 1 icon label
+@param {string} [feature_1_title] - Mobile feature 1 title
+@param {string} [feature_1_text] - Mobile feature 1 text
+@param {string} [feature_2_icon] - Mobile feature 2 icon label
+@param {string} [feature_2_title] - Mobile feature 2 title
+@param {string} [feature_2_text] - Mobile feature 2 text
+@param {string} [feature_3_icon] - Mobile feature 3 icon label
+@param {string} [feature_3_title] - Mobile feature 3 title
+@param {string} [feature_3_text] - Mobile feature 3 text
+@param {boolean} show_rating - Whether to show the rating on desktop
 @param {string} rating_text - Rating text
-@param {string} price - Price text
-@param {string} button_label - Primary button label
-@param {string} button_link - Primary button URL
-@param {string} button_2_label - Secondary button label
-@param {string} button_2_link - Secondary button URL
+@param {string} price - Desktop price text
+@param {string} [mobile_price] - Mobile price text. Falls back to the desktop price.
+@param {string} button_label - Desktop primary button label
+@param {string} button_link - Desktop primary button URL
+@param {string} button_2_label - Desktop secondary button label
+@param {string} button_2_link - Desktop secondary button URL
+@param {string} [mobile_button_label] - Mobile primary button label
+@param {string} [mobile_button_link] - Mobile primary button URL
+@param {string} [mobile_button_2_label] - Mobile secondary button label
+@param {string} [mobile_button_2_link] - Mobile secondary button URL
 @param {number} slide_index - Zero-based slide index
 @param {number} slide_count - Total slide count
 @param {boolean} is_active - Whether the slide is active
 @param {string} shopify_attributes - Theme editor attributes
 @param {string} heading_alt - Accessible image alt text
 @param {string} overlay_style - Overlay style
+@param {string} [image_link] - Banner image URL. Defaults to the product page.
 {% enddoc %}
+
+{%- liquid
+  assign phone_heading = mobile_heading | default: heading
+  assign phone_text = mobile_text | default: text
+  assign phone_price = mobile_price | default: price
+  assign phone_button_label = mobile_button_label | default: button_label
+  assign phone_button_link = mobile_button_link | default: button_link
+  assign phone_button_2_label = mobile_button_2_label | default: button_2_label
+  assign phone_button_2_link = mobile_button_2_link | default: button_2_link
+  assign phone_image = mobile_image | default: image
+  assign image_alt = heading_alt | default: heading | strip_html | strip_newlines
+  assign hero_image_link = image_link | default: '/products/9-inch-wireless-carplay'
+  assign desktop_heading_lines = heading | newline_to_br | split: '<br />'
+  assign mobile_heading_lines = phone_heading | newline_to_br | split: '<br />'
+-%}
 
 <article class="trade-hero__slide{% if is_active %} is-active{% endif %}" data-slide-index="{{ slide_index }}" role="group" aria-roledescription="slide" aria-label="{{ slide_index | plus: 1 }} of {{ slide_count }}" aria-hidden="{% if is_active %}false{% else %}true{% endif %}" {{ shopify_attributes }}>
   <div class="trade-hero__media">
     {% if image != blank %}
-      {% if mobile_image != blank %}
-        <picture>
-          <source media="(max-width: 640px)" srcset="{{ mobile_image | image_url: width: 375 }} 375w, {{ mobile_image | image_url: width: 750 }} 750w, {{ mobile_image | image_url: width: 1000 }} 1000w" sizes="100vw">
-          {{ image | image_url: width: 2400 | image_tag: loading: 'eager', widths: '750,1100,1500,2000,2400', sizes: '100vw', alt: heading_alt | escape }}
-        </picture>
+      {% if is_active %}
+        {{ image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'trade-hero__img trade-hero__img--desktop', widths: '750,1100,1500,2000,2400', sizes: '100vw', alt: image_alt }}
       {% else %}
-        {{ image | image_url: width: 2400 | image_tag: loading: 'eager', widths: '750,1100,1500,2000,2400', sizes: '100vw', alt: heading_alt | escape }}
+        {{ image | image_url: width: 2400 | image_tag: loading: 'lazy', fetchpriority: 'low', decoding: 'async', class: 'trade-hero__img trade-hero__img--desktop', widths: '750,1100,1500,2000,2400', sizes: '100vw', alt: image_alt }}
       {% endif %}
     {% endif %}
+    {% if phone_image != blank %}
+      {{ phone_image | image_url: width: 1500 | image_tag: loading: 'lazy', fetchpriority: 'low', decoding: 'async', class: 'trade-hero__img trade-hero__img--mobile', widths: '375,750,1100,1500', sizes: '100vw', alt: image_alt }}
+    {% endif %}
+    <a class="trade-hero__media-link" href="{{ hero_image_link }}"><span class="visually-hidden">{{ image_alt | escape }}</span></a>
   </div>
   <div class="trade-hero__overlay trade-hero__overlay--{{ overlay_style }}"></div>
   <div class="trade-hero__content">
-    <div class="trade-hero__copy">
+    <div class="trade-hero__copy trade-hero__copy--desktop">
       <div class="trade-hero__eyebrow">{{ eyebrow }}</div>
       <h1 class="trade-hero__title">
-        {% assign heading_lines = heading | newline_to_br | split: '<br />' %}
-        {% for heading_line in heading_lines %}
-          <span{% if forloop.last and heading_lines.size > 1 %} class="trade-hero__title-accent"{% endif %}>{{ heading_line }}</span>
+        {% for heading_line in desktop_heading_lines %}
+          <span{% if forloop.last and desktop_heading_lines.size > 1 %} class="trade-hero__title-accent"{% endif %}>{{ heading_line }}</span>
           {% unless forloop.last %}<br>{% endunless %}
         {% endfor %}
       </h1>
@@ -49,13 +81,44 @@ Renders one slide for the AIWORLD hero carousel.
       {% if show_rating %}
         <div class="trade-hero__rating">★★★★★ <span>{{ rating_text }}</span></div>
       {% endif %}
-      <div class="trade-hero__price">{{ price }}</div>
+      {% if price != blank %}<div class="trade-hero__price">{{ price }}</div>{% endif %}
       <div class="trade-actions">
         {% if button_label != blank %}
           <a class="trade-button trade-button--blue" href="{{ button_link | default: routes.all_products_collection_url }}">{{ button_label }} →</a>
         {% endif %}
         {% if button_2_label != blank %}
           <a class="trade-button trade-button--outline" href="{{ button_2_link | default: routes.all_products_collection_url }}">{{ button_2_label }}</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="trade-hero__copy trade-hero__copy--mobile">
+      {% if eyebrow != blank %}<div class="trade-hero__eyebrow">{{ eyebrow }}</div>{% endif %}
+      <h2 class="trade-hero__title">
+        {% for heading_line in mobile_heading_lines %}
+          <span{% if forloop.last and mobile_heading_lines.size > 1 %} class="trade-hero__title-accent"{% endif %}>{{ heading_line | strip }}</span>
+        {% endfor %}
+      </h2>
+      {% if phone_text != blank %}<div class="trade-hero__text">{{ phone_text }}</div>{% endif %}
+      {% if feature_1_title != blank or feature_2_title != blank or feature_3_title != blank %}
+        <div class="trade-hero__features">
+          {% if feature_1_title != blank %}
+            <div class="trade-hero__feature"><span class="trade-hero__feature-icon" aria-hidden="true">{{ feature_1_icon }}</span><strong>{{ feature_1_title }}</strong>{% if feature_1_text != blank %}<small>{{ feature_1_text }}</small>{% endif %}</div>
+          {% endif %}
+          {% if feature_2_title != blank %}
+            <div class="trade-hero__feature"><span class="trade-hero__feature-icon" aria-hidden="true">{{ feature_2_icon }}</span><strong>{{ feature_2_title }}</strong>{% if feature_2_text != blank %}<small>{{ feature_2_text }}</small>{% endif %}</div>
+          {% endif %}
+          {% if feature_3_title != blank %}
+            <div class="trade-hero__feature"><span class="trade-hero__feature-icon" aria-hidden="true">{{ feature_3_icon }}</span><strong>{{ feature_3_title }}</strong>{% if feature_3_text != blank %}<small>{{ feature_3_text }}</small>{% endif %}</div>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if phone_price != blank %}<div class="trade-hero__price">{{ phone_price }}</div>{% endif %}
+      <div class="trade-actions">
+        {% if phone_button_label != blank %}
+          <a class="trade-button trade-button--blue" href="{{ phone_button_link | default: routes.all_products_collection_url }}">{{ phone_button_label }} →</a>
+        {% endif %}
+        {% if phone_button_2_label != blank %}
+          <a class="trade-button trade-button--outline" href="{{ phone_button_2_link | default: routes.all_products_collection_url }}">{{ phone_button_2_label }}</a>
         {% endif %}
       </div>
     </div>

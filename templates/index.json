@@ -67,33 +67,69 @@
         "slide_cbYbbX": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_2026_9_16_15_56_49.png",
+            "image": "shopify://shop_images/aiworld-9-inch-wireless-carplay-navigation-coastal-drive.webp",
+            "mobile_image": "shopify://shop_images/aiworld-wireless-carplay-gps-map-couple-coast-road.webp",
+            "image_link": "",
             "eyebrow": "AIworld Screen",
             "heading": "Drive Smarter.\nUpgrade Your Old Car.",
             "text": "<p>Upgrade your old car with wireless CarPlay & Android Auto—no dashboard replacement needed.</p>",
-            "rating_text": "4.8 (1,200+ reviews)",
+            "rating_text": "4.8 (890+ reviews)",
             "show_rating": true,
             "price": "",
             "button_label": "Buy Now",
-            "button_link": "",
-            "button_2_label": "Learn More",
-            "button_2_link": ""
+            "button_link": "https://aiworldlife.com/products/9-inch-wireless-carplay",
+            "button_2_label": "",
+            "button_2_link": "",
+            "mobile_heading": "Drive Smarter.",
+            "mobile_text": "<p>Wireless CarPlay and Android Auto. No dashboard replacement.</p>",
+            "feature_1_icon": "MAP",
+            "feature_1_title": "Navigation",
+            "feature_1_text": "Made easier",
+            "feature_2_icon": "MUSIC",
+            "feature_2_title": "Your Music",
+            "feature_2_text": "Your way",
+            "feature_3_icon": "SAFE",
+            "feature_3_title": "Drive Safer",
+            "feature_3_text": "Connected",
+            "mobile_price": "",
+            "mobile_button_label": "Buy now",
+            "mobile_button_link": "https://aiworldlife.com/products/9-inch-wireless-carplay",
+            "mobile_button_2_label": "",
+            "mobile_button_2_link": ""
           }
         },
         "hero_slide_1": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/1920_x_720_px.png",
+            "image": "shopify://shop_images/aiworld-portable-carplay-android-auto-airplay-app-menu.webp",
+            "mobile_image": "shopify://shop_images/aiworld-9-inch-carplay-screen-dashboard-mountain-view.webp",
+            "image_link": "",
             "eyebrow": "AIworld Screen",
             "heading": "Smarter Driving\nStarts Here.",
             "text": "<p>A 9-inch portable wireless CarPlay & Android Auto display for any car. Simple. Powerful. A better way to drive.</p>",
-            "rating_text": "4.8 (1,200+ reviews)",
+            "rating_text": "4.8 (890+ reviews)",
             "show_rating": true,
             "price": "",
             "button_label": "Buy Now",
             "button_link": "https://aiworldlife.com/products/9-inch-wireless-carplay",
-            "button_2_label": "Learn More",
-            "button_2_link": ""
+            "button_2_label": "",
+            "button_2_link": "",
+            "mobile_heading": "Smarter Driving",
+            "mobile_text": "<p>A 9-inch screen for wireless CarPlay and Android Auto.</p>",
+            "feature_1_icon": "MAP",
+            "feature_1_title": "CarPlay",
+            "feature_1_text": "No cords",
+            "feature_2_icon": "PLAY",
+            "feature_2_title": "Android Auto",
+            "feature_2_text": "Hands-free",
+            "feature_3_icon": "SAFE",
+            "feature_3_title": "Most Cars",
+            "feature_3_text": "Plug and play",
+            "mobile_price": "",
+            "mobile_button_label": "Buy now",
+            "mobile_button_link": "https://aiworldlife.com/products/9-inch-wireless-carplay",
+            "mobile_button_2_label": "",
+            "mobile_button_2_link": ""
           }
         }
       },
@@ -110,12 +146,12 @@
         "text_font_size": 18,
         "text_color": "#ffffff",
         "text_line_height": 1.5,
-        "rating_text": "4.8 (1,200+ reviews)",
+        "rating_text": "4.8 (890+ reviews)",
         "show_rating": true,
-        "price": "$119.99",
+        "price": "",
         "button_label": "Buy Now",
         "button_link": "https://aiworldlife.com/products/9-inch-wireless-carplay",
-        "button_2_label": "Learn More",
+        "button_2_label": "",
         "button_2_link": "",
         "content_position": "flex-start",
         "content_offset": 0,
@@ -126,6 +162,10 @@
         "mobile_banner_width": 750,
         "mobile_banner_height": 1000,
         "content_vertical": 50,
+        "mobile_content_position": "center",
+        "mobile_text_alignment": "center",
+        "mobile_content_vertical": 32,
+        "mobile_button_bottom": 42,
         "height_mode": "image",
         "height": 480,
         "mobile_height": 580,
@@ -137,102 +177,6 @@
         "image_position": "right center"
       }
     },
-    "trade_mobile_hero_alt": {
-      "type": "aiworld-trade-mobile-hero",
-      "blocks": {
-        "mobile_slide_0": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_2026_9_16_15_56_49.png",
-            "eyebrow": "AIworld Screen",
-            "heading": "Drive Smarter.\nUpgrade Your Old Car.",
-            "text": "<p>Upgrade your old car with wireless CarPlay & Android Auto—no dashboard replacement needed.</p>",
-            "feature_1_icon": "MAP",
-            "feature_1_title": "Navigation",
-            "feature_1_text": "Made easier",
-            "feature_2_icon": "MUSIC",
-            "feature_2_title": "Your Music",
-            "feature_2_text": "Your way",
-            "feature_3_icon": "SAFE",
-            "feature_3_title": "Drive Safer",
-            "feature_3_text": "Stay connected",
-            "show_rating": false,
-            "rating_text": "4.8 (1,200+ reviews)",
-            "price": "$119.99",
-            "button_label": "Buy now",
-            "button_link": "https://aiworldlife.com/products/9-inch-wireless-carplay",
-            "button_2_label": "Learn more",
-            "button_2_link": ""
-          }
-        },
-        "mobile_slide_1": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/1920_x_720_px.png",
-            "eyebrow": "AIworld Screen",
-            "heading": "Smarter Driving\nStarts Here.",
-            "text": "<p>A 9-inch portable wireless CarPlay & Android Auto display for any car. Simple. Powerful. A better way to drive.</p>",
-            "feature_1_icon": "MAP",
-            "feature_1_title": "Wireless CarPlay",
-            "feature_1_text": "Connect without cords",
-            "feature_2_icon": "PLAY",
-            "feature_2_title": "Android Auto",
-            "feature_2_text": "Voice-ready driving",
-            "feature_3_icon": "SAFE",
-            "feature_3_title": "Fits Most Cars",
-            "feature_3_text": "Plug and play",
-            "show_rating": false,
-            "rating_text": "4.8 (1,200+ reviews)",
-            "price": "$119.99",
-            "button_label": "Buy now",
-            "button_link": "https://aiworldlife.com/products/9-inch-wireless-carplay",
-            "button_2_label": "Learn more",
-            "button_2_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "mobile_slide_0",
-        "mobile_slide_1"
-      ],
-      "settings": {
-        "eyebrow": "AIWORLD Screen",
-        "heading": "Smarter Driving\nStarts Here.",
-        "text": "<p>A 9-inch portable wireless CarPlay & Android Auto display for any car.</p>",
-        "show_features": true,
-        "feature_1_icon": "MAP",
-        "feature_1_title": "Navigation",
-        "feature_1_text": "Made easier",
-        "feature_2_icon": "MUSIC",
-        "feature_2_title": "Your Music",
-        "feature_2_text": "Your way",
-        "feature_3_icon": "SAFE",
-        "feature_3_title": "Drive Safer",
-        "feature_3_text": "Stay connected",
-        "show_rating": false,
-        "rating_text": "4.8 (1,200+ reviews)",
-        "price": "$119.99",
-        "button_label": "Buy now",
-        "button_link": "",
-        "button_2_label": "Learn more",
-        "button_2_link": "",
-        "desktop_banner_width": 1920,
-        "desktop_banner_height": 720,
-        "mobile_banner_width": 750,
-        "mobile_banner_height": 1000,
-        "height_mode": "image",
-        "desktop_height": 600,
-        "mobile_height": 720,
-        "content_vertical": 50,
-        "mobile_content_vertical": 32,
-        "desktop_text_alignment": "center",
-        "mobile_text_alignment": "center",
-        "overlay_strength": 40,
-        "overlay_color": "#071526",
-        "accent_color": "#0787f9",
-        "text_color": "#ffffff"
-      }
-    },
     "aiworld_trade_feature_strip_wcRiex": {
       "type": "aiworld-trade-feature-strip",
       "blocks": {
@@ -240,16 +184,18 @@
           "type": "feature",
           "settings": {
             "icon_image": "shopify://shop_images/ChatGPT_Image_2026_9_18_15_32_03_1.png",
+            "link": "",
             "icon_size": 67,
             "icon": "O",
             "title": "Fast & Free Shipping",
-            "text": "Arrives in 1-4 business days (US only)."
+            "text": "Arrives in 1–4 business days (US)."
           }
         },
         "feature_KMHhbK": {
           "type": "feature",
           "settings": {
             "icon_image": "shopify://shop_images/ChatGPT_Image_2026_9_18_15_32_04_2.png",
+            "link": "",
             "icon_size": 67,
             "icon": "A",
             "title": "30-Day Hassle-Free Returns",
@@ -260,6 +206,7 @@
           "type": "feature",
           "settings": {
             "icon_image": "shopify://shop_images/ChatGPT_Image_2026_9_18_15_32_04_3.png",
+            "link": "",
             "icon_size": 67,
             "icon": "G",
             "title": "Secure Checkout",
@@ -270,6 +217,7 @@
           "type": "feature",
           "settings": {
             "icon_image": "shopify://shop_images/ChatGPT_Image_2026_9_18_15_32_05_4.png",
+            "link": "",
             "icon_size": 67,
             "icon": "C",
             "title": "Dedicated Support",
@@ -290,6 +238,90 @@
         "enable_bottom_spacing": true
       }
     },
+    "trade_entertainment": {
+      "type": "aiworld-trade-entertainment",
+      "blocks": {
+        "entertainment_panel_1": {
+          "type": "panel",
+          "settings": {
+            "tab_label": "CONNECTED DRIVING",
+            "image_1": "shopify://shop_images/aiworld-apple-carplay-and-android-auto-screen.webp",
+            "link_1": "shopify://products/9-inch-wireless-carplay",
+            "title_1": "Wireless CarPlay & Android Auto",
+            "text_1": "Connect your compatible phone wirelessly for maps, music, calls, and messages.",
+            "image_2": "shopify://shop_images/aiworld-9-inch-portable-car-navigation-screen.webp",
+            "link_2": "shopify://products/9-inch-wireless-carplay",
+            "title_2": "Navigation at a Glance",
+            "text_2": "Follow turn-by-turn directions right on your dashboard, without constantly checking your phone.",
+            "image_3": "shopify://shop_images/aiworld-voice-control-navigation-calls-music-coastal-drive.webp",
+            "link_3": "shopify://products/9-inch-wireless-carplay",
+            "title_3": "Hands-Free Voice Control",
+            "text_3": "Use Siri or Google Assistant for calls, directions, and music without reaching for your phone."
+          }
+        },
+        "entertainment_panel_2": {
+          "type": "panel",
+          "settings": {
+            "tab_label": "SMARTER CAR EXPERIENCE",
+            "image_1": "shopify://shop_images/aiworld-messy-stereo-to-portable-carplay-screen-upgrade.webp",
+            "link_1": "",
+            "title_1": "Upgrade Your Existing Car",
+            "text_1": "Bring modern smart features to your car without replacing your factory stereo.",
+            "image_2": "shopify://shop_images/7_cc0ed894-24a5-474b-846d-d9ac6a9988ef.jpg",
+            "link_2": "",
+            "title_2": "Bright & Clear in Daylight",
+            "text_2": "Enjoy a bright, clear 9-inch HD display that keeps maps and driving information easy to see, even in strong daylight.",
+            "image_3": "shopify://shop_images/aiworld-phone-screen-mirroring-video-on-car-display.webp",
+            "link_3": "",
+            "title_3": "Phone Screen Mirroring",
+            "text_3": "Mirror supported content from your compatible iPhone or Android phone onto a larger 9-inch display."
+          }
+        },
+        "entertainment_panel_3": {
+          "type": "panel",
+          "settings": {
+            "tab_label": "EVERYDAY CONVENIENCE",
+            "image_1": "shopify://shop_images/aiworld-plug-and-play-carplay-screen-coastal-mountain-drive.webp",
+            "link_1": "",
+            "title_1": "Easy Plug & Play Setup",
+            "text_1": "Mount the screen, connect the included power adapter, and pair your phone. No professional installation required.",
+            "image_2": "shopify://shop_images/aiworld-bluetooth-fm-transmitter-aux-car-audio.webp",
+            "link_2": "",
+            "title_2": "Flexible Audio Options",
+            "text_2": "Choose FM, AUX, the built-in speaker, or supported phone audio routing to fit your car's setup.",
+            "image_3": "shopify://shop_images/aiworld-140-degree-waterproof-parking-camera.webp",
+            "link_3": "",
+            "title_3": "Backup Camera Support",
+            "text_3": "Connect a compatible rear camera for a clearer view when parking and reversing."
+          }
+        }
+      },
+      "block_order": [
+        "entertainment_panel_1",
+        "entertainment_panel_2",
+        "entertainment_panel_3"
+      ],
+      "settings": {
+        "kicker": "AIWORLD SCREEN",
+        "heading": "Everything You Need for a Smarter Drive",
+        "subheading": "Wireless connectivity, a clearer 9-inch view, and an easier way to upgrade the car you already drive.",
+        "note_title": "Compatibility reminder",
+        "note_text": "Not sure if it works with your car? Check compatibility and power requirements before purchasing.",
+        "tabs_label": "Entertainment features",
+        "carousel_label": "Entertainment showcase",
+        "progress_label": "Entertainment card navigation",
+        "slide_label": "Card",
+        "background": "#f5f8fb",
+        "accent_color": "#0787f9",
+        "text_color": "#06182a",
+        "enable_top_spacing": true,
+        "padding_top": 72,
+        "mobile_padding_top": 40,
+        "enable_bottom_spacing": true,
+        "padding_bottom": 72,
+        "mobile_padding_bottom": 40
+      }
+    },
     "trade_feature_strip": {
       "type": "aiworld-trade-feature-strip",
       "blocks": {
@@ -297,6 +329,7 @@
           "type": "feature",
           "settings": {
             "icon_image": "shopify://shop_images/ChatGPT_Image_2026_9_17_16_29_39_1.png",
+            "link": "",
             "icon_size": 67,
             "icon": "",
             "title": "Wireless CarPlay",
@@ -307,6 +340,7 @@
           "type": "feature",
           "settings": {
             "icon_image": "shopify://shop_images/ChatGPT_Image_2026_9_17_16_29_39_2.png",
+            "link": "",
             "icon_size": 67,
             "icon": "",
             "title": "Android Auto",
@@ -317,6 +351,7 @@
           "type": "feature",
           "settings": {
             "icon_image": "shopify://shop_images/ChatGPT_Image_2026_9_17_16_29_39_3.png",
+            "link": "",
             "icon_size": 67,
             "icon": "",
             "title": "Plug and Play",
@@ -327,6 +362,7 @@
           "type": "feature",
           "settings": {
             "icon_image": "shopify://shop_images/ChatGPT_Image_2026_9_17_16_29_39_4.png",
+            "link": "",
             "icon_size": 67,
             "icon": "",
             "title": "Fits Most Vehicles",
@@ -407,18 +443,18 @@
         "card_5",
         "card_6"
       ],
+      "disabled": true,
       "settings": {
         "kicker": "WHY CHOOSE AIWORLD",
         "heading": "The All-In-One Driving Upgrade",
-        "subheading": "AIWORLD Screen X10 brings modern connectivity, a larger and safer display, and a better driving experience to any vehicle.",
+        "subheading": "AIWORLD Screen brings modern connectivity, a larger and safer display, and a better driving experience to any vehicle.",
         "background": "#f5f8fb",
         "columns": 6,
         "enable_top_spacing": true,
         "padding_top": 48,
         "enable_bottom_spacing": true,
         "padding_bottom": 48
-      },
-      "disabled": true
+      }
     },
     "trade_story": {
       "type": "aiworld-trade-story",
@@ -426,6 +462,7 @@
         "point_1": {
           "type": "point",
           "settings": {
+            "link": "",
             "icon_size": 36,
             "title": "Navigation Made Easy",
             "text": "Get real-time directions on a larger, clearer screen."
@@ -434,6 +471,7 @@
         "point_2": {
           "type": "point",
           "settings": {
+            "link": "",
             "icon_size": 36,
             "title": "Your Music, Your Way",
             "text": "Stream your favorite apps wirelessly while you drive."
@@ -442,6 +480,7 @@
         "point_3": {
           "type": "point",
           "settings": {
+            "link": "",
             "icon_size": 36,
             "title": "A Safer, More Connected Drive",
             "text": "Hands-free control keeps you focused and safer."
@@ -454,10 +493,12 @@
         "point_3"
       ],
       "settings": {
-        "image": "shopify://shop_images/ChatGPT_Image_2026_9_15_10_38_08.png",
+        "image": "shopify://shop_images/aiworld-wireless-carplay-coastal-highway-navigation.webp",
+        "image_link": "",
+        "mobile_image_link": "",
         "kicker": "DRIVE SMARTER EVERY DAY",
-        "heading": "More Than a Screen.\nA Better Driving Experience.",
-        "text": "<p>AIWORLD Screen X10 keeps you connected, informed, and in control - so you can focus on what matters most: the road ahead.</p>",
+        "heading": "More Than a Screen. A Better Driving Experience.",
+        "text": "<p>AIWORLD Screen keeps you connected, informed, and in control - so you can focus on what matters most: the road ahead.</p>",
         "height": 480,
         "image_position": "center",
         "enable_top_spacing": true,
@@ -469,74 +510,59 @@
     "trade_specs": {
       "type": "aiworld-trade-specs",
       "blocks": {
-        "spec_1": {
-          "type": "spec",
-          "settings": {
-            "icon_image": "shopify://shop_images/ChatGPT_Image_2026_9_16_15_38_29_1.png",
-            "icon_size": 58,
-            "title": "Screen Size",
-            "text": "9 inches (HD)"
-          }
-        },
         "spec_2": {
           "type": "spec",
           "settings": {
             "icon_image": "shopify://shop_images/ChatGPT_Image_2026_9_16_15_38_29_2.png",
+            "link": "",
             "icon_size": 58,
-            "title": "Compatibility",
-            "text": "Fits most cars, trucks, SUVs (12V-24V)"
-          }
-        },
-        "spec_3": {
-          "type": "spec",
-          "settings": {
-            "icon_image": "shopify://shop_images/ChatGPT_Image_2026_9_16_15_38_30_3.png",
-            "icon_size": 58,
-            "title": "Connectivity",
-            "text": "Wireless CarPlay and Android Auto"
-          }
-        },
-        "spec_4": {
-          "type": "spec",
-          "settings": {
-            "icon_image": "shopify://shop_images/ChatGPT_Image_2026_9_16_15_38_30_4.png",
-            "icon_size": 58,
-            "title": "Audio Output",
-            "text": "Built-in speaker, FM transmitter or AUX"
+            "title": "Vehicle Compatibility",
+            "text": "For vehicles with a 12V–24V power socket. Check mounting space before ordering."
           }
         },
         "spec_5": {
           "type": "spec",
           "settings": {
             "icon_image": "shopify://shop_images/ChatGPT_Image_2026_9_16_15_38_30_5.png",
+            "link": "",
             "icon_size": 58,
-            "title": "Installation",
-            "text": "Plug and play (cigarette lighter)"
+            "title": "Keep Your Factory Stereo",
+            "text": "Mount the screen and plug into your vehicle's power socket. No stereo replacement needed."
+          }
+        },
+        "spec_4": {
+          "type": "spec",
+          "settings": {
+            "icon_image": "shopify://shop_images/ChatGPT_Image_2026_9_16_15_38_30_4.png",
+            "link": "",
+            "icon_size": 58,
+            "title": "Your Choice of Audio",
+            "text": "Play audio through Bluetooth, AUX, FM or the built-in speaker."
           }
         },
         "spec_6": {
           "type": "spec",
           "settings": {
             "icon_image": "shopify://shop_images/ChatGPT_Image_2026_9_16_15_38_31_6.png",
+            "link": "",
             "icon_size": 58,
-            "title": "What's Included",
-            "text": "Screen, mount, car charger, AUX cable, user manual"
+            "title": "What's in the Box",
+            "text": "Screen, suction mount, car power adapter, AUX cable, rear camera and user manual."
           }
         }
       },
       "block_order": [
-        "spec_1",
         "spec_2",
-        "spec_3",
-        "spec_4",
         "spec_5",
+        "spec_4",
         "spec_6"
       ],
       "settings": {
-        "image": "shopify://shop_images/ChatGPT_Image_2026_9_17_10_48_43.png",
-        "kicker": "SPECS AT A GLANCE",
-        "heading": "AIWORLD Screen X10",
-        "subheading": "Everything you need to know.",
+        "image": "shopify://shop_images/1.png",
+        "image_link": "",
+        "kicker": "BEFORE YOU BUY",
+        "heading": "A Simple Upgrade. A Few Things to Check.",
+        "subheading": "Check vehicle power, setup and what's included.",
         "background": "#ffffff",
         "desktop_layout": "image_right",
         "enable_top_spacing": true,
@@ -545,75 +571,21 @@
         "padding_bottom": 48
       }
     },
-    "trade_entertainment": {
-      "type": "aiworld-trade-entertainment",
+    "1791961241a79b9cc6": {
+      "type": "apps",
       "blocks": {
-        "entertainment_panel_1": {
-          "type": "panel",
+        "judge_me_reviews_featured_carousel_PQf9F4": {
+          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
-            "tab_label": "CONNECTED DRIVING",
-            "image_1": "shopify://shop_images/2.jpg",
-            "title_1": "Wireless CarPlay & Android Auto",
-            "text_1": "Connect wirelessly and access navigation, music, messages, and calls on a larger screen.",
-            "image_2": "shopify://shop_images/7.jpg",
-            "title_2": "Navigation at a Glance",
-            "text_2": "Get clear turn-by-turn directions on a bright 9-inch display.",
-            "image_3": "shopify://shop_images/3.jpg",
-            "title_3": "Hands-Free Control",
-            "text_3": "Make calls, send messages, and stay connected without reaching for your phone."
-          }
-        },
-        "entertainment_panel_2": {
-          "type": "panel",
-          "settings": {
-            "tab_label": "SMARTER CAR EXPERIENCE",
-            "image_1": "shopify://shop_images/6.jpg",
-            "title_1": "A Bigger, Clearer View",
-            "text_1": "Enjoy a 9-inch 1280×720 HD touchscreen designed for everyday driving.",
-            "image_2": "shopify://shop_images/5.jpg",
-            "title_2": "Upgrade Your Existing Car",
-            "text_2": "Add modern connectivity without replacing your factory stereo.",
-            "image_3": "shopify://shop_images/ChatGPT_Image_2026_9_18_18_08_24.png",
-            "title_3": "Plug & Play Setup",
-            "text_3": "Connect the power, mount the screen, and get driving—no professional installation required."
-          }
-        },
-        "entertainment_panel_3": {
-          "type": "panel",
-          "settings": {
-            "tab_label": "EVERYDAY CONVENIENCE",
-            "image_1": "shopify://shop_images/3.jpg",
-            "title_1": "Backup Camera Ready",
-            "text_1": "Add a compatible rear camera for easier parking and reversing.",
-            "image_2": "shopify://shop_images/2.jpg",
-            "title_2": "Flexible Audio Options",
-            "text_2": "Use FM, AUX, Bluetooth, or the built-in speaker to fit your setup.",
-            "image_3": "shopify://shop_images/7.jpg",
-            "title_3": "OTA Firmware Updates",
-            "text_3": "Keep your device updated with supported firmware updates over the air."
+            "maxwidth": 1080
           }
         }
       },
       "block_order": [
-        "entertainment_panel_1",
-        "entertainment_panel_2",
-        "entertainment_panel_3"
+        "judge_me_reviews_featured_carousel_PQf9F4"
       ],
       "settings": {
-        "kicker": "AIWORLD SCREEN",
-        "heading": "Entertainment Wherever You Go",
-        "subheading": "Make your dashboard feel like a tablet. Movies, games and apps all at your fingertips.",
-        "tabs_label": "Entertainment features",
-        "carousel_label": "Entertainment showcase",
-        "progress_label": "Entertainment card navigation",
-        "slide_label": "Card",
-        "background": "#f5f8fb",
-        "accent_color": "#0787f9",
-        "text_color": "#06182a",
-        "enable_top_spacing": true,
-        "padding_top": 72,
-        "enable_bottom_spacing": true,
-        "padding_bottom": 72
+        "include_margins": true
       }
     },
     "trade_reviews": {
@@ -652,10 +624,11 @@
         "review_2",
         "review_3"
       ],
+      "disabled": true,
       "settings": {
         "kicker": "REAL DRIVERS. REAL REVIEWS.",
         "heading": "Loved by Thousands",
-        "subheading": "4.8 out of 5 (1,200+ verified reviews)",
+        "subheading": "4.8 out of 5 (890+ verified reviews)",
         "background": "#ffffff",
         "enable_top_spacing": true,
         "padding_top": 48,
@@ -805,7 +778,7 @@
           "settings": {
             "image": "shopify://shop_images/f626385c-b240-41e2-8639-01937b398527.png",
             "caption": "Fits Any Car",
-            "handle": "@daily.driven",
+            "handle": "@ryder.finds",
             "link": "https://www.tiktok.com/@ryder.finds/video/7673179450128878878",
             "icon": ">"
           }
@@ -821,7 +794,7 @@
       "settings": {
         "kicker": "REAL CUSTOMER MOMENTS",
         "heading": "See It in Real Life",
-        "text": "Drivers everywhere are upgrading with AIWORLD Screen X10. Share your photos and videos with #AIWORLD for a chance to be featured!",
+        "text": "Drivers everywhere are upgrading with AIWORLD Screen. Share your photos and videos with #AIWORLD for a chance to be featured!",
         "button_label": "Follow AIWORLD",
         "instagram_url": "",
         "tiktok_url": "",
@@ -841,35 +814,70 @@
           "type": "question",
           "settings": {
             "question": "Will it work with my car?",
-            "answer": "<p>AIWORLD Screen X10 works with most cars, trucks and SUVs with a 12V–24V power outlet.</p>"
+            "answer": "<p><strong>Absolutely.</strong> If your car has a 12V or 24V power socket, it works. Factory CarPlay is not required, and the factory radio stays in place. The included charger turns that socket into a steady 5V/3A.</p>"
           }
         },
         "faq_2": {
           "type": "question",
           "settings": {
-            "question": "Can I connect a backup camera?",
-            "answer": "<p>Yes. The system supports compatible backup cameras.</p>"
+            "question": "Do I need a mechanic, or do I have to cut wires?",
+            "answer": "<p><strong>Not at all.</strong> Mount the screen with the suction cup, or with the CD-slot mount included for $10 with your screen order during this limited-time offer. Plug in the included car charger. No dashboard removal, no stereo replacement, and no wire cutting for the screen.</p>"
           }
         },
         "faq_3": {
           "type": "question",
           "settings": {
-            "question": "Is installation difficult?",
-            "answer": "<p>No. It is designed for plug-and-play installation.</p>"
+            "question": "Do I need to plug my phone in every time I drive?",
+            "answer": "<p><strong>No.</strong> Apple CarPlay and Android Auto connect wirelessly. Get in, start the car, and your phone syncs.</p>"
           }
         },
         "faq_4": {
           "type": "question",
           "settings": {
-            "question": "Does it support wireless CarPlay and Android Auto?",
-            "answer": "<p>Yes, both are supported.</p>"
+            "question": "Will music and calls play through my car's original speakers?",
+            "answer": "<p><strong>Yes.</strong> Use Bluetooth, the included AUX cable, or the built-in FM transmitter. The screen also has its own speaker when you want sound without the car stereo.</p>"
           }
         },
         "faq_5": {
           "type": "question",
           "settings": {
-            "question": "How does the audio work?",
-            "answer": "<p>Use the built-in speaker, FM transmitter or AUX output.</p>"
+            "question": "Will this take my only charging port?",
+            "answer": "<p><strong>Your phone does not have to stay plugged in.</strong> The screen runs on its own included car charger in the 12V/24V socket. Charge your phone from the car's USB, or leave it wireless.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "question",
+          "settings": {
+            "question": "Is the backup camera hard to install?",
+            "answer": "<p><strong>The camera is included, and the steps are simple.</strong> Plug it into the AV port, run the cable to the rear, and connect it to the reverse light. Shift into reverse and the view comes on. The factory stereo stays in place.</p>"
+          }
+        },
+        "faq_7": {
+          "type": "question",
+          "settings": {
+            "question": "Can I see the screen on a sunny day?",
+            "answer": "<p><strong>Yes.</strong> The 9-inch HD screen (1280×720) keeps maps and apps readable in daylight. Tilt the portable screen if the sun is on the dash.</p>"
+          }
+        },
+        "faq_8": {
+          "type": "question",
+          "settings": {
+            "question": "Will it drain my car battery while parked?",
+            "answer": "<p><strong>No.</strong> The screen only draws power while the socket is on. When you turn the car off and that socket switches off, the screen shuts off with it.</p>"
+          }
+        },
+        "faq_9": {
+          "type": "question",
+          "settings": {
+            "question": "Can I watch YouTube, Netflix, or TikTok?",
+            "answer": "<p><strong>Not inside CarPlay or Android Auto.</strong> Those apps do not play natively on this screen. Screen mirroring can show your phone.</p>"
+          }
+        },
+        "faq_10": {
+          "type": "question",
+          "settings": {
+            "question": "Have another question?",
+            "answer": "<p><strong>Email support@aiworldlife.com.</strong> US orders ship free: about 1 business day to process, then 1–3 business days after dispatch. Return or exchange within 30 days.</p>"
           }
         }
       },
@@ -878,12 +886,17 @@
         "faq_2",
         "faq_3",
         "faq_4",
-        "faq_5"
+        "faq_5",
+        "faq_6",
+        "faq_7",
+        "faq_8",
+        "faq_9",
+        "faq_10"
       ],
       "settings": {
         "kicker": "FREQUENTLY ASKED QUESTIONS",
         "heading": "Got Questions?",
-        "text": "Here are some answers.",
+        "text": "Here are some quick answers.",
         "link_label": "View all FAQs",
         "link": "",
         "background": "#ffffff",
@@ -952,11 +965,13 @@
     "trade_offer": {
       "type": "aiworld-trade-offer",
       "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_2026_9_15_10_32_18.png",
+        "mobile_image": "shopify://shop_images/d8d4518c74198a6a04da41e5cbefd88e.png",
         "heading": "Upgrade Your Drive Today",
         "text": "Join thousands of drivers who choose a smarter, safer connected way to drive.",
         "price": "",
-        "button_label": "Buy Now",
-        "button_link": "",
+        "button_label": "Shop the 9-inch Screen",
+        "button_link": "https://aiworldlife.com/products/9-inch-wireless-carplay",
         "placeholder": "Your email address",
         "subscribe_label": "Subscribe",
         "background": "#06182a",
@@ -969,13 +984,13 @@
   "order": [
     "trade_trust_bottom",
     "trade_featured_hero",
-    "trade_mobile_hero_alt",
     "aiworld_trade_feature_strip_wcRiex",
     "trade_entertainment",
     "trade_feature_strip",
     "trade_feature_cards",
     "trade_story",
     "trade_specs",
+    "1791961241a79b9cc6",
     "trade_reviews",
     "trade_testimonials",
     "trade_creator_carousel",

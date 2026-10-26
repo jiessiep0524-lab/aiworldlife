@@ -1,24 +1,36 @@
 <section id="Entertainment-{{ section.id }}" class="trade-entertainment" data-entertainment-section style="--entertainment-background:{{ section.settings.background }};--entertainment-accent:{{ section.settings.accent_color }};--entertainment-ink:{{ section.settings.text_color }};--entertainment-padding-top:{% if section.settings.enable_top_spacing == false %}0{% else %}{{ section.settings.padding_top }}{% endif %}px;--entertainment-padding-bottom:{% if section.settings.enable_bottom_spacing == false %}0{% else %}{{ section.settings.padding_bottom }}{% endif %}px;--entertainment-mobile-padding-top:{% if section.settings.enable_top_spacing == false %}0{% else %}{{ section.settings.mobile_padding_top | default: 40 }}{% endif %}px;--entertainment-mobile-padding-bottom:{% if section.settings.enable_bottom_spacing == false %}0{% else %}{{ section.settings.mobile_padding_bottom | default: 40 }}{% endif %}px;">
   <div class="trade-container">
-    <div class="trade-entertainment__head">
+    <div id="features" class="trade-entertainment__head">
       <p class="trade-kicker">{{ section.settings.kicker | escape }}</p>
-      <h2 class="trade-heading">{{ section.settings.heading | escape }}</h2>
+      <h2 class="trade-heading">{{ section.settings.heading | escape | newline_to_br }}</h2>
       <p class="trade-subheading">{{ section.settings.subheading | escape }}</p>
     </div>
 
+    {%- liquid
+      assign default_tab_index = 2
+      if section.blocks.size < 2
+        assign default_tab_index = 1
+      endif
+    -%}
     <div class="trade-entertainment__tabs" role="tablist" aria-label="{{ section.settings.tabs_label | escape }}">
       {% for block in section.blocks %}
-        <button id="EntertainmentTab-{{ section.id }}-{{ block.id }}" class="trade-entertainment__tab{% if forloop.first %} is-active{% endif %}" type="button" role="tab" aria-controls="EntertainmentPanel-{{ section.id }}-{{ block.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" data-entertainment-tab="{{ block.id }}" {{ block.shopify_attributes }}>{{ block.settings.tab_label | escape }}</button>
+        <button id="EntertainmentTab-{{ section.id }}-{{ block.id }}" class="trade-entertainment__tab{% if forloop.index == default_tab_index %} is-active{% endif %}" type="button" role="tab" aria-controls="EntertainmentPanel-{{ section.id }}-{{ block.id }}" aria-selected="{% if forloop.index == default_tab_index %}true{% else %}false{% endif %}" data-entertainment-tab="{{ block.id }}" {{ block.shopify_attributes }}>{{ block.settings.tab_label | escape }}</button>
       {% endfor %}
     </div>
 
     <div class="trade-entertainment__panels">
       {% for block in section.blocks %}
-        <div id="EntertainmentPanel-{{ section.id }}-{{ block.id }}" class="trade-entertainment__panel{% if forloop.first %} is-active{% endif %}" role="tabpanel" aria-labelledby="EntertainmentTab-{{ section.id }}-{{ block.id }}" data-entertainment-panel="{{ block.id }}"{% unless forloop.first %} hidden{% endunless %}>
+        <div id="EntertainmentPanel-{{ section.id }}-{{ block.id }}" class="trade-entertainment__panel{% if forloop.index == default_tab_index %} is-active{% endif %}" role="tabpanel" aria-labelledby="EntertainmentTab-{{ section.id }}-{{ block.id }}" data-entertainment-panel="{{ block.id }}"{% unless forloop.index == default_tab_index %} hidden{% endunless %}>
+          {% liquid
+            assign card_product_url = '/products/9-inch-wireless-carplay'
+            assign card_link_1 = block.settings.link_1 | default: card_product_url
+            assign card_link_2 = block.settings.link_2 | default: card_product_url
+            assign card_link_3 = block.settings.link_3 | default: card_product_url
+          %}
           <div class="trade-entertainment__cards" role="region" aria-roledescription="carousel" aria-label="{{ section.settings.carousel_label | escape }}: {{ block.settings.tab_label | escape }}" data-entertainment-track tabindex="0">
-            <article id="EntertainmentCard-{{ section.id }}-{{ block.id }}-1" class="trade-entertainment__card" data-entertainment-card role="group" aria-roledescription="slide" aria-label="{{ section.settings.slide_label | escape }} 1 of 3">
+            <a id="EntertainmentCard-{{ section.id }}-{{ block.id }}-1" class="trade-entertainment__card" href="{{ card_link_1 }}" data-entertainment-card role="group" aria-roledescription="slide" aria-label="{{ section.settings.slide_label | escape }} 1 of 3">
               {% if block.settings.image_1 != blank %}
-                {{ block.settings.image_1 | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '480,800,1200,1600', sizes: '(min-width: 990px) 33vw, 88vw', alt: block.settings.title_1 | escape }}
+                {{ block.settings.image_1 | image_url: width: 1600 | image_tag: loading: 'lazy', decoding: 'async', widths: '480,800,1200,1600', sizes: '(min-width: 990px) 33vw, 88vw', alt: block.settings.title_1 | escape }}
               {% else %}
                 <div class="trade-entertainment__placeholder" aria-hidden="true"></div>
               {% endif %}
@@ -26,10 +38,10 @@
                 <h3>{{ block.settings.title_1 | escape }}</h3>
                 <p>{{ block.settings.text_1 | escape }}</p>
               </div>
-            </article>
-            <article id="EntertainmentCard-{{ section.id }}-{{ block.id }}-2" class="trade-entertainment__card" data-entertainment-card role="group" aria-roledescription="slide" aria-label="{{ section.settings.slide_label | escape }} 2 of 3">
+            </a>
+            <a id="EntertainmentCard-{{ section.id }}-{{ block.id }}-2" class="trade-entertainment__card" href="{{ card_link_2 }}" data-entertainment-card role="group" aria-roledescription="slide" aria-label="{{ section.settings.slide_label | escape }} 2 of 3">
               {% if block.settings.image_2 != blank %}
-                {{ block.settings.image_2 | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '480,800,1200,1600', sizes: '(min-width: 990px) 33vw, 88vw', alt: block.settings.title_2 | escape }}
+                {{ block.settings.image_2 | image_url: width: 1600 | image_tag: loading: 'lazy', decoding: 'async', widths: '480,800,1200,1600', sizes: '(min-width: 990px) 33vw, 88vw', alt: block.settings.title_2 | escape }}
               {% else %}
                 <div class="trade-entertainment__placeholder" aria-hidden="true"></div>
               {% endif %}
@@ -37,10 +49,10 @@
                 <h3>{{ block.settings.title_2 | escape }}</h3>
                 <p>{{ block.settings.text_2 | escape }}</p>
               </div>
-            </article>
-            <article id="EntertainmentCard-{{ section.id }}-{{ block.id }}-3" class="trade-entertainment__card" data-entertainment-card role="group" aria-roledescription="slide" aria-label="{{ section.settings.slide_label | escape }} 3 of 3">
+            </a>
+            <a id="EntertainmentCard-{{ section.id }}-{{ block.id }}-3" class="trade-entertainment__card" href="{{ card_link_3 }}" data-entertainment-card role="group" aria-roledescription="slide" aria-label="{{ section.settings.slide_label | escape }} 3 of 3">
               {% if block.settings.image_3 != blank %}
-                {{ block.settings.image_3 | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '480,800,1200,1600', sizes: '(min-width: 990px) 33vw, 88vw', alt: block.settings.title_3 | escape }}
+                {{ block.settings.image_3 | image_url: width: 1600 | image_tag: loading: 'lazy', decoding: 'async', widths: '480,800,1200,1600', sizes: '(min-width: 990px) 33vw, 88vw', alt: block.settings.title_3 | escape }}
               {% else %}
                 <div class="trade-entertainment__placeholder" aria-hidden="true"></div>
               {% endif %}
@@ -48,7 +60,7 @@
                 <h3>{{ block.settings.title_3 | escape }}</h3>
                 <p>{{ block.settings.text_3 | escape }}</p>
               </div>
-            </article>
+            </a>
           </div>
           <div class="trade-entertainment__progress" role="group" aria-label="{{ section.settings.progress_label | escape }}" data-entertainment-progress>
             {% for i in (1..3) %}
@@ -58,6 +70,12 @@
         </div>
       {% endfor %}
     </div>
+    {% if section.settings.note_text != blank %}
+      <p class="trade-entertainment__note">
+        {% if section.settings.note_title != blank %}<strong>{{ section.settings.note_title | escape }}</strong>{% endif %}
+        <span>{{ section.settings.note_text | escape }}</span>
+      </p>
+    {% endif %}
   </div>
 </section>
 
@@ -71,7 +89,8 @@
     const tracks = new Map();
 
     const setTrackState = (track, index) => {
-      track.querySelectorAll('[data-entertainment-progress-dot]').forEach((dot, dotIndex) => {
+      const scope = track.parentElement || track;
+      scope.querySelectorAll('[data-entertainment-progress-dot]').forEach((dot, dotIndex) => {
         const active = dotIndex === index;
         dot.classList.toggle('is-active', active);
         dot.setAttribute('aria-current', active ? 'true' : 'false');
@@ -92,16 +111,14 @@
       if (!track || !cards.length) return;
       const goTo = (requestedIndex, behavior = 'smooth') => {
         const index = Math.max(0, Math.min(requestedIndex, cards.length - 1));
-        track.scrollTo({ left: cards[index].offsetLeft, behavior });
+        track.scrollTo({ left: cards[index].offsetLeft - cards[0].offsetLeft, behavior });
         setTrackState(track, index);
       };
-      let syncFrame = 0;
+      let settleTimer = 0;
+      const settle = () => setTrackState(track, getClosestCard(track, cards));
       const sync = () => {
-        if (syncFrame) return;
-        syncFrame = requestAnimationFrame(() => {
-          setTrackState(track, getClosestCard(track, cards));
-          syncFrame = 0;
-        });
+        clearTimeout(settleTimer);
+        settleTimer = setTimeout(settle, 70);
       };
       const dots = [...panel.querySelectorAll('[data-entertainment-progress-dot]')];
       dots.forEach((dot) => dot.addEventListener('click', () => goTo(parseInt(dot.dataset.entertainmentProgressDot, 10))));
@@ -112,15 +129,25 @@
         if (event.key === 'Home') { event.preventDefault(); goTo(0); }
         if (event.key === 'End') { event.preventDefault(); goTo(cards.length - 1); }
       });
+      let pointerX = 0;
+      let dragged = false;
+      track.addEventListener('pointerdown', (event) => {
+        pointerX = event.clientX;
+        dragged = false;
+      });
+      track.addEventListener('pointermove', (event) => {
+        if (Math.abs(event.clientX - pointerX) > 10) dragged = true;
+      });
+      track.addEventListener('click', (event) => {
+        if (!dragged) return;
+        event.preventDefault();
+        dragged = false;
+      }, true);
       track.addEventListener('scroll', sync, { passive: true });
-      track.addEventListener('scrollend', sync, { passive: true });
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-          const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-          if (visible) setTrackState(track, cards.indexOf(visible.target));
-        }, { root: track, threshold: [0.6] });
-        cards.forEach((card) => observer.observe(card));
-      }
+      track.addEventListener('scrollend', () => {
+        clearTimeout(settleTimer);
+        settle();
+      }, { passive: true });
       setTrackState(track, 0);
       tracks.set(panel, { reset: () => goTo(0, 'auto') });
     };
@@ -128,6 +155,8 @@
     panels.forEach(initTrack);
 
     const activate = (id, moveFocus) => {
+      const nextIndex = tabs.findIndex((tab) => tab.dataset.entertainmentTab === id);
+      if (nextIndex >= 0) activeIndex = nextIndex;
       tabs.forEach((tab) => {
         const active = tab.dataset.entertainmentTab === id;
         tab.classList.toggle('is-active', active);
@@ -141,15 +170,44 @@
         if (active) tracks.get(panel)?.reset();
       });
     };
+    let activeIndex = Math.max(0, tabs.findIndex((tab) => tab.getAttribute('aria-selected') === 'true'));
+    let rotationTimer = 0;
+    const stopRotation = () => {
+      if (rotationTimer) window.clearInterval(rotationTimer);
+      rotationTimer = 0;
+    };
+    const startRotation = () => {
+      stopRotation();
+      if (tabs.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      rotationTimer = window.setInterval(() => {
+        activeIndex = (activeIndex + 1) % tabs.length;
+        activate(tabs[activeIndex].dataset.entertainmentTab, false);
+      }, 5000);
+    };
     tabs.forEach((tab, tabIndex) => {
-      tab.addEventListener('click', () => activate(tab.dataset.entertainmentTab, false));
+      tab.addEventListener('click', () => {
+        activate(tab.dataset.entertainmentTab, false);
+        startRotation();
+      });
       tab.addEventListener('keydown', (event) => {
         if (!['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
         event.preventDefault();
         const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (tabIndex + (event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1) + tabs.length) % tabs.length;
         activate(tabs[nextIndex].dataset.entertainmentTab, true);
+        startRotation();
       });
     });
+    root.addEventListener('mouseenter', stopRotation);
+    root.addEventListener('mouseleave', startRotation);
+    root.addEventListener('focusin', stopRotation);
+    root.addEventListener('focusout', (event) => {
+      if (!root.contains(event.relatedTarget)) startRotation();
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopRotation();
+      else if (!root.matches(':hover')) startRotation();
+    });
+    startRotation();
   })();
 </script>
 
@@ -161,8 +219,10 @@
   "settings": [
     { "type": "header", "content": "图片设置：展开下方内容标签模块编辑卡片图片（推荐 1200 × 1540 px）" },
     { "type": "text", "id": "kicker", "label": "Kicker", "default": "AIWORLD SCREEN" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Entertainment Wherever You Go" },
-    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Make your dashboard feel like a tablet. Movies, games and apps all at your fingertips." },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Everything You Need for a Smarter Drive" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Wireless connectivity, a clearer 9-inch view, and an easier way to upgrade the car you already drive." },
+    { "type": "text", "id": "note_title", "label": "Note title", "default": "Compatibility reminder" },
+    { "type": "textarea", "id": "note_text", "label": "Note text", "default": "Not sure if it works with your car? Check compatibility and power requirements before purchasing." },
     { "type": "text", "id": "tabs_label", "label": "Tabs accessibility label", "default": "Entertainment features" },
     { "type": "text", "id": "carousel_label", "label": "Carousel accessibility label", "default": "Entertainment showcase" },
     { "type": "text", "id": "progress_label", "label": "Progress accessibility label", "default": "Entertainment card navigation" },
@@ -184,12 +244,15 @@
       "settings": [
         { "type": "text", "id": "tab_label", "label": "Tab label", "default": "CONNECTED DRIVING" },
         { "type": "image_picker", "id": "image_1", "label": "卡片 1 图片（点击上传/更换）", "info": "推荐尺寸：1200 × 1540 px；竖版约 0.78:1，卡片会裁切填充" },
+        { "type": "url", "id": "link_1", "label": "卡片 1 链接", "info": "点击这张卡片跳转。留空则进入产品页。" },
         { "type": "text", "id": "title_1", "label": "Card 1 title", "default": "Wireless CarPlay & Android Auto" },
         { "type": "textarea", "id": "text_1", "label": "Card 1 text", "default": "Connect wirelessly and access navigation, music, messages, and calls on a larger screen." },
         { "type": "image_picker", "id": "image_2", "label": "卡片 2 图片（点击上传/更换）", "info": "推荐尺寸：1200 × 1540 px；竖版约 0.78:1，卡片会裁切填充" },
+        { "type": "url", "id": "link_2", "label": "卡片 2 链接", "info": "点击这张卡片跳转。留空则进入产品页。" },
         { "type": "text", "id": "title_2", "label": "Card 2 title", "default": "Navigation at a Glance" },
         { "type": "textarea", "id": "text_2", "label": "Card 2 text", "default": "Get clear turn-by-turn directions on a bright 9-inch display." },
         { "type": "image_picker", "id": "image_3", "label": "卡片 3 图片（点击上传/更换）", "info": "推荐尺寸：1200 × 1540 px；竖版约 0.78:1，卡片会裁切填充" },
+        { "type": "url", "id": "link_3", "label": "卡片 3 链接", "info": "点击这张卡片跳转。留空则进入产品页。" },
         { "type": "text", "id": "title_3", "label": "Card 3 title", "default": "Hands-Free Control" },
         { "type": "textarea", "id": "text_3", "label": "Card 3 text", "default": "Make calls, send messages, and stay connected without reaching for your phone." }
       ]

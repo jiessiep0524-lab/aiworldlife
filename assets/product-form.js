@@ -11,28 +11,49 @@ if (!customElements.get('product-form')) {
         this.cart = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
         this.submitButton = this.querySelector('[type="submit"]');
         this.submitButtonText = this.submitButton.querySelector('span');
+        this.buyNowButton = this.querySelector('[data-buy-now]');
+        this.warmCheckoutConnections();
+        if (this.buyNowButton) {
+          const warm = () => this.warmCheckoutConnections(true);
+          this.buyNowButton.addEventListener('pointerenter', warm, { passive: true });
+          this.buyNowButton.addEventListener('pointerdown', warm, { passive: true });
+          this.buyNowButton.addEventListener('touchstart', warm, { passive: true });
+        }
+        this.addEventListener('click', (event) => {
+          const buyNowButton = event.target.closest('[data-buy-now]');
+          if (!buyNowButton) return;
+          this.buyNowButton = buyNowButton;
+          this.warmCheckoutConnections(true);
+          this.onSubmitHandler(event, { buyNow: true });
+        });
 
         if (document.querySelector('cart-drawer')) this.submitButton.setAttribute('aria-haspopup', 'dialog');
 
         this.hideErrors = this.dataset.hideErrors === 'true';
       }
 
-      onSubmitHandler(evt) {
+      onSubmitHandler(evt, options = {}) {
+        const buyNow = options.buyNow === true;
+        const activeButton = buyNow ? this.buyNowButton : this.submitButton;
         evt.preventDefault();
-        if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
+        if (!activeButton || activeButton.getAttribute('aria-disabled') === 'true' || activeButton.hasAttribute('disabled')) return;
 
         this.handleErrorMessage();
+        this.error = false;
 
-        this.submitButton.setAttribute('aria-disabled', true);
-        this.submitButton.classList.add('loading');
-        this.querySelector('.loading__spinner').classList.remove('hidden');
+        [this.submitButton, this.buyNowButton].forEach((button) => {
+          if (!button) return;
+          button.setAttribute('aria-disabled', 'true');
+          if (button === activeButton) button.classList.add('loading');
+        });
+        activeButton.querySelector('.loading__spinner')?.classList.remove('hidden');
 
         const config = fetchConfig('javascript');
         config.headers['X-Requested-With'] = 'XMLHttpRequest';
         delete config.headers['Content-Type'];
 
         const formData = new FormData(this.form);
-        if (this.cart) {
+        if (!buyNow && this.cart) {
           formData.append(
             'sections',
             this.cart.getSectionsToRender().map((section) => section.id)
@@ -45,8 +66,38 @@ if (!customElements.get('product-form')) {
         const variantId = formData.get('id');
         const quantity = parseInt(formData.get('quantity')) || 1;
         const linesUpdateDeferred = this.createCartLinesUpdateEvent(variantId, quantity);
+        const addons = Array.from(this.form.querySelectorAll('[data-addon-input]')).filter(
+          (input) => !input.disabled && input.value
+        );
 
-        fetch(`${routes.cart_add_url}`, config)
+        const addAddon = (input) => {
+          const addonConfig = fetchConfig('javascript');
+          addonConfig.headers['X-Requested-With'] = 'XMLHttpRequest';
+          delete addonConfig.headers['Content-Type'];
+          const addonData = new FormData();
+          addonData.append('id', input.value);
+          addonData.append('quantity', String(quantity));
+          addonConfig.body = addonData;
+
+          return fetch(`${routes.cart_add_url}`, addonConfig)
+            .then((response) => response.json())
+            .then((response) => {
+              if (response.status) {
+                throw new Error(response.description || response.message || 'Could not add the selected add-on.');
+              }
+            });
+        };
+
+        if (buyNow) {
+          const lines = addons.map((input) => `${input.value}:${quantity}`);
+          if (variantId) lines.push(`${variantId}:${quantity}`);
+          if (!lines.length) return;
+          window.location.assign(`${routes.cart_url}/${lines.join(",")}?checkout&skip_shop_pay=true`);
+          return;
+        }
+        addons
+          .reduce((chain, input) => chain.then(() => addAddon(input)), Promise.resolve())
+          .then(() => fetch(`${routes.cart_add_url}`, config))
           .then((response) => response.json())
           .then((response) => {
             if (response.status) {
@@ -66,6 +117,9 @@ if (!customElements.get('product-form')) {
               this.submitButtonText.classList.add('hidden');
               soldOutMessage.classList.remove('hidden');
               this.error = true;
+              return;
+            } else if (buyNow) {
+              window.location.assign(this.buyNowButton.dataset.checkoutUrl || '/checkout');
               return;
             } else if (!this.cart) {
               this.resolveCartLinesUpdate(linesUpdateDeferred);
@@ -107,14 +161,20 @@ if (!customElements.get('product-form')) {
           })
           .catch((e) => {
             console.error(e);
+            this.handleErrorMessage(e.message || 'Network error');
             this.dispatchCartErrorEvent(e.message || 'Network error', 'SERVICE_UNAVAILABLE');
             linesUpdateDeferred?.reject(e);
           })
           .finally(() => {
-            this.submitButton.classList.remove('loading');
+            if (buyNow && !this.error) return;
+
+            [this.submitButton, this.buyNowButton].forEach((button) => {
+              if (!button) return;
+              button.classList.remove('loading');
+              button.querySelector('.loading__spinner')?.classList.add('hidden');
+              if (!this.error) button.removeAttribute('aria-disabled');
+            });
             if (this.cart && this.cart.classList.contains('is-empty')) this.cart.classList.remove('is-empty');
-            if (!this.error) this.submitButton.removeAttribute('aria-disabled');
-            this.querySelector('.loading__spinner').classList.add('hidden');
 
             CartPerformance.measureFromEvent("add:user-action", evt);
           });
@@ -143,6 +203,35 @@ if (!customElements.get('product-form')) {
           this.submitButton.removeAttribute('disabled');
           this.submitButtonText.textContent = window.variantStrings.addToCart;
         }
+      }
+
+
+      warmCheckoutConnections(prefetchCheckout = false) {
+        const hosts = [
+          ['preconnect', 'https://shop.app', true],
+          ['preconnect', 'https://cdn.shopify.com', true],
+          ['dns-prefetch', 'https://checkout.shopify.com', false],
+          ['dns-prefetch', 'https://checkout.pci.shopifyinc.com', false],
+          ['dns-prefetch', 'https://pay.shopify.com', false],
+        ];
+        hosts.forEach(([rel, href, crossOrigin]) => {
+          const marker = '[data-aiworld-checkout-warm="' + rel + ':' + href + '"]';
+          if (document.head.querySelector(marker)) return;
+          const link = document.createElement('link');
+          link.rel = rel;
+          link.href = href;
+          if (crossOrigin) link.crossOrigin = 'anonymous';
+          link.setAttribute('data-aiworld-checkout-warm', rel + ':' + href);
+          document.head.appendChild(link);
+        });
+
+        if (!prefetchCheckout || document.head.querySelector('[data-aiworld-checkout-prefetch]')) return;
+        const prefetch = document.createElement('link');
+        prefetch.rel = 'prefetch';
+        prefetch.as = 'document';
+        prefetch.href = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root ? window.Shopify.routes.root : '/') + 'checkout';
+        prefetch.setAttribute('data-aiworld-checkout-prefetch', '');
+        document.head.appendChild(prefetch);
       }
 
       createCartLinesUpdateEvent(variantId, quantity) {

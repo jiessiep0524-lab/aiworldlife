@@ -12,32 +12,32 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "new-badge": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<span class='aiworld-product-new-badge'>NEW</span>"
-          }
-        },
         "title": {
           "type": "title",
           "settings": {
             "title_override": "",
-            "desktop_font_size": 36,
-            "mobile_font_size": 18
+            "desktop_font_size": 28,
+            "mobile_font_size": 24
           }
         },
         "rating": {
           "type": "aiworld_rating",
-          "settings": {}
+          "settings": {
+            "rating_count": "4.8 (890+)",
+            "count_label": "",
+            "show_count": true,
+            "stars_size": 16,
+            "count_size": 14
+          }
         },
         "price": {
           "type": "price",
           "settings": {
             "show_taxes_included": true,
-            "desktop_price_size": 44,
-            "mobile_price_size": 32,
-            "compare_price_size": 25,
-            "tax_badge_size": 21
+            "desktop_price_size": 32,
+            "mobile_price_size": 28,
+            "compare_price_size": 16,
+            "tax_badge_size": 13
           }
         },
         "shipping-note": {
@@ -45,22 +45,8 @@
           "settings": {
             "message": "",
             "show_icon": true,
-            "desktop_font_size": 22,
-            "mobile_font_size": 15
-          }
-        },
-        "cd-mount-picker": {
-          "type": "aiworld_cd_mount_picker",
-          "settings": {
-            "cd_mount_product": "aiworld-universal-cd-slot-mount-for-9-inch-carplay-screen",
-            "heading": "",
-            "subheading": "",
-            "mount_label": "",
-            "mount_description": "",
-            "standard_label": "",
-            "standard_description": "",
-            "recommended_label": "",
-            "card_radius": 14
+            "desktop_font_size": 14,
+            "mobile_font_size": 14
           }
         },
         "key-features": {
@@ -68,10 +54,40 @@
           "settings": {
             "heading": "",
             "features": "",
-            "open_by_default": false,
-            "desktop_font_size": 16,
-            "mobile_font_size": 16,
-            "card_radius": 14
+            "open_by_default": true,
+            "desktop_font_size": 15,
+            "mobile_font_size": 15,
+            "card_radius": 12
+          }
+        },
+        "cd-mount-picker": {
+          "type": "aiworld_cd_mount_picker",
+          "settings": {
+            "cd_mount_product": "aiworld-universal-cd-slot-mount-for-9-inch-carplay-screen",
+            "camera_product": "",
+            "protection_product": "replacement-protection",
+            "protection_label": "Replacement Protection",
+            "protection_note": "Optional. One full-unit replacement for a single damaged component, from delivery. You pay return shipping; we pay outbound. Not refundable after delivery. Differs from the free 12-month core-parts warranty.",
+            "camera_label": "1080p Rear-View Camera",
+            "heading": "",
+            "subheading": "",
+            "mount_label": "CD Slot Mount",
+            "mount_description": "",
+            "standard_label": "",
+            "standard_description": "",
+            "recommended_label": "Recommended",
+            "card_radius": 12
+          }
+        },
+        "quantity-selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy-buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
           }
         },
         "before-buy": {
@@ -85,9 +101,9 @@
             "help_link": "",
             "show_help_link": true,
             "open_by_default": false,
-            "summary_font_size": 24,
-            "body_font_size": 16,
-            "card_radius": 14
+            "summary_font_size": 15,
+            "body_font_size": 14,
+            "card_radius": 12
           }
         },
         "variant-picker": {
@@ -97,48 +113,16 @@
             "swatch_shape": "circle"
           }
         },
-        "quantity-selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy-buttons": {
-          "type": "buy_buttons",
+        "buy-trust": {
+          "type": "custom_liquid",
           "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
+            "custom_liquid": "<style>\n  .product__info-container .price-item--sale { color: #0787F9; }\n  .product__info-container .price--on-sale .price-item--regular { color: #8b919a; text-decoration: line-through; }\n  .aiworld-after-sale { margin-top: 18px; }\n  .aiworld-after-sale__label { margin: 0 0 12px; color: #5d6878; font-size: 12px; font-weight: 700; letter-spacing: .08em; }\n  .aiworld-after-sale__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }\n  .aiworld-after-sale__item { display: flex; flex-direction: column; align-items: center; gap: 8px; color: #172033; font-size: 13px; font-weight: 600; line-height: 1.3; text-align: center; }\n  .aiworld-after-sale__item svg { color: #0787F9; }\n  .aiworld-after-sale__item img { width: 48px; height: 48px; object-fit: contain; display: block; }\n</style>\n<div class=\"aiworld-after-sale\" aria-label=\"After sale policy\">\n  <p class=\"aiworld-after-sale__label\">AFTER SALE POLICY</p>\n  <div class=\"aiworld-after-sale__row\">\n    <span class=\"aiworld-after-sale__item\"><img src=\"https://cdn.shopify.com/s/files/1/1000/0551/1457/files/ChatGPT_Image_2026_9_18_15_32_04_2.png?v=1789717636&width=120\" alt=\"\" width=\"48\" height=\"48\" loading=\"lazy\">30-Day Returns</span>\n    <span class=\"aiworld-after-sale__item\"><img src=\"https://cdn.shopify.com/s/files/1/1000/0551/1457/files/ChatGPT_Image_2026_9_18_15_32_04_3.png?v=1789717636&width=120\" alt=\"\" width=\"48\" height=\"48\" loading=\"lazy\">Secure Checkout</span>\n    <span class=\"aiworld-after-sale__item\"><img src=\"https://cdn.shopify.com/s/files/1/1000/0551/1457/files/ChatGPT_Image_2026_9_18_15_32_05_4.png?v=1789717636&width=120\" alt=\"\" width=\"48\" height=\"48\" loading=\"lazy\">Dedicated Support</span>\n  </div>\n</div>"
           }
         },
         "description": {
           "type": "description",
           "disabled": true,
           "settings": {}
-        },
-        "collapsible-row-1": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Product features",
-            "icon": "star",
-            "content": "<p>{{ block.settings.page.metafields.custom.listing | metafield_tag }}</p>",
-            "page": "product-features"
-          }
-        },
-        "collapsible-row-0": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Materials and care",
-            "icon": "leaf",
-            "content": "",
-            "page": "materials-and-care"
-          }
-        },
-        "collapsible-row-2": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Merchandising tips",
-            "icon": "check_mark",
-            "content": "",
-            "page": "merchandising-tips"
-          }
         },
         "share": {
           "type": "share",
@@ -148,21 +132,18 @@
         }
       },
       "block_order": [
-        "new-badge",
         "title",
         "rating",
         "price",
         "shipping-note",
-        "cd-mount-picker",
         "key-features",
-        "before-buy",
-        "variant-picker",
+        "cd-mount-picker",
         "quantity-selector",
         "buy-buttons",
+        "before-buy",
+        "variant-picker",
+        "buy-trust",
         "description",
-        "collapsible-row-1",
-        "collapsible-row-0",
-        "collapsible-row-2",
         "share"
       ],
       "settings": {
@@ -190,17 +171,79 @@
     "aiworld-image-stack": {
       "type": "aiworld-product-image-stack",
       "blocks": {
+        "image_GFW7pi": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aiworld-9-inch-wireless-carplay-android-auto-touch-screen.webp",
+            "alt_text": "",
+            "link": ""
+          }
+        },
+        "image_F8PXYN": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aiworld-siri-google-assistant-voice-control-carplay.webp",
+            "alt_text": "",
+            "link": ""
+          }
+        },
+        "image_HBhjWK": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aiworld-built-in-speaker-bluetooth-fm-aux-audio.webp",
+            "alt_text": "",
+            "link": ""
+          }
+        },
+        "image_3xNEJU": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aiworld-airplay-android-mirror-screen-mirroring.webp",
+            "alt_text": "",
+            "link": ""
+          }
+        },
+        "image_iYFJn9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aiworld-1080p-backup-camera-parking-and-reversing.webp",
+            "alt_text": "",
+            "link": ""
+          }
+        },
+        "image_6qWbfm": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aiworld-wireless-carplay-bluetooth-pairing-steps.webp",
+            "alt_text": "",
+            "link": ""
+          }
+        },
+        "image_XpwdT3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aiworld-ota-upgrade-no-app-download-carplay.webp",
+            "alt_text": "",
+            "link": ""
+          }
+        },
         "image-1": {
           "type": "image",
           "settings": {
-            "image": "",
-            "mobile_image": "",
+            "image": "shopify://shop_images/aiworld-12v-24v-carplay-screen-fits-most-vehicles.webp",
             "alt_text": "",
             "link": ""
           }
         }
       },
       "block_order": [
+        "image_GFW7pi",
+        "image_F8PXYN",
+        "image_HBhjWK",
+        "image_3xNEJU",
+        "image_iYFJn9",
+        "image_6qWbfm",
+        "image_XpwdT3",
         "image-1"
       ],
       "settings": {
@@ -216,7 +259,8 @@
       "type": "aiworld-product-banner",
       "disabled": true,
       "settings": {
-        "eyebrow": "AIWORLD Screen X10",
+        "image": "shopify://shop_images/aiworld-portable-carplay-android-auto-airplay-app-menu.webp",
+        "eyebrow": "AIWORLD Screen",
         "heading": "Redefine Your Screen. Elevate Your Drive.",
         "text": "<p>A smarter display for clearer navigation, better entertainment, and every journey in between.</p>",
         "primary_label": "Shop now",
@@ -234,7 +278,6 @@
     },
     "aiworld-intro": {
       "type": "aiworld-product-intro",
-      "disabled": true,
       "blocks": {
         "stat-1": {
           "type": "stat",
@@ -284,6 +327,7 @@
         "stat-4",
         "stat-5"
       ],
+      "disabled": true,
       "settings": {
         "product": "",
         "eyebrow": "ScreenFlow",
@@ -297,7 +341,6 @@
     },
     "aiworld-cards": {
       "type": "aiworld-product-cards",
-      "disabled": true,
       "blocks": {
         "card-1": {
           "type": "card",
@@ -335,6 +378,7 @@
         "card-2",
         "card-3"
       ],
+      "disabled": true,
       "settings": {
         "eyebrow": "Why settle for less?",
         "heading": "Built for a better drive.",
@@ -345,7 +389,6 @@
     },
     "aiworld-features": {
       "type": "aiworld-product-feature-grid",
-      "disabled": true,
       "blocks": {
         "feature-1": {
           "type": "feature",
@@ -378,18 +421,18 @@
         "feature-1",
         "feature-2"
       ],
+      "disabled": true,
       "settings": {
         "eyebrow": "Redefine your screen",
         "heading": "Clarity in sight. Enjoy every drive.",
         "text": "<p>Use each split panel for a different story, product benefit, or visual guide.</p>",
-        "padding_top": 72,
-        "padding_bottom": 72,
+        "padding_top": 48,
+        "padding_bottom": 48,
         "background_color": "#ffffff"
       }
     },
     "aiworld-icons": {
       "type": "aiworld-product-icons",
-      "disabled": true,
       "blocks": {
         "item-1": {
           "type": "item",
@@ -444,6 +487,7 @@
         "item-4",
         "item-5"
       ],
+      "disabled": true,
       "settings": {
         "eyebrow": "More features",
         "heading": "Technology made simple.",
@@ -454,7 +498,6 @@
     },
     "aiworld-faq": {
       "type": "aiworld-product-faq",
-      "disabled": true,
       "blocks": {
         "faq-1": {
           "type": "faq",
@@ -495,6 +538,7 @@
         "faq-3",
         "faq-4"
       ],
+      "disabled": true,
       "settings": {
         "eyebrow": "Questions, answered",
         "heading": "Got questions?",
@@ -578,9 +622,54 @@
         "padding_bottom": 0
       }
     },
+    "1791958928f04f731a": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_cards_carousel_yEqTr6": {
+          "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "show_sample_reviews": true,
+            "reviews_selection": "all",
+            "products": [],
+            "filter_pinned": false,
+            "filter_featured": false,
+            "filter_custom_tags": "",
+            "star_rating": "all",
+            "show_review_media": true,
+            "display_order": "media_first",
+            "no_image_fallback": "review_text_only",
+            "max_reviews": 20,
+            "review_length": "medium",
+            "text_size": "medium",
+            "image_ratio": "1",
+            "reviews_shown": 4,
+            "show_reviewer_name": true,
+            "show_product_name": true,
+            "hide_arrows_mobile": true,
+            "arrows_position": "sides",
+            "max_width": 1100,
+            "corner_styling": "soft",
+            "header_text_color": "#000000",
+            "text_color": "#000000",
+            "card_color": "#f9f9f9",
+            "stars_color": "",
+            "arrows_color": "#000000",
+            "transition_speed": 5,
+            "header_text": "Customers are saying · 4.8 (890+)",
+            "show_average_rating": false,
+            "rating_display": "default"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_cards_carousel_yEqTr6"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
     "178937237118060a23": {
       "type": "apps",
-      "disabled": true,
       "blocks": {
         "judge_me_reviews_review_widget_eQYEQn": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
@@ -595,13 +684,13 @@
       "block_order": [
         "judge_me_reviews_review_widget_eQYEQn"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true
       }
     },
     "aiworld-newsletter": {
       "type": "aiworld-product-newsletter",
-      "disabled": true,
       "settings": {
         "heading": "Stay one step ahead.",
         "text": "<p>Get product updates, useful tips, and smarter driving inspiration.</p>",
@@ -624,6 +713,7 @@
     "related-products",
     "aiworld-reviews",
     "disclosures",
+    "1791958928f04f731a",
     "178937237118060a23",
     "aiworld-newsletter"
   ]

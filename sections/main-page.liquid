@@ -12,14 +12,70 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .aiworld-guide-page {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .aiworld-guide-page .rte {
+    width: 100%;
+    max-width: none;
+  }
+
+  .aiworld-guide-page img,
+  .aiworld-guide-page video,
+  .aiworld-guide-page svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  @media screen and (max-width: 749px) {
+    .aiworld-guide-page .hero-grid,
+    .aiworld-guide-page .guide-layout,
+    .aiworld-guide-page .manual-box,
+    .aiworld-guide-page .audio {
+      grid-template-columns: 1fr !important;
+    }
+
+    .aiworld-guide-page .quick-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .aiworld-guide-page .visual {
+      position: static !important;
+    }
+
+    .aiworld-guide-page .hero {
+      padding-top: 36px;
+      padding-bottom: 36px;
+    }
+
+    .aiworld-guide-page .hero-actions,
+    .aiworld-guide-page .hero-actions .btn {
+      width: 100%;
+    }
+  }
 {%- endstyle -%}
 
-<div class="page-width page-width--narrow section-{{ section.id }}-padding">
-  <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    {{ page.title | escape }}
-  </h1>
+<div class="{% if page.handle == 'installation-guide' %}aiworld-guide-page{% else %}page-width page-width--narrow section-{{ section.id }}-padding{% endif %}">
+  {%- unless page.handle == 'installation-guide' -%}
+    <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      {{ page.title | escape }}
+    </h1>
+  {%- endunless -%}
+  {%- liquid
+    assign aiworld_page_content = page.content
+    if page.handle == 'installation-guide' and page.content contains '<header class="top">'
+      assign aiworld_page_before = page.content | split: '<header class="top">' | first
+      assign aiworld_page_after = page.content | split: '</header>' | last
+      assign aiworld_page_content = aiworld_page_before | append: aiworld_page_after
+    endif
+  -%}
   <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    {{ page.content }}
+    {{ aiworld_page_content }}
   </div>
 </div>
 

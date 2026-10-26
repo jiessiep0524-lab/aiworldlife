@@ -147,8 +147,68 @@
         "disabled": false,
         "settings": {}
       },
+      "17368511000352060744": {
+        "type": "shopify://apps/goaffpro-affiliate-marketing/blocks/goaffpro-embedded-pixel/2f4d802b-86c2-47e4-8096-ae1aa3efbab2",
+        "disabled": false,
+        "settings": {
+          "enable_toolbar": false,
+          "enable_floating_widget": false,
+          "enable_popup": false
+        }
+      },
+      "13047258039897440615": {
+        "type": "shopify://apps/judge-me-reviews/blocks/cart_drawer_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {
+          "widget_type": "review-widget"
+        }
+      },
+      "15683396631634586217": {
+        "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
+        "disabled": false,
+        "settings": {
+          "greeting_message": "",
+          "show_featured_products": true,
+          "featured_products": [],
+          "background_color": "#FFFFFF",
+          "font_color": "#000000",
+          "agent_invert_activator_colors": true,
+          "button_color": "#000000",
+          "button_icon": "chat_bubble",
+          "button_text": "chat_with_us",
+          "button_horizontal_position": "bottom_right",
+          "button_vertical_position": "lowest",
+          "agent_inherit_fonts": true,
+          "agent_font": "system_ui_n4",
+          "agent_font_size": 14,
+          "agent_activator_font_size": 16,
+          "agent_border_radius": 16
+        }
+      },
+      "12226054162189608217": {
+        "type": "shopify://apps/cartsee-email-marketing-sms/blocks/onsite-javascript/3cb8722a-4436-4e4c-88af-b33e3fe7857a",
+        "disabled": false,
+        "settings": {}
+      },
+      "15181020662106344915": {
+        "type": "shopify://apps/judge-me-reviews/blocks/popup_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      },
+      "12120936241911852800": {
+        "type": "shopify://apps/judge-me-reviews/blocks/reviews_tab/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": true,
+        "settings": {
+          "position": "right"
+        }
+      },
       "855628211100114053": {
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
+        "disabled": true,
+        "settings": {}
+      },
+      "1513253815146976218": {
+        "type": "shopify://apps/omnisend-email-marketing-sms/blocks/app-embed/44704aa2-794f-4c5d-8c8e-039c841158e9",
         "disabled": false,
         "settings": {}
       }
@@ -156,68 +216,68 @@
     "color_schemes": {
       "scheme-1": {
         "settings": {
-          "background": "#F5F8FB",
+          "background": "#f5f8fb",
           "background_gradient": "",
-          "text": "#101D2D",
-          "button": "#0787F9",
-          "button_label": "#FFFFFF",
-          "secondary_button_label": "#0787F9",
-          "shadow": "#06182A"
+          "text": "#101d2d",
+          "button": "#0787f9",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#0787f9",
+          "shadow": "#06182a"
         }
       },
       "scheme-2": {
         "settings": {
-          "background": "#FFFFFF",
+          "background": "#ffffff",
           "background_gradient": "",
-          "text": "#101D2D",
-          "button": "#0787F9",
-          "button_label": "#FFFFFF",
-          "secondary_button_label": "#0787F9",
-          "shadow": "#06182A"
+          "text": "#101d2d",
+          "button": "#0787f9",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#0787f9",
+          "shadow": "#06182a"
         }
       },
       "scheme-3": {
         "settings": {
-          "background": "#EEF3F7",
+          "background": "#eef3f7",
           "background_gradient": "",
-          "text": "#101D2D",
-          "button": "#0787F9",
-          "button_label": "#FFFFFF",
-          "secondary_button_label": "#0787F9",
-          "shadow": "#06182A"
+          "text": "#101d2d",
+          "button": "#0787f9",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#0787f9",
+          "shadow": "#06182a"
         }
       },
       "scheme-4": {
         "settings": {
           "background": "#000000",
           "background_gradient": "",
-          "text": "#FFFFFF",
-          "button": "#0787F9",
-          "button_label": "#FFFFFF",
-          "secondary_button_label": "#0787F9",
-          "shadow": "#06182A"
+          "text": "#ffffff",
+          "button": "#0787f9",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#0787f9",
+          "shadow": "#06182a"
         }
       },
       "scheme-5": {
         "settings": {
-          "background": "#06182A",
+          "background": "#06182a",
           "background_gradient": "",
-          "text": "#FFFFFF",
-          "button": "#0787F9",
-          "button_label": "#FFFFFF",
-          "secondary_button_label": "#FFFFFF",
-          "shadow": "#06182A"
+          "text": "#ffffff",
+          "button": "#0787f9",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#ffffff",
+          "shadow": "#06182a"
         }
       },
       "scheme-71aa76f9-f0d7-4f2c-80bb-7d1fb2987433": {
         "settings": {
-          "background": "#F5F8FB",
+          "background": "#f5f8fb",
           "background_gradient": "",
-          "text": "#101D2D",
-          "button": "#0787F9",
-          "button_label": "#FFFFFF",
-          "secondary_button_label": "#0787F9",
-          "shadow": "#06182A"
+          "text": "#101d2d",
+          "button": "#0787f9",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#0787f9",
+          "shadow": "#06182a"
         }
       }
     }
