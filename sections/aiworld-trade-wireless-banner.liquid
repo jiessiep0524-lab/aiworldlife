@@ -1,0 +1,516 @@
+{% assign wireless_banner_product_url = section.settings.link | default: '/products/wireless-carplay-android-auto-adapter' %}
+{% assign wireless_banner_link_label = section.settings.heading | default: 'Explore the adapter' | strip_newlines | escape %}
+{% assign wireless_banner_content_position = section.settings.content_position | default: 'right' %}
+{% assign wireless_banner_mobile_content_position = section.settings.mobile_content_position | default: 'right' %}
+{% assign wireless_banner_image_alt = section.settings.image_alt | default: section.settings.heading | strip_newlines | escape %}
+<section
+  id="AIWORLD-WirelessBanner-{{ section.id }}"
+  class="aiworld-wireless-banner aiworld-wireless-banner--content-{{ wireless_banner_content_position }} aiworld-wireless-banner--mobile-content-{{ wireless_banner_mobile_content_position }}"
+  style="--aiworld-wireless-height: {{ section.settings.height }}px; --aiworld-wireless-mobile-height: {{ section.settings.mobile_height }}px; --aiworld-wireless-position: {{ section.settings.image_position }}; padding-top: {% if section.settings.enable_top_spacing %}{{ section.settings.padding_top }}px{% else %}0{% endif %}; padding-bottom: {% if section.settings.enable_bottom_spacing %}{{ section.settings.padding_bottom }}px{% else %}0{% endif %};"
+>
+  <div class="aiworld-wireless-banner__media">
+    {% if section.settings.image != blank or section.settings.mobile_image != blank %}
+      <picture>
+        {% if section.settings.mobile_image != blank %}
+          <source media="(max-width: 749px)" srcset="{{ section.settings.mobile_image | image_url: width: 750 }} 750w, {{ section.settings.mobile_image | image_url: width: 1100 }} 1100w" sizes="100vw">
+        {% endif %}
+        {% if section.settings.image != blank %}
+          {{ section.settings.image | image_url: width: 2200 | image_tag: loading: 'lazy', decoding: 'async', widths: '750,1100,1500,2000,2200', sizes: '100vw', alt: wireless_banner_image_alt }}
+        {% else %}
+          {{ section.settings.mobile_image | image_url: width: 1100 | image_tag: loading: 'lazy', decoding: 'async', widths: '375,750,1100', sizes: '100vw', alt: wireless_banner_image_alt }}
+        {% endif %}
+      </picture>
+    {% else %}
+      <img
+        src="{{ 'aiworld-wireless-carplay-android-auto-adapter-banner.webp' | asset_url }}"
+        alt="{{ wireless_banner_image_alt }}"
+        width="1672"
+        height="941"
+        loading="lazy"
+        decoding="async"
+      >
+    {% endif %}
+  </div>
+  <div class="aiworld-wireless-banner__shade" aria-hidden="true"></div>
+  <a class="aiworld-wireless-banner__link" href="{{ wireless_banner_product_url }}" aria-label="{{ wireless_banner_link_label }}"></a>
+
+  <div class="trade-container aiworld-wireless-banner__inner">
+    <div class="aiworld-wireless-banner__copy">
+      {% if section.settings.kicker != blank %}
+        <p class="aiworld-wireless-banner__kicker">{{ section.settings.kicker | escape }}</p>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading | escape | newline_to_br }}</h2>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="aiworld-wireless-banner__text">{{ section.settings.text }}</div>
+      {% endif %}
+
+      {% if section.settings.button_label != blank %}
+        <a class="aiworld-wireless-banner__button" href="{{ wireless_banner_product_url }}">
+          {{ section.settings.button_label | escape }} <span aria-hidden="true">&rarr;</span>
+        </a>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <div class="aiworld-wireless-banner__points">
+          {% for block in section.blocks %}
+          <a class="aiworld-wireless-banner__point" href="{{ block.settings.link | default: wireless_banner_product_url }}" {{ block.shopify_attributes }}>
+            {% if block.settings.icon_image != blank %}
+              {{ block.settings.icon_image | image_url: width: 120 | image_tag: class: 'aiworld-wireless-banner__point-icon', loading: 'lazy', widths: '60,90,120', sizes: '40px', alt: block.settings.title | escape }}
+            {% else %}
+              <span class="aiworld-wireless-banner__point-icon aiworld-wireless-banner__point-icon--fallback" aria-hidden="true">
+                {% case forloop.index %}
+                  {% when 1 %}
+                    <svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+                  {% when 2 %}
+                    <svg viewBox="0 0 24 24" focusable="false"><path d="M7 7h10M7 12h10M7 17h6"></path></svg>
+                  {% when 3 %}
+                    <svg viewBox="0 0 24 24" focusable="false"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"></path></svg>
+                {% endcase %}
+              </span>
+            {% endif %}
+            <strong>{{ block.settings.title | escape }}</strong>
+            {% if block.settings.text != blank %}<span>{{ block.settings.text | escape }}</span>{% endif %}
+          </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .aiworld-wireless-banner {
+    position: relative;
+    min-height: var(--aiworld-wireless-height, 480px);
+    overflow: hidden;
+    background: #06182a;
+    color: #ffffff;
+    isolation: isolate;
+  }
+
+  .aiworld-wireless-banner__media,
+  .aiworld-wireless-banner__shade {
+    position: absolute;
+    inset: 0;
+  }
+
+  .aiworld-wireless-banner__link {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    display: block;
+  }
+
+  .aiworld-wireless-banner__media {
+    z-index: 0;
+  }
+
+  .aiworld-wireless-banner__media picture,
+  .aiworld-wireless-banner__media img,
+  .aiworld-wireless-banner__placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .aiworld-wireless-banner__media img,
+  .aiworld-wireless-banner__placeholder {
+    object-fit: cover;
+    object-position: var(--aiworld-wireless-position, center center);
+  }
+
+  .aiworld-wireless-banner__shade {
+    z-index: 1;
+    background: linear-gradient(90deg, rgba(4, 12, 24, 0.9) 0%, rgba(4, 12, 24, 0.7) 38%, rgba(4, 12, 24, 0.18) 100%);
+  }
+
+  .aiworld-wireless-banner__inner {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    min-height: var(--aiworld-wireless-height, 480px);
+    align-items: center;
+    padding-top: 56px;
+    padding-bottom: 56px;
+    pointer-events: none;
+  }
+
+  .aiworld-wireless-banner--content-left .aiworld-wireless-banner__inner {
+    justify-content: flex-start;
+  }
+
+  .aiworld-wireless-banner--content-center .aiworld-wireless-banner__inner {
+    justify-content: center;
+  }
+
+  .aiworld-wireless-banner--content-center .aiworld-wireless-banner__shade {
+    background: linear-gradient(180deg, rgba(4, 12, 24, 0.72) 0%, rgba(4, 12, 24, 0.36) 58%, rgba(4, 12, 24, 0.58) 100%);
+  }
+
+  .aiworld-wireless-banner--content-right .aiworld-wireless-banner__inner {
+    justify-content: flex-end;
+  }
+
+  .aiworld-wireless-banner__copy {
+    width: min(100%, 620px);
+  }
+
+  .aiworld-wireless-banner__kicker {
+    margin: 0 0 10px;
+    color: #0787f9;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .aiworld-wireless-banner h2 {
+    max-width: 680px;
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(24px, 2.5vw, 36px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.4px;
+  }
+
+  .aiworld-wireless-banner__text {
+    max-width: 520px;
+    margin: 14px 0 20px;
+    color: rgba(255, 255, 255, 0.84);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .aiworld-wireless-banner__text p {
+    margin: 0;
+  }
+
+  .aiworld-wireless-banner__button {
+    position: relative;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 11px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-decoration: none;
+    pointer-events: auto;
+  }
+
+  .aiworld-wireless-banner__button:hover {
+    background: #ffffff;
+    color: #06182a;
+  }
+
+  .aiworld-wireless-banner__points {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    max-width: 640px;
+    margin-top: 0;
+    pointer-events: auto;
+  }
+
+  .aiworld-wireless-banner__point {
+    display: block;
+    min-width: 0;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .aiworld-wireless-banner--content-center .aiworld-wireless-banner__copy,
+  .aiworld-wireless-banner--content-center .aiworld-wireless-banner__text,
+  .aiworld-wireless-banner--content-center .aiworld-wireless-banner__point {
+    text-align: center;
+  }
+
+  .aiworld-wireless-banner--content-center .aiworld-wireless-banner__copy,
+  .aiworld-wireless-banner--content-center .aiworld-wireless-banner__text {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .aiworld-wireless-banner--content-right .aiworld-wireless-banner__copy,
+  .aiworld-wireless-banner--content-right .aiworld-wireless-banner__text,
+  .aiworld-wireless-banner--content-right .aiworld-wireless-banner__point {
+    text-align: right;
+  }
+
+  .aiworld-wireless-banner__point-icon {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    background: #0787f9;
+    object-fit: contain;
+    padding: 8px;
+  }
+
+  .aiworld-wireless-banner--content-center .aiworld-wireless-banner__point-icon {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .aiworld-wireless-banner--content-right .aiworld-wireless-banner__point-icon {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  .aiworld-wireless-banner__point-icon--fallback {
+    color: #ffffff;
+  }
+
+  .aiworld-wireless-banner__point-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.6;
+  }
+
+  .aiworld-wireless-banner__point strong,
+  .aiworld-wireless-banner__point > span:last-child {
+    display: block;
+  }
+
+  .aiworld-wireless-banner__point strong {
+    margin-bottom: 4px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .aiworld-wireless-banner__point > span:last-child {
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  .aiworld-wireless-banner__point:hover strong {
+    color: #72c2ff;
+  }
+
+  .aiworld-wireless-banner__point:focus-visible {
+    outline: 3px solid rgba(114, 194, 255, 0.8);
+    outline-offset: 5px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .aiworld-wireless-banner {
+      min-height: var(--aiworld-wireless-mobile-height, 560px);
+    }
+
+    .aiworld-wireless-banner__inner {
+      min-height: var(--aiworld-wireless-mobile-height, 560px);
+      align-items: flex-end;
+      padding-top: 44px;
+      padding-bottom: 36px;
+    }
+
+    .aiworld-wireless-banner--mobile-content-left .aiworld-wireless-banner__inner {
+      justify-content: flex-start;
+    }
+
+    .aiworld-wireless-banner--mobile-content-center .aiworld-wireless-banner__inner {
+      justify-content: center;
+    }
+
+    .aiworld-wireless-banner--mobile-content-right .aiworld-wireless-banner__inner {
+      justify-content: flex-end;
+    }
+
+    .aiworld-wireless-banner--mobile-content-left .aiworld-wireless-banner__copy,
+    .aiworld-wireless-banner--mobile-content-left .aiworld-wireless-banner__text,
+    .aiworld-wireless-banner--mobile-content-left .aiworld-wireless-banner__point {
+      text-align: left;
+    }
+
+    .aiworld-wireless-banner--mobile-content-center .aiworld-wireless-banner__copy,
+    .aiworld-wireless-banner--mobile-content-center .aiworld-wireless-banner__text,
+    .aiworld-wireless-banner--mobile-content-center .aiworld-wireless-banner__point {
+      text-align: center;
+    }
+
+    .aiworld-wireless-banner--mobile-content-right .aiworld-wireless-banner__copy,
+    .aiworld-wireless-banner--mobile-content-right .aiworld-wireless-banner__text,
+    .aiworld-wireless-banner--mobile-content-right .aiworld-wireless-banner__point {
+      text-align: right;
+    }
+
+    .aiworld-wireless-banner__shade {
+      background: linear-gradient(180deg, rgba(4, 12, 24, 0.08) 12%, rgba(4, 12, 24, 0.88) 76%, rgba(4, 12, 24, 0.96) 100%);
+    }
+
+    .aiworld-wireless-banner__points {
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .aiworld-wireless-banner__kicker {
+      margin-bottom: 7px;
+      font-size: 10px;
+    }
+
+    .aiworld-wireless-banner h2 {
+      font-size: clamp(22px, 6.2vw, 28px);
+    }
+
+    .aiworld-wireless-banner__text {
+      margin: 10px auto 16px;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .aiworld-wireless-banner__button {
+      min-height: 40px;
+      padding: 10px 18px;
+      font-size: 11px;
+    }
+
+    .aiworld-wireless-banner__point-icon {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 7px;
+      padding: 7px;
+    }
+
+    .aiworld-wireless-banner--mobile-content-center .aiworld-wireless-banner__point-icon {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .aiworld-wireless-banner--mobile-content-right .aiworld-wireless-banner__point-icon {
+      margin-right: 0;
+      margin-left: auto;
+    }
+
+    .aiworld-wireless-banner--mobile-content-left .aiworld-wireless-banner__point-icon {
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+    .aiworld-wireless-banner__point strong {
+      font-size: 10px;
+      line-height: 1.2;
+    }
+
+    .aiworld-wireless-banner__point > span:last-child {
+      font-size: 9px;
+      line-height: 1.25;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .aiworld-wireless-banner,
+    .aiworld-wireless-banner__inner {
+      min-height: 360px;
+    }
+
+    .aiworld-wireless-banner__inner {
+      align-items: center;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    .aiworld-wireless-banner__shade {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.92) 0%,
+        rgba(255, 255, 255, 0.86) 38%,
+        rgba(255, 255, 255, 0.72) 62%,
+        rgba(255, 255, 255, 0) 74%
+      );
+    }
+
+    .aiworld-wireless-banner__kicker {
+      color: #04548f;
+    }
+
+    .aiworld-wireless-banner h2 {
+      color: #06182a;
+    }
+
+    .aiworld-wireless-banner__text {
+      color: #1c3148;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Wireless pairing banner",
+  "tag": "section",
+  "class": "section-aiworld-trade-wireless-banner",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Desktop background image (recommended 1920 × 720 px)", "info": "Recommended size: 1920 × 720 px. Use a wide image with clear space for the text." },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobile background image (recommended 750 × 1000 px)", "info": "Recommended size: 750 × 1000 px. Use a portrait crop with clear space for the text." },
+    { "type": "text", "id": "image_alt", "label": "Image alt text", "default": "AIWORLD wireless CarPlay and Android Auto adapter in blue, orange and silver with flowing light trails" },
+    { "type": "select", "id": "content_position", "label": "Desktop content position", "options": [
+      { "value": "left", "label": "Left" },
+      { "value": "center", "label": "Center" },
+      { "value": "right", "label": "Right" }
+    ], "default": "right" },
+    { "type": "select", "id": "mobile_content_position", "label": "Mobile content position", "options": [
+      { "value": "left", "label": "Left" },
+      { "value": "center", "label": "Center" },
+      { "value": "right", "label": "Right" }
+    ], "default": "right" },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "PLUG IN. PAIR UP." },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Drive connected.\nKeep it simple." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>A seamless wireless experience for every drive.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "BUY NOW" },
+    { "type": "url", "id": "link", "label": "Banner link", "info": "Clicking the banner opens this page. Defaults to the adapter product page." },
+    { "type": "range", "id": "height", "min": 360, "max": 720, "step": 20, "unit": "px", "label": "Desktop height", "default": 480 },
+    { "type": "range", "id": "mobile_height", "min": 360, "max": 820, "step": 20, "unit": "px", "label": "Mobile height", "default": 360 },
+    { "type": "select", "id": "image_position", "label": "Background image position", "options": [
+      { "value": "left center", "label": "Left" },
+      { "value": "center center", "label": "Center" },
+      { "value": "right center", "label": "Right" }
+    ], "default": "center center" },
+    { "type": "checkbox", "id": "enable_top_spacing", "label": "Enable top spacing", "default": true },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Top spacing", "default": 0 },
+    { "type": "checkbox", "id": "enable_bottom_spacing", "label": "Enable bottom spacing", "default": true },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Bottom spacing", "default": 0 }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        { "type": "image_picker", "id": "icon_image", "label": "Icon image (PNG, recommended 96 × 96 px)", "info": "Recommended size: 96 × 96 px. Use a transparent PNG." },
+        { "type": "url", "id": "link", "label": "Benefit link" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Simple setup" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Plug in and go." }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Wireless pairing banner",
+      "blocks": [
+        { "type": "benefit", "settings": { "title": "Simple setup", "text": "Plug in and go." } },
+        { "type": "benefit", "settings": { "title": "Automatic pairing", "text": "Connect without the extra steps." } },
+        { "type": "benefit", "settings": { "title": "Factory controls", "text": "Keep the drive familiar." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

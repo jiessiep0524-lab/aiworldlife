@@ -39,7 +39,7 @@
         "price": {
           "type": "price",
           "settings": {
-            "show_taxes_included": true,
+            "show_taxes_included": false,
             "desktop_price_size": 52,
             "mobile_price_size": 45,
             "compare_price_size": 25,
@@ -355,7 +355,7 @@
         "item-1": {
           "type": "item",
           "settings": {
-            "icon": "↗",
+            "icon": "",
             "heading": "Fast connection",
             "text": "Get up and running in minutes.",
             "icon_color": "#0789f9"
@@ -364,7 +364,7 @@
         "item-2": {
           "type": "item",
           "settings": {
-            "icon": "⌁",
+            "icon": "",
             "heading": "Smart compatibility",
             "text": "Works with the devices you love.",
             "icon_color": "#0789f9"
@@ -373,7 +373,7 @@
         "item-3": {
           "type": "item",
           "settings": {
-            "icon": "◉",
+            "icon": "",
             "heading": "Intuitive experience",
             "text": "Designed for everyone.",
             "icon_color": "#0789f9"
@@ -382,7 +382,7 @@
         "item-4": {
           "type": "item",
           "settings": {
-            "icon": "▥",
+            "icon": "",
             "heading": "Continuous improvement",
             "text": "Always evolving for tomorrow.",
             "icon_color": "#0789f9"
@@ -391,7 +391,7 @@
         "item-5": {
           "type": "item",
           "settings": {
-            "icon": "✓",
+            "icon": "",
             "heading": "Easy setup",
             "text": "Simple from the first drive.",
             "icon_color": "#0789f9"
@@ -584,3 +584,4 @@
     "aiworld-newsletter"
   ]
 }
+

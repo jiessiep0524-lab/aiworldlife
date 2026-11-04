@@ -200,3 +200,101 @@ details[open].menu-opening > .menu-drawer__submenu {
     transition: none !important;
   }
 }
+
+.aiworld-shop-drawer__collection {
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.08);
+}
+
+.aiworld-shop-drawer__collection-link {
+  align-items: center;
+  gap: 1rem;
+  min-height: 6.4rem;
+  padding: 1rem 3rem;
+}
+
+.aiworld-shop-drawer__collection-media {
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(var(--color-foreground), 0.1);
+  border-radius: 0.8rem;
+  display: flex;
+  flex: 0 0 4.4rem;
+  height: 4.4rem;
+  justify-content: center;
+  overflow: hidden;
+  width: 4.4rem;
+}
+
+.aiworld-shop-drawer__collection-media img {
+  height: 100%;
+  object-fit: contain;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+.aiworld-shop-drawer__collection-title {
+  flex: 1 1 auto;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.aiworld-shop-drawer__collection-arrow {
+  color: rgb(var(--color-button));
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.aiworld-shop-drawer__products {
+  background: rgba(var(--color-foreground), 0.025);
+  display: grid;
+  gap: 0.6rem;
+  padding: 0.5rem 3rem 1.1rem 8.4rem;
+}
+
+.aiworld-shop-drawer__product {
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(var(--color-foreground), 0.08);
+  border-radius: 0.8rem;
+  gap: 0.8rem;
+  min-height: 5.8rem;
+  padding: 0.6rem 0.8rem;
+}
+
+.aiworld-shop-drawer__product-media {
+  align-items: center;
+  background: #fff;
+  display: flex;
+  flex: 0 0 4.2rem;
+  height: 4.2rem;
+  justify-content: center;
+  overflow: hidden;
+  width: 4.2rem;
+}
+
+.aiworld-shop-drawer__product-media img {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+.aiworld-shop-drawer__product-copy {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.aiworld-shop-drawer__product-title {
+  display: -webkit-box;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.aiworld-shop-drawer__product-price {
+  color: rgba(var(--color-foreground), 0.7);
+  font-size: 1.2rem;
+  font-weight: 600;
+}

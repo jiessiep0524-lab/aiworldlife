@@ -64,6 +64,109 @@
     "trade_featured_hero": {
       "type": "aiworld-trade-hero-carousel",
       "blocks": {
+        "slide_kpWChU": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/AIWORLD.png",
+            "mobile_image": "shopify://shop_images/AIWORLD_31f76f46-4dcc-4525-8c16-e507c2f861cc.png",
+            "image_link": "shopify://products/9-inch-wireless-carplay",
+            "eyebrow": "",
+            "heading": "",
+            "text": "",
+            "rating_text": "",
+            "show_rating": false,
+            "price": "",
+            "button_label": "",
+            "button_link": "",
+            "button_2_label": "",
+            "button_2_link": "",
+            "content_position": "inherit",
+            "text_alignment": "inherit",
+            "content_vertical": 0,
+            "mobile_content_position": "inherit",
+            "mobile_text_alignment": "inherit",
+            "mobile_content_vertical": 0,
+            "customize_text_colors": false,
+            "eyebrow_color": "#ffffff",
+            "heading_color": "#ffffff",
+            "heading_accent_color": "#0787f9",
+            "body_text_color": "#ffffff",
+            "text_shadow": false,
+            "shadow_color": "#000000",
+            "shadow_opacity": 45,
+            "shadow_offset_x": 0,
+            "shadow_offset_y": 2,
+            "shadow_blur": 6,
+            "mobile_heading": "",
+            "mobile_text": "",
+            "feature_1_icon": "MAP",
+            "feature_1_title": "Navigation",
+            "feature_1_text": "Made easier",
+            "feature_2_icon": "MUSIC",
+            "feature_2_title": "Your Music",
+            "feature_2_text": "Your way",
+            "feature_3_icon": "SAFE",
+            "feature_3_title": "Drive Safer",
+            "feature_3_text": "Stay connected",
+            "mobile_price": "",
+            "mobile_button_label": "",
+            "mobile_button_link": "",
+            "mobile_button_2_label": "",
+            "mobile_button_2_link": ""
+          }
+        },
+        "slide_enFYKL": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/AIWORLD_Adapter_Banner_1920x720_21e7ac44-88e6-48e5-9aef-b3bd7ee63c47.png",
+            "mobile_image": "shopify://shop_images/3df2905eb2cdfb8bfef850032bd0793e.png",
+            "image_link": "shopify://products/wireless-carplay-android-auto-adapter",
+            "eyebrow": "AIWORLD WIRELESS ADAPTER",
+            "heading": "Cut the Cable.\nKeep the Connection.",
+            "text": "<p>Turn your car's existing wired CarPlay & Android Auto into a wireless experience. Just plug in, pair up, and drive.</p>",
+            "rating_text": "",
+            "show_rating": false,
+            "price": "",
+            "button_label": "Buy Now",
+            "button_link": "shopify://products/wireless-carplay-android-auto-adapter",
+            "button_2_label": "",
+            "button_2_link": "",
+            "content_position": "center",
+            "text_alignment": "center",
+            "content_vertical": 50,
+            "mobile_content_position": "center",
+            "mobile_text_alignment": "center",
+            "mobile_content_vertical": 32,
+            "customize_text_colors": true,
+            "eyebrow_color": "#0787f9",
+            "heading_color": "#ffffff",
+            "heading_accent_color": "#0787f9",
+            "body_text_color": "#ffffff",
+            "text_shadow": true,
+            "shadow_color": "#101d2d",
+            "shadow_opacity": 30,
+            "shadow_offset_x": 0,
+            "shadow_offset_y": 2,
+            "shadow_blur": 6,
+            "mobile_heading": "",
+            "mobile_text": "",
+            "feature_1_icon": "MAP",
+            "feature_1_title": "Navigation",
+            "feature_1_text": "Made easier",
+            "feature_2_icon": "MUSIC",
+            "feature_2_title": "Your Music",
+            "feature_2_text": "Your way",
+            "feature_3_icon": "SAFE",
+            "feature_3_title": "Drive Safer",
+            "feature_3_text": "Stay connected",
+            "mobile_price": "",
+            "mobile_button_label": "",
+            "mobile_button_link": "",
+            "mobile_button_2_label": "",
+            "mobile_button_2_link": ""
+          }
+        },
         "slide_cbYbbX": {
           "type": "slide",
           "settings": {
@@ -73,13 +176,30 @@
             "eyebrow": "AIworld Screen",
             "heading": "Drive Smarter.\nUpgrade Your Old Car.",
             "text": "<p>Upgrade your old car with wireless CarPlay & Android Auto—no dashboard replacement needed.</p>",
-            "rating_text": "4.8 (890+ reviews)",
+            "rating_text": "4.74 (891 reviews)",
             "show_rating": true,
             "price": "",
             "button_label": "Buy Now",
             "button_link": "https://aiworldlife.com/products/9-inch-wireless-carplay",
             "button_2_label": "",
             "button_2_link": "",
+            "content_position": "inherit",
+            "text_alignment": "inherit",
+            "content_vertical": 0,
+            "mobile_content_position": "inherit",
+            "mobile_text_alignment": "inherit",
+            "mobile_content_vertical": 0,
+            "customize_text_colors": false,
+            "eyebrow_color": "#ffffff",
+            "heading_color": "#ffffff",
+            "heading_accent_color": "#0787f9",
+            "body_text_color": "#ffffff",
+            "text_shadow": false,
+            "shadow_color": "#000000",
+            "shadow_opacity": 45,
+            "shadow_offset_x": 0,
+            "shadow_offset_y": 2,
+            "shadow_blur": 6,
             "mobile_heading": "Drive Smarter.",
             "mobile_text": "<p>Wireless CarPlay and Android Auto. No dashboard replacement.</p>",
             "feature_1_icon": "MAP",
@@ -107,13 +227,30 @@
             "eyebrow": "AIworld Screen",
             "heading": "Smarter Driving\nStarts Here.",
             "text": "<p>A 9-inch portable wireless CarPlay & Android Auto display for any car. Simple. Powerful. A better way to drive.</p>",
-            "rating_text": "4.8 (890+ reviews)",
+            "rating_text": "4.74 (891 reviews)",
             "show_rating": true,
             "price": "",
             "button_label": "Buy Now",
             "button_link": "https://aiworldlife.com/products/9-inch-wireless-carplay",
             "button_2_label": "",
             "button_2_link": "",
+            "content_position": "inherit",
+            "text_alignment": "inherit",
+            "content_vertical": 0,
+            "mobile_content_position": "inherit",
+            "mobile_text_alignment": "inherit",
+            "mobile_content_vertical": 0,
+            "customize_text_colors": false,
+            "eyebrow_color": "#ffffff",
+            "heading_color": "#ffffff",
+            "heading_accent_color": "#0787f9",
+            "body_text_color": "#ffffff",
+            "text_shadow": false,
+            "shadow_color": "#000000",
+            "shadow_opacity": 45,
+            "shadow_offset_x": 0,
+            "shadow_offset_y": 2,
+            "shadow_blur": 6,
             "mobile_heading": "Smarter Driving",
             "mobile_text": "<p>A 9-inch screen for wireless CarPlay and Android Auto.</p>",
             "feature_1_icon": "MAP",
@@ -134,6 +271,8 @@
         }
       },
       "block_order": [
+        "slide_kpWChU",
+        "slide_enFYKL",
         "slide_cbYbbX",
         "hero_slide_1"
       ],
@@ -146,7 +285,7 @@
         "text_font_size": 18,
         "text_color": "#ffffff",
         "text_line_height": 1.5,
-        "rating_text": "4.8 (890+ reviews)",
+        "rating_text": "4.74 (891 reviews)",
         "show_rating": true,
         "price": "",
         "button_label": "Buy Now",
@@ -238,6 +377,45 @@
         "enable_bottom_spacing": true
       }
     },
+    "aiworld_product_pair": {
+      "type": "aiworld-home-product-pair",
+      "blocks": {
+        "adapter": {
+          "type": "product",
+          "settings": {
+            "product": "wireless-carplay-android-auto-adapter",
+            "image": "shopify://shop_images/wireless-carplay-android-auto-adapter-orange-blue-white-color-options.webp",
+            "eyebrow": "",
+            "title": "Already have wired CarPlay?",
+            "text": "Make your existing setup wireless with a compact CarPlay and Android Auto adapter.",
+            "button_label": "Explore adapter"
+          }
+        },
+        "screen": {
+          "type": "product",
+          "settings": {
+            "product": "9-inch-wireless-carplay",
+            "image": "shopify://shop_images/20261029173422_685_710.png",
+            "eyebrow": "",
+            "title": "Bring CarPlay to your dashboard.",
+            "text": "Add a portable screen when your car needs a smarter, larger connected display.",
+            "button_label": "Explore screens"
+          }
+        }
+      },
+      "block_order": [
+        "adapter",
+        "screen"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Find Your Upgrade",
+        "subheading": "Made for the way you drive.",
+        "background_color": "#f4f8fc",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
     "trade_entertainment": {
       "type": "aiworld-trade-entertainment",
       "blocks": {
@@ -289,7 +467,7 @@
             "link_2": "",
             "title_2": "Flexible Audio Options",
             "text_2": "Choose FM, AUX, the built-in speaker, or supported phone audio routing to fit your car's setup.",
-            "image_3": "shopify://shop_images/aiworld-140-degree-waterproof-parking-camera.webp",
+            "image_3": "shopify://shop_images/170-degree-parking-assist-camera-system.webp",
             "link_3": "",
             "title_3": "Backup Camera Support",
             "text_3": "Connect a compatible rear camera for a clearer view when parking and reversing."
@@ -559,7 +737,7 @@
       ],
       "settings": {
         "image": "shopify://shop_images/1.png",
-        "image_link": "",
+        "image_link": "shopify://products/9-inch-wireless-carplay",
         "kicker": "BEFORE YOU BUY",
         "heading": "A Simple Upgrade. A Few Things to Check.",
         "subheading": "Check vehicle power, setup and what's included.",
@@ -569,6 +747,59 @@
         "padding_top": 48,
         "enable_bottom_spacing": false,
         "padding_bottom": 48
+      }
+    },
+    "trade_wireless_banner": {
+      "type": "aiworld-trade-wireless-banner",
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "link": "",
+            "title": "Simple setup",
+            "text": "Plug in and go."
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "link": "",
+            "title": "Automatic pairing",
+            "text": "Connect without the extra steps."
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "link": "",
+            "title": "Factory controls",
+            "text": "Keep the drive familiar."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/wireless-carplay-android-auto-adapter-orange-in-car-installation.webp",
+        "mobile_image": "shopify://shop_images/wireless-carplay-android-auto-adapter-orange-center-console.webp",
+        "image_alt": "CarPlay screen on a coastal drive",
+        "content_position": "left",
+        "mobile_content_position": "center",
+        "kicker": "PLUG IN. PAIR UP.",
+        "heading": "Drive connected.\nKeep it simple.",
+        "text": "<p>A seamless wireless experience for every drive.</p>",
+        "button_label": "",
+        "link": "/products/wireless-carplay-android-auto-adapter",
+        "height": 480,
+        "mobile_height": 360,
+        "image_position": "center center",
+        "enable_top_spacing": true,
+        "padding_top": 0,
+        "enable_bottom_spacing": true,
+        "padding_bottom": 0
       }
     },
     "1791961241a79b9cc6": {
@@ -628,7 +859,7 @@
       "settings": {
         "kicker": "REAL DRIVERS. REAL REVIEWS.",
         "heading": "Loved by Thousands",
-        "subheading": "4.8 out of 5 (890+ verified reviews)",
+        "subheading": "4.74 out of 5 (891 reviews)",
         "background": "#ffffff",
         "enable_top_spacing": true,
         "padding_top": 48,
@@ -814,7 +1045,7 @@
           "type": "question",
           "settings": {
             "question": "Will it work with my car?",
-            "answer": "<p><strong>Absolutely.</strong> If your car has a 12V or 24V power socket, it works. Factory CarPlay is not required, and the factory radio stays in place. The included charger turns that socket into a steady 5V/3A.</p>"
+            "answer": "<p>Many vehicles with a compatible 12V–24V power outlet can use the screen with the included charger. Compatibility also depends on safe mounting space, stable power, phone support for CarPlay or Android Auto, and any audio or camera setup. Factory CarPlay is not required. Please review the vehicle and phone requirements before ordering.</p>"
           }
         },
         "faq_2": {
@@ -952,6 +1183,7 @@
         "brand_4",
         "brand_5"
       ],
+      "disabled": true,
       "settings": {
         "label": "FEATURED IN",
         "background": "#ffffff",
@@ -985,11 +1217,13 @@
     "trade_trust_bottom",
     "trade_featured_hero",
     "aiworld_trade_feature_strip_wcRiex",
+    "aiworld_product_pair",
     "trade_entertainment",
     "trade_feature_strip",
     "trade_feature_cards",
     "trade_story",
     "trade_specs",
+    "trade_wireless_banner",
     "1791961241a79b9cc6",
     "trade_reviews",
     "trade_testimonials",

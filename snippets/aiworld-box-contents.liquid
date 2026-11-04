@@ -1,0 +1,29 @@
+{% doc %}
+  Renders accessory names and icons from the product box contents metafield.
+  @param {product} product - The current product
+{% enddoc %}
+<details class="aiworld-product-key-features aiworld-feature-disclosure">
+  <summary class="aiworld-box-summary"><h3 class="aiworld-product-key-features__heading">What's in the box</h3><span aria-hidden="true" class="aiworld-box-toggle"></span></summary>
+  <ul class="aiworld-box-list" role="list">
+    {% for item in product.metafields.custom.box_contents.value %}
+      <li>
+        {% if item.icon.value != blank %}
+          {{ item.icon.value | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80,160', sizes: '56px', alt: item.name.value }}
+        {% else %}
+          <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            {% case item.system.handle %}
+              {% when 'screen' %}<rect x="4" y="8" width="40" height="26" rx="3"/><path d="M24 34v7m-10 0h20"/>
+              {% when 'mount' %}<ellipse cx="24" cy="39" rx="17" ry="5"/><path d="M24 35V23l9-10M12 8h24v8H12z"/>
+              {% when 'charger' %}<path d="M18 4h12v8l5 8v15H13V20l5-8zM19 35v8h10v-8M18 23h12v6H18z"/>
+              {% when 'aux' %}<path d="M9 5v9m-4 0h8v11H5zM9 25v8a9 9 0 0 0 18 0V16a6 6 0 0 1 12 0v7m-4 0h8v11h-8zm4 11v9"/>
+              {% when 'camera' %}<rect x="6" y="14" width="36" height="25" rx="4"/><circle cx="24" cy="26" r="8"/><path d="M16 14l3-7h10l3 7"/>
+              {% when 'manual' %}<path d="M24 12c-6-5-13-5-20-3v31c7-2 14-2 20 3 6-5 13-5 20-3V9c-7-2-14-2-20 3v31M10 17h8m-8 7h8m12-7h8m-8 7h8"/>
+              {% else %}<path d="M4 14l20-9 20 9v23l-20 9-20-9zM4 14l20 9 20-9M24 23v23"/>
+            {% endcase %}
+          </svg>
+        {% endif %}
+        <span>{{ item.name.value | escape }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+</details>

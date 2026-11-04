@@ -429,6 +429,20 @@
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    {%- liquid
+      assign cart_has_replacement_protection = false
+      for item in cart.items
+        if item.product.handle == 'replacement-protection'
+          assign cart_has_replacement_protection = true
+          break
+        endif
+      endfor
+    -%}
+    <script>
+      window.aiworldProtectionCartHasProtection = {{ cart_has_replacement_protection | json }};
+    </script>
+    <script src="{{ 'aiworld-protection-eligibility.js' | asset_url }}" defer="defer"></script>
+
     <script>
       (function () {
         var warmed = false;

@@ -986,9 +986,9 @@ body .trade-story .trade-story__point-icon svg {
     display: block;
     background: linear-gradient(
       180deg,
-      #ffffff 0%,
-      rgba(255, 255, 255, 0.97) 38%,
-      rgba(255, 255, 255, 0.94) 62%,
+      rgba(255, 255, 255, 0.84) 0%,
+      rgba(255, 255, 255, 0.76) 38%,
+      rgba(255, 255, 255, 0.62) 62%,
       rgba(255, 255, 255, 0) 74%
     );
     pointer-events: none;

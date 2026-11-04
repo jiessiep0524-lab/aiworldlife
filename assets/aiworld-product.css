@@ -962,6 +962,19 @@ body:has(.product-media-modal[open]) .aiworld-sticky-buy {
   }
 }
 
+:is(.template-product, product-info) details.aiworld-feature-disclosure { padding:2px 16px; margin:0 0 3px; }
+.aiworld-box-summary { display:flex; align-items:center; justify-content:space-between; gap:16px; cursor:pointer; list-style:none; min-height:28px; }
+.aiworld-box-summary::-webkit-details-marker { display:none; }
+:is(.template-product, product-info) .aiworld-box-summary h3 { margin:0; font-size:14px; line-height:1.4; }
+.aiworld-box-toggle::before { content:'+'; font-size:22px; }
+details[open] > .aiworld-box-summary .aiworld-box-toggle::before { content:'−'; }
+:is(.template-product, product-info) details.aiworld-feature-disclosure[open] > .aiworld-product-key-features__content { margin:8px 0; }
+:is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px 12px; margin:8px 0; padding:0; list-style:none; align-items:start; justify-items:stretch; }
+:is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-list li { display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center; font-size:13px; line-height:1.4; margin:0; min-width:0; overflow-wrap:anywhere; }
+.aiworld-box-list img,.aiworld-box-list svg { width:56px; height:56px; object-fit:contain; color:#0787f9; flex-shrink:0; }
+.aiworld-box-summary:focus-visible { outline:2px solid #0787f9; outline-offset:4px; }
+@media(max-width:480px) { :is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-list { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+
 /* Full-width story banner */
 .aiworld-product-banner {
   min-height: var(--aiworld-banner-height, 520px);

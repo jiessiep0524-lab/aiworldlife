@@ -108,6 +108,10 @@
                 {%- assign protection_product = all_products['replacement-protection'] -%}
               {%- endif -%}
             {%- endif -%}
+            {%- if product.handle == 'wireless-carplay-android-auto-adapter' -%}
+              {%- assign cd_mount_product = blank -%}
+              {%- assign camera_product = blank -%}
+            {%- endif -%}
 
             {%- for block in section.blocks -%}
               {%- case block.type -%}
@@ -248,12 +252,12 @@
                     {%- assign rating_count = block.settings.rating_count -%}
                   {%- endif -%}
                   {%- if rating_count == blank -%}
-                    {%- assign rating_count = '4.8 (890+)' -%}
+                    {%- assign rating_count = '4.74 (891 reviews)' -%}
                   {%- endif -%}
                   <div
                     class="aiworld-product-rating"
                     role="img"
-                    aria-label="4.8 out of 5 stars from 890+ reviews"
+                    aria-label="4.74 out of 5 stars from 891 reviews"
                     style="--rating-stars-size: {{ block.settings.stars_size }}px; --rating-count-size: {{ block.settings.count_size }}px;"
                     {{ block.shopify_attributes }}
                   >
@@ -297,23 +301,38 @@
                   -%}
                 {%- when 'aiworld_key_features' -%}
                   {%- assign key_features_heading = product.metafields.custom.key_features_heading.value -%}
+                  {%- assign use_adapter_key_features = false -%}
+                  {%- if product.handle == 'wireless-carplay-android-auto-adapter' -%}
+                    {%- assign use_adapter_key_features = true -%}
+                  {%- endif -%}
                   {%- if block.settings.heading != blank -%}
                     {%- assign key_features_heading = block.settings.heading -%}
                   {%- endif -%}
                   {%- if key_features_heading == blank -%}
                     {%- assign key_features_heading = 'KEY FEATURES' -%}
                   {%- endif -%}
-                  <section
-                    class="aiworld-product-key-features"
+                  <{% if product.handle == '9-inch-wireless-carplay' %}details{% else %}section{% endif %}
+                    class="aiworld-product-key-features aiworld-feature-disclosure"
                     style="--key-features-size: {{ block.settings.desktop_font_size }}px; --key-features-size-mobile: {{ block.settings.mobile_font_size }}px; --key-features-radius: {{ block.settings.card_radius }}px;"
                     {{ block.shopify_attributes }}
                   >
+                    {% if product.handle == '9-inch-wireless-carplay' %}<summary class="aiworld-box-summary">{% endif %}
                     <h3 class="aiworld-product-key-features__heading">{{ key_features_heading | strip_html | escape }}</h3>
+                    {% if product.handle == '9-inch-wireless-carplay' %}<span aria-hidden="true" class="aiworld-box-toggle"></span></summary>{% endif %}
                     <div class="aiworld-product-key-features__content">
                       {%- if block.settings.features != blank -%}
                         {{ block.settings.features }}
                       {%- elsif product.metafields.custom.key_features != blank -%}
                         {{ product.metafields.custom.key_features | metafield_tag }}
+                      {%- elsif use_adapter_key_features -%}
+                        <ul>
+                          <li>Converts factory-wired Apple CarPlay or Android Auto to wireless.</li>
+                          <li>One-time Bluetooth and Wi-Fi pairing with automatic reconnection.</li>
+                          <li>Compact adapter designed to stay installed and keep the console clean.</li>
+                          <li>Keep compatible factory touchscreen, steering-wheel, and control-knob operation.</li>
+                          <li>Simple USB data connection and plug-and-pair setup.</li>
+                          <li>Works only with vehicles that already support factory-wired CarPlay or Android Auto.</li>
+                        </ul>
                       {%- else -%}
                         <ul>
                           <li>Wireless Apple CarPlay and Android Auto</li>
@@ -325,7 +344,10 @@
                         </ul>
                       {%- endif -%}
                     </div>
-                  </section>
+                  </{% if product.handle == '9-inch-wireless-carplay' %}details{% else %}section{% endif %}>
+                  {% if product.metafields.custom.box_contents.value != blank %}
+                    {% render 'aiworld-box-contents', product: product %}
+                  {% endif %}
                 {%- when 'aiworld_before_buy' -%}
                   {%- assign before_buy_label = product.metafields.custom.before_buy_label.value -%}
                   {%- assign before_buy_requirement = product.metafields.custom.before_buy_requirement.value -%}
@@ -1308,7 +1330,7 @@
           "type": "text",
           "id": "protection_note",
           "label": "Replacement protection note",
-          "default": "Optional. One full-unit replacement for a single damaged component, from delivery. You pay return shipping; we pay outbound. Not refundable after delivery. Differs from the free 12-month core-parts warranty."
+          "default": "Optional $10 protection. If any non-wear part fails after delivery, return it to us and we will send a new replacement. You pay return shipping; we pay outbound shipping. Non-refundable after delivery. Separate from the free 12-month warranty."
         },
         {
           "type": "text",
