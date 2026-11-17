@@ -1,3 +1,5 @@
+{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
+
 <footer class="aiworld-trade-footer" style="--trade-footer-bg:{{ section.settings.background }};--trade-footer-fg:{{ section.settings.text_color }};--trade-footer-accent:{{ section.settings.accent_color }};">
   <div class="trade-container aiworld-trade-footer__grid">
     <div class="aiworld-trade-footer__brand">
@@ -22,16 +24,19 @@
         </div>
       {% endif %}
       {% if section.settings.show_social %}
-        {% if section.settings.instagram_url != blank or section.settings.youtube_url != blank or section.settings.facebook_url != blank %}
+        {% if section.settings.instagram_url != blank or section.settings.tiktok_url != blank or section.settings.youtube_url != blank or section.settings.facebook_url != blank %}
           <div class="aiworld-trade-footer__social">
             {% if section.settings.instagram_url != blank %}
-              <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+              <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">{{ 'icon-instagram.svg' | inline_asset_content }}<span class="visually-hidden">Instagram</span></a>
+            {% endif %}
+            {% if section.settings.tiktok_url != blank %}
+              <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener" aria-label="TikTok">{{ 'icon-tiktok.svg' | inline_asset_content }}<span class="visually-hidden">TikTok</span></a>
             {% endif %}
             {% if section.settings.youtube_url != blank %}
-              <a href="{{ section.settings.youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube">YouTube</a>
+              <a href="{{ section.settings.youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube">{{ 'icon-youtube.svg' | inline_asset_content }}<span class="visually-hidden">YouTube</span></a>
             {% endif %}
             {% if section.settings.facebook_url != blank %}
-              <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
+              <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook">{{ 'icon-facebook.svg' | inline_asset_content }}<span class="visually-hidden">Facebook</span></a>
             {% endif %}
           </div>
         {% endif %}
@@ -83,6 +88,9 @@
             {% elsif clean == 'Instagram' %}
               {% assign link_url = section.settings.instagram_url | default: 'https://www.instagram.com/us.aiworld' %}
               {% assign external_link = true %}
+            {% elsif clean == 'TikTok' %}
+              {% assign link_url = section.settings.tiktok_url | default: 'https://www.tiktok.com/@aiwor72' %}
+              {% assign external_link = true %}
             {% elsif clean == 'YouTube' %}
               {% assign link_url = section.settings.youtube_url | default: 'https://www.youtube.com/@AIWORLD_life_US' %}
               {% assign external_link = true %}
@@ -123,11 +131,25 @@
   </div>
   <div class="aiworld-trade-footer__bottom">
     <div class="trade-container">
-      <span>&copy; {{ 'now' | date:'%Y' }} {{ section.settings.brand_name }}. All rights reserved.</span>
+      <div class="aiworld-trade-footer__bottom-start">
+        <span>&copy; {{ 'now' | date:'%Y' }} {{ section.settings.brand_name }}. All rights reserved.</span>
+        {% if section.settings.payment_enable != false and shop.enabled_payment_types.size > 0 %}
+          <div class="aiworld-trade-footer__payment">
+            <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+            <ul class="list list-payment" role="list">
+              {% for type in shop.enabled_payment_types %}
+                <li class="list-payment__item">
+                  {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      </div>
       <span>{{ section.settings.bottom_text }}</span>
     </div>
   </div>
 </footer>
 {% schema %}
-{"name":"Footer and contact","tag":"section","class":"section-aiworld-trade-footer","settings":[{"type":"text","id":"brand_name","label":"Brand name","default":"AIWORLD"},{"type":"image_picker","id":"brand_logo","label":"Footer logo PNG (recommended 360 x 70 px)","info":"Upload a transparent PNG, recommended size: 360 x 70 px"},{"type":"textarea","id":"brand_text","label":"Brand text","default":"Smart Technology for Everyday Life."},{"type":"text","id":"contact_heading","label":"Contact heading","default":"CONTACT US"},{"type":"text","id":"contact_email","label":"Contact email","default":"support@aiworldlife.com"},{"type":"text","id":"contact_phone","label":"Contact phone","default":"+1 (302) 303-5099"},{"type":"textarea","id":"contact_hours","label":"Contact hours","default":"Mon-Fri: 10:00 AM–6:00 PM (PT)"},{"type":"checkbox","id":"show_social","label":"Show social links","default":true},{"type":"url","id":"instagram_url","label":"Instagram link"},{"type":"url","id":"youtube_url","label":"YouTube link"},{"type":"url","id":"facebook_url","label":"Facebook link"},{"type":"image_picker","id":"news_image","label":"Latest news image (recommended 800 x 516 px)","info":"Recommended image size: 800 x 516 px"},{"type":"text","id":"news_heading","label":"News heading","default":"Latest News"},{"type":"text","id":"news_text","label":"News text","default":"Discover smarter product insights"},{"type":"url","id":"news_link","label":"News link"},{"type":"text","id":"bottom_text","label":"Bottom text","default":"A Smarter Way to Drive."},{"type":"color","id":"background","label":"Background","default":"#06182c"},{"type":"color","id":"text_color","label":"Text color","default":"#ffffff"},{"type":"color","id":"accent_color","label":"Accent color","default":"#14a5ff"}],"blocks":[{"type":"link_column","name":"Link column","settings":[{"type":"text","id":"heading","label":"Heading","default":"Product"},{"type":"link_list","id":"menu","label":"Menu"},{"type":"textarea","id":"fallback_links","label":"Fallback links, one per line","default":"AIWORLD Screen\nFeatures\nReviews"}]}],"max_blocks":6,"presets":[{"name":"Footer and contact"}]}
+{"name":"Footer and contact","tag":"section","class":"section-aiworld-trade-footer","settings":[{"type":"text","id":"brand_name","label":"Brand name","default":"AIWORLD"},{"type":"image_picker","id":"brand_logo","label":"Footer logo PNG (recommended 360 x 70 px)","info":"Upload a transparent PNG, recommended size: 360 x 70 px"},{"type":"textarea","id":"brand_text","label":"Brand text","default":"Smart Technology for Everyday Life."},{"type":"text","id":"contact_heading","label":"Contact heading","default":"CONTACT US"},{"type":"text","id":"contact_email","label":"Contact email","default":"support@aiworldlife.com"},{"type":"text","id":"contact_phone","label":"Contact phone","default":"+1 (302) 303-5099"},{"type":"textarea","id":"contact_hours","label":"Contact hours","default":"Mon-Fri: 10:00 AM–6:00 PM (PT)"},{"type":"checkbox","id":"show_social","label":"Show social links","default":true},{"type":"url","id":"instagram_url","label":"Instagram link"},{"type":"url","id":"tiktok_url","label":"TikTok link"},{"type":"url","id":"youtube_url","label":"YouTube link"},{"type":"url","id":"facebook_url","label":"Facebook link"},{"type":"image_picker","id":"news_image","label":"Latest news image (recommended 800 x 516 px)","info":"Recommended image size: 800 x 516 px"},{"type":"text","id":"news_heading","label":"News heading","default":"Latest News"},{"type":"text","id":"news_text","label":"News text","default":"Discover smarter product insights"},{"type":"url","id":"news_link","label":"News link"},{"type":"text","id":"bottom_text","label":"Bottom text","default":"A Smarter Way to Drive."},{"type":"checkbox","id":"payment_enable","label":"Show payment icons","default":true},{"type":"color","id":"background","label":"Background","default":"#06182c"},{"type":"color","id":"text_color","label":"Text color","default":"#ffffff"},{"type":"color","id":"accent_color","label":"Accent color","default":"#14a5ff"}],"blocks":[{"type":"link_column","name":"Link column","settings":[{"type":"text","id":"heading","label":"Heading","default":"Product"},{"type":"link_list","id":"menu","label":"Menu"},{"type":"textarea","id":"fallback_links","label":"Fallback links, one per line","default":"AIWORLD Screen\nFeatures\nReviews"}]}],"max_blocks":6,"presets":[{"name":"Footer and contact"}]}
 {% endschema %}

@@ -108,6 +108,10 @@
                 {%- assign protection_product = all_products['replacement-protection'] -%}
               {%- endif -%}
             {%- endif -%}
+            {%- if product.handle == 'wireless-carplay-android-auto-adapter' -%}
+              {%- assign cd_mount_product = blank -%}
+              {%- assign camera_product = blank -%}
+            {%- endif -%}
 
             {%- for block in section.blocks -%}
               {%- case block.type -%}
@@ -120,6 +124,22 @@
                   >
                     {{- block.settings.text -}}
                   </p>
+                {%- when 'aiworld_campaign_badge' -%}
+                  {%- if block.settings.enabled and block.settings.label != blank -%}
+                    <style>
+                      #ProductInfo-{{ section.id }} .aiworld-campaign-badges { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+                      #ProductInfo-{{ section.id }} .aiworld-campaign-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 1px solid #087bf4; border-radius: 4px; background: #087bf4; box-shadow: 0 3px 8px rgba(0, 161, 239, .22); color: #fff; font-size: 12px; font-weight: 400; letter-spacing: .02em; line-height: 1; text-transform: uppercase; }
+                      #ProductInfo-{{ section.id }} .aiworld-campaign-badge__icon { display: inline-grid; place-items: center; color: #fff; font-size: 14px; line-height: 1; }
+                      #ProductInfo-{{ section.id }} .aiworld-campaign-badge--secondary { border-color: #00cfff; background: #eaf8ff; box-shadow: none; color: #063a63; }
+                    </style>
+                    <span class="aiworld-campaign-badges" {{ block.shopify_attributes }}>
+                      <span class="aiworld-campaign-badge">
+                        <span class="aiworld-campaign-badge__icon" aria-hidden="true">⚡</span>
+                        <span>{{ block.settings.label | escape }}</span>
+                      </span>
+                      {% if block.settings.secondary_label != blank %}<span class="aiworld-campaign-badge aiworld-campaign-badge--secondary">{{ block.settings.secondary_label | escape }}</span>{% endif %}
+                    </span>
+                  {%- endif -%}
                 {%- when 'title' -%}
                   {%- assign product_display_title = product.metafields.custom.display_title.value -%}
                   {%- if block.settings.title_override != blank -%}
@@ -140,6 +160,16 @@
                       </h2>
                     </a>
                   </div>
+                {%- when 'aiworld_hook' -%}
+                  {%- if block.settings.text != blank -%}
+                    <style>
+                      #ProductInfo-{{ section.id }} .aiworld-product-hook { margin: 0 0 12px; color: var(--buy-muted, #556270); font-size: {{ block.settings.desktop_font_size }}px; font-weight: 400; line-height: 1.4; white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: anywhere; }
+                      @media screen and (max-width: 749px) {
+                        #ProductInfo-{{ section.id }} .aiworld-product-hook { margin-bottom: 10px; font-size: {{ block.settings.mobile_font_size }}px; }
+                      }
+                    </style>
+                    <p class="aiworld-product-hook" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
+                  {%- endif -%}
                 {%- when 'price' -%}
                   <div
                     id="price-{{ section.id }}"
@@ -248,12 +278,12 @@
                     {%- assign rating_count = block.settings.rating_count -%}
                   {%- endif -%}
                   {%- if rating_count == blank -%}
-                    {%- assign rating_count = '4.8 (890+)' -%}
+                    {%- assign rating_count = '4.74 (891 reviews)' -%}
                   {%- endif -%}
                   <div
                     class="aiworld-product-rating"
                     role="img"
-                    aria-label="4.8 out of 5 stars from 890+ reviews"
+                    aria-label="4.74 out of 5 stars from 891 reviews"
                     style="--rating-stars-size: {{ block.settings.stars_size }}px; --rating-count-size: {{ block.settings.count_size }}px;"
                     {{ block.shopify_attributes }}
                   >
@@ -289,6 +319,119 @@
                     {%- endif -%}
                     <span>{{ shipping_message }}</span>
                   </div>
+                {%- when 'aiworld_promo_code' -%}
+                  {%- if block.settings.enabled and block.settings.code != blank -%}
+                    <style>
+                      #ProductInfo-{{ section.id }} .aiworld-promo-code { margin: 10px 0; overflow: hidden; border: 1px solid var(--promo-border); border-radius: var(--promo-radius); background: var(--promo-background); box-shadow: none; filter: none; color: var(--promo-text); }
+                      #ProductInfo-{{ section.id }} .aiworld-promo-code__bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 12px; background: var(--promo-accent); box-shadow: none; filter: none; color: #fff; font-size: 13px; font-weight: 400; }
+                      #ProductInfo-{{ section.id }} .aiworld-promo-code__bar-offer { display: flex; align-items: center; gap: 8px; min-width: 0; }
+                      #ProductInfo-{{ section.id }} .aiworld-promo-code__badge { display: inline-flex; align-items: center; min-height: 20px; padding: 2px 8px; border: 1px solid rgba(255, 255, 255, .82); border-radius: 999px; background: rgba(255, 255, 255, .22); box-shadow: none; filter: none; color: #fff; font-size: 11px; font-weight: 400; letter-spacing: .04em; }
+                      #ProductInfo-{{ section.id }} .aiworld-promo-code__countdown { margin-left: auto; white-space: nowrap; color: #fff; font-size: 12px; font-variant-numeric: tabular-nums; font-weight: 400; }
+                      #ProductInfo-{{ section.id }} .aiworld-promo-code__body { padding: 12px; }
+                      #ProductInfo-{{ section.id }} .aiworld-promo-code__instruction { display: flex; align-items: center; gap: 7px; margin: 0 0 10px; padding: 8px 10px; border-left: 2px solid #00aee8; border-radius: 4px; background: rgba(0, 181, 255, .1); box-shadow: none; filter: none; color: #064575; font-size: 15px; font-weight: 400; line-height: 1.35; letter-spacing: .01em; }
+                      #ProductInfo-{{ section.id }} .aiworld-promo-code__instruction-mark { color: #008ff0; font-size: 14px; text-shadow: none; }
+                      #ProductInfo-{{ section.id }} .aiworld-promo-code__row { display: flex; min-height: 42px; overflow: hidden; border: 1px solid var(--promo-border); border-radius: 8px; background: #fff; box-shadow: none; filter: none; }
+                      #ProductInfo-{{ section.id }} .aiworld-promo-code code { display: flex; flex: 1; align-items: center; padding: 0 12px; color: var(--promo-text); font-family: inherit; font-size: 16px; font-weight: 400; letter-spacing: .08em; }
+                      #ProductInfo-{{ section.id }} .aiworld-promo-code__copy { min-width: 80px; border: 0; background: var(--promo-accent); box-shadow: none; filter: none; color: #fff; font: inherit; font-size: 12px; font-weight: 400; cursor: pointer; }
+                      #ProductInfo-{{ section.id }} .aiworld-promo-code__copy:focus-visible { outline: 2px solid var(--promo-text); outline-offset: -4px; }
+                      #ProductInfo-{{ section.id }} .aiworld-promo-code__terms { margin: 10px 0 0; color: #51718a; font-size: 12px; line-height: 1.4; }
+                      #ProductInfo-{{ section.id }} .aiworld-promo-code__countdown--mobile { display: none; }
+                      @media screen and (max-width: 749px) {
+                        #ProductInfo-{{ section.id }} .aiworld-promo-code { border-color: #0787f9; border-radius: 12px; background: #fff; box-shadow: none; }
+                        #ProductInfo-{{ section.id }} .aiworld-promo-code__bar { align-items: center; flex-wrap: nowrap; padding: 9px 12px; background: #0787f9; box-shadow: none; }
+                        #ProductInfo-{{ section.id }} .aiworld-promo-code__bar-offer { gap: 8px; }
+                        #ProductInfo-{{ section.id }} .aiworld-promo-code__bar-offer > span:first-child { font-weight: 700; }
+                        #ProductInfo-{{ section.id }} .aiworld-promo-code__badge { min-height: 18px; padding: 3px 8px; border: 0; border-radius: 4px; background: #111; box-shadow: none; color: #fff; font-weight: 400; }
+                        #ProductInfo-{{ section.id }} .aiworld-promo-code__bar > .aiworld-promo-code__countdown { display: none; }
+                        #ProductInfo-{{ section.id }} .aiworld-promo-code__body { padding: 12px 12px 10px; background: #fffdf8; }
+                        #ProductInfo-{{ section.id }} .aiworld-promo-code__instruction { gap: 6px; margin: 0 0 10px; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; color: #111; font-size: 14px; }
+                        #ProductInfo-{{ section.id }} .aiworld-promo-code__instruction-mark { color: #0787f9; text-shadow: none; }
+                        #ProductInfo-{{ section.id }} .aiworld-promo-code__row { min-height: 40px; border: 1px dashed #0787f9; border-radius: 4px; background: #fff; box-shadow: none; }
+                        #ProductInfo-{{ section.id }} .aiworld-promo-code code { color: #111; font-size: 15px; font-weight: 400; }
+                        #ProductInfo-{{ section.id }} .aiworld-promo-code__copy { min-width: 56px; border-radius: 0; background: #111; box-shadow: none; font-weight: 400; }
+                        #ProductInfo-{{ section.id }} .aiworld-promo-code__countdown--mobile { display: block; margin: 10px 0 0; color: #111; font-size: 12px; font-variant-numeric: tabular-nums; font-weight: 600; line-height: 1.2; }
+                      }
+                    </style>
+                    <aside
+                      class="aiworld-promo-code"
+                      aria-label="{{ block.settings.label | escape }}"
+                      style="--promo-accent: {{ block.settings.accent_color }}; --promo-background: {{ block.settings.background_color }}; --promo-border: {{ block.settings.border_color }}; --promo-text: {{ block.settings.text_color }}; --promo-radius: {{ block.settings.corner_radius }}px;"
+                      {{ block.shopify_attributes }}
+                    >
+                      <div class="aiworld-promo-code__bar">
+                        <span class="aiworld-promo-code__bar-offer">
+                          <span>{{ block.settings.discount_text | escape }}</span>
+                          {% if block.settings.label != blank %}<span class="aiworld-promo-code__badge">{{ block.settings.label | escape }}</span>{% endif %}
+                        </span>
+                        {% if block.settings.show_countdown and block.settings.countdown_end != blank %}<span class="aiworld-promo-code__countdown" data-aiworld-promo-countdown data-countdown-end="{{ block.settings.countdown_end | escape }}" data-countdown-prefix="{{ block.settings.countdown_prefix | escape }}"></span>{% endif %}
+                      </div>
+                      <div class="aiworld-promo-code__body">
+                        <p class="aiworld-promo-code__instruction"><span class="aiworld-promo-code__instruction-mark" aria-hidden="true">✦</span>{{ block.settings.instruction | escape }}</p>
+                        <div class="aiworld-promo-code__row">
+                          <code>{{ block.settings.code | escape }}</code>
+                          <button class="aiworld-promo-code__copy" type="button" data-aiworld-promo-copy data-code="{{ block.settings.code | escape }}" data-copy-label="{{ block.settings.copy_label | escape }}" data-copied-label="{{ block.settings.copied_label | escape }}">{{ block.settings.copy_label | escape }}</button>
+                        </div>
+                        {% if block.settings.show_countdown and block.settings.countdown_end != blank %}<span class="aiworld-promo-code__countdown aiworld-promo-code__countdown--mobile" data-aiworld-promo-countdown data-countdown-end="{{ block.settings.countdown_end | escape }}" data-countdown-prefix="{{ block.settings.countdown_prefix | escape }}"></span>{% endif %}
+                        {% if block.settings.terms != blank %}<p class="aiworld-promo-code__terms">{{ block.settings.terms | escape }}</p>{% endif %}
+                      </div>
+                    </aside>
+                    <script>
+                      window.aiworldPromoCountdownUpdate = () => {
+                        document.querySelectorAll('[data-aiworld-promo-countdown]').forEach((countdown) => {
+                          const endTime = new Date(countdown.dataset.countdownEnd).getTime();
+                          if (Number.isNaN(endTime)) {
+                            countdown.hidden = true;
+                            return;
+                          }
+                          const remaining = Math.max(0, endTime - Date.now());
+                          if (remaining === 0) {
+                            countdown.textContent = 'Offer ended';
+                            return;
+                          }
+                          const totalSeconds = Math.floor(remaining / 1000);
+                          const days = Math.floor(totalSeconds / 86400);
+                          const hours = Math.floor((totalSeconds % 86400) / 3600);
+                          const minutes = Math.floor((totalSeconds % 3600) / 60);
+                          const seconds = totalSeconds % 60;
+                          const prefix = countdown.dataset.countdownPrefix || 'Ends in:';
+                          countdown.textContent = `${prefix} ${days}d : ${String(hours).padStart(2, '0')}h : ${String(minutes).padStart(2, '0')}m : ${String(seconds).padStart(2, '0')}s`;
+                        });
+                      };
+                      window.aiworldPromoCountdownUpdate();
+                      if (!window.aiworldPromoCountdownReady) {
+                        window.aiworldPromoCountdownReady = true;
+                        window.setInterval(() => window.aiworldPromoCountdownUpdate(), 1000);
+                        document.addEventListener('shopify:section:load', () => window.aiworldPromoCountdownUpdate());
+                      }
+                      if (!window.aiworldPromoCopyReady) {
+                        window.aiworldPromoCopyReady = true;
+                        document.addEventListener('click', async (event) => {
+                          const button = event.target.closest('[data-aiworld-promo-copy]');
+                          if (!button) return;
+                          const code = button.dataset.code;
+                          if (!code) return;
+                          try {
+                            if (navigator.clipboard && window.isSecureContext) {
+                              await navigator.clipboard.writeText(code);
+                            } else {
+                              const field = document.createElement('textarea');
+                              field.value = code;
+                              field.setAttribute('readonly', '');
+                              field.style.position = 'fixed';
+                              field.style.opacity = '0';
+                              document.body.append(field);
+                              field.select();
+                              document.execCommand('copy');
+                              field.remove();
+                            }
+                            const originalLabel = button.dataset.copyLabel;
+                            button.textContent = button.dataset.copiedLabel || originalLabel;
+                            window.setTimeout(() => { button.textContent = originalLabel; }, 1600);
+                          } catch (error) {}
+                        });
+                      }
+                    </script>
+                  {%- endif -%}
                 {%- when 'aiworld_cd_mount_picker' -%}
                   {%- render 'aiworld-cd-mount-picker',
                     product: product,
@@ -297,23 +440,39 @@
                   -%}
                 {%- when 'aiworld_key_features' -%}
                   {%- assign key_features_heading = product.metafields.custom.key_features_heading.value -%}
+                  {%- assign use_adapter_key_features = false -%}
+                  {%- if product.handle == 'wireless-carplay-android-auto-adapter' -%}
+                    {%- assign use_adapter_key_features = true -%}
+                  {%- endif -%}
                   {%- if block.settings.heading != blank -%}
                     {%- assign key_features_heading = block.settings.heading -%}
                   {%- endif -%}
                   {%- if key_features_heading == blank -%}
-                    {%- assign key_features_heading = 'KEY FEATURES' -%}
+                    {%- assign key_features_heading = 'Key Features' -%}
                   {%- endif -%}
-                  <section
-                    class="aiworld-product-key-features"
+                  <{% if product.handle == '9-inch-wireless-carplay' %}details{% else %}section{% endif %}
+                    class="aiworld-product-key-features aiworld-feature-disclosure"
+                    {% if product.handle == '9-inch-wireless-carplay' %}open{% endif %}
                     style="--key-features-size: {{ block.settings.desktop_font_size }}px; --key-features-size-mobile: {{ block.settings.mobile_font_size }}px; --key-features-radius: {{ block.settings.card_radius }}px;"
                     {{ block.shopify_attributes }}
                   >
+                    {% if product.handle == '9-inch-wireless-carplay' %}<summary class="aiworld-box-summary">{% endif %}
                     <h3 class="aiworld-product-key-features__heading">{{ key_features_heading | strip_html | escape }}</h3>
+                    {% if product.handle == '9-inch-wireless-carplay' %}<span aria-hidden="true" class="aiworld-box-toggle"></span></summary>{% endif %}
                     <div class="aiworld-product-key-features__content">
                       {%- if block.settings.features != blank -%}
                         {{ block.settings.features }}
                       {%- elsif product.metafields.custom.key_features != blank -%}
                         {{ product.metafields.custom.key_features | metafield_tag }}
+                      {%- elsif use_adapter_key_features -%}
+                        <ul>
+                          <li>Converts factory-wired Apple CarPlay or Android Auto to wireless.</li>
+                          <li>One-time Bluetooth and Wi-Fi pairing with automatic reconnection.</li>
+                          <li>Compact adapter designed to stay installed and keep the console clean.</li>
+                          <li>Keep compatible factory touchscreen, steering-wheel, and control-knob operation.</li>
+                          <li>Simple USB data connection and plug-and-pair setup.</li>
+                          <li>Works only with vehicles that already support factory-wired CarPlay or Android Auto.</li>
+                        </ul>
                       {%- else -%}
                         <ul>
                           <li>Wireless Apple CarPlay and Android Auto</li>
@@ -325,7 +484,10 @@
                         </ul>
                       {%- endif -%}
                     </div>
-                  </section>
+                  </{% if product.handle == '9-inch-wireless-carplay' %}details{% else %}section{% endif %}>
+                  {% if product.metafields.custom.box_contents.value != blank %}
+                    {% render 'aiworld-box-contents', product: product %}
+                  {% endif %}
                 {%- when 'aiworld_before_buy' -%}
                   {%- assign before_buy_label = product.metafields.custom.before_buy_label.value -%}
                   {%- assign before_buy_requirement = product.metafields.custom.before_buy_requirement.value -%}
@@ -335,7 +497,7 @@
                   {%- if block.settings.requirement != blank -%}{%- assign before_buy_requirement = block.settings.requirement -%}{%- endif -%}
                   {%- if block.settings.details != blank -%}{%- assign before_buy_details = block.settings.details -%}{%- endif -%}
                   {%- if block.settings.help_link != blank -%}{%- assign before_buy_help_link = block.settings.help_link -%}{%- endif -%}
-                  {%- if before_buy_label == blank -%}{%- assign before_buy_label = 'BEFORE YOU BUY' -%}{%- endif -%}
+                  {%- if before_buy_label == blank -%}{%- assign before_buy_label = 'Before You Buy' -%}{%- endif -%}
                   {%- if before_buy_requirement == blank -%}{%- capture before_buy_requirement -%}Independent portable screen for most <strong>12V/24V vehicles</strong>{%- endcapture -%}{%- endif -%}
                   {%- if before_buy_details == blank -%}{%- assign before_buy_details = 'No factory CarPlay required. Use the included charger if the USB port is below 5V/3A.' -%}{%- endif -%}
                   {%- if before_buy_help_link == blank -%}{%- assign before_buy_help_link = routes.root_url | append: 'pages/installation-guide' -%}{%- endif -%}
@@ -360,16 +522,16 @@
                       {%- elsif product.metafields.custom.before_buy_content != blank -%}
                         {{ product.metafields.custom.before_buy_content | metafield_tag }}
                       {%- else -%}
-                        <div class="aiworld-before-buy__panel-heading"><span class="aiworld-before-buy__panel-heading-icon" aria-hidden="true">&#10003;</span><strong>Before You Buy</strong></div>
+                        <div class="aiworld-before-buy__panel-heading"><span class="aiworld-before-buy__panel-heading-icon" aria-hidden="true">&#10003;</span><strong>{{ before_buy_label | strip_html | escape }}</strong></div>
                         <ul class="aiworld-before-buy__checklist">
-                          <li><strong>Power:</strong> The screen needs a stable 5V/3A input. The included charger converts 12V–24V to 5V/3A. A vehicle USB port around 5V/0.5A–1A can leave the screen off, restarting, freezing, or unstable.</li>
-                          <li><strong>Compatibility:</strong> Independent portable screen. No factory CarPlay is required. It fits many older 12V/24V vehicles when the included charger is used.</li>
+                          <li><strong>Power:</strong> The screen needs a stable <span class="aiworld-before-buy__value">5V/3A</span> input. The included charger converts <span class="aiworld-before-buy__value">12V–24V</span> to <span class="aiworld-before-buy__value">5V/3A</span>. A vehicle USB port around <span class="aiworld-before-buy__value">5V/0.5A–1A</span> can leave the screen off, restarting, freezing, or unstable.</li>
+                          <li><strong>Compatibility:</strong> Independent portable screen. No factory CarPlay is required. It fits many older <span class="aiworld-before-buy__value">12V/24V</span> vehicles when the included charger is used.</li>
                           <li><strong>Audio:</strong> Choose FM, AUX, the built-in speaker (Home Mode), or Bluetooth through CarPlay/Android Auto. FM needs an unused local frequency. If FM is noisy, use AUX.</li>
-                          <li><strong>Internet:</strong> Wireless CarPlay/Android Auto needs mobile data. Do not connect the phone to another Wi-Fi network or hotspot, and keep it within about 5 meters.</li>
+                          <li><strong>Internet:</strong> Wireless CarPlay/Android Auto needs mobile data. Do not connect the phone to another Wi-Fi network or hotspot, and keep it within about <span class="aiworld-before-buy__value">5 meters</span>.</li>
                           <li><strong>Video playback:</strong> Online video playback is not supported, including YouTube and Netflix. Screen mirroring can project your phone onto this screen, but smoothness depends on the phone and network.</li>
                           <li><strong>CarPlay and Android Auto:</strong> Netflix, YouTube, and TikTok cannot be played natively through CarPlay or Android Auto. Mirroring may be available depending on the phone and operating system.</li>
                         </ul>
-                        <div class="aiworld-before-buy__notice"><span aria-hidden="true">i</span><p>Confirm a safe 9-inch mounting space, and check the USB output before ordering.</p></div>
+                        <div class="aiworld-before-buy__notice"><span aria-hidden="true">i</span><p>Confirm a safe <span class="aiworld-before-buy__value">9-inch</span> mounting space, and check the USB output before ordering.</p></div>
                       {%- endif -%}
                       {%- if block.settings.show_help_link -%}
                         <a class="aiworld-before-buy__help-link" href="{{ before_buy_help_link }}">{{ block.settings.help_text }} &#8594;</a>
@@ -656,6 +818,19 @@
                     camera_product: camera_product,
                     protection_product: protection_product
                   -%}
+                {%- when 'aiworld_payment_security' -%}
+                  {%- if shop.enabled_payment_types.size > 0 -%}
+                    <div class="aiworld-payment-security" {{ block.shopify_attributes }}>
+                      <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+                      <ul class="list list-payment" role="list">
+                        {%- for type in shop.enabled_payment_types -%}
+                          <li class="list-payment__item">
+                            {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  {%- endif -%}
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
                     <div class="rating-wrapper">
@@ -945,6 +1120,16 @@
       ]
     },
     {
+      "type": "aiworld_campaign_badge",
+      "name": "Campaign badge",
+      "limit": 1,
+      "settings": [
+        { "type": "checkbox", "id": "enabled", "label": "Show campaign badge", "default": true },
+        { "type": "text", "id": "label", "label": "Badge label", "default": "Black Friday" },
+        { "type": "text", "id": "secondary_label", "label": "Secondary badge label", "default": "Early Deals" }
+      ]
+    },
+    {
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",
       "limit": 1,
@@ -974,6 +1159,39 @@
           "step": 1,
           "unit": "px",
           "default": 18
+        }
+      ]
+    },
+    {
+      "type": "aiworld_hook",
+      "name": "Product hook line",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Hook line",
+          "default": "Your old car, upgraded in minutes — 9-inch screen, no new stereo, no installation."
+        },
+        {
+          "type": "range",
+          "id": "desktop_font_size",
+          "label": "Desktop font size",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 14
+        },
+        {
+          "type": "range",
+          "id": "mobile_font_size",
+          "label": "Mobile font size",
+          "min": 10,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 13
         }
       ]
     },
@@ -1276,6 +1494,29 @@
       ]
     },
     {
+      "type": "aiworld_promo_code",
+      "name": "Promotion code",
+      "limit": 1,
+      "settings": [
+        { "type": "checkbox", "id": "enabled", "label": "Show promotion", "default": true },
+        { "type": "text", "id": "discount_text", "label": "Discount text", "default": "Extra 10% Off" },
+        { "type": "text", "id": "label", "label": "Campaign label", "default": "BLACK FRIDAY" },
+        { "type": "text", "id": "instruction", "label": "Instruction", "default": "10% off at checkout. Limited-time Black Friday offer." },
+        { "type": "text", "id": "code", "label": "Promotion code", "default": "BF10" },
+        { "type": "text", "id": "copy_label", "label": "Copy button label", "default": "COPY" },
+        { "type": "text", "id": "copied_label", "label": "Copied button label", "default": "COPIED" },
+        { "type": "text", "id": "terms", "label": "Terms text", "default": "10% off at checkout. Limited-time Black Friday offer." },
+        { "type": "checkbox", "id": "show_countdown", "label": "Show countdown", "default": true },
+        { "type": "text", "id": "countdown_prefix", "label": "Countdown prefix", "default": "Ends in:" },
+        { "type": "text", "id": "countdown_end", "label": "Countdown end (Pacific Time)", "default": "2026-11-27T23:59:59-08:00", "info": "Use ISO 8601, for example 2026-11-27T23:59:59-08:00." },
+        { "type": "color", "id": "accent_color", "label": "Accent color", "default": "#06182A" },
+        { "type": "color", "id": "background_color", "label": "Background color", "default": "#FFFDF8" },
+        { "type": "color", "id": "border_color", "label": "Border color", "default": "#F2BC42" },
+        { "type": "color", "id": "text_color", "label": "Text color", "default": "#06182A" },
+        { "type": "range", "id": "corner_radius", "label": "Corner radius", "min": 0, "max": 24, "step": 1, "unit": "px", "default": 12 }
+      ]
+    },
+    {
       "type": "aiworld_cd_mount_picker",
       "name": "Add-on checkboxes",
       "limit": 1,
@@ -1308,7 +1549,7 @@
           "type": "text",
           "id": "protection_note",
           "label": "Replacement protection note",
-          "default": "Optional. One full-unit replacement for a single damaged component, from delivery. You pay return shipping; we pay outbound. Not refundable after delivery. Differs from the free 12-month core-parts warranty."
+          "default": "Optional $10 protection. If any non-wear part fails after delivery, return it to us and we will send a new replacement. You pay return shipping; we pay outbound shipping. Non-refundable after delivery. Separate from the free 12-month warranty."
         },
         {
           "type": "text",
@@ -1502,6 +1743,12 @@
           "default": 14
         }
       ]
+    },
+    {
+      "type": "aiworld_payment_security",
+      "name": "Payment & security",
+      "limit": 1,
+      "settings": []
     },
     {
       "type": "custom_liquid",

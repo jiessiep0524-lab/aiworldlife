@@ -300,6 +300,11 @@
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'aiworld-trade.css' | asset_url | stylesheet_tag }}
+    {%- if request.page_type == 'index' -%}
+      <script src="{{ 'aiworld-trade-carousel.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'aiworld-swipe-progress.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'aiworld-trade-story-toggle.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
     {%- if template.name == 'product' -%}
       {{ 'aiworld-product.css' | asset_url | stylesheet_tag }}
     {%- endif -%}
@@ -427,6 +432,22 @@
 
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+
+    {%- liquid
+      assign cart_has_replacement_protection = false
+      for item in cart.items
+        if item.product.handle == 'replacement-protection'
+          assign cart_has_replacement_protection = true
+          break
+        endif
+      endfor
+    -%}
+    <script>
+      window.aiworldProtectionCartHasProtection = {{ cart_has_replacement_protection | json }};
+    </script>
+    {%- if request.page_type == 'product' or cart_has_replacement_protection -%}
+      <script src="{{ 'aiworld-protection-eligibility.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
     <script>

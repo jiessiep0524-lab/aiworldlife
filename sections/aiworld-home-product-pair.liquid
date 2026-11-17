@@ -1,0 +1,350 @@
+<section
+  id="AIWORLD-UpgradePair-{{ section.id }}"
+  class="aiworld-upgrade-pair"
+  style="--aiworld-upgrade-background: {{ section.settings.background_color }}; --aiworld-upgrade-padding-top: {{ section.settings.padding_top }}px; --aiworld-upgrade-padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="aiworld-upgrade-pair__inner">
+    {% if section.settings.eyebrow != blank or section.settings.heading != blank or section.settings.subheading != blank %}
+      <div class="aiworld-upgrade-pair__heading">
+        {% if section.settings.eyebrow != blank %}
+          <p class="aiworld-upgrade-pair__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2>{{ section.settings.heading | escape }}</h2>
+        {% endif %}
+        {% if section.settings.subheading != blank %}
+          <p class="aiworld-upgrade-pair__subheading">{{ section.settings.subheading | escape }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="aiworld-upgrade-pair__grid">
+      {% for block in section.blocks %}
+        {% liquid
+          assign selected_product = block.settings.product
+          assign card_title = block.settings.title
+          assign card_url = '#'
+          assign card_image = block.settings.image
+          if selected_product != blank
+            assign card_url = selected_product.url
+            if card_title == blank
+              assign card_title = selected_product.title
+            endif
+            if card_image == blank
+              assign card_image = selected_product.featured_image
+            endif
+          endif
+          if card_title == blank
+            assign card_title = section.settings.heading
+          endif
+        %}
+        <article class="aiworld-upgrade-pair__card" {{ block.shopify_attributes }}>
+          <a class="aiworld-upgrade-pair__media" href="{{ card_url }}" aria-label="{{ card_title | escape }}">
+            {% if card_image != blank %}
+              {{ card_image | image_url: width: 1400 | image_tag: loading: 'lazy', decoding: 'async', widths: '480,700,1000,1400', sizes: '(min-width: 990px) 50vw, 100vw', alt: card_title | escape }}
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag: 'aiworld-upgrade-pair__placeholder' }}
+            {% endif %}
+            <span class="aiworld-upgrade-pair__overlay" aria-hidden="true"></span>
+            <span class="aiworld-upgrade-pair__content">
+              {% if block.settings.eyebrow != blank %}
+                <span class="aiworld-upgrade-pair__card-eyebrow">{{ block.settings.eyebrow | escape }}</span>
+              {% endif %}
+              {% if card_title != blank %}
+                <span class="aiworld-upgrade-pair__title">{{ card_title | escape }}</span>
+              {% endif %}
+              {% if block.settings.text != blank %}
+                <span class="aiworld-upgrade-pair__text">{{ block.settings.text | escape }}</span>
+              {% endif %}
+              {% if block.settings.button_label != blank %}
+                <span class="aiworld-upgrade-pair__button">
+                  {{ block.settings.button_label | escape }}
+                  <span aria-hidden="true">→</span>
+                </span>
+              {% endif %}
+            </span>
+          </a>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .aiworld-upgrade-pair {
+    background: var(--aiworld-upgrade-background, #f4f8fc);
+    padding: var(--aiworld-upgrade-padding-top, 64px) 0 var(--aiworld-upgrade-padding-bottom, 64px);
+  }
+
+  .aiworld-upgrade-pair__inner {
+    width: min(calc(100% - 40px), 1120px);
+    margin: 0 auto;
+  }
+
+  .aiworld-upgrade-pair__heading {
+    margin: 0 auto 32px;
+    text-align: center;
+  }
+
+  .aiworld-upgrade-pair__eyebrow,
+  .aiworld-upgrade-pair__card-eyebrow {
+    margin: 0 0 8px;
+    color: #0787f9;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .aiworld-upgrade-pair__heading h2 {
+    margin: 0;
+    color: #06182a;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+  }
+
+  .aiworld-upgrade-pair__subheading {
+    max-width: 42rem;
+    margin: 12px auto 0;
+    color: #60758b;
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+
+  .aiworld-upgrade-pair__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .aiworld-upgrade-pair__card {
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 12px 28px rgba(6, 24, 42, 0.08);
+  }
+
+  .aiworld-upgrade-pair__card-eyebrow {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .aiworld-upgrade-pair__media {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 3 / 2;
+    border-radius: 20px;
+    background: #eef6fc;
+    color: #ffffff;
+    isolation: isolate;
+    text-decoration: none;
+  }
+
+  .aiworld-upgrade-pair__media img,
+  .aiworld-upgrade-pair__placeholder {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .aiworld-upgrade-pair__overlay {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(6, 24, 42, 0.02) 22%, rgba(6, 24, 42, 0.82) 100%);
+  }
+
+  .aiworld-upgrade-pair__content {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px;
+  }
+
+  .aiworld-upgrade-pair__card-eyebrow,
+  .aiworld-upgrade-pair__title,
+  .aiworld-upgrade-pair__text {
+    color: #ffffff;
+  }
+
+  .aiworld-upgrade-pair__title {
+    display: block;
+    font-size: clamp(1.35rem, 2vw, 1.8rem);
+    font-weight: 750;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+
+  .aiworld-upgrade-pair__text {
+    display: block;
+    max-width: 34rem;
+    margin-top: 10px;
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+
+  .aiworld-upgrade-pair__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+    min-width: 190px;
+    min-height: 48px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    background: #0787f9;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    line-height: calc(1 + 0.2 / var(--font-body-scale));
+    text-align: center;
+    transition: background-color 180ms ease, transform 180ms ease;
+  }
+
+  .aiworld-upgrade-pair__button:hover {
+    background: #006fda;
+    transform: translateY(-1px);
+  }
+
+  .aiworld-upgrade-pair__media:focus-visible {
+    outline: 3px solid rgba(7, 135, 249, 0.45);
+    outline-offset: 3px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .aiworld-upgrade-pair {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .aiworld-upgrade-pair__inner {
+      width: min(calc(100% - 32px), 560px);
+    }
+
+    .aiworld-upgrade-pair__heading {
+      display: none;
+    }
+
+    .aiworld-upgrade-pair__heading h2 {
+      font-size: 2rem;
+    }
+
+    .aiworld-upgrade-pair__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .aiworld-upgrade-pair__card {
+      border-radius: 14px;
+    }
+
+    .aiworld-upgrade-pair__media {
+      aspect-ratio: 4 / 3;
+      border-radius: 14px;
+    }
+
+    .aiworld-upgrade-pair__content {
+      display: none;
+    }
+
+    .aiworld-upgrade-pair__overlay {
+      background: transparent;
+    }
+
+    .aiworld-upgrade-pair__card-eyebrow {
+      margin-bottom: 4px;
+      font-size: 8px;
+    }
+
+    .aiworld-upgrade-pair__title {
+      font-size: 12px;
+      line-height: 1.15;
+    }
+
+    .aiworld-upgrade-pair__text {
+      display: -webkit-box;
+      overflow: hidden;
+      margin-top: 5px;
+      font-size: 1.5rem;
+      line-height: 1.25;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
+
+    .aiworld-upgrade-pair__button {
+      min-width: 0;
+      min-height: 28px;
+      margin-top: 8px;
+      padding: 8px 10px;
+      font-size: 9px;
+      white-space: nowrap;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Find your upgrade",
+  "tag": "section",
+  "class": "section-aiworld-home-product-pair",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Find Your Upgrade" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Made for the way you drive." },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#f4f8fc" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Top spacing", "default": 56 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Bottom spacing", "default": 56 }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product card",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "image_picker", "id": "image", "label": "Card image", "info": "Recommended image size: 1200 × 800 px. Use a product image with clear space for overlay copy." },
+        { "type": "text", "id": "eyebrow", "label": "Card eyebrow" },
+        { "type": "text", "id": "title", "label": "Card title", "default": "Product title" },
+        { "type": "textarea", "id": "text", "label": "Card text", "default": "Add a short reason to choose this product." },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Explore product" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Find your upgrade",
+      "blocks": [
+        {
+          "type": "product",
+          "settings": {
+            "title": "Already have wired CarPlay?",
+            "text": "Make your existing setup wireless with a compact CarPlay and Android Auto adapter.",
+            "button_label": "Explore adapter"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "title": "Bring CarPlay to your dashboard.",
+            "text": "Add a portable screen when your car needs a smarter, larger connected display.",
+            "button_label": "Explore screens"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

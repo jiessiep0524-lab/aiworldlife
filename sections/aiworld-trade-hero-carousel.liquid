@@ -27,7 +27,7 @@
 <section class="trade-hero trade-hero--{{ section.settings.height_mode | default: 'image' }} trade-hero--carousel" style="--hero-image-aspect:{{ hero_aspect }};--hero-mobile-aspect:{{ mobile_aspect }};--hero-height:{{ section.settings.height }}px;--hero-mobile-height:{{ section.settings.mobile_height }}px;--hero-position:{{ section.settings.image_position }};--hero-image-fit:{{ section.settings.image_fit }};--hero-image-scale:{{ section.settings.image_scale | divided_by: 100.0 }};--overlay:{{ section.settings.overlay | divided_by: 100.0 }};--hero-overlay-color:{{ section.settings.overlay_color }};--hero-overlay-style:{{ section.settings.overlay_style }};--hero-content-justify:{{ section.settings.content_position }};--hero-content-offset:{{ section.settings.content_offset }}%;--hero-text-align:{{ section.settings.text_alignment }};--hero-action-align:{{ section.settings.content_position }};--hero-copy-width:{{ section.settings.copy_width }}px;--hero-text-size:{{ section.settings.text_font_size }}px;--hero-text-color:{{ section.settings.text_color }};--hero-text-line-height:{{ section.settings.text_line_height }};--hero-title-line-gap:{{ section.settings.title_line_gap | default: 0 }}px;--hero-content-y:{{ section.settings.content_vertical }}%;--hero-mobile-content-y:{{ section.settings.mobile_content_vertical | default: 32 }}%;--hero-mobile-content-justify:{{ section.settings.mobile_content_position | default: 'center' }};--hero-mobile-text-align:{{ mobile_align }};--hero-mobile-action-align:{{ mobile_action_align }};--hero-mobile-feature-align:{{ mobile_feature_align }};--hero-mobile-button-bottom:{{ section.settings.mobile_button_bottom | default: 42 }}px;" data-trade-carousel data-autoplay="{{ autoplay }}" data-speed="5000" data-pause="true">
   <div class="trade-hero__slides" role="region" aria-roledescription="carousel" aria-label="Hero banners" aria-live="polite">
     {% for block in section.blocks %}
-      {% render 'aiworld-trade-hero-slide', image: block.settings.image, mobile_image: block.settings.mobile_image, eyebrow: block.settings.eyebrow, heading: block.settings.heading, text: block.settings.text, mobile_heading: block.settings.mobile_heading, mobile_text: block.settings.mobile_text, feature_1_icon: block.settings.feature_1_icon, feature_1_title: block.settings.feature_1_title, feature_1_text: block.settings.feature_1_text, feature_2_icon: block.settings.feature_2_icon, feature_2_title: block.settings.feature_2_title, feature_2_text: block.settings.feature_2_text, feature_3_icon: block.settings.feature_3_icon, feature_3_title: block.settings.feature_3_title, feature_3_text: block.settings.feature_3_text, show_rating: block.settings.show_rating, rating_text: block.settings.rating_text, price: block.settings.price, mobile_price: block.settings.mobile_price, button_label: block.settings.button_label, button_link: block.settings.button_link, button_2_label: block.settings.button_2_label, button_2_link: block.settings.button_2_link, mobile_button_label: block.settings.mobile_button_label, mobile_button_link: block.settings.mobile_button_link, mobile_button_2_label: block.settings.mobile_button_2_label, mobile_button_2_link: block.settings.mobile_button_2_link, image_link: block.settings.image_link, slide_index: forloop.index0, slide_count: slide_count, is_active: forloop.first, shopify_attributes: block.shopify_attributes, heading_alt: block.settings.heading, overlay_style: section.settings.overlay_style %}
+      {% render 'aiworld-trade-hero-slide', image: block.settings.image, mobile_image: block.settings.mobile_image, eyebrow: block.settings.eyebrow, heading: block.settings.heading, text: block.settings.text, mobile_heading: block.settings.mobile_heading, mobile_text: block.settings.mobile_text, feature_1_icon: block.settings.feature_1_icon, feature_1_title: block.settings.feature_1_title, feature_1_text: block.settings.feature_1_text, feature_2_icon: block.settings.feature_2_icon, feature_2_title: block.settings.feature_2_title, feature_2_text: block.settings.feature_2_text, feature_3_icon: block.settings.feature_3_icon, feature_3_title: block.settings.feature_3_title, feature_3_text: block.settings.feature_3_text, show_rating: block.settings.show_rating, rating_text: block.settings.rating_text, price: block.settings.price, mobile_price: block.settings.mobile_price, button_label: block.settings.button_label, button_link: block.settings.button_link, button_2_label: block.settings.button_2_label, button_2_link: block.settings.button_2_link, mobile_button_label: block.settings.mobile_button_label, mobile_button_link: block.settings.mobile_button_link, mobile_button_2_label: block.settings.mobile_button_2_label, mobile_button_2_link: block.settings.mobile_button_2_link, image_link: block.settings.image_link, slide_index: forloop.index0, slide_count: slide_count, is_active: forloop.first, shopify_attributes: block.shopify_attributes, heading_alt: block.settings.heading, overlay_style: section.settings.overlay_style, content_position: block.settings.content_position, text_alignment: block.settings.text_alignment, content_vertical: block.settings.content_vertical, mobile_content_position: block.settings.mobile_content_position, mobile_text_alignment: block.settings.mobile_text_alignment, mobile_content_vertical: block.settings.mobile_content_vertical, customize_text_colors: block.settings.customize_text_colors, eyebrow_color: block.settings.eyebrow_color, heading_color: block.settings.heading_color, heading_accent_color: block.settings.heading_accent_color, body_text_color: block.settings.body_text_color, text_shadow: block.settings.text_shadow, shadow_color: block.settings.shadow_color, shadow_opacity: block.settings.shadow_opacity, shadow_offset_x: block.settings.shadow_offset_x, shadow_offset_y: block.settings.shadow_offset_y, shadow_blur: block.settings.shadow_blur %}
     {% else %}
       {% render 'aiworld-trade-hero-slide', image: section.settings.image, mobile_image: section.settings.mobile_image, eyebrow: section.settings.eyebrow, heading: section.settings.heading, text: section.settings.text, mobile_heading: section.settings.mobile_heading, mobile_text: section.settings.mobile_text, feature_1_icon: section.settings.feature_1_icon, feature_1_title: section.settings.feature_1_title, feature_1_text: section.settings.feature_1_text, feature_2_icon: section.settings.feature_2_icon, feature_2_title: section.settings.feature_2_title, feature_2_text: section.settings.feature_2_text, feature_3_icon: section.settings.feature_3_icon, feature_3_title: section.settings.feature_3_title, feature_3_text: section.settings.feature_3_text, show_rating: section.settings.show_rating, rating_text: section.settings.rating_text, price: section.settings.price, mobile_price: section.settings.mobile_price, button_label: section.settings.button_label, button_link: section.settings.button_link, button_2_label: section.settings.button_2_label, button_2_link: section.settings.button_2_link, mobile_button_label: section.settings.mobile_button_label, mobile_button_link: section.settings.mobile_button_link, mobile_button_2_label: section.settings.mobile_button_2_label, mobile_button_2_link: section.settings.mobile_button_2_link, image_link: section.settings.image_link, slide_index: 0, slide_count: 1, is_active: true, heading_alt: section.settings.heading, overlay_style: section.settings.overlay_style %}
     {% endfor %}
@@ -42,7 +42,66 @@
     </div>
   {% endif %}
 </section>
-<script src="{{ 'aiworld-trade-carousel.js' | asset_url }}" defer="defer"></script>
+{% stylesheet %}
+  body .trade-hero__slide .trade-hero__content {
+    top: var(--slide-content-y, var(--hero-content-y, 50%));
+    justify-content: var(--slide-content-justify, var(--hero-content-justify, flex-start));
+  }
+
+  body .trade-hero__slide .trade-hero__copy--desktop {
+    text-align: var(--slide-text-align, var(--hero-text-align, left));
+  }
+
+  body .trade-hero__slide .trade-hero__copy--desktop .trade-actions {
+    justify-content: var(--slide-action-align, var(--hero-action-align, flex-start));
+  }
+
+  body .trade-hero__slide--custom-copy .trade-hero__eyebrow {
+    color: var(--slide-eyebrow-color, #ffffff);
+  }
+
+  body .trade-hero__slide--custom-copy .trade-hero__title,
+  body .trade-hero__slide--custom-copy .trade-hero__title span {
+    color: var(--slide-heading-color, #ffffff);
+  }
+
+  body .trade-hero__slide--custom-copy .trade-hero__title .trade-hero__title-accent {
+    color: var(--slide-heading-accent-color, #0787f9);
+  }
+
+  body .trade-hero__slide--custom-copy .trade-hero__text,
+  body .trade-hero__slide--custom-copy .trade-hero__text p,
+  body .trade-hero__slide--custom-copy .trade-hero__rating,
+  body .trade-hero__slide--custom-copy .trade-hero__rating span,
+  body .trade-hero__slide--custom-copy .trade-hero__price {
+    color: var(--slide-body-color, #ffffff);
+  }
+
+  body .trade-hero__slide--text-shadow .trade-hero__eyebrow,
+  body .trade-hero__slide--text-shadow .trade-hero__title,
+  body .trade-hero__slide--text-shadow .trade-hero__title span,
+  body .trade-hero__slide--text-shadow .trade-hero__text,
+  body .trade-hero__slide--text-shadow .trade-hero__text p,
+  body .trade-hero__slide--text-shadow .trade-hero__rating,
+  body .trade-hero__slide--text-shadow .trade-hero__price {
+    text-shadow: var(--slide-text-shadow, none);
+  }
+
+  @media screen and (max-width: 749px) {
+    body .trade-hero__slide .trade-hero__content {
+      top: var(--slide-mobile-content-y, var(--hero-mobile-content-y, 32%));
+      justify-content: var(--slide-mobile-content-justify, var(--hero-mobile-content-justify, center));
+    }
+
+    body .trade-hero__slide .trade-hero__copy--mobile {
+      text-align: var(--slide-mobile-text-align, var(--hero-mobile-text-align, center));
+    }
+
+    body .trade-hero__slide .trade-hero__copy--mobile .trade-actions {
+      justify-content: var(--slide-mobile-action-align, var(--hero-mobile-action-align, center));
+    }
+  }
+{% endstylesheet %}
 {% schema %}
 {
   "name": "首页主视觉",
@@ -54,7 +113,7 @@
     { "type": "text", "id": "eyebrow", "label": "Fallback eyebrow", "default": "AIWORLD Screen" },
     { "type": "textarea", "id": "heading", "label": "Fallback heading", "default": "Smarter Driving\nStarts Here." },
     { "type": "range", "id": "title_line_gap", "min": 0, "max": 32, "step": 1, "unit": "px", "label": "Heading line spacing", "default": 0 },
-    { "type": "richtext", "id": "text", "label": "Fallback text", "default": "<p>A 9-inch portable wireless CarPlay & Android Auto display for any car. Simple. Powerful. A better way to drive.</p>" },
+    { "type": "richtext", "id": "text", "label": "Fallback text", "default": "<p>A 9-inch portable wireless CarPlay & Android Auto display designed for vehicles with a compatible 12V–24V power source, safe mounting space, supported phone and suitable audio connection.</p>" },
     { "type": "range", "id": "text_font_size", "min": 12, "max": 32, "step": 1, "unit": "px", "label": "Text font size", "default": 18 },
     { "type": "color", "id": "text_color", "label": "Text color", "default": "#FFFFFF" },
     { "type": "range", "id": "text_line_height", "min": 1, "max": 2, "step": 0.1, "label": "Text line height", "default": 1.5 },
@@ -102,7 +161,7 @@
         { "type": "header", "content": "Desktop copy" },
         { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "AIWORLD Screen" },
         { "type": "textarea", "id": "heading", "label": "Desktop heading", "default": "Smarter Driving\nStarts Here." },
-        { "type": "richtext", "id": "text", "label": "Desktop text", "default": "<p>A 9-inch portable wireless CarPlay & Android Auto display for any car. Simple. Powerful. A better way to drive.</p>" },
+        { "type": "richtext", "id": "text", "label": "Desktop text", "default": "<p>A 9-inch portable wireless CarPlay & Android Auto display designed for vehicles with a compatible 12V–24V power source, safe mounting space, supported phone and suitable audio connection.</p>" },
         { "type": "text", "id": "rating_text", "label": "Rating text", "default": "4.8 (1,200+ reviews)" },
         { "type": "checkbox", "id": "show_rating", "label": "Show rating on desktop", "default": true },
         { "type": "text", "id": "price", "label": "Desktop price" },
@@ -110,6 +169,25 @@
         { "type": "url", "id": "button_link", "label": "Desktop primary link" },
         { "type": "text", "id": "button_2_label", "label": "Desktop secondary button", "default": "Learn More" },
         { "type": "url", "id": "button_2_link", "label": "Desktop secondary link" },
+        { "type": "header", "content": "Per-slide layout" },
+        { "type": "select", "id": "content_position", "label": "Desktop content position", "options": [{ "value": "inherit", "label": "Use section setting" }, { "value": "flex-start", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Right" }], "default": "inherit" },
+        { "type": "select", "id": "text_alignment", "label": "Desktop text alignment", "options": [{ "value": "inherit", "label": "Use section setting" }, { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" }], "default": "inherit" },
+        { "type": "range", "id": "content_vertical", "min": 0, "max": 90, "step": 5, "unit": "%", "label": "Desktop vertical position", "info": "Set to 0 to use the section setting.", "default": 0 },
+        { "type": "select", "id": "mobile_content_position", "label": "Mobile content position", "options": [{ "value": "inherit", "label": "Use section setting" }, { "value": "flex-start", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "flex-end", "label": "Right" }], "default": "inherit" },
+        { "type": "select", "id": "mobile_text_alignment", "label": "Mobile text alignment", "options": [{ "value": "inherit", "label": "Use section setting" }, { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" }], "default": "inherit" },
+        { "type": "range", "id": "mobile_content_vertical", "min": 0, "max": 82, "step": 2, "unit": "%", "label": "Mobile vertical position", "info": "Set to 0 to use the section setting.", "default": 0 },
+        { "type": "header", "content": "Copy colors and shadow" },
+        { "type": "checkbox", "id": "customize_text_colors", "label": "Use custom text colors", "default": false },
+        { "type": "color", "id": "eyebrow_color", "label": "Eyebrow color", "default": "#FFFFFF" },
+        { "type": "color", "id": "heading_color", "label": "Heading color", "default": "#FFFFFF" },
+        { "type": "color", "id": "heading_accent_color", "label": "Last heading line color", "default": "#0787F9" },
+        { "type": "color", "id": "body_text_color", "label": "Body, rating and price color", "default": "#FFFFFF" },
+        { "type": "checkbox", "id": "text_shadow", "label": "Enable text shadow", "default": false },
+        { "type": "color", "id": "shadow_color", "label": "Shadow color", "default": "#000000" },
+        { "type": "range", "id": "shadow_opacity", "min": 0, "max": 100, "step": 5, "unit": "%", "label": "Shadow opacity", "default": 45 },
+        { "type": "range", "id": "shadow_offset_x", "min": -10, "max": 10, "step": 1, "unit": "px", "label": "Shadow horizontal offset", "default": 0 },
+        { "type": "range", "id": "shadow_offset_y", "min": -10, "max": 10, "step": 1, "unit": "px", "label": "Shadow vertical offset", "default": 2 },
+        { "type": "range", "id": "shadow_blur", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Shadow blur", "default": 6 },
         { "type": "header", "content": "Mobile copy" },
         { "type": "textarea", "id": "mobile_heading", "label": "Mobile heading", "info": "Leave blank to use the desktop heading." },
         { "type": "richtext", "id": "mobile_text", "label": "Mobile text", "info": "Leave blank to use the desktop text." },

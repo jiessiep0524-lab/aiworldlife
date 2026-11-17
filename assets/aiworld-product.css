@@ -962,6 +962,20 @@ body:has(.product-media-modal[open]) .aiworld-sticky-buy {
   }
 }
 
+:is(.template-product, product-info) details.aiworld-feature-disclosure { padding:2px 16px; margin:0 0 3px; }
+
+.aiworld-box-summary { display:flex; align-items:center; justify-content:space-between; gap:16px; cursor:pointer; list-style:none; min-height:28px; }
+.aiworld-box-summary::-webkit-details-marker { display:none; }
+:is(.template-product, product-info) .aiworld-box-summary h3 { margin:0; font-size:14px; line-height:1.4; }
+.aiworld-box-toggle::before { content:'+'; font-size:22px; }
+details[open] > .aiworld-box-summary .aiworld-box-toggle::before { content:'−'; }
+:is(.template-product, product-info) details.aiworld-feature-disclosure[open] > .aiworld-product-key-features__content { margin:8px 0; }
+:is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px 12px; margin:8px 0; padding:0; list-style:none; align-items:start; justify-items:stretch; }
+:is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-list li { display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center; font-size:13px; line-height:1.4; margin:0; min-width:0; overflow-wrap:anywhere; }
+.aiworld-box-list img,.aiworld-box-list svg { width:56px; height:56px; object-fit:contain; color:#0787f9; flex-shrink:0; }
+.aiworld-box-summary:focus-visible { outline:2px solid #0787f9; outline-offset:4px; }
+@media(max-width:480px) { :is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-list { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+
 /* Full-width story banner */
 .aiworld-product-banner {
   min-height: var(--aiworld-banner-height, 520px);
@@ -1541,7 +1555,7 @@ body:has(.product-media-modal[open]) .aiworld-sticky-buy {
   background: rgba(7, 135, 249, .12);
   color: var(--aiworld-blue, #0787F9);
   font-size: .72rem;
-  font-weight: 800;
+  font-weight: 400;
   letter-spacing: .02em;
 }
 
@@ -1617,7 +1631,7 @@ product-info .product__info-container > [id^='price-'] .badge {
   background: rgba(7, 135, 249, .12);
   color: var(--aiworld-blue, #0787f9);
   font-size: .72rem;
-  font-weight: 800;
+  font-weight: 400;
   letter-spacing: .02em;
 }
 
@@ -2527,6 +2541,9 @@ product-info .aiworld-before-buy__panel,
   flex-direction: column;
   gap: 16px;
   margin-top: 0;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
 }
 
 :is(.template-product, product-info) .product-form__buttons > * {
@@ -2540,6 +2557,10 @@ product-info .aiworld-before-buy__panel,
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.01em;
+}
+
+:is(.template-product, product-info) .product-form__submit {
+  border-radius: var(--buttons-radius-outset);
 }
 
 :is(.template-product, product-info) .aiworld-buy-trust {
@@ -2616,7 +2637,7 @@ product-info .aiworld-before-buy__panel,
   margin-bottom: 0;
   background: #0787F9 !important;
   border-color: #0787F9 !important;
-  border-radius: 999px !important;
+  border-radius: var(--buttons-radius-outset) !important;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -2697,11 +2718,17 @@ product-info .aiworld-before-buy__panel,
   margin: 4px 0 16px;
 }
 
+:is(.template-product, product-info) .aiworld-addon-list {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+}
+
 .aiworld-addon-list__heading {
   margin: 0 0 2px;
   color: #172033;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
   line-height: 1.3;
 }
 
@@ -2756,8 +2783,8 @@ product-info .aiworld-before-buy__panel,
 
 .aiworld-addon-row__title {
   color: #172033;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 1.35;
 }
 
@@ -2791,17 +2818,24 @@ product-info .aiworld-before-buy__panel,
   align-items: flex-end;
   gap: 2px;
   color: #172033;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 1;
   white-space: nowrap;
 }
 
 .aiworld-addon-row__compare {
   color: #98a2b3;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 400;
   line-height: 1;
+}
+
+.aiworld-addon-row__price-current {
+  color: #172033;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.1;
 }
 
 .aiworld-addon-total {
@@ -2859,5 +2893,417 @@ product-info .aiworld-before-buy__panel,
     transform: translateY(1px) scale(0.96);
     animation: none;
     transition-duration: 0.08s;
+  }
+}
+
+/* Flat product-disclosure treatment for Key Features and What's in the box. */
+:is(.template-product, product-info) details.aiworld-feature-disclosure {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-top: 1px solid #e4e4e4;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+:is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-summary {
+  min-height: 4.5rem;
+  padding: 0 1.5rem;
+}
+
+:is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-summary h3 {
+  margin: 0;
+  color: var(--aiworld-ink);
+  font-size: 1rem !important;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.35;
+  text-transform: none;
+}
+
+:is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-toggle::before,
+:is(.template-product, product-info) details.aiworld-feature-disclosure[open] > .aiworld-box-summary .aiworld-box-toggle::before {
+  content: '\2192';
+  color: var(--aiworld-ink);
+  font-size: 1.9rem;
+  font-weight: 400;
+}
+
+:is(.template-product, product-info) details.aiworld-feature-disclosure[open] > .aiworld-product-key-features__content {
+  margin: 0;
+  padding: 0 1.5rem 1.5rem;
+  border-top: 1px solid #e4e4e4;
+}
+
+:is(.template-product, product-info) details.aiworld-feature-disclosure[open] > .aiworld-box-list {
+  margin: 0;
+  padding: 1rem 1.5rem 1.5rem;
+  border-top: 1px solid #e4e4e4;
+}
+
+@media screen and (max-width: 749px) {
+  :is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-summary {
+    min-height: 4.5rem;
+    padding: 0 1rem;
+  }
+
+  :is(.template-product, product-info) details.aiworld-feature-disclosure[open] > .aiworld-product-key-features__content,
+  :is(.template-product, product-info) details.aiworld-feature-disclosure[open] > .aiworld-box-list {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+/* All three product disclosures use the same closed-row rhythm. */
+:is(.template-product, product-info) .aiworld-before-buy__summary {
+  min-height: 4.5rem !important;
+}
+
+:is(.template-product, product-info) .aiworld-before-buy__label {
+  font-size: 1rem !important;
+}
+
+:is(.template-product, product-info) .aiworld-before-buy__icon,
+:is(.template-product, product-info) .aiworld-before-buy__requirement,
+:is(.template-product, product-info) .aiworld-before-buy__details {
+  display: none !important;
+}
+
+/* Flat product-disclosure treatment for Before You Buy. */
+:is(.template-product, product-info) .aiworld-before-buy {
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-top: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+:is(.template-product, product-info) .aiworld-before-buy__summary {
+  grid-template-columns: minmax(0, 1fr) auto;
+  min-height: 4.75rem;
+  padding: 0 1.5rem;
+}
+
+:is(.template-product, product-info) .aiworld-before-buy__icon,
+:is(.template-product, product-info) .aiworld-before-buy__requirement,
+:is(.template-product, product-info) .aiworld-before-buy__details {
+  display: none;
+}
+
+:is(.template-product, product-info) .aiworld-before-buy__label {
+  margin: 0;
+  color: var(--aiworld-ink);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+:is(.template-product, product-info) .aiworld-before-buy__plus,
+:is(.template-product, product-info) .aiworld-before-buy[open] .aiworld-before-buy__plus {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--aiworld-ink);
+  font-size: 1.9rem;
+  font-weight: 400;
+}
+
+:is(.template-product, product-info) .aiworld-before-buy__plus::before,
+:is(.template-product, product-info) .aiworld-before-buy[open] .aiworld-before-buy__plus::before {
+  content: '\2192';
+}
+
+:is(.template-product, product-info) .aiworld-before-buy__panel {
+  padding: 0 1.5rem 1.5rem;
+  border-top: 1px solid #e4e4e4;
+}
+
+@media screen and (max-width: 749px) {
+  :is(.template-product, product-info) .aiworld-before-buy__summary {
+    min-height: 4.25rem;
+    padding: 0 1rem;
+  }
+
+  :is(.template-product, product-info) .aiworld-before-buy__panel {
+    padding: 0 1rem 1.25rem;
+  }
+}
+
+/* Shared type scale for product disclosures: 24px row titles, 20px content. */
+:is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-summary,
+:is(.template-product, product-info) .aiworld-before-buy__summary {
+  min-height: 5rem !important;
+}
+
+:is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-summary h3,
+:is(.template-product, product-info) .aiworld-before-buy__label {
+  font-size: 1.5rem !important;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+:is(.template-product, product-info) .aiworld-product-key-features__content,
+:is(.template-product, product-info) .aiworld-product-key-features__content li,
+:is(.template-product, product-info) .aiworld-product-key-features .metafield-rich_text_field,
+:is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-list li,
+:is(.template-product, product-info) .aiworld-before-buy__panel,
+:is(.template-product, product-info) .aiworld-before-buy__panel-heading,
+:is(.template-product, product-info) .aiworld-before-buy__checklist li,
+:is(.template-product, product-info) .aiworld-before-buy__notice,
+:is(.template-product, product-info) .aiworld-before-buy__help-link {
+  font-size: 1.25rem !important;
+  line-height: 1.6;
+}
+
+:is(.template-product, product-info) .aiworld-product-key-features__content ul {
+  margin: 0;
+  padding: 1.25rem 0 1.25rem 1.4rem;
+}
+
+:is(.template-product, product-info) .aiworld-product-key-features__content li {
+  margin: 0;
+}
+
+:is(.template-product, product-info) .aiworld-product-key-features__content li + li {
+  margin-top: .75rem;
+}
+
+:is(.template-product, product-info) .aiworld-before-buy__value {
+  color: var(--aiworld-blue, #0787F9);
+  font-weight: 700;
+}
+
+:is(.template-product, product-info) .aiworld-payment-security {
+  margin: 1px 0 0;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+:is(.template-product, product-info) .aiworld-payment-security h2 {
+  display: none;
+}
+
+:is(.template-product, product-info) .aiworld-payment-security .list-payment {
+  justify-content: center;
+  gap: .55rem;
+  margin: 0;
+  padding: 0;
+}
+
+:is(.template-product, product-info) .aiworld-payment-security .list-payment__item {
+  padding: 0;
+}
+
+:is(.template-product, product-info) .aiworld-payment-security .icon {
+  display: block;
+  width: 3.5rem;
+  height: 2.25rem;
+}
+
+/* Keep the product disclosures compact while preserving readable list spacing. */
+:is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-summary,
+:is(.template-product, product-info) .aiworld-before-buy__summary {
+  min-height: 2.5rem !important;
+}
+
+:is(.template-product, product-info) details.aiworld-feature-disclosure[open] > .aiworld-product-key-features__content {
+  padding-bottom: .75rem;
+}
+
+:is(.template-product, product-info) .aiworld-product-key-features__content ul {
+  padding-top: .625rem;
+  padding-bottom: .625rem;
+}
+
+:is(.template-product, product-info) details.aiworld-feature-disclosure[open] > .aiworld-box-list {
+  padding-top: .5rem;
+  padding-bottom: .75rem;
+}
+
+:is(.template-product, product-info) .aiworld-before-buy__panel {
+  padding-bottom: .75rem;
+}
+
+/* Use one disclosure indicator across Key Features, the box, and Before You Buy. */
+:is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-toggle::before,
+:is(.template-product, product-info) .aiworld-before-buy__plus::before {
+  content: '+' !important;
+}
+
+:is(.template-product, product-info) details.aiworld-feature-disclosure[open] > .aiworld-box-summary .aiworld-box-toggle::before,
+:is(.template-product, product-info) .aiworld-before-buy[open] .aiworld-before-buy__plus::before {
+  content: '−' !important;
+}
+
+@media screen and (max-width: 749px) {
+  :is(.template-product, product-info) .product__info-container {
+    --buy-body: 15px;
+    --buy-meta: 14px;
+  }
+
+  :is(.template-product, product-info) .aiworld-campaign-badges {
+    gap: 6px;
+    margin: 0 0 12px;
+  }
+
+  :is(.template-product, product-info) .aiworld-campaign-badge {
+    padding: 6px 9px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  :is(.template-product, product-info) .product__title {
+    margin: 0 0 10px;
+  }
+
+  :is(.template-product, product-info) .product__title h1 {
+    font-size: 24px !important;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    line-height: 1.2;
+  }
+
+  :is(.template-product, product-info) .product__info-container > [id^='price-'] {
+    margin: 0 0 10px;
+  }
+
+  :is(.template-product, product-info) .product__info-container > [id^='price-'] .price-item--sale {
+    font-size: 30px !important;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    line-height: 1;
+  }
+
+  :is(.template-product, product-info) .product__info-container > [id^='price-'] .price-item--regular {
+    font-size: 16px !important;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  :is(.template-product, product-info) .product__info-container > [id^='price-'] .price__badge-sale,
+  :is(.template-product, product-info) .product__info-container > [id^='price-'] .badge {
+    font-size: 12px !important;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  :is(.template-product, product-info) .aiworld-shipping-note {
+    gap: 7px;
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.45;
+  }
+
+  :is(.template-product, product-info) details.aiworld-feature-disclosure .aiworld-box-summary,
+  :is(.template-product, product-info) .aiworld-before-buy__summary {
+    min-height: 52px !important;
+    padding: 0 16px;
+  }
+
+  :is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-summary h3,
+  :is(.template-product, product-info) .aiworld-before-buy__label {
+    font-size: 18px !important;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.3;
+  }
+
+  :is(.template-product, product-info) details.aiworld-feature-disclosure[open] > .aiworld-product-key-features__content,
+  :is(.template-product, product-info) details.aiworld-feature-disclosure[open] > .aiworld-box-list,
+  :is(.template-product, product-info) .aiworld-before-buy__panel {
+    padding: 12px 16px 14px;
+  }
+
+  :is(.template-product, product-info) .aiworld-product-key-features__content,
+  :is(.template-product, product-info) .aiworld-product-key-features__content li,
+  :is(.template-product, product-info) .aiworld-product-key-features .metafield-rich_text_field,
+  :is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-list li,
+  :is(.template-product, product-info) .aiworld-before-buy__panel,
+  :is(.template-product, product-info) .aiworld-before-buy__panel-heading,
+  :is(.template-product, product-info) .aiworld-before-buy__checklist li,
+  :is(.template-product, product-info) .aiworld-before-buy__notice,
+  :is(.template-product, product-info) .aiworld-before-buy__help-link {
+    font-size: 15px !important;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  :is(.template-product, product-info) .aiworld-product-key-features__content ul {
+    padding: 0 0 0 18px;
+  }
+
+  :is(.template-product, product-info) .aiworld-product-key-features__content li + li,
+  :is(.template-product, product-info) .aiworld-feature-disclosure .aiworld-box-list li + li,
+  :is(.template-product, product-info) .aiworld-before-buy__checklist li + li {
+    margin-top: 8px;
+  }
+
+  :is(.template-product, product-info) .aiworld-before-buy__panel-heading {
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  :is(.template-product, product-info) .aiworld-bundle-picker,
+  :is(.template-product, product-info) .aiworld-product-key-features,
+  :is(.template-product, product-info) .aiworld-before-buy {
+    margin-bottom: 10px;
+  }
+
+  :is(.template-product, product-info) .aiworld-addon-list {
+    gap: 8px;
+    margin: 4px 0 12px;
+  }
+
+  :is(.template-product, product-info) .aiworld-addon-row {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  :is(.template-product, product-info) .aiworld-addon-row__title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  :is(.template-product, product-info) .aiworld-addon-row__note {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.35;
+  }
+
+  :is(.template-product, product-info) .aiworld-addon-row__price {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  :is(.template-product, product-info) .product-form__buttons {
+    gap: 10px;
+  }
+
+  :is(.template-product, product-info) .product-form__submit,
+  :is(.template-product, product-info) .shopify-payment-button__button--unbranded {
+    min-height: 50px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  :is(.template-product, product-info) .aiworld-payment-security .list-payment {
+    gap: 6px;
+  }
+
+  :is(.template-product, product-info) .aiworld-payment-security .icon {
+    width: 44px;
+    height: 28px;
   }
 }

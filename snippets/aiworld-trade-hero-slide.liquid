@@ -36,6 +36,23 @@ Renders one homepage banner for both desktop and mobile.
 @param {string} heading_alt - Accessible image alt text
 @param {string} overlay_style - Overlay style
 @param {string} [image_link] - Banner image URL. Defaults to the product page.
+@param {string} [content_position] - Per-slide desktop horizontal position
+@param {string} [text_alignment] - Per-slide desktop text alignment
+@param {number} [content_vertical] - Per-slide desktop vertical position
+@param {string} [mobile_content_position] - Per-slide mobile horizontal position
+@param {string} [mobile_text_alignment] - Per-slide mobile text alignment
+@param {number} [mobile_content_vertical] - Per-slide mobile vertical position
+@param {boolean} [customize_text_colors] - Whether per-slide colors are enabled
+@param {string} [eyebrow_color] - Eyebrow color
+@param {string} [heading_color] - Heading color
+@param {string} [heading_accent_color] - Last heading line color
+@param {string} [body_text_color] - Body copy color
+@param {boolean} [text_shadow] - Whether text shadow is enabled
+@param {string} [shadow_color] - Text shadow color
+@param {number} [shadow_opacity] - Text shadow opacity percent
+@param {number} [shadow_offset_x] - Horizontal shadow offset
+@param {number} [shadow_offset_y] - Vertical shadow offset
+@param {number} [shadow_blur] - Shadow blur radius
 {% enddoc %}
 
 {%- liquid
@@ -51,19 +68,45 @@ Renders one homepage banner for both desktop and mobile.
   assign hero_image_link = image_link | default: '/products/9-inch-wireless-carplay'
   assign desktop_heading_lines = heading | newline_to_br | split: '<br />'
   assign mobile_heading_lines = phone_heading | newline_to_br | split: '<br />'
+  assign desktop_action_align = 'flex-start'
+  if text_alignment == 'center'
+    assign desktop_action_align = 'center'
+  elsif text_alignment == 'right'
+    assign desktop_action_align = 'flex-end'
+  endif
+  assign mobile_action_align = 'center'
+  if mobile_text_alignment == 'left'
+    assign mobile_action_align = 'flex-start'
+  elsif mobile_text_alignment == 'right'
+    assign mobile_action_align = 'flex-end'
+  endif
+  assign shadow_alpha = shadow_opacity | default: 45 | divided_by: 100.0
+  assign shadow_rgba = shadow_color | default: '#000000' | color_modify: 'alpha', shadow_alpha
 -%}
 
-<article class="trade-hero__slide{% if is_active %} is-active{% endif %}" data-slide-index="{{ slide_index }}" role="group" aria-roledescription="slide" aria-label="{{ slide_index | plus: 1 }} of {{ slide_count }}" aria-hidden="{% if is_active %}false{% else %}true{% endif %}" {{ shopify_attributes }}>
+<article
+  class="trade-hero__slide{% if is_active %} is-active{% endif %}{% if customize_text_colors %} trade-hero__slide--custom-copy{% endif %}{% if text_shadow %} trade-hero__slide--text-shadow{% endif %}"
+  style="{% if content_position != blank and content_position != 'inherit' %}--slide-content-justify:{{ content_position }};{% endif %}{% if text_alignment != blank and text_alignment != 'inherit' %}--slide-text-align:{{ text_alignment }};--slide-action-align:{{ desktop_action_align }};{% endif %}{% if content_vertical != blank and content_vertical > 0 %}--slide-content-y:{{ content_vertical }}%;{% endif %}{% if mobile_content_position != blank and mobile_content_position != 'inherit' %}--slide-mobile-content-justify:{{ mobile_content_position }};{% endif %}{% if mobile_text_alignment != blank and mobile_text_alignment != 'inherit' %}--slide-mobile-text-align:{{ mobile_text_alignment }};--slide-mobile-action-align:{{ mobile_action_align }};{% endif %}{% if mobile_content_vertical != blank and mobile_content_vertical > 0 %}--slide-mobile-content-y:{{ mobile_content_vertical }}%;{% endif %}{% if customize_text_colors %}--slide-eyebrow-color:{{ eyebrow_color }};--slide-heading-color:{{ heading_color }};--slide-heading-accent-color:{{ heading_accent_color }};--slide-body-color:{{ body_text_color }};{% endif %}{% if text_shadow %}--slide-text-shadow:{{ shadow_offset_x | default: 0 }}px {{ shadow_offset_y | default: 2 }}px {{ shadow_blur | default: 6 }}px {{ shadow_rgba }};{% endif %}"
+  data-slide-index="{{ slide_index }}"
+  role="group"
+  aria-roledescription="slide"
+  aria-label="{{ slide_index | plus: 1 }} of {{ slide_count }}"
+  aria-hidden="{% if is_active %}false{% else %}true{% endif %}"
+  {{ shopify_attributes }}
+>
   <div class="trade-hero__media">
-    {% if image != blank %}
+    {% assign fallback_image = image | default: phone_image %}
+    {% if fallback_image != blank %}
+      <picture>
+        {% if phone_image != blank %}
+          <source media="(max-width: 640px)" srcset="{{ phone_image | image_url: width: 375 }} 375w, {{ phone_image | image_url: width: 750 }} 750w, {{ phone_image | image_url: width: 1100 }} 1100w, {{ phone_image | image_url: width: 1500 }} 1500w" sizes="100vw" width="{{ phone_image.width }}" height="{{ phone_image.height }}">
+        {% endif %}
       {% if is_active %}
-        {{ image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'trade-hero__img trade-hero__img--desktop', widths: '750,1100,1500,2000,2400', sizes: '100vw', alt: image_alt }}
+        {{ fallback_image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'trade-hero__img', widths: '750,1100,1500,2000,2400', sizes: '100vw', alt: image_alt }}
       {% else %}
-        {{ image | image_url: width: 2400 | image_tag: loading: 'lazy', fetchpriority: 'low', decoding: 'async', class: 'trade-hero__img trade-hero__img--desktop', widths: '750,1100,1500,2000,2400', sizes: '100vw', alt: image_alt }}
+        {{ fallback_image | image_url: width: 2400 | image_tag: loading: 'lazy', fetchpriority: 'low', decoding: 'async', class: 'trade-hero__img', widths: '750,1100,1500,2000,2400', sizes: '100vw', alt: image_alt }}
       {% endif %}
-    {% endif %}
-    {% if phone_image != blank %}
-      {{ phone_image | image_url: width: 1500 | image_tag: loading: 'lazy', fetchpriority: 'low', decoding: 'async', class: 'trade-hero__img trade-hero__img--mobile', widths: '375,750,1100,1500', sizes: '100vw', alt: image_alt }}
+      </picture>
     {% endif %}
     <a class="trade-hero__media-link" href="{{ hero_image_link }}"><span class="visually-hidden">{{ image_alt | escape }}</span></a>
   </div>

@@ -66,6 +66,7 @@
 
     const productInfo = document.querySelector('product-info');
     const gallery = productInfo?.querySelector('.product__media-wrapper') || productInfo;
+    const keyFeatures = productInfo?.querySelector('.aiworld-product-key-features');
     const variantInput = bar.querySelector('[data-sticky-variant-id]');
     const price = bar.querySelector('[data-sticky-price]');
     const buyButton = bar.querySelector('[data-sticky-buy-button]');
@@ -110,7 +111,9 @@
       const footerVisible = typeof footerTop === 'number' && footerTop < window.innerHeight;
       const stack = document.querySelector('.aiworld-product-image-stack');
       let reachedDetails = false;
-      if (stack) {
+      if (keyFeatures) {
+        reachedDetails = keyFeatures.getBoundingClientRect().top <= window.innerHeight - 80;
+      } else if (stack) {
         reachedDetails = stack.getBoundingClientRect().top < window.innerHeight - 80;
       } else if (gallery) {
         reachedDetails = gallery.getBoundingClientRect().bottom <= 120;

@@ -31,7 +31,7 @@
           "settings": {
             "heading": "Shipping and returns",
             "text": "<p>Review delivery timing, return eligibility, and order policies before contacting support.</p>",
-            "link": "/pages/shipping-policy",
+            "link": "/policies/shipping-policy",
             "link_label": "View policy"
           }
         },

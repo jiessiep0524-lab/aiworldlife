@@ -130,21 +130,6 @@
             </span>
             {%- render 'loading-spinner' -%}
           </button>
-          <button
-            type="button"
-            class="product-form__buy-now button button--full-width"
-            data-buy-now
-            data-checkout-url="{{ routes.root_url }}checkout"
-            {% if product.selected_or_first_available_variant.available == false
-              or quantity_rule_soldout
-              or product.selected_or_first_available_variant == null
-            %}
-              disabled
-            {% endif %}
-          >
-            <span>Buy now</span>
-            {%- render 'loading-spinner' -%}
-          </button>
           {%- if show_dynamic_checkout -%}
             {{ form | payment_button }}
           {%- endif -%}

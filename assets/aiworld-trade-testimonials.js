@@ -10,6 +10,11 @@
     var speed = parseInt(root.dataset.speed || '5000', 10);
     var autoplay = root.dataset.autoplay === 'true';
     var pause = root.dataset.pause === 'true';
+    var visible = !('IntersectionObserver' in window);
+    var hovered = false;
+    var focused = false;
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    function stop() { window.clearInterval(timer); }
     function show(next) {
       index = (next + slides.length) % slides.length;
       slides.forEach(function (slide, i) {
@@ -24,8 +29,8 @@
       dots.forEach(function (dot, i) { dot.setAttribute('aria-selected', i === index ? 'true' : 'false'); });
     }
     function start() {
-      window.clearInterval(timer);
-      if (autoplay && slides.length > 1) timer = window.setInterval(function () { show(index + 1); }, speed);
+      stop();
+      if (autoplay && slides.length > 1 && visible && !document.hidden && !hovered && !focused && !reducedMotion.matches && root.isConnected) timer = window.setInterval(function () { show(index + 1); }, speed);
     }
     var previousButton = root.querySelector('[data-testimonial-prev]');
     var nextButton = root.querySelector('[data-testimonial-next]');
@@ -33,15 +38,35 @@
     if (nextButton) nextButton.addEventListener('click', function () { show(index + 1); start(); });
     dots.forEach(function (dot) { dot.addEventListener('click', function () { show(parseInt(dot.dataset.testimonialDot, 10)); start(); }); });
     if (pause) {
-      root.addEventListener('mouseenter', function () { window.clearInterval(timer); });
-      root.addEventListener('mouseleave', start);
-      root.addEventListener('focusin', function () { window.clearInterval(timer); });
-      root.addEventListener('focusout', start);
+      root.addEventListener('mouseenter', function () { hovered = true; stop(); });
+      root.addEventListener('mouseleave', function () { hovered = false; start(); });
+      root.addEventListener('focusin', function () { focused = true; stop(); });
+      root.addEventListener('focusout', function (event) { focused = root.contains(event.relatedTarget); start(); });
     }
+    var observer;
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        start();
+      });
+      observer.observe(root);
+    }
+    document.addEventListener('visibilitychange', start);
+    reducedMotion.addEventListener('change', start);
+    function unload(event) {
+      if (!event.target.contains(root)) return;
+      stop();
+      if (observer) observer.disconnect();
+      document.removeEventListener('visibilitychange', start);
+      reducedMotion.removeEventListener('change', start);
+      document.removeEventListener('shopify:section:unload', unload);
+    }
+    document.addEventListener('shopify:section:unload', unload);
     show(0);
     start();
   }
   function scan() { document.querySelectorAll('[data-testimonial-carousel]').forEach(init); }
-  document.addEventListener('DOMContentLoaded', scan);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', scan);
+  else scan();
   document.addEventListener('shopify:section:load', scan);
 })();

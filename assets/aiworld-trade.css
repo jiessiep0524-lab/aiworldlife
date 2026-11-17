@@ -308,6 +308,7 @@ body .trade-faq__inline-link:hover { text-decoration:underline; text-underline-o
 .aiworld-trade-footer__contact p { margin:.65rem 0 0; color:rgba(255,255,255,.84); font-size:1.05rem; line-height:1.45; }
 .aiworld-trade-footer__social { display:flex; gap:.8rem; margin-top:1.7rem; }
 .aiworld-trade-footer__social a { display:grid; place-items:center; width:2.8rem; height:2.8rem; border:1px solid rgba(255,255,255,.45); border-radius:50%; color:#fff; font-weight:700; text-decoration:none; }
+.aiworld-trade-footer__social a svg { width:1.35rem; height:1.35rem; }
 .aiworld-trade-footer__column { padding-left:1.8rem; border-left:1px solid rgba(255,255,255,.18); }
 .aiworld-trade-footer__column h2,.aiworld-trade-footer__news h2 { margin:0 0 1.5rem; color:#fff; font-size:1.5rem; }
 .aiworld-trade-footer__column ul { margin:0; padding:0; list-style:none; }
@@ -318,9 +319,13 @@ body .trade-faq__inline-link:hover { text-decoration:underline; text-underline-o
 .aiworld-trade-footer__news img { width:100%; aspect-ratio:1.55; object-fit:cover; border-radius:.6rem; }
 .aiworld-trade-footer__news span { display:block; margin-top:.8rem; color:rgba(255,255,255,.84); font-size:1.15rem; }
 .aiworld-trade-footer__bottom { border-top:1px solid rgba(255,255,255,.2); }
-.aiworld-trade-footer__bottom .trade-container { display:flex; justify-content:space-between; gap:2rem; padding-top:1.5rem; padding-bottom:1.5rem; color:rgba(255,255,255,.6); font-size:1rem; }
+.aiworld-trade-footer__bottom .trade-container { display:flex; align-items:center; justify-content:space-between; gap:2rem; padding-top:1.5rem; padding-bottom:1.5rem; color:rgba(255,255,255,.6); font-size:1rem; }
+.aiworld-trade-footer__bottom-start { display:flex; align-items:center; flex-wrap:wrap; gap:1.25rem; }
+.aiworld-trade-footer__payment .list-payment { justify-content:flex-start; gap:.35rem; margin:0; padding:0; }
+.aiworld-trade-footer__payment .list-payment__item { padding:0; }
+.aiworld-trade-footer__payment .icon { display:block; width:3.4rem; height:2.2rem; }
 @media screen and (max-width:989px) { .aiworld-trade-footer__grid { grid-template-columns:repeat(3,minmax(0,1fr)); } .aiworld-trade-footer__brand { grid-column:1/-1; } .aiworld-trade-footer__news { grid-column:3; } }
-@media screen and (max-width:640px) { .aiworld-trade-footer__grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:2rem 1rem; } .aiworld-trade-footer__brand,.aiworld-trade-footer__news { grid-column:1/-1; } .aiworld-trade-footer__column { padding-left:1rem; } .aiworld-trade-footer__bottom .trade-container { display:block; } .aiworld-trade-footer__bottom span { display:block; } .aiworld-trade-footer__bottom span+span { margin-top:.5rem; } }
+@media screen and (max-width:640px) { .aiworld-trade-footer__grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:2rem 1rem; } .aiworld-trade-footer__brand,.aiworld-trade-footer__news { grid-column:1/-1; } .aiworld-trade-footer__column { padding-left:1rem; } .aiworld-trade-footer__bottom .trade-container { display:block; } .aiworld-trade-footer__bottom span { display:block; } .aiworld-trade-footer__bottom > .trade-container > span { margin-top:.75rem; } .aiworld-trade-footer__bottom-start { display:block; } .aiworld-trade-footer__payment { margin-top:.75rem; } }
  
 /* AIWORLD Brand UI guideline V1.0: Inter-like system type, 8pt rhythm, restrained surfaces. */
 :root {
@@ -389,6 +394,19 @@ body .trade-offer__price { color: #FFFFFF; }
 body .trade-hero__title strong { color: var(--brand-primary); }
 body .trade-story p,
 body .trade-offer p { color: rgba(255,255,255,.82); }
+
+body .aw-contact-hero h1,
+body .aw-contact-hero p,
+body .aw-final h2,
+body .aw-final p { color: #FFFFFF !important; }
+
+body .aw-contact-hero h1 span,
+body .aw-contact-hero .aw-eyebrow { color: var(--trade-blue, #0787F9) !important; }
+
+body .aw-final a {
+  color: #FFFFFF !important;
+  background: var(--trade-blue, #0787F9) !important;
+}
 
 body .button,
 body .trade-button,
@@ -978,6 +996,52 @@ body .trade-story .trade-story__point-icon svg {
   stroke-linejoin: round;
 }
 
+.trade-story__mobile-toggle {
+  display: none;
+}
+
+@media screen and (max-width: 640px) {
+  body .trade-story .trade-story__mobile-toggle {
+    position: absolute;
+    z-index: 3;
+    top: 10px;
+    right: 12px;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 1px solid rgba(6, 24, 42, .2);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .88);
+    color: #06182A;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  body .trade-story .trade-story__point strong {
+    white-space: pre-line;
+  }
+
+  body .trade-story.trade-story--copy-hidden .trade-kicker,
+  body .trade-story.trade-story--copy-hidden h2,
+  body .trade-story.trade-story--copy-hidden .trade-story__copy > div:not(.trade-story__points) {
+    display: none;
+  }
+
+  body .trade-story.trade-story--copy-hidden .trade-story__shade {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .1) 0%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  body .trade-story.trade-story--copy-hidden .trade-story__points {
+    position: absolute;
+    right: 1rem;
+    bottom: 10px;
+    left: 1rem;
+  }
+}
+
 @media screen and (max-width: 640px) {
   body .trade-story {
     min-height: 360px !important;
@@ -986,9 +1050,9 @@ body .trade-story .trade-story__point-icon svg {
     display: block;
     background: linear-gradient(
       180deg,
-      #ffffff 0%,
-      rgba(255, 255, 255, 0.97) 38%,
-      rgba(255, 255, 255, 0.94) 62%,
+      rgba(255, 255, 255, 0.84) 0%,
+      rgba(255, 255, 255, 0.76) 38%,
+      rgba(255, 255, 255, 0.62) 62%,
       rgba(255, 255, 255, 0) 74%
     );
     pointer-events: none;
@@ -1321,6 +1385,14 @@ body .trade-specs--image_right .trade-specs__image img {
 @media screen and (max-width: 989px) {
   body .trade-specs__grid {
     gap: 8px;
+  }
+}
+
+/* On phones, show the product visual before its supporting specification copy. */
+@media screen and (max-width: 640px) {
+  body .trade-specs__image,
+  body .trade-specs--image_right .trade-specs__image {
+    order: 0;
   }
 }
 

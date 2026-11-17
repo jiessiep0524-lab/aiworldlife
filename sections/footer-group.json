@@ -43,7 +43,7 @@
           "settings": {
             "heading": "Connect",
             "menu": "",
-            "fallback_links": "Instagram\nYouTube\nFacebook\nAIWORLD"
+            "fallback_links": "Instagram\nTikTok\nYouTube\nFacebook\nAIWORLD"
           }
         }
       },
@@ -62,9 +62,10 @@
         "contact_phone": "",
         "contact_hours": "Mon-Fri: 10:00 AM–6:00 PM (PT)",
         "show_social": true,
-        "instagram_url": "",
-        "youtube_url": "",
-        "facebook_url": "",
+        "instagram_url": "https://www.instagram.com/us.aiworld",
+        "tiktok_url": "https://www.tiktok.com/@aiwor72",
+        "youtube_url": "https://www.youtube.com/@aiworld-us-m8z?si=DMvS1455U9wUZYp8",
+        "facebook_url": "https://www.facebook.com/profile.php?id=61594148651877",
         "news_heading": "Latest News",
         "news_text": "Discover smarter product insights",
         "news_link": "",

@@ -16,6 +16,11 @@ Renders optional add-on rows. Each checked row is added with the main product.
     assign camera_product = all_products['aiworld-1080p-rear-view-backup-camera']
   endif
 
+  if product.handle == 'wireless-carplay-android-auto-adapter'
+    assign mount_product = blank
+    assign camera_product = blank
+  endif
+
   assign mount_variant = blank
   if mount_product != blank
     assign mount_variant = mount_product.selected_or_first_available_variant
@@ -39,7 +44,10 @@ Renders optional add-on rows. Each checked row is added with the main product.
   assign mount_label = block.settings.mount_label
   assign camera_label = block.settings.camera_label
   assign protection_label = block.settings.protection_label
-  assign protection_note = 'Optional. Screen-bundle price $10 (regular $46). One full-unit replacement for a single damaged component, from delivery. You pay return shipping; we pay outbound. Not refundable after delivery. Differs from the free 12-month core-parts warranty.'
+  assign protection_note = block.settings.protection_note
+  if protection_note == blank
+    assign protection_note = 'This service is independent of the free 1-year warranty repair service.'
+  endif
 
   assign show_mount = false
   if mount_variant != blank and mount_variant.available
@@ -58,11 +66,12 @@ Renders optional add-on rows. Each checked row is added with the main product.
 
   assign package_price = product.selected_or_first_available_variant.price
   assign mount_addon_price = 1000
-  assign protection_addon_price = 1000
-  assign protection_compare_price = 4600
-  if protection_variant != blank and protection_variant.compare_at_price > protection_addon_price
-    assign protection_compare_price = protection_variant.compare_at_price
+  assign mount_compare_price = mount_variant.compare_at_price
+  if mount_compare_price == blank or mount_compare_price <= mount_addon_price
+    assign mount_compare_price = mount_variant.price
   endif
+  assign protection_addon_price = protection_variant.price | default: 1000
+  assign protection_compare_price = protection_variant.compare_at_price
   assign price_with_mount = package_price
   assign price_with_protection = package_price
   assign price_with_both = package_price
@@ -95,34 +104,36 @@ Renders optional add-on rows. Each checked row is added with the main product.
       <p class="aiworld-addon-list__heading">{{ block.settings.heading | escape }}</p>
     {%- endif -%}
 
-    <label class="aiworld-addon-row">
-      <input
-        type="checkbox"
-        data-addon-toggle="camera-included"
-        aria-label="{{ camera_label | escape }}"
-        checked
-      >
-      <span class="aiworld-addon-row__media">
-        {%- liquid
-          assign camera_image_product = camera_product
-          if camera_image_product.featured_image == blank
-            assign camera_image_product = all_products['aiworld-rear-view-camera']
-          endif
-        -%}
-        {%- if camera_image_product.featured_image != blank -%}
-          {{
-            camera_image_product.featured_image
-            | image_url: width: 160
-            | image_tag: widths: '80,160', sizes: '56px', alt: camera_label, loading: 'lazy'
-          }}
-        {%- endif -%}
-      </span>
-      <span class="aiworld-addon-row__title">
-        {{ camera_label | escape }}
-        <span class="aiworld-addon-row__badge">Included</span>
-      </span>
-      <span class="aiworld-addon-row__price">Free</span>
-    </label>
+    {%- if show_camera -%}
+      <label class="aiworld-addon-row">
+        <input
+          type="checkbox"
+          data-addon-toggle="camera-included"
+          aria-label="{{ camera_label | escape }}"
+          checked
+        >
+        <span class="aiworld-addon-row__media">
+          {%- liquid
+            assign camera_image_product = camera_product
+            if camera_image_product.featured_image == blank
+              assign camera_image_product = all_products['aiworld-rear-view-camera']
+            endif
+          -%}
+          {%- if camera_image_product.featured_image != blank -%}
+            {{
+              camera_image_product.featured_image
+              | image_url: width: 160
+              | image_tag: widths: '80,160', sizes: '56px', alt: camera_label, loading: 'lazy'
+            }}
+          {%- endif -%}
+        </span>
+        <span class="aiworld-addon-row__title">
+          {{ camera_label | escape }}
+          <span class="aiworld-addon-row__badge">Included</span>
+        </span>
+        <span class="aiworld-addon-row__price">Free</span>
+      </label>
+    {%- endif -%}
 
     {%- if show_mount -%}
       <label class="aiworld-addon-row">
@@ -143,7 +154,12 @@ Renders optional add-on rows. Each checked row is added with the main product.
         <span class="aiworld-addon-row__title">
           {{ mount_label | escape }}
         </span>
-        <span class="aiworld-addon-row__price">{{ mount_addon_price | money }}</span>
+        <span class="aiworld-addon-row__price">
+          {%- if mount_compare_price > mount_addon_price -%}
+            <s class="aiworld-addon-row__compare">{{ mount_compare_price | money }}</s>
+          {%- endif -%}
+          <span class="aiworld-addon-row__price-current">{{ mount_addon_price | money }}</span>
+        </span>
       </label>
     {%- endif -%}
 
@@ -171,7 +187,7 @@ Renders optional add-on rows. Each checked row is added with the main product.
           {%- if protection_compare_price > protection_addon_price -%}
             <s class="aiworld-addon-row__compare">{{ protection_compare_price | money }}</s>
           {%- endif -%}
-          <span>{{ protection_addon_price | money }}</span>
+          <span class="aiworld-addon-row__price-current">{{ protection_addon_price | money }}</span>
         </span>
       </label>
     {%- endif -%}

@@ -12,6 +12,14 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "black-friday-badge": {
+          "type": "aiworld_campaign_badge",
+          "settings": {
+            "enabled": true,
+            "label": "Black Friday",
+            "secondary_label": ""
+          }
+        },
         "title": {
           "type": "title",
           "settings": {
@@ -20,10 +28,19 @@
             "mobile_font_size": 24
           }
         },
+        "hook-line": {
+          "type": "aiworld_hook",
+          "settings": {
+            "text": "Your old car, upgraded in minutes — 9-inch screen, no new stereo, no installation.",
+            "desktop_font_size": 14,
+            "mobile_font_size": 13
+          }
+        },
         "rating": {
           "type": "aiworld_rating",
+          "disabled": true,
           "settings": {
-            "rating_count": "4.8 (890+)",
+            "rating_count": "4.74 (891 reviews)",
             "count_label": "",
             "show_count": true,
             "stars_size": 16,
@@ -49,6 +66,27 @@
             "mobile_font_size": 14
           }
         },
+        "black-friday-promotion": {
+          "type": "aiworld_promo_code",
+          "settings": {
+            "enabled": true,
+            "discount_text": "Extra 10% Off",
+            "label": "BLACK FRIDAY",
+            "instruction": "10% off at checkout. Limited-time Black Friday offer.",
+            "code": "BF10",
+            "copy_label": "COPY",
+            "copied_label": "COPIED",
+            "terms": "",
+            "show_countdown": true,
+            "countdown_prefix": "Ends in:",
+            "countdown_end": "2026-11-27T23:59:59-08:00",
+            "accent_color": "#087BF4",
+            "background_color": "#FFFDF8",
+            "border_color": "#00CFFF",
+            "text_color": "#063A63",
+            "corner_radius": 12
+          }
+        },
         "key-features": {
           "type": "aiworld_key_features",
           "settings": {
@@ -60,6 +98,17 @@
             "card_radius": 12
           }
         },
+        "variant-picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity-selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
         "cd-mount-picker": {
           "type": "aiworld_cd_mount_picker",
           "settings": {
@@ -67,7 +116,7 @@
             "camera_product": "",
             "protection_product": "replacement-protection",
             "protection_label": "Replacement Protection",
-            "protection_note": "Optional. One full-unit replacement for a single damaged component, from delivery. You pay return shipping; we pay outbound. Not refundable after delivery. Differs from the free 12-month core-parts warranty.",
+            "protection_note": "This service is independent of the free 1-year warranty repair service.",
             "camera_label": "1080p Rear-View Camera",
             "heading": "",
             "subheading": "",
@@ -79,21 +128,21 @@
             "card_radius": 12
           }
         },
-        "quantity-selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
         "buy-buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": false,
+            "show_dynamic_checkout": true,
             "show_gift_card_recipient": false
           }
+        },
+        "payment-security": {
+          "type": "aiworld_payment_security",
+          "settings": {}
         },
         "before-buy": {
           "type": "aiworld_before_buy",
           "settings": {
-            "label": "",
+            "label": "Will it work in my car?",
             "requirement": "",
             "details": "",
             "panel_content": "",
@@ -104,13 +153,6 @@
             "summary_font_size": 15,
             "body_font_size": 14,
             "card_radius": 12
-          }
-        },
-        "variant-picker": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
           }
         },
         "buy-trust": {
@@ -131,17 +173,21 @@
           }
         }
       },
-      "block_order": [
-        "title",
+    "block_order": [
+      "black-friday-badge",
+      "title",
+      "hook-line",
         "rating",
-        "price",
-        "shipping-note",
-        "key-features",
-        "cd-mount-picker",
-        "quantity-selector",
-        "buy-buttons",
+      "price",
+      "shipping-note",
+      "black-friday-promotion",
+      "key-features",
         "before-buy",
         "variant-picker",
+        "quantity-selector",
+        "cd-mount-picker",
+        "buy-buttons",
+        "payment-security",
         "buy-trust",
         "description",
         "share"
@@ -437,7 +483,7 @@
         "item-1": {
           "type": "item",
           "settings": {
-            "icon": "↗",
+            "icon": "",
             "heading": "Fast connection",
             "text": "Get up and running in minutes.",
             "icon_color": "#0789f9"
@@ -446,7 +492,7 @@
         "item-2": {
           "type": "item",
           "settings": {
-            "icon": "⌁",
+            "icon": "",
             "heading": "Smart compatibility",
             "text": "Works with the devices you love.",
             "icon_color": "#0789f9"
@@ -455,7 +501,7 @@
         "item-3": {
           "type": "item",
           "settings": {
-            "icon": "◉",
+            "icon": "",
             "heading": "Intuitive experience",
             "text": "Designed for everyone.",
             "icon_color": "#0789f9"
@@ -464,7 +510,7 @@
         "item-4": {
           "type": "item",
           "settings": {
-            "icon": "▥",
+            "icon": "",
             "heading": "Continuous improvement",
             "text": "Always evolving for tomorrow.",
             "icon_color": "#0789f9"
@@ -473,7 +519,7 @@
         "item-5": {
           "type": "item",
           "settings": {
-            "icon": "✓",
+            "icon": "",
             "heading": "Easy setup",
             "text": "Simple from the first drive.",
             "icon_color": "#0789f9"
@@ -503,7 +549,7 @@
           "type": "faq",
           "settings": {
             "question": "Will it work with my car?",
-            "answer": "<p>It is designed for vehicles with the appropriate power input. Check your vehicle and product requirements before purchasing.</p>",
+            "answer": "<p>Many vehicles with a compatible 12V鈥?4V power outlet can use the screen with the included charger. Compatibility also depends on safe mounting space, stable power, phone support for CarPlay or Android Auto, and any audio or camera setup. Factory CarPlay is not required. Please review the vehicle and phone requirements before ordering.</p>",
             "open": false
           }
         },
@@ -655,7 +701,7 @@
             "stars_color": "",
             "arrows_color": "#000000",
             "transition_speed": 5,
-            "header_text": "Customers are saying · 4.8 (890+)",
+            "header_text": "Customers are saying 路 4.74 (891 reviews)",
             "show_average_rating": false,
             "rating_display": "default"
           }
@@ -664,6 +710,7 @@
       "block_order": [
         "judge_me_reviews_cards_carousel_yEqTr6"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true
       }
@@ -684,7 +731,6 @@
       "block_order": [
         "judge_me_reviews_review_widget_eQYEQn"
       ],
-      "disabled": true,
       "settings": {
         "include_margins": true
       }

@@ -1,0 +1,245 @@
+{%- liquid
+  assign banner_url = section.settings.button_link | default: '/products/wireless-carplay-android-auto-adapter'
+  assign banner_loading = 'eager'
+  assign banner_priority = 'auto'
+  if section.index == 1
+    assign banner_priority = 'high'
+  elsif section.index > 3
+    assign banner_loading = 'lazy'
+  endif
+-%}
+
+<section
+  id="AIWORLD-WirelessAdapterBanner-{{ section.id }}"
+  class="aiworld-adapter-banner"
+  style="--adapter-banner-height: {{ section.settings.desktop_height }}px; --adapter-banner-mobile-height: {{ section.settings.mobile_height }}px; --adapter-banner-position: {{ section.settings.image_position }};"
+>
+  <a class="aiworld-adapter-banner__media-link" href="{{ banner_url }}" aria-label="{{ section.settings.button_label | escape }}">
+    <div class="aiworld-adapter-banner__media">
+      {%- if section.settings.background_image != blank -%}
+        {{ section.settings.background_image | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 2000, 2400', sizes: '100vw', loading: banner_loading, fetchpriority: banner_priority, class: 'aiworld-adapter-banner__image', alt: section.settings.image_alt | escape }}
+      {%- else -%}
+        <img
+          class="aiworld-adapter-banner__image"
+          src="{{ 'aiworld-wireless-carplay-android-auto-adapter-banner.webp' | asset_url }}"
+          alt="{{ section.settings.image_alt | escape }}"
+          width="1672"
+          height="941"
+          loading="{{ banner_loading }}"
+          fetchpriority="{{ banner_priority }}"
+          decoding="async"
+        >
+      {%- endif -%}
+    </div>
+  </a>
+
+  <div class="aiworld-adapter-banner__wash" aria-hidden="true"></div>
+
+  <div class="aiworld-adapter-banner__content trade-container">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="aiworld-adapter-banner__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="aiworld-adapter-banner__heading">{{ section.settings.heading | escape | newline_to_br }}</h2>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <div class="aiworld-adapter-banner__text">{{ section.settings.text }}</div>
+    {%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <a class="aiworld-adapter-banner__button" href="{{ banner_url }}">
+        {{ section.settings.button_label | escape }} <span aria-hidden="true">→</span>
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .aiworld-adapter-banner {
+    position: relative;
+    min-height: var(--adapter-banner-height, 560px);
+    overflow: hidden;
+    background: #cbdaf1;
+    isolation: isolate;
+  }
+
+  .aiworld-adapter-banner__media-link,
+  .aiworld-adapter-banner__media,
+  .aiworld-adapter-banner__wash {
+    position: absolute;
+    inset: 0;
+  }
+
+  .aiworld-adapter-banner__media-link {
+    z-index: 0;
+    display: block;
+  }
+
+  .aiworld-adapter-banner__media,
+  .aiworld-adapter-banner__image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .aiworld-adapter-banner__image {
+    display: block;
+    object-fit: cover;
+    object-position: var(--adapter-banner-position, center center);
+  }
+
+  .aiworld-adapter-banner__wash {
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(247, 251, 255, 0.94) 0%, rgba(247, 251, 255, 0.8) 25%, rgba(247, 251, 255, 0.18) 48%, rgba(247, 251, 255, 0) 66%);
+  }
+
+  .aiworld-adapter-banner__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    min-height: var(--adapter-banner-height, 560px);
+    flex-direction: column;
+    align-items: center;
+    padding-top: clamp(36px, 5vw, 68px);
+    padding-bottom: 40px;
+    color: #06182a;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .aiworld-adapter-banner__eyebrow {
+    margin: 0 0 10px;
+    color: #04548f;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .aiworld-adapter-banner__heading {
+    margin: 0;
+    color: #06182a;
+    font-size: clamp(34px, 4.2vw, 64px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  .aiworld-adapter-banner__text {
+    max-width: 720px;
+    margin: 16px auto 22px;
+    color: #1c3148;
+    font-size: clamp(14px, 1.4vw, 18px);
+    line-height: 1.5;
+    text-wrap: balance;
+  }
+
+  .aiworld-adapter-banner__text p {
+    margin: 0;
+  }
+
+  .aiworld-adapter-banner__button {
+    display: inline-flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    background: #06182a;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    pointer-events: auto;
+    transition: background-color 180ms ease, transform 180ms ease;
+  }
+
+  .aiworld-adapter-banner__button:hover {
+    background: #0787f9;
+    transform: translateY(-2px);
+  }
+
+  .aiworld-adapter-banner__button:focus-visible,
+  .aiworld-adapter-banner__media-link:focus-visible {
+    outline: 3px solid #0787f9;
+    outline-offset: 4px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .aiworld-adapter-banner,
+    .aiworld-adapter-banner__content {
+      min-height: var(--adapter-banner-mobile-height, 500px);
+    }
+
+    .aiworld-adapter-banner__content {
+      padding-top: 30px;
+      padding-right: 22px;
+      padding-left: 22px;
+    }
+
+    .aiworld-adapter-banner__wash {
+      background: linear-gradient(180deg, rgba(247, 251, 255, 0.96) 0%, rgba(247, 251, 255, 0.84) 31%, rgba(247, 251, 255, 0.18) 55%, rgba(247, 251, 255, 0) 72%);
+    }
+
+    .aiworld-adapter-banner__eyebrow {
+      margin-bottom: 8px;
+      font-size: 10px;
+    }
+
+    .aiworld-adapter-banner__heading {
+      font-size: clamp(30px, 10vw, 44px);
+    }
+
+    .aiworld-adapter-banner__text {
+      max-width: 520px;
+      margin-top: 12px;
+      margin-bottom: 18px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .aiworld-adapter-banner__button {
+      min-height: 44px;
+      padding: 11px 20px;
+      font-size: 12px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aiworld-adapter-banner__button {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Wireless adapter banner",
+  "tag": "section",
+  "class": "section-aiworld-wireless-adapter-banner",
+  "settings": [
+    { "type": "image_picker", "id": "background_image", "label": "Background image", "info": "Leave blank to use the bundled wireless adapter WebP image." },
+    { "type": "text", "id": "image_alt", "label": "Image alt text", "default": "AIWORLD wireless CarPlay and Android Auto adapter in blue, orange and silver with flowing light trails" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "AIWORLD WIRELESS ADAPTER" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Cut the Cable.\nKeep the Connection." },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Turn your car's existing wired CarPlay &amp; Android Auto into a wireless experience. Just plug in, pair up, and drive.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "BUY NOW" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "range", "id": "desktop_height", "min": 440, "max": 760, "step": 20, "unit": "px", "label": "Desktop height", "default": 560 },
+    { "type": "range", "id": "mobile_height", "min": 420, "max": 700, "step": 20, "unit": "px", "label": "Mobile height", "default": 500 },
+    { "type": "select", "id": "image_position", "label": "Image position", "options": [
+      { "value": "left center", "label": "Left" },
+      { "value": "center center", "label": "Center" },
+      { "value": "right center", "label": "Right" }
+    ], "default": "center center" }
+  ],
+  "presets": [
+    { "name": "Wireless adapter banner" }
+  ]
+}
+{% endschema %}

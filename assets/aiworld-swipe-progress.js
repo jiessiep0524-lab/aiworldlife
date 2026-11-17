@@ -2,10 +2,10 @@
   if (window.aiworldSwipeProgressReady) return;
   window.aiworldSwipeProgressReady = true;
 
-  const closestIndex = (track, cards) => {
+  const closestIndex = (track, offsets) => {
     const left = track.scrollLeft;
-    return cards.reduce((closest, card, index) => {
-      const distance = Math.abs(card.offsetLeft - left);
+    return offsets.reduce((closest, offset, index) => {
+      const distance = Math.abs(offset - left);
       return distance < closest.distance ? { index, distance } : closest;
     }, { index: 0, distance: Infinity }).index;
   };
@@ -17,7 +17,10 @@
     const dots = [...root.querySelectorAll('[data-swipe-dot]')];
     if (!cards.length || !dots.length) return;
 
+    let activeIndex = -1;
     const setActive = (index) => {
+      if (index === activeIndex) return;
+      activeIndex = index;
       dots.forEach((dot, dotIndex) => {
         const active = dotIndex === index;
         dot.classList.toggle('is-active', active);
@@ -28,13 +31,16 @@
     const glide = root.querySelector('[data-swipe-glide]');
     const progress = glide ? glide.parentElement : null;
     let positions = [];
+    let offsets = [];
     const measure = () => {
       positions = dots.map((dot) => dot.offsetLeft);
+      const first = cards[0].offsetLeft;
+      offsets = cards.map((card) => card.offsetLeft - first);
     };
     const indexFromScroll = () => {
       if (cards.length < 2) return 0;
-      const step = cards[1].offsetLeft - cards[0].offsetLeft;
-      if (step <= 0) return closestIndex(track, cards);
+      const step = offsets[1];
+      if (step <= 0) return closestIndex(track, offsets);
       return Math.max(0, Math.min(track.scrollLeft / step, cards.length - 1));
     };
     const paintGlide = (indexFloat, settle) => {
@@ -51,7 +57,7 @@
 
     const goTo = (index, behavior = 'smooth') => {
       const next = Math.max(0, Math.min(index, cards.length - 1));
-      track.scrollTo({ left: cards[next].offsetLeft - cards[0].offsetLeft, behavior });
+      track.scrollTo({ left: offsets[next], behavior });
       setActive(next);
       paintGlide(next, true);
     };
@@ -63,7 +69,7 @@
     let frame = 0;
     let settleTimer = 0;
     const settle = () => {
-      const index = closestIndex(track, cards);
+      const index = closestIndex(track, offsets);
       setActive(index);
       paintGlide(index, true);
     };
@@ -86,7 +92,22 @@
       clearTimeout(settleTimer);
       settle();
     }, { passive: true });
-    window.addEventListener('resize', measure, { passive: true });
+    let resizeFrame = 0;
+    const scheduleMeasure = () => {
+      if (resizeFrame) return;
+      resizeFrame = requestAnimationFrame(() => {
+        resizeFrame = 0;
+        measure();
+        settle();
+      });
+    };
+    if ('ResizeObserver' in window) {
+      const observer = new ResizeObserver(scheduleMeasure);
+      observer.observe(track);
+      cards.forEach((card) => observer.observe(card));
+    } else {
+      window.addEventListener('resize', scheduleMeasure, { passive: true });
+    }
     measure();
     setActive(0);
     paintGlide(0, false);

@@ -60,37 +60,61 @@
                           </button>
                           <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
                             {%- if is_shop_link -%}
-                              {%- assign carplay_collection = collections['carplay-screen'] -%}
-                              {%- assign accessories_collection = collections['carlife-accessories'] -%}
                               <li>
                                 <a
                                   id="HeaderDrawer-{{ link.handle }}-all"
-                                  href="{{ link.url }}"
+                                  href="{{ routes.all_products_collection_url }}"
                                   class="menu-drawer__menu-item link link--text list-menu__item focus-inset"
                                 >
                                   {{- 'sections.featured_collection.view_all' | t -}}
                                 </a>
                               </li>
-                              <li>
-                                <a
-                                  id="HeaderDrawer-{{ link.handle }}-carplay-screen"
-                                  href="{% if carplay_collection != blank %}{{ carplay_collection.url }}{% else %}/collections/carplay-screen{% endif %}"
-                                  class="menu-drawer__menu-item link link--text list-menu__item focus-inset"
-                                  {% if carplay_collection != blank and request.path == carplay_collection.url %}aria-current="page"{% endif %}
-                                >
-                                  {%- if carplay_collection != blank -%}{{ carplay_collection.title | escape }}{%- else -%}CarPlay Screen{%- endif -%}
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  id="HeaderDrawer-{{ link.handle }}-carlife-accessories"
-                                  href="{% if accessories_collection != blank %}{{ accessories_collection.url }}{% else %}/collections/carlife-accessories{% endif %}"
-                                  class="menu-drawer__menu-item link link--text list-menu__item focus-inset"
-                                  {% if accessories_collection != blank and request.path == accessories_collection.url %}aria-current="page"{% endif %}
-                                >
-                                  {%- if accessories_collection != blank -%}{{ accessories_collection.title | escape }}{%- else -%}CarLife Accessories{%- endif -%}
-                                </a>
-                              </li>
+                              {%- assign shop_collections = collections | sort: 'title' -%}
+                              {%- for shop_collection in shop_collections -%}
+                                {%- if shop_collection.handle != 'frontpage' and shop_collection.handle != 'all' -%}
+                                  {%- assign collection_image = shop_collection.image -%}
+                                  {%- if collection_image == blank and shop_collection.products.first != blank -%}
+                                    {%- assign collection_image = shop_collection.products.first.featured_image -%}
+                                  {%- endif -%}
+                                  <li class="aiworld-shop-drawer__collection">
+                                    <a
+                                      id="HeaderDrawer-{{ link.handle }}-{{ shop_collection.handle }}"
+                                      href="{{ shop_collection.url }}"
+                                      class="menu-drawer__menu-item link link--text list-menu__item focus-inset aiworld-shop-drawer__collection-link"
+                                      {% if request.path == shop_collection.url %}aria-current="page"{% endif %}
+                                    >
+                                      <span class="aiworld-shop-drawer__collection-media">
+                                        {%- if collection_image != blank -%}
+                                          {{ collection_image | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48,72,96', sizes: '48px', alt: shop_collection.title }}
+                                        {%- endif -%}
+                                      </span>
+                                      <span class="aiworld-shop-drawer__collection-title">{{ shop_collection.title | escape }}</span>
+                                      <span class="aiworld-shop-drawer__collection-arrow" aria-hidden="true">&rarr;</span>
+                                    </a>
+                                    <ul class="aiworld-shop-drawer__products list-menu" role="list">
+                                      {%- for product in shop_collection.products limit: 4 -%}
+                                        <li>
+                                          <a
+                                            id="HeaderDrawer-{{ link.handle }}-{{ shop_collection.handle }}-{{ product.handle }}"
+                                            href="{{ product.url }}"
+                                            class="menu-drawer__menu-item link link--text list-menu__item focus-inset aiworld-shop-drawer__product"
+                                          >
+                                            <span class="aiworld-shop-drawer__product-media">
+                                              {%- if product.featured_image != blank -%}
+                                                {{ product.featured_image | image_url: width: 120 | image_tag: loading: 'lazy', widths: '60,90,120', sizes: '60px', alt: product.title }}
+                                              {%- endif -%}
+                                            </span>
+                                            <span class="aiworld-shop-drawer__product-copy">
+                                              <span class="aiworld-shop-drawer__product-title">{{ product.title | escape }}</span>
+                                              <span class="aiworld-shop-drawer__product-price">{{ product.price | money }}</span>
+                                            </span>
+                                          </a>
+                                        </li>
+                                      {%- endfor -%}
+                                    </ul>
+                                  </li>
+                                {%- endif -%}
+                              {%- endfor -%}
                             {%- else -%}
                               {%- for childlink in link.links -%}
                                 <li>

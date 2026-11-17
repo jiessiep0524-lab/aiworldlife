@@ -39,7 +39,7 @@
         "price": {
           "type": "price",
           "settings": {
-            "show_taxes_included": true,
+            "show_taxes_included": false,
             "desktop_price_size": 45,
             "mobile_price_size": 25,
             "compare_price_size": 13,
@@ -339,3 +339,4 @@
     "aiworld-newsletter"
   ]
 }
+
