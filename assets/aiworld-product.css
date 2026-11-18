@@ -1107,6 +1107,20 @@ details[open] > .aiworld-box-summary .aiworld-box-toggle::before { content:'−'
   height: auto;
 }
 
+.aiworld-product-intro--image-only {
+  background: transparent;
+  padding: 0;
+}
+
+.aiworld-product-intro--image-only .aiworld-product-section__inner {
+  width: min(100% - 40px, 1280px);
+}
+
+.aiworld-product-intro__visual--image-only {
+  background: transparent;
+  border-radius: 0;
+}
+
 .aiworld-product-intro__copy--centered {
   max-width: 780px;
   margin: 0 auto;

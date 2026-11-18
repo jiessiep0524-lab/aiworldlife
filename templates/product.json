@@ -401,65 +401,19 @@
     },
     "aiworld-intro": {
       "type": "aiworld-product-intro",
-      "blocks": {
-        "stat-1": {
-          "type": "stat",
-          "settings": {
-            "value": "9 in",
-            "label": "HD display",
-            "text": "Bright and vivid"
-          }
-        },
-        "stat-2": {
-          "type": "stat",
-          "settings": {
-            "value": "Wireless",
-            "label": "CarPlay",
-            "text": "No cords. Just drive."
-          }
-        },
-        "stat-3": {
-          "type": "stat",
-          "settings": {
-            "value": "Android",
-            "label": "Auto",
-            "text": "Wirelessly connected"
-          }
-        },
-        "stat-4": {
-          "type": "stat",
-          "settings": {
-            "value": "Plug and Play",
-            "label": "Installation",
-            "text": "Ready in minutes"
-          }
-        },
-        "stat-5": {
-          "type": "stat",
-          "settings": {
-            "value": "60 FPS",
-            "label": "Smooth video",
-            "text": "Clear in every scene"
-          }
-        }
-      },
-      "block_order": [
-        "stat-1",
-        "stat-2",
-        "stat-3",
-        "stat-4",
-        "stat-5"
-      ],
-      "disabled": true,
+      "blocks": {},
+      "block_order": [],
       "settings": {
         "product": "",
-        "eyebrow": "ScreenFlow",
-        "heading": "A smarter display for every drive.",
-        "text": "<p>Everything you need to stay connected, informed, and entertained without taking your eyes off the road.</p>",
+        "image_alt": "AIWORLD 9-inch portable wireless CarPlay screen",
+        "image_only": true,
+        "eyebrow": "",
+        "heading": "",
+        "text": "",
         "layout": "centered",
         "image_width": 720,
         "stat_columns": "5",
-        "background_color": "#f4f8fc"
+        "background_color": "#ffffff"
       }
     },
     "aiworld-cards": {
