@@ -401,6 +401,7 @@
     },
     "aiworld-intro": {
       "type": "aiworld-product-intro",
+      "disabled": true,
       "blocks": {},
       "block_order": [],
       "settings": {
