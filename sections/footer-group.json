@@ -1,0 +1,82 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "aiworld-trade-footer": {
+      "type": "aiworld-trade-footer",
+      "blocks": {
+        "product": {
+          "type": "link_column",
+          "settings": {
+            "heading": "Product",
+            "menu": "",
+            "fallback_links": "AIWORLD Screen \nFeatures\nReviews"
+          }
+        },
+        "support": {
+          "type": "link_column",
+          "settings": {
+            "heading": "Support",
+            "menu": "",
+            "fallback_links": "Help Center\nContact Us\nInstallation Guide\nTrack My Order"
+          }
+        },
+        "policies": {
+          "type": "link_column",
+          "settings": {
+            "heading": "Policies",
+            "menu": "",
+            "fallback_links": "Shipping Policy\nReturns & Refunds\nWarranty Policy\nPrivacy Policy\nTerms of Service"
+          }
+        },
+        "connect": {
+          "type": "link_column",
+          "settings": {
+            "heading": "Connect",
+            "menu": "",
+            "fallback_links": "Instagram\nTikTok\nYouTube\nFacebook\nAIWORLD"
+          }
+        }
+      },
+      "block_order": [
+        "product",
+        "support",
+        "policies",
+        "connect"
+      ],
+      "settings": {
+        "brand_name": "AIWORLD",
+        "brand_logo": "shopify://shop_images/logo.png",
+        "brand_text": "Smart Technology for Everyday Life.",
+        "contact_heading": "CONTACT US",
+        "contact_email": "support@aiworldlife.com",
+        "contact_phone": "",
+        "contact_hours": "Mon-Fri: 10:00 AM–6:00 PM (PT)",
+        "show_social": true,
+        "instagram_url": "https://www.instagram.com/us.aiworld",
+        "tiktok_url": "https://www.tiktok.com/@aiwor72",
+        "youtube_url": "https://www.youtube.com/@aiworld-us-m8z?si=DMvS1455U9wUZYp8",
+        "facebook_url": "https://www.facebook.com/profile.php?id=61594148651877",
+        "news_heading": "Latest News",
+        "news_text": "Discover smarter product insights",
+        "news_link": "",
+        "bottom_text": "A Smarter Way to Drive.",
+        "background": "#06182a",
+        "text_color": "#ffffff",
+        "accent_color": "#0787f9"
+      }
+    }
+  },
+  "order": [
+    "aiworld-trade-footer"
+  ]
+}

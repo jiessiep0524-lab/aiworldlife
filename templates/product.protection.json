@@ -1,0 +1,67 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "rich-text",
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "OPTIONAL SERVICE ADD-ON",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Replacement Protection for the AIWORLD 9-Inch Screen",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>This $10 service add-on is available only when purchased in the same order as an eligible AIWORLD 9-Inch Portable Wireless CarPlay Screen. It cannot be purchased separately.</p><p>Add it from the 9-inch screen product page. If an eligible screen is not in the cart, the protection item is automatically removed.</p><p>Coverage begins when the eligible screen is delivered. It is separate from the free 12-month warranty and is non-refundable after delivery. For an approved replacement claim, you pay return shipping and AIWORLD pays outbound replacement shipping.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "View the eligible 9-inch screen",
+            "button_link": "shopify://products/9-inch-wireless-carplay",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "caption",
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

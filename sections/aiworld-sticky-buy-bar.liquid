@@ -1,0 +1,144 @@
+{%- liquid
+  assign sticky_variant = product.selected_or_first_available_variant
+  assign sticky_price = sticky_variant.price
+  assign sticky_image = product.featured_image
+-%}
+
+<sticky-buy-bar class="aiworld-sticky-buy" data-sticky-buy-bar hidden>
+  <div class="aiworld-sticky-buy__inner">
+    <a class="aiworld-sticky-buy__product" href="{{ product.url }}" aria-label="View {{ product.title | escape }}">
+      {%- if sticky_image != blank -%}
+        {{
+          sticky_image
+          | image_url: width: 120
+          | image_tag: widths: '60,90,120', sizes: '52px', loading: 'eager', alt: product.title, class: 'aiworld-sticky-buy__image'
+        }}
+      {%- endif -%}
+      <span class="aiworld-sticky-buy__copy">
+        <span class="aiworld-sticky-buy__title">{{ product.title | escape }}</span>
+        <span class="aiworld-sticky-buy__prices">
+          <span class="aiworld-sticky-buy__price" data-sticky-price>{{ sticky_price | money }}</span>
+          {%- if sticky_variant.compare_at_price > sticky_variant.price -%}
+            <s class="aiworld-sticky-buy__compare">{{ sticky_variant.compare_at_price | money }}</s>
+          {%- endif -%}
+        </span>
+      </span>
+    </a>
+    <input type="hidden" name="id" value="{{ sticky_variant.id }}" data-sticky-variant-id>
+
+    <div class="aiworld-sticky-buy__actions">
+      <button
+        type="button"
+        class="aiworld-sticky-buy__button"
+        data-sticky-buy-button
+        {% unless sticky_variant.available %}disabled{% endunless %}
+      >
+        {{ section.settings.button_label | escape }}
+      </button>
+      <button
+        type="button"
+        class="aiworld-sticky-buy__button aiworld-sticky-buy__button--ghost"
+        data-sticky-buy-now
+        {% unless sticky_variant.available %}disabled{% endunless %}
+      >
+        Buy now
+      </button>
+    </div>
+  </div>
+
+  <script type="application/json" data-sticky-variants>
+    {
+      {%- for variant in product.variants -%}
+        "{{ variant.id }}": {
+          "price": {{ variant.price | money | json }},
+          "available": {{ variant.available | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    }
+  </script>
+</sticky-buy-bar>
+
+<script>
+  (() => {
+    const bar = document.querySelector('[data-sticky-buy-bar]');
+    if (!bar || bar.dataset.initialized === 'true') return;
+    bar.dataset.initialized = 'true';
+
+    const productInfo = document.querySelector('product-info');
+    const gallery = productInfo?.querySelector('.product__media-wrapper') || productInfo;
+    const keyFeatures = productInfo?.querySelector('.aiworld-product-key-features');
+    const variantInput = bar.querySelector('[data-sticky-variant-id]');
+    const price = bar.querySelector('[data-sticky-price]');
+    const buyButton = bar.querySelector('[data-sticky-buy-button]');
+    const buyNowButton = bar.querySelector('[data-sticky-buy-now]');
+    const variantsElement = bar.querySelector('[data-sticky-variants]');
+    let variants = {};
+
+    try {
+      variants = JSON.parse(variantsElement.textContent);
+    } catch (error) {
+      variants = {};
+    }
+
+    const setVisible = (visible) => {
+      bar.toggleAttribute('hidden', !visible);
+      document.documentElement.classList.toggle('aiworld-sticky-buy-active', visible);
+    };
+
+    const syncVariant = () => {
+      const sourceInput = document.querySelector('product-info form[action*="/cart/add"] input[name="id"]');
+      const variantId = sourceInput?.value || variantInput.value;
+      const variant = variants[variantId];
+      if (!variant) return;
+
+      variantInput.value = variantId;
+      if (!document.querySelector('[data-addon-toggle]')) price.textContent = variant.price;
+      buyButton.disabled = !variant.available;
+      if (buyNowButton) buyNowButton.disabled = !variant.available;
+      document.dispatchEvent(new CustomEvent('aiworld:variant-price'));
+    };
+
+    buyButton?.addEventListener('click', () => {
+      document.querySelector('product-info .product-form__submit')?.click();
+    });
+    buyNowButton?.addEventListener('click', () => {
+      document.querySelector('product-info [data-buy-now]')?.click();
+    });
+
+    const syncVisibility = () => {
+      const footer = document.querySelector('footer');
+      const footerTop = footer?.getBoundingClientRect().top;
+      const footerVisible = typeof footerTop === 'number' && footerTop < window.innerHeight;
+      const stack = document.querySelector('.aiworld-product-image-stack');
+      let reachedDetails = false;
+      if (keyFeatures) {
+        reachedDetails = keyFeatures.getBoundingClientRect().top <= window.innerHeight - 80;
+      } else if (stack) {
+        reachedDetails = stack.getBoundingClientRect().top < window.innerHeight - 80;
+      } else if (gallery) {
+        reachedDetails = gallery.getBoundingClientRect().bottom <= 120;
+      }
+      setVisible(reachedDetails && !footerVisible);
+    };
+
+    productInfo?.addEventListener('change', () => window.requestAnimationFrame(syncVariant));
+    window.addEventListener('scroll', syncVisibility, { passive: true });
+    window.addEventListener('resize', syncVisibility);
+    syncVariant();
+    syncVisibility();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "商品悬浮购买栏",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Buy Now"
+    }
+  ]
+}
+{% endschema %}

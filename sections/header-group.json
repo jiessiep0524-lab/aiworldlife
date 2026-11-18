@@ -1,0 +1,131 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "aiworld-trade-trust-bar": {
+      "type": "aiworld-trade-trust-bar",
+      "blocks": {
+        "trust_nzwdid": {
+          "type": "trust",
+          "disabled": true,
+          "settings": {
+            "icon": "",
+            "text": "Arrives in 1–4 Business Days (US)"
+          }
+        },
+        "trust_shipping": {
+          "type": "trust",
+          "disabled": true,
+          "settings": {
+            "icon": "",
+            "text": "Free Shipping (US)"
+          }
+        },
+        "trust_returns": {
+          "type": "trust",
+          "settings": {
+            "icon": "",
+            "text": "🎄 Beat the holiday rush! Order by Dec 5 for guaranteed delivery before Christmas 🎄"
+          }
+        }
+      },
+      "block_order": [
+        "trust_nzwdid",
+        "trust_shipping",
+        "trust_returns"
+      ],
+      "settings": {
+        "background": "#2f6bff",
+        "text_color": "#ffffff",
+        "auto_rotate": false,
+        "change_slides_speed": 8,
+        "pause_on_hover": true,
+        "show_arrows": false,
+        "show_dots": false,
+        "height": 24,
+        "transition": "fade",
+        "accessibility_label": "Store benefits"
+      }
+    },
+    "aiworld_trade_trust_bar_CG8UBb": {
+      "type": "aiworld-trade-trust-bar",
+      "blocks": {
+        "trust_7VENbT": {
+          "type": "trust",
+          "settings": {
+            "icon": "",
+            "text": "Arrives in 1–4 Business Days (US)"
+          }
+        },
+        "trust_6R49XB": {
+          "type": "trust",
+          "settings": {
+            "icon": "",
+            "text": "Free Shipping (US)"
+          }
+        },
+        "trust_HfUyPr": {
+          "type": "trust",
+          "settings": {
+            "icon": "",
+            "text": "30-Day Returns & Exchanges"
+          }
+        }
+      },
+      "block_order": [
+        "trust_7VENbT",
+        "trust_6R49XB",
+        "trust_HfUyPr"
+      ],
+      "disabled": true,
+      "settings": {
+        "background": "#2f6bff",
+        "text_color": "#ffffff",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "pause_on_hover": true,
+        "show_arrows": false,
+        "show_dots": false,
+        "height": 24,
+        "transition": "slide",
+        "accessibility_label": "Store benefits"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_image": "shopify://shop_images/logo.png",
+        "logo_width": 180,
+        "logo_height": 36,
+        "logo_height_mobile": 30,
+        "logo_position": "middle-left",
+        "mobile_logo_position": "center",
+        "menu": "main-menu",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "always",
+        "show_line_separator": true,
+        "color_scheme": "scheme-2",
+        "menu_color_scheme": "",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "margin_bottom": 0,
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
+    }
+  },
+  "order": [
+    "aiworld-trade-trust-bar",
+    "aiworld_trade_trust_bar_CG8UBb",
+    "header"
+  ]
+}
