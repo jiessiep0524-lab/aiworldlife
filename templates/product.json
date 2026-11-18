@@ -374,8 +374,8 @@
       ],
       "settings": {
         "aria_label": "AIWORLD 9-inch screen in motion",
-        "heading": "See it in motion",
-        "description": "<p>A closer look at the features that make every drive easier.</p>"
+        "heading": "",
+        "description": ""
       }
     },
     "aiworld-hero": {
@@ -826,8 +826,8 @@
   "order": [
     "main",
     "aiworld-sticky-buy",
-    "aiworld-image-stack",
     "aiworld-motion-features",
+    "aiworld-image-stack",
     "aiworld-hero",
     "aiworld-intro",
     "aiworld-cards",
