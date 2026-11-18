@@ -58,7 +58,7 @@
   </section>
 {%- endif -%}
 
-<style>
+{% stylesheet %}
   .aw-motion-features { background: #fff; color: #101828; }
   .aw-motion-features__header { max-width: 680px; margin: 0 auto; padding: 64px 0 8px; text-align: center; }
   .aw-motion-features__header h2 { margin: 0; color: #101828; font-size: clamp(2.4rem, 4vw, 4.2rem); line-height: 1.1; }
@@ -83,9 +83,9 @@
     .aw-motion-feature__text { margin-top: 13px; font-size: 1.5rem; }
     .aw-motion-feature__toggle { right: 10px; bottom: 10px; }
   }
-</style>
+{% endstylesheet %}
 
-<script>
+{% javascript %}
   (() => {
     const init = () => {
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -154,7 +154,7 @@
       init();
     }
   })();
-</script>
+{% endjavascript %}
 
 {% schema %}
 {
