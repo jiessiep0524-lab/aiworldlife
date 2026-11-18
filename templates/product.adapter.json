@@ -1,0 +1,691 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "title_override": "",
+            "desktop_font_size": 28,
+            "mobile_font_size": 24
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_included": false,
+            "desktop_price_size": 32,
+            "mobile_price_size": 28,
+            "compare_price_size": 16,
+            "tax_badge_size": 13
+          }
+        },
+        "shipping-note": {
+          "type": "aiworld_shipping_note",
+          "settings": {
+            "message": "",
+            "show_icon": true,
+            "desktop_font_size": 14,
+            "mobile_font_size": 14
+          }
+        },
+        "key-features": {
+          "type": "aiworld_key_features",
+          "settings": {
+            "heading": "",
+            "features": "",
+            "open_by_default": true,
+            "desktop_font_size": 15,
+            "mobile_font_size": 15,
+            "card_radius": 12
+          }
+        },
+        "variant-picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity-selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy-buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "before-buy": {
+          "type": "aiworld_before_buy",
+          "settings": {
+            "label": "BEFORE YOU BUY",
+            "requirement": "Requires factory-wired Apple CarPlay or Android Auto",
+            "details": "This adapter converts an existing compatible wired system to wireless. It does not add CarPlay or Android Auto to a vehicle that does not already support a compatible factory-wired connection.",
+            "panel_content": "<p><strong>Compatibility checklist</strong></p><ul><li>Your vehicle must already support factory-wired Apple CarPlay and/or factory-wired Android Auto through a USB data port.</li><li>Charge-only USB ports are not compatible.</li><li>Keep Bluetooth and Wi-Fi enabled on your phone during use.</li><li>Compatible factory touchscreen, steering-wheel and control-knob functions remain available where supported by the vehicle.</li><li>Confirm compatibility before ordering. If you are unsure, contact support with your vehicle year, make, model, phone model and current wired CarPlay/Android Auto setup.</li></ul>",
+            "help_text": "",
+            "help_link": "",
+            "show_help_link": false,
+            "open_by_default": true,
+            "summary_font_size": 15,
+            "body_font_size": 14,
+            "card_radius": 12
+          }
+        },
+        "buy-trust": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<style>\n  .product__info-container .price-item--sale { color: #0787F9; }\n  .product__info-container .price--on-sale .price-item--regular { color: #8b919a; text-decoration: line-through; }\n  .aiworld-after-sale { margin-top: 18px; }\n  .aiworld-after-sale__label { margin: 0 0 12px; color: #5d6878; font-size: 12px; font-weight: 700; letter-spacing: .08em; }\n  .aiworld-after-sale__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }\n  .aiworld-after-sale__item { display: flex; flex-direction: column; align-items: center; gap: 8px; color: #172033; font-size: 13px; font-weight: 600; line-height: 1.3; text-align: center; }\n  .aiworld-after-sale__item svg { color: #0787F9; }\n  .aiworld-after-sale__item img { width: 48px; height: 48px; object-fit: contain; display: block; }\n</style>\n<div class=\"aiworld-after-sale\" aria-label=\"After sale policy\">\n  <p class=\"aiworld-after-sale__label\">AFTER SALE POLICY</p>\n  <div class=\"aiworld-after-sale__row\">\n    <span class=\"aiworld-after-sale__item\"><img src=\"https://cdn.shopify.com/s/files/1/1000/0551/1457/files/ChatGPT_Image_2026_9_18_15_32_04_2.png?v=1789717636&width=120\" alt=\"\" width=\"48\" height=\"48\" loading=\"lazy\">30-Day Returns</span>\n    <span class=\"aiworld-after-sale__item\"><img src=\"https://cdn.shopify.com/s/files/1/1000/0551/1457/files/ChatGPT_Image_2026_9_18_15_32_04_3.png?v=1789717636&width=120\" alt=\"\" width=\"48\" height=\"48\" loading=\"lazy\">Secure Checkout</span>\n    <span class=\"aiworld-after-sale__item\"><img src=\"https://cdn.shopify.com/s/files/1/1000/0551/1457/files/ChatGPT_Image_2026_9_18_15_32_05_4.png?v=1789717636&width=120\" alt=\"\" width=\"48\" height=\"48\" loading=\"lazy\">Dedicated Support</span>\n  </div>\n</div>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "shipping-note",
+        "key-features",
+        "variant-picker",
+        "quantity-selector",
+        "buy-buttons",
+        "before-buy",
+        "buy-trust",
+        "description",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "",
+        "media_size": "medium",
+        "constrain_to_viewport": false,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "aiworld-sticky-buy": {
+      "type": "aiworld-sticky-buy-bar",
+      "settings": {
+        "button_label": "Add to cart"
+      }
+    },
+    "1791958928f04f731a": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_cards_carousel_yEqTr6": {
+          "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "show_sample_reviews": true,
+            "reviews_selection": "product_reviews",
+            "products": [
+              "wireless-carplay-android-auto-adapter"
+            ],
+            "filter_pinned": false,
+            "filter_featured": false,
+            "filter_custom_tags": "",
+            "star_rating": "all",
+            "show_review_media": true,
+            "display_order": "media_first",
+            "no_image_fallback": "review_text_only",
+            "max_reviews": 20,
+            "review_length": "medium",
+            "text_size": "medium",
+            "image_ratio": "1",
+            "reviews_shown": 5,
+            "show_reviewer_name": false,
+            "show_product_name": false,
+            "hide_arrows_mobile": true,
+            "arrows_position": "sides",
+            "max_width": 1100,
+            "corner_styling": "soft",
+            "header_text_color": "#000000",
+            "text_color": "#000000",
+            "card_color": "#f9f9f9",
+            "stars_color": "#0787f9",
+            "arrows_color": "#000000",
+            "transition_speed": 5,
+            "header_text": "Customers are saying",
+            "show_average_rating": false,
+            "rating_display": "show_avg_text"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_cards_carousel_yEqTr6"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "aiworld-image-stack": {
+      "type": "aiworld-product-image-stack",
+      "blocks": {
+        "image_GFW7pi": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aiworld-9-inch-wireless-carplay-android-auto-touch-screen.webp",
+            "alt_text": "",
+            "link": ""
+          }
+        },
+        "image_F8PXYN": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aiworld-siri-google-assistant-voice-control-carplay.webp",
+            "alt_text": "",
+            "link": ""
+          }
+        },
+        "image_HBhjWK": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aiworld-built-in-speaker-bluetooth-fm-aux-audio.webp",
+            "alt_text": "",
+            "link": ""
+          }
+        },
+        "image_3xNEJU": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aiworld-airplay-android-mirror-screen-mirroring.webp",
+            "alt_text": "",
+            "link": ""
+          }
+        },
+        "image_iYFJn9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aiworld-1080p-backup-camera-parking-and-reversing.webp",
+            "alt_text": "",
+            "link": ""
+          }
+        },
+        "image_6qWbfm": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aiworld-wireless-carplay-bluetooth-pairing-steps.webp",
+            "alt_text": "",
+            "link": ""
+          }
+        },
+        "image_XpwdT3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aiworld-ota-upgrade-no-app-download-carplay.webp",
+            "alt_text": "",
+            "link": ""
+          }
+        },
+        "image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/aiworld-12v-24v-carplay-screen-fits-most-vehicles.webp",
+            "alt_text": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_GFW7pi",
+        "image_F8PXYN",
+        "image_HBhjWK",
+        "image_3xNEJU",
+        "image_iYFJn9",
+        "image_6qWbfm",
+        "image_XpwdT3",
+        "image-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "background_color": "#ffffff",
+        "max_width": 1200,
+        "gap": 0,
+        "image_radius": 0,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "aiworld-hero": {
+      "type": "aiworld-product-banner",
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/aiworld-portable-carplay-android-auto-airplay-app-menu.webp",
+        "eyebrow": "AIWORLD Screen",
+        "heading": "Redefine Your Screen. Elevate Your Drive.",
+        "text": "<p>A smarter display for clearer navigation, better entertainment, and every journey in between.</p>",
+        "primary_label": "Shop now",
+        "primary_link": "",
+        "secondary_label": "Explore features",
+        "secondary_link": "#shopify-section-aiworld-intro",
+        "content_position": "left",
+        "text_alignment": "left",
+        "horizontal_offset": 0,
+        "copy_width": 540,
+        "height": 520,
+        "overlay_opacity": 55,
+        "accent_color": "#0787f9"
+      }
+    },
+    "aiworld-intro": {
+      "type": "aiworld-product-intro",
+      "blocks": {
+        "stat-1": {
+          "type": "stat",
+          "settings": {
+            "value": "9 in",
+            "label": "HD display",
+            "text": "Bright and vivid"
+          }
+        },
+        "stat-2": {
+          "type": "stat",
+          "settings": {
+            "value": "Wireless",
+            "label": "CarPlay",
+            "text": "No cords. Just drive."
+          }
+        },
+        "stat-3": {
+          "type": "stat",
+          "settings": {
+            "value": "Android",
+            "label": "Auto",
+            "text": "Wirelessly connected"
+          }
+        },
+        "stat-4": {
+          "type": "stat",
+          "settings": {
+            "value": "Plug and Play",
+            "label": "Installation",
+            "text": "Ready in minutes"
+          }
+        },
+        "stat-5": {
+          "type": "stat",
+          "settings": {
+            "value": "60 FPS",
+            "label": "Smooth video",
+            "text": "Clear in every scene"
+          }
+        }
+      },
+      "block_order": [
+        "stat-1",
+        "stat-2",
+        "stat-3",
+        "stat-4",
+        "stat-5"
+      ],
+      "disabled": true,
+      "settings": {
+        "product": "",
+        "eyebrow": "ScreenFlow",
+        "heading": "A smarter display for every drive.",
+        "text": "<p>Everything you need to stay connected, informed, and entertained without taking your eyes off the road.</p>",
+        "layout": "centered",
+        "image_width": 720,
+        "stat_columns": "5",
+        "background_color": "#f4f8fc"
+      }
+    },
+    "aiworld-cards": {
+      "type": "aiworld-product-cards",
+      "blocks": {
+        "card-1": {
+          "type": "card",
+          "settings": {
+            "heading": "No more aftermarket drama",
+            "text": "A clean, flexible display that feels at home in any vehicle.",
+            "link_label": "Learn more",
+            "link": "",
+            "card_color": "#ffffff"
+          }
+        },
+        "card-2": {
+          "type": "card",
+          "settings": {
+            "heading": "New entertainment hub",
+            "text": "Bring your favorite apps, music, and maps to every journey.",
+            "link_label": "Explore",
+            "link": "",
+            "card_color": "#ffffff"
+          }
+        },
+        "card-3": {
+          "type": "card",
+          "settings": {
+            "heading": "CarPlay and Android Auto",
+            "text": "Connect your phone your way and keep the road in focus.",
+            "link_label": "See how it works",
+            "link": "",
+            "card_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "card-1",
+        "card-2",
+        "card-3"
+      ],
+      "disabled": true,
+      "settings": {
+        "eyebrow": "Why settle for less?",
+        "heading": "Built for a better drive.",
+        "text": "<p>Thoughtful details that make everyday driving feel simpler.</p>",
+        "columns": "3",
+        "background_color": "#ffffff"
+      }
+    },
+    "aiworld-features": {
+      "type": "aiworld-product-feature-grid",
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Drive smarter every day",
+            "heading": "More than a screen. A better driving experience.",
+            "text": "Stay connected, informed, and in control while you focus on what matters most.",
+            "link_label": "Discover more",
+            "link": "",
+            "media_position": "left",
+            "background_color": "#06182a",
+            "text_color": "#ffffff"
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "eyebrow": "Built for every journey",
+            "heading": "Clarity in sight. Enjoy every drive.",
+            "text": "Keep maps, media, and calls right where you need them, with a layout that makes every feature easy to see.",
+            "link_label": "See the details",
+            "link": "",
+            "media_position": "right",
+            "background_color": "#0787f9",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "feature-1",
+        "feature-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "eyebrow": "Redefine your screen",
+        "heading": "Clarity in sight. Enjoy every drive.",
+        "text": "<p>Use each split panel for a different story, product benefit, or visual guide.</p>",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "background_color": "#ffffff"
+      }
+    },
+    "aiworld-icons": {
+      "type": "aiworld-product-icons",
+      "blocks": {
+        "item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "",
+            "heading": "Fast connection",
+            "text": "Get up and running in minutes.",
+            "icon_color": "#0789f9"
+          }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "",
+            "heading": "Smart compatibility",
+            "text": "Works with the devices you love.",
+            "icon_color": "#0789f9"
+          }
+        },
+        "item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "",
+            "heading": "Intuitive experience",
+            "text": "Designed for everyone.",
+            "icon_color": "#0789f9"
+          }
+        },
+        "item-4": {
+          "type": "item",
+          "settings": {
+            "icon": "",
+            "heading": "Continuous improvement",
+            "text": "Always evolving for tomorrow.",
+            "icon_color": "#0789f9"
+          }
+        },
+        "item-5": {
+          "type": "item",
+          "settings": {
+            "icon": "",
+            "heading": "Easy setup",
+            "text": "Simple from the first drive.",
+            "icon_color": "#0789f9"
+          }
+        }
+      },
+      "block_order": [
+        "item-1",
+        "item-2",
+        "item-3",
+        "item-4",
+        "item-5"
+      ],
+      "disabled": true,
+      "settings": {
+        "eyebrow": "More features",
+        "heading": "Technology made simple.",
+        "text": "<p>Small details, thoughtfully arranged for everyday use.</p>",
+        "columns": "5",
+        "background_color": "#eaf5ff"
+      }
+    },
+    "aiworld-faq": {
+      "type": "aiworld-product-faq",
+      "blocks": {
+        "faq-1": {
+          "type": "faq",
+          "settings": {
+            "question": "Will it work with my car?",
+            "answer": "<p>Many vehicles with a compatible 12V鈥?4V power outlet can use the screen with the included charger. Compatibility also depends on safe mounting space, stable power, phone support for CarPlay or Android Auto, and any audio or camera setup. Factory CarPlay is not required. Please review the vehicle and phone requirements before ordering.</p>",
+            "open": false
+          }
+        },
+        "faq-2": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I connect a backup camera?",
+            "answer": "<p>Yes, when the selected product and camera meet the required connection specifications.</p>",
+            "open": false
+          }
+        },
+        "faq-3": {
+          "type": "faq",
+          "settings": {
+            "question": "How does the audio work?",
+            "answer": "<p>Audio can be configured through the supported vehicle or device output options shown in the product details.</p>",
+            "open": false
+          }
+        },
+        "faq-4": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Shipping estimates are shown at checkout and may vary by destination.</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3",
+        "faq-4"
+      ],
+      "disabled": true,
+      "settings": {
+        "eyebrow": "Questions, answered",
+        "heading": "Got questions?",
+        "text": "<p>Here are some of the things drivers ask most.</p>",
+        "background_color": "#ffffff"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "disabled": true,
+      "settings": {
+        "heading": "Other industry favorites",
+        "heading_size": "h2",
+        "products_to_show": 5,
+        "columns_desktop": 5,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 44
+      }
+    },
+    "aiworld-reviews": {
+      "type": "aiworld-product-reviews",
+      "blocks": {
+        "review-1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "The setup was simple and the screen is crystal clear. It changed my daily drive.",
+            "author": "Jason M.",
+            "verified": true
+          }
+        },
+        "review-2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "Exactly what I needed for my older car. It looks clean and works flawlessly.",
+            "author": "Sarah L.",
+            "verified": true
+          }
+        },
+        "review-3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "quote": "The screen is big, responsive, and makes daily commutes much more enjoyable.",
+            "author": "Michael T.",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "review-1",
+        "review-2",
+        "review-3"
+      ],
+      "disabled": true,
+      "settings": {
+        "eyebrow": "Real drivers. Real reviews.",
+        "heading": "Loved by thousands",
+        "text": "<p>See why drivers are upgrading their everyday journeys.</p>",
+        "columns": "3",
+        "background_color": "#f4f8fc"
+      }
+    },
+    "disclosures": {
+      "type": "disclosures",
+      "disabled": true,
+      "settings": {
+        "heading": "Disclosures",
+        "heading_size": "h2",
+        "open_by_default": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "178937237118060a23": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_eQYEQn": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_eQYEQn"
+      ],
+      "disabled": true,
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "aiworld-newsletter": {
+      "type": "aiworld-product-newsletter",
+      "settings": {
+        "heading": "Stay one step ahead.",
+        "text": "<p>Get product updates, useful tips, and smarter driving inspiration.</p>",
+        "placeholder": "Your email address",
+        "button_label": "Subscribe",
+        "background_color": "#0787f9"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "aiworld-sticky-buy",
+    "1791958928f04f731a",
+    "aiworld-image-stack",
+    "aiworld-hero",
+    "aiworld-intro",
+    "aiworld-cards",
+    "aiworld-features",
+    "aiworld-icons",
+    "aiworld-faq",
+    "related-products",
+    "aiworld-reviews",
+    "disclosures",
+    "178937237118060a23",
+    "aiworld-newsletter"
+  ]
+}

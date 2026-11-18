@@ -1,0 +1,172 @@
+{% doc %}
+  Renders a Shop mega menu from the store's live collections.
+  @param {link} link - The Shop navigation link.
+  @param {section} section - The header section settings.
+  @param {number} shop_menu_index - The Shop menu index.
+{% enddoc %}
+
+{%- assign shop_collections = collections | sort: 'title' -%}
+{%- assign active_category_index = 1 -%}
+{%- assign visible_collection_count = 0 -%}
+{%- for shop_collection in shop_collections -%}
+  {%- if shop_collection.handle != 'frontpage' and shop_collection.handle != 'all' -%}
+    {%- assign visible_collection_count = visible_collection_count | plus: 1 -%}
+    {%- if request.path == shop_collection.url -%}
+      {%- assign active_category_index = visible_collection_count -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<header-menu>
+  <details id="Details-HeaderMenu-{{ shop_menu_index }}" class="mega-menu aiworld-shop-menu">
+    <summary
+      id="HeaderMenu-{{ link.handle }}"
+      class="header__menu-item list-menu__item link focus-inset"
+    >
+      <span{% if link.child_active %} class="header__active-menu-item"{% endif %}>
+        {{- link.title | escape -}}
+      </span>
+      {{- 'icon-caret.svg' | inline_asset_content -}}
+    </summary>
+    <div
+      id="MegaMenu-Content-{{ shop_menu_index }}"
+      class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
+      tabindex="-1"
+    >
+      <aiworld-shop-menu class="aiworld-shop-menu__layout page-width">
+        <div class="aiworld-shop-menu__categories" role="tablist" aria-label="{{ link.title | escape }}" aria-orientation="vertical">
+          {%- assign visible_collection_count = 0 -%}
+          {%- for shop_collection in shop_collections -%}
+            {%- if shop_collection.handle != 'frontpage' and shop_collection.handle != 'all' -%}
+              {%- assign visible_collection_count = visible_collection_count | plus: 1 -%}
+              {%- assign category_image = shop_collection.image -%}
+              {%- if category_image == blank and shop_collection.products.first != blank -%}
+                {%- assign category_image = shop_collection.products.first.featured_image -%}
+              {%- endif -%}
+              <button
+                id="ShopMenu-{{ shop_menu_index }}-Tab-{{ visible_collection_count }}"
+                class="aiworld-shop-menu__category{% if active_category_index == visible_collection_count %} aiworld-shop-menu__category--active{% endif %}"
+                type="button"
+                role="tab"
+                aria-controls="ShopMenu-{{ shop_menu_index }}-Panel-{{ visible_collection_count }}"
+                aria-selected="{% if active_category_index == visible_collection_count %}true{% else %}false{% endif %}"
+                tabindex="{% if active_category_index == visible_collection_count %}0{% else %}-1{% endif %}"
+              >
+                <span class="aiworld-shop-menu__category-label">
+                  {%- if category_image != blank -%}
+                    {{ category_image | image_url: width: 96 | image_tag: loading: 'lazy', widths: '48,72,96', sizes: '48px', alt: shop_collection.title, class: 'aiworld-shop-menu__category-image' }}
+                  {%- endif -%}
+                  <span>{{ shop_collection.title | escape }}</span>
+                </span>
+                <span class="aiworld-shop-menu__category-arrow" aria-hidden="true">&rarr;</span>
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <div class="aiworld-shop-menu__panels">
+          {%- assign visible_collection_count = 0 -%}
+          {%- for shop_collection in shop_collections -%}
+            {%- if shop_collection.handle != 'frontpage' and shop_collection.handle != 'all' -%}
+              {%- assign visible_collection_count = visible_collection_count | plus: 1 -%}
+              <section
+                id="ShopMenu-{{ shop_menu_index }}-Panel-{{ visible_collection_count }}"
+                class="aiworld-shop-menu__panel"
+                role="tabpanel"
+                aria-labelledby="ShopMenu-{{ shop_menu_index }}-Tab-{{ visible_collection_count }}"
+                tabindex="0"
+                {% if active_category_index != visible_collection_count %}hidden{% endif %}
+              >
+                <div class="aiworld-shop-menu__panel-heading">
+                  <div class="aiworld-shop-menu__intro">
+                    <h2><a href="{{ shop_collection.url }}">{{ shop_collection.title | escape }}</a></h2>
+                    {%- if shop_collection.description != blank -%}
+                      <div class="aiworld-shop-menu__description">{{ shop_collection.description }}</div>
+                    {%- endif -%}
+                  </div>
+                  <div class="aiworld-shop-menu__actions">
+                    <a
+                      class="aiworld-shop-menu__view-all"
+                      href="{{ shop_collection.url }}"
+                      aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: shop_collection.title | escape }}"
+                    >
+                      {{- 'sections.featured_collection.view_all' | t -}}
+                      <span aria-hidden="true">&rarr;</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="aiworld-shop-menu__products">
+                  {%- for product in shop_collection.products limit: 4 -%}
+                    <a class="aiworld-shop-menu__product" href="{{ product.url }}">
+                      <span class="aiworld-shop-menu__product-image">
+                        {%- if product.featured_image != blank -%}
+                          {{ product.featured_image | image_url: width: 480 | image_tag: loading: 'lazy', widths: '180,240,360,480', sizes: '(min-width: 1200px) 18vw, (min-width: 750px) 24vw, 45vw', alt: product.title }}
+                        {%- endif -%}
+                      </span>
+                      <span class="aiworld-shop-menu__product-title">{{ product.title | escape }}</span>
+                      <span class="aiworld-shop-menu__product-price">{{ product.price | money }}</span>
+                    </a>
+                  {%- else -%}
+                    <p class="aiworld-shop-menu__empty">{{ 'sections.featured_collection.no_products' | t }}</p>
+                  {%- endfor -%}
+                </div>
+              </section>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </aiworld-shop-menu>
+    </div>
+  </details>
+</header-menu>
+
+{% javascript %}
+  if (!customElements.get('aiworld-shop-menu')) {
+    class AiWorldShopMenu extends HTMLElement {
+      connectedCallback() {
+        this.tablist = this.querySelector('[role="tablist"]');
+        if (!this.tablist) return;
+
+        this.tabs = Array.from(this.tablist.querySelectorAll('[role="tab"]'));
+        this.tabs.forEach((tab) => {
+          tab.addEventListener('click', () => this.activateTab(tab));
+          tab.addEventListener('keydown', (event) => this.onTabKeydown(event, tab));
+        });
+      }
+
+      activateTab(activeTab) {
+        this.tabs.forEach((tab) => {
+          const selected = tab === activeTab;
+          const panel = this.querySelector(`#${tab.getAttribute('aria-controls')}`);
+          tab.setAttribute('aria-selected', String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+          tab.classList.toggle('aiworld-shop-menu__category--active', selected);
+          if (panel) panel.hidden = !selected;
+        });
+      }
+
+      onTabKeydown(event, currentTab) {
+        const currentIndex = this.tabs.indexOf(currentTab);
+        let nextIndex = currentIndex;
+
+        if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+          nextIndex = (currentIndex + 1) % this.tabs.length;
+        } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+          nextIndex = (currentIndex - 1 + this.tabs.length) % this.tabs.length;
+        } else if (event.key === 'Home') {
+          nextIndex = 0;
+        } else if (event.key === 'End') {
+          nextIndex = this.tabs.length - 1;
+        } else {
+          return;
+        }
+
+        event.preventDefault();
+        const nextTab = this.tabs[nextIndex];
+        nextTab.focus();
+        this.activateTab(nextTab);
+      }
+    }
+
+    customElements.define('aiworld-shop-menu', AiWorldShopMenu);
+  }
+{% endjavascript %}

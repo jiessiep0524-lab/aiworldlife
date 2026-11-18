@@ -1,0 +1,114 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "faq": {
+      "type": "aiworld-trade-faq",
+      "blocks": {
+        "faq_1": {
+          "type": "question",
+          "settings": {
+            "question": "Will it work with my car?",
+            "answer": "<p><strong>Absolutely.</strong> If your car has a 12V or 24V power socket, it works. Factory CarPlay is not required, and the factory radio stays in place. The included charger turns that socket into a steady 5V/3A.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need a mechanic, or do I have to cut wires?",
+            "answer": "<p><strong>Not at all.</strong> Mount the screen with the suction cup, or with the CD-slot mount included for $10 with your screen order during this limited-time offer. Plug in the included car charger. No dashboard removal, no stereo replacement, and no wire cutting for the screen.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need to plug my phone in every time I drive?",
+            "answer": "<p><strong>No.</strong> Apple CarPlay and Android Auto connect wirelessly. Get in, start the car, and your phone syncs.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "question",
+          "settings": {
+            "question": "Will music and calls play through my car's original speakers?",
+            "answer": "<p><strong>Yes.</strong> Use Bluetooth, the included AUX cable, or the built-in FM transmitter. The screen also has its own speaker when you want sound without the car stereo.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "question",
+          "settings": {
+            "question": "Will this take my only charging port?",
+            "answer": "<p><strong>Your phone does not have to stay plugged in.</strong> The screen runs on its own included car charger in the 12V/24V socket. Charge your phone from the car's USB, or leave it wireless.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "question",
+          "settings": {
+            "question": "Is the backup camera hard to install?",
+            "answer": "<p><strong>The camera is included, and the steps are simple.</strong> Plug it into the AV port, run the cable to the rear, and connect it to the reverse light. Shift into reverse and the view comes on. The factory stereo stays in place.</p>"
+          }
+        },
+        "faq_7": {
+          "type": "question",
+          "settings": {
+            "question": "Can I see the screen on a sunny day?",
+            "answer": "<p><strong>Yes.</strong> The 9-inch HD screen (1280×720) keeps maps and apps readable in daylight. Tilt the portable screen if the sun is on the dash.</p>"
+          }
+        },
+        "faq_8": {
+          "type": "question",
+          "settings": {
+            "question": "Will it drain my car battery while parked?",
+            "answer": "<p><strong>No.</strong> The screen only draws power while the socket is on. When you turn the car off and that socket switches off, the screen shuts off with it.</p>"
+          }
+        },
+        "faq_9": {
+          "type": "question",
+          "settings": {
+            "question": "Can I watch YouTube, Netflix, or TikTok?",
+            "answer": "<p><strong>Not inside CarPlay or Android Auto.</strong> Those apps do not play natively on this screen. Screen mirroring can show your phone.</p>"
+          }
+        },
+        "faq_10": {
+          "type": "question",
+          "settings": {
+            "question": "Have another question?",
+            "answer": "<p><strong>Email support@aiworldlife.com.</strong> US orders ship free: about 1 business day to process, then 1–3 business days after dispatch. Return or exchange within 30 days.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7",
+        "faq_8",
+        "faq_9",
+        "faq_10"
+      ],
+      "settings": {
+        "kicker": "FREQUENTLY ASKED QUESTIONS",
+        "heading": "Got Questions?",
+        "text": "Here are some quick answers.",
+        "link_label": "",
+        "background": "#ffffff",
+        "enable_top_spacing": true,
+        "padding_top": 48,
+        "enable_bottom_spacing": true,
+        "padding_bottom": 64
+      }
+    }
+  },
+  "order": [
+    "faq"
+  ]
+}

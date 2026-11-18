@@ -1,0 +1,240 @@
+{%- if section.blocks.size > 0 -%}
+  <section class="aw-motion-features color-{{ section.settings.color_scheme }}" aria-label="{{ section.settings.aria_label | escape }}">
+    <div class="page-width">
+      {%- if section.settings.heading != blank or section.settings.description != blank -%}
+        <header class="aw-motion-features__header">
+          {%- if section.settings.heading != blank -%}
+            <h2>{{ section.settings.heading | escape }}</h2>
+          {%- endif -%}
+          {%- if section.settings.description != blank -%}
+            <div class="rte">{{ section.settings.description }}</div>
+          {%- endif -%}
+        </header>
+      {%- endif -%}
+
+      <div class="aw-motion-features__list">
+        {%- for block in section.blocks -%}
+          <article class="aw-motion-feature{% if block.settings.layout == 'media_right' %} aw-motion-feature--media-right{% endif %}" {{ block.shopify_attributes }}>
+            <div class="aw-motion-feature__copy">
+              {%- if block.settings.eyebrow != blank -%}
+                <p class="aw-motion-feature__eyebrow">{{ block.settings.eyebrow | escape }}</p>
+              {%- endif -%}
+              {%- if block.settings.heading != blank -%}
+                <h3>{{ block.settings.heading | escape }}</h3>
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <div class="rte aw-motion-feature__text">{{ block.settings.text }}</div>
+              {%- endif -%}
+            </div>
+
+            <div class="aw-motion-feature__media">
+              {%- if block.settings.video_asset != blank and block.settings.poster_asset != blank -%}
+                <div class="aw-motion-feature__video-wrap">
+                  <video
+                    class="aw-motion-feature__video"
+                    muted
+                    playsinline
+                    loop
+                    preload="none"
+                    poster="{{ block.settings.poster_asset | asset_url }}"
+                    aria-label="{{ block.settings.video_label | escape }}"
+                    data-motion-video
+                  >
+                    <source data-src="{{ block.settings.video_asset | asset_url }}" type="video/mp4">
+                  </video>
+                  <button class="aw-motion-feature__toggle" type="button" aria-label="Play {{ block.settings.video_label | escape }}" aria-pressed="false" data-motion-toggle>
+                    <span data-motion-toggle-label>Play</span>
+                  </button>
+                  <noscript>
+                    <a class="aw-motion-feature__fallback" href="{{ block.settings.video_asset | asset_url }}">Watch {{ block.settings.video_label | escape }}</a>
+                  </noscript>
+                </div>
+              {%- endif -%}
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+<style>
+  .aw-motion-features { background: #fff; color: #101828; }
+  .aw-motion-features__header { max-width: 680px; margin: 0 auto; padding: 64px 0 8px; text-align: center; }
+  .aw-motion-features__header h2 { margin: 0; color: #101828; font-size: clamp(2.4rem, 4vw, 4.2rem); line-height: 1.1; }
+  .aw-motion-features__header .rte { margin-top: 14px; color: #4b5565; }
+  .aw-motion-feature { display: grid; grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); align-items: center; gap: clamp(28px, 6vw, 92px); padding: clamp(48px, 7vw, 96px) 0; border-top: 1px solid #e2e8f0; }
+  .aw-motion-feature--media-right .aw-motion-feature__copy { order: 2; }
+  .aw-motion-feature--media-right .aw-motion-feature__media { order: 1; }
+  .aw-motion-feature__eyebrow { margin: 0 0 10px; color: #0787f9; font-size: 1.2rem; font-weight: 700; letter-spacing: .12em; line-height: 1.25; text-transform: uppercase; }
+  .aw-motion-feature h3 { margin: 0; color: #101828; font-size: clamp(2.6rem, 3.7vw, 4.8rem); line-height: 1.06; letter-spacing: -.035em; }
+  .aw-motion-feature__text { max-width: 520px; margin-top: 18px; color: #4b5565; font-size: 1.65rem; line-height: 1.55; }
+  .aw-motion-feature__video-wrap { position: relative; overflow: hidden; aspect-ratio: 16 / 9; border: 1px solid #cbd5e1; border-radius: 12px; background: #f8fafc; }
+  .aw-motion-feature__video { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .aw-motion-feature__toggle { position: absolute; right: 14px; bottom: 14px; min-width: 68px; min-height: 38px; padding: 8px 14px; border: 1px solid #0787f9; border-radius: 8px; background: #0787f9; color: #fff; font: inherit; font-size: 1.3rem; font-weight: 700; line-height: 1; cursor: pointer; }
+  .aw-motion-feature__toggle:focus-visible { outline: 2px solid #101828; outline-offset: 3px; }
+  .aw-motion-feature__fallback { position: absolute; right: 14px; bottom: 14px; padding: 10px 14px; border-radius: 8px; background: #0787f9; color: #fff; font-size: 1.3rem; font-weight: 700; text-decoration: none; }
+  @media screen and (max-width: 749px) {
+    .aw-motion-features__header { padding: 42px 0 2px; text-align: left; }
+    .aw-motion-feature, .aw-motion-feature--media-right { grid-template-columns: 1fr; gap: 24px; padding: 44px 0; }
+    .aw-motion-feature--media-right .aw-motion-feature__copy, .aw-motion-feature--media-right .aw-motion-feature__media { order: initial; }
+    .aw-motion-feature__copy { order: 1; }
+    .aw-motion-feature__media { order: 2; }
+    .aw-motion-feature__text { margin-top: 13px; font-size: 1.5rem; }
+    .aw-motion-feature__toggle { right: 10px; bottom: 10px; }
+  }
+</style>
+
+<script>
+  (() => {
+    const init = () => {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const videos = document.querySelectorAll('[data-motion-video]');
+
+      const setButtonState = (video, isPlaying) => {
+        const button = video.parentElement.querySelector('[data-motion-toggle]');
+        const label = button.querySelector('[data-motion-toggle-label]');
+        button.setAttribute('aria-pressed', String(isPlaying));
+        button.setAttribute('aria-label', `${isPlaying ? 'Pause' : 'Play'} ${video.getAttribute('aria-label')}`);
+        label.textContent = isPlaying ? 'Pause' : 'Play';
+      };
+
+      const loadVideo = (video) => {
+        const source = video.querySelector('source[data-src]');
+        if (!source.getAttribute('src')) {
+          source.setAttribute('src', source.dataset.src);
+          video.load();
+        }
+      };
+
+      const playVideo = (video) => {
+        loadVideo(video);
+        if (!reducedMotion) {
+          video.play().catch(() => setButtonState(video, false));
+        }
+      };
+
+      videos.forEach((video) => {
+        const button = video.parentElement.querySelector('[data-motion-toggle]');
+        setButtonState(video, false);
+        video.addEventListener('play', () => setButtonState(video, true));
+        video.addEventListener('pause', () => setButtonState(video, false));
+        button.addEventListener('click', () => {
+          if (video.paused) {
+            loadVideo(video);
+            video.play().catch(() => setButtonState(video, false));
+          } else {
+            video.pause();
+          }
+        });
+      });
+
+      if (!('IntersectionObserver' in window)) {
+        videos.forEach(playVideo);
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            playVideo(video);
+          } else if (!video.paused) {
+            video.pause();
+          }
+        });
+      }, { rootMargin: '200px 0px' });
+
+      videos.forEach((video) => observer.observe(video));
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init, { once: true });
+    } else {
+      init();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product motion features",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessible label",
+      "default": "Product motion features"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "See it in motion"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>A closer look at the features that make every drive easier.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "motion",
+      "name": "Motion feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "text",
+          "id": "video_asset",
+          "label": "Video asset filename",
+          "info": "Use the filename from this theme's Assets folder."
+        },
+        {
+          "type": "text",
+          "id": "poster_asset",
+          "label": "Poster image asset filename",
+          "info": "Use the filename from this theme's Assets folder."
+        },
+        {
+          "type": "text",
+          "id": "video_label",
+          "label": "Video description"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Media position",
+          "default": "media_right",
+          "options": [
+            { "value": "media_right", "label": "Right" },
+            { "value": "media_left", "label": "Left" }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product motion features"
+    }
+  ]
+}
+{% endschema %}

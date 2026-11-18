@@ -1,0 +1,302 @@
+{% doc %}
+Renders optional add-on rows. Each checked row is added with the main product.
+@param {product} product - The main product.
+@param {object} block - The add-on picker block.
+@param {string} product_form_id - The product form id.
+{% enddoc %}
+
+{%- liquid
+  assign mount_product = block.settings.cd_mount_product
+  if mount_product == blank
+    assign mount_product = all_products['aiworld-universal-cd-slot-mount-for-9-inch-carplay-screen']
+  endif
+
+  assign camera_product = block.settings.camera_product
+  if camera_product == blank
+    assign camera_product = all_products['aiworld-1080p-rear-view-backup-camera']
+  endif
+
+  if product.handle == 'wireless-carplay-android-auto-adapter'
+    assign mount_product = blank
+    assign camera_product = blank
+  endif
+
+  assign mount_variant = blank
+  if mount_product != blank
+    assign mount_variant = mount_product.selected_or_first_available_variant
+  endif
+
+  assign camera_variant = blank
+  if camera_product != blank
+    assign camera_variant = camera_product.selected_or_first_available_variant
+  endif
+
+  assign protection_product = block.settings.protection_product
+  if protection_product == blank
+    assign protection_product = all_products['replacement-protection']
+  endif
+
+  assign protection_variant = blank
+  if protection_product != blank
+    assign protection_variant = protection_product.selected_or_first_available_variant
+  endif
+
+  assign mount_label = block.settings.mount_label
+  assign camera_label = block.settings.camera_label
+  assign protection_label = block.settings.protection_label
+  assign protection_note = block.settings.protection_note
+  if protection_note == blank
+    assign protection_note = 'This service is independent of the free 1-year warranty repair service.'
+  endif
+
+  assign show_mount = false
+  if mount_variant != blank and mount_variant.available
+    assign show_mount = true
+  endif
+
+  assign show_camera = false
+  if camera_variant != blank and camera_variant.available
+    assign show_camera = true
+  endif
+
+  assign show_protection = false
+  if protection_variant != blank and protection_variant.available
+    assign show_protection = true
+  endif
+
+  assign package_price = product.selected_or_first_available_variant.price
+  assign mount_addon_price = 1000
+  assign mount_compare_price = mount_variant.compare_at_price
+  if mount_compare_price == blank or mount_compare_price <= mount_addon_price
+    assign mount_compare_price = mount_variant.price
+  endif
+  assign protection_addon_price = protection_variant.price | default: 1000
+  assign protection_compare_price = protection_variant.compare_at_price
+  assign price_with_mount = package_price
+  assign price_with_protection = package_price
+  assign price_with_both = package_price
+  if show_mount
+    assign price_with_mount = package_price | plus: mount_addon_price
+    assign price_with_both = price_with_mount
+  endif
+  if show_protection
+    assign price_with_protection = package_price | plus: protection_addon_price
+    assign price_with_both = price_with_both | plus: protection_addon_price
+  endif
+  assign addons_selected_by_default = false
+  assign default_total = package_price
+  if product.id == 10535722746145
+    assign addons_selected_by_default = true
+    assign default_total = price_with_both
+  endif
+-%}
+
+{%- if show_mount or show_camera or show_protection -%}
+  <div
+    id="{{ block.id }}-addon-picker"
+    class="aiworld-addon-list"
+    style="--addon-radius: {{ block.settings.card_radius }}px;"
+    data-price-base="{{ package_price | money | escape }}"
+    data-price-mount="{{ price_with_mount | money | escape }}"
+    data-price-protection="{{ price_with_protection | money | escape }}"
+    data-price-both="{{ price_with_both | money | escape }}"
+    {{ block.shopify_attributes }}
+  >
+    {%- if block.settings.heading != blank -%}
+      <p class="aiworld-addon-list__heading">{{ block.settings.heading | escape }}</p>
+    {%- endif -%}
+
+    {%- if show_camera -%}
+      <label class="aiworld-addon-row">
+        <input
+          type="checkbox"
+          data-addon-toggle="camera-included"
+          aria-label="{{ camera_label | escape }}"
+          checked
+        >
+        <span class="aiworld-addon-row__media">
+          {%- liquid
+            assign camera_image_product = camera_product
+            if camera_image_product.featured_image == blank
+              assign camera_image_product = all_products['aiworld-rear-view-camera']
+            endif
+          -%}
+          {%- if camera_image_product.featured_image != blank -%}
+            {{
+              camera_image_product.featured_image
+              | image_url: width: 160
+              | image_tag: widths: '80,160', sizes: '56px', alt: camera_label, loading: 'lazy'
+            }}
+          {%- endif -%}
+        </span>
+        <span class="aiworld-addon-row__title">
+          {{ camera_label | escape }}
+          <span class="aiworld-addon-row__badge">Included</span>
+        </span>
+        <span class="aiworld-addon-row__price">Free</span>
+      </label>
+    {%- endif -%}
+
+    {%- if show_mount -%}
+      <label class="aiworld-addon-row">
+        <input
+          type="checkbox"
+          data-addon-toggle="mount"
+          aria-label="{{ mount_label | escape }}"
+          {% if addons_selected_by_default %}checked{% endif %}
+        >
+        <span class="aiworld-addon-row__media">
+          {%- if mount_product.featured_image != blank -%}
+            {{
+              mount_product.featured_image
+              | image_url: width: 160
+              | image_tag: widths: '80,160', sizes: '56px', alt: mount_label, loading: 'lazy'
+            }}
+          {%- endif -%}
+        </span>
+        <span class="aiworld-addon-row__title">
+          {{ mount_label | escape }}
+        </span>
+        <span class="aiworld-addon-row__price">
+          {%- if mount_compare_price > mount_addon_price -%}
+            <s class="aiworld-addon-row__compare">{{ mount_compare_price | money }}</s>
+          {%- endif -%}
+          <span class="aiworld-addon-row__price-current">{{ mount_addon_price | money }}</span>
+        </span>
+      </label>
+    {%- endif -%}
+
+    {%- if show_protection -%}
+      <label class="aiworld-addon-row">
+        <input
+          type="checkbox"
+          data-addon-toggle="protection"
+          aria-label="{{ protection_label | escape }}"
+          {% if addons_selected_by_default %}checked{% endif %}
+        >
+        <span class="aiworld-addon-row__media">
+          {%- if protection_product.featured_image != blank -%}
+            {{
+              protection_product.featured_image
+              | image_url: width: 160
+              | image_tag: widths: '80,160', sizes: '56px', alt: protection_label, loading: 'lazy'
+            }}
+          {%- endif -%}
+        </span>
+        <span class="aiworld-addon-row__title">
+          {{ protection_label | escape }}
+          <span class="aiworld-addon-row__note">{{ protection_note | escape }}</span>
+        </span>
+        <span class="aiworld-addon-row__price">
+          {%- if protection_compare_price > protection_addon_price -%}
+            <s class="aiworld-addon-row__compare">{{ protection_compare_price | money }}</s>
+          {%- endif -%}
+          <span class="aiworld-addon-row__price-current">{{ protection_addon_price | money }}</span>
+        </span>
+      </label>
+    {%- endif -%}
+
+    <div class="aiworld-addon-total">
+      <span>Total</span>
+      <span data-addon-total>{{ default_total | money }}</span>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const initializeAddonPicker = () => {
+        const picker = document.getElementById('{{ block.id }}-addon-picker');
+        const form = document.getElementById('{{ product_form_id }}');
+        if (!picker || !form || picker.dataset.initialized === 'true') return false;
+        picker.dataset.initialized = 'true';
+
+        const syncAddon = (key) => {
+          const toggle = picker.querySelector(`[data-addon-toggle="${key}"]`);
+          const input = form.querySelector(`[data-addon-input="${key}"]`);
+          if (!toggle || !input) return;
+          input.disabled = !toggle.checked;
+          toggle.closest('.aiworld-addon-row')?.classList.toggle('is-selected', toggle.checked);
+        };
+
+        const quantityInput = () => {
+          const formId = form.getAttribute('id');
+          return (
+            (formId && document.querySelector(`input[name="quantity"][form="${CSS.escape(formId)}"]`)) ||
+            form.querySelector('input[name="quantity"]')
+          );
+        };
+
+        const packageQuantity = () => {
+          const qty = parseInt(quantityInput()?.value, 10);
+          return Number.isFinite(qty) && qty > 0 ? qty : 1;
+        };
+
+        const scaleMoney = (label, qty) => {
+          if (!label || qty === 1) return label;
+          const match = String(label).match(/\d[\d.,]*/);
+          if (!match) return label;
+          const raw = match[0];
+          const lastComma = raw.lastIndexOf(',');
+          const lastDot = raw.lastIndexOf('.');
+          const decimalSep = lastComma > lastDot ? ',' : lastDot > lastComma ? '.' : '';
+          const thousandsSep = decimalSep === ',' ? '.' : ',';
+          const normalized = decimalSep
+            ? raw.split(thousandsSep).join('').replace(decimalSep, '.')
+            : raw.replace(/[.,]/g, '');
+          const amount = Number(normalized);
+          if (!Number.isFinite(amount)) return label;
+          const decimals = decimalSep ? raw.split(decimalSep).pop().length : 0;
+          const fixed = (amount * qty).toFixed(decimals);
+          const parts = fixed.split('.');
+          const grouped = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousandsSep);
+          const formatted = decimals ? grouped + decimalSep + parts[1] : grouped;
+          return label.replace(raw, formatted);
+        };
+
+        const applyPackagePrice = () => {
+          const mount = picker.querySelector('[data-addon-toggle="mount"]');
+          const protection = picker.querySelector('[data-addon-toggle="protection"]');
+          const mountOn = Boolean(mount?.checked);
+          const protectionOn = Boolean(protection?.checked);
+          let label = picker.dataset.priceBase;
+          if (mountOn && protectionOn) label = picker.dataset.priceBoth;
+          else if (mountOn) label = picker.dataset.priceMount;
+          else if (protectionOn) label = picker.dataset.priceProtection;
+          if (!label) return;
+          const qty = packageQuantity();
+          const priced = scaleMoney(label, qty);
+          const info = form.closest('.product__info-container');
+          const total = picker.querySelector('[data-addon-total]');
+          if (total) total.textContent = priced;
+        };
+
+        const syncAll = () => {
+          const included = picker.querySelector('[data-addon-toggle="camera-included"]');
+          if (included) {
+            included.checked = true;
+            included.closest('.aiworld-addon-row')?.classList.add('is-selected');
+          }
+          picker.querySelectorAll('[data-addon-toggle]').forEach((toggle) => syncAddon(toggle.dataset.addonToggle));
+          applyPackagePrice();
+        };
+
+        picker.addEventListener('change', syncAll);
+        document.addEventListener('aiworld:variant-price', applyPackagePrice);
+        const qtyField = quantityInput();
+        qtyField?.addEventListener('change', applyPackagePrice);
+        qtyField?.addEventListener('input', applyPackagePrice);
+        qtyField?.closest('quantity-input')?.addEventListener('click', () => {
+          requestAnimationFrame(applyPackagePrice);
+        });
+        syncAll();
+        return true;
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeAddonPicker, { once: true });
+      } else if (!initializeAddonPicker()) {
+        requestAnimationFrame(initializeAddonPicker);
+      }
+    })();
+  </script>
+{%- endif -%}
